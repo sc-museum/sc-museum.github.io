@@ -1,0 +1,702 @@
+{
+ "commands": [
+  {
+   "name": "Headquarters and Headquarters Company, 1st Signal Command",
+   "date": "(unknown)"
+  },
+  {
+   "name": "Headquarters and Headquarters Company, 5th Signal Command",
+   "date": "30 September 2005"
+  },
+  {
+   "name": "Headquarters and Headquarters Company, 7th Signal Command",
+   "date": "2 October 2008"
+  },
+  {
+   "name": "Headquarters and Headquarters Company, 9th Signal Command",
+   "date": "15 August 2005 (aka: NETCOM)"
+  },
+  {
+   "name": "Headquarters and Headquarters Company, 311th Signal Command",
+   "date": "22 January 2010"
+  },
+  {
+   "name": "Headquarters and Headquarters Company, 335th Signal Command",
+   "date": "16 August 2007"
+  }
+ ],
+ "brigades": [
+  {
+   "name": "Headquarters and Headquarters Company, 1st Signal Brigade",
+   "date": "22 January 2010"
+  },
+  {
+   "name": "Headquarters and Headquarters Company, 2d Signal Brigade",
+   "date": "14 December 2011"
+  },
+  {
+   "name": "Headquarters and Headquarters Company, 3d Signal Brigade",
+   "date": "15 August 2005"
+  },
+  {
+   "name": "Headquarters and Headquarters Company, 7th Signal Brigade",
+   "date": "3 August 2007"
+  },
+  {
+   "name": "Headquarters and Headquarters Company, 11th Signal Brigade",
+   "date": "18 March 2011"
+  },
+  {
+   "name": "Headquarters and Headquarters Company, 21st Signal Brigade",
+   "date": "23 August 2010"
+  },
+  {
+   "name": "Headquarters and Headquarters Company, 22d Signal Brigade",
+   "date": "2 October 2001"
+  },
+  {
+   "name": "Headquarters and Headquarters Company, 35th Signal Brigade",
+   "date": "18 March 2011"
+  },
+  {
+   "name": "Headquarters and Headquarters Company, 93d Signal Brigade",
+   "date": "16 June 2016"
+  },
+  {
+   "name": "Headquarters and Headquarters Company, 106th Signal Brigade",
+   "date": "10 December 2009"
+  },
+  {
+   "name": "Headquarters and Headquarters Company, 160th Signal Brigade",
+   "date": "17 August 2006"
+  },
+  {
+   "name": "Headquarters and Headquarters Company, 359th Signal Brigade",
+   "date": "16 August 2019"
+  },
+  {
+   "name": "Headquarters and Headquarters Company, 505th Signal Brigade",
+   "date": "17 October 2011"
+  },
+  {
+   "name": "Headquarters and Headquarters Company, 516th Signal Brigade",
+   "date": "10 February 2005"
+  }
+ ],
+ "centers": [
+  {
+   "name": "1st Signal Center",
+   "date": "3 May 2006"
+  },
+  {
+   "name": "2d Signal Center",
+   "date": "17 April 2006"
+  },
+  {
+   "name": "3d Signal Center",
+   "date": "15 April 2009"
+  },
+  {
+   "name": "4th Signal Center",
+   "date": "3 May 2006"
+  },
+  {
+   "name": "5th Signal Center",
+   "date": "31 January 2012"
+  },
+  {
+   "name": "6th Signal Center",
+   "date": "23 September 2010"
+  },
+  {
+   "name": "7th Signal Center",
+   "date": "19 December 2007"
+  }
+ ],
+ "battalions": [
+  {
+   "name": "10th Signal Battalion",
+   "date": "15 September 1995"
+  },
+  {
+   "name": "17th Signal Battalion",
+   "date": "15 January 2002"
+  },
+  {
+   "name": "Headquarters and Headquarters Detachment, 25th Signal Battalion",
+   "date": "1 June 2007"
+  },
+  {
+   "name": "29th Signal Battalion",
+   "date": "7 March 2001"
+  },
+  {
+   "name": "Headquarters and Headquarters Detachment, 30th Signal Battalion",
+   "date": "10 December 2008"
+  },
+  {
+   "name": "35th Signal Battalion",
+   "date": "1 May 2002"
+  },
+  {
+   "name": "Headquarters and Headquarters Detachment, 36th Signal Battalion",
+   "date": "23 September 2010"
+  },
+  {
+   "name": "Headquarters and Headquarters Detachment, 39th Signal Battalion",
+   "date": "10 December 2008"
+  },
+  {
+   "name": "40th Signal Battalion",
+   "date": "13 September 2008"
+  },
+  {
+   "name": "Headquarters and Headquarters Detachment, 41st Signal Battalion",
+   "date": "23 September 2010"
+  },
+  {
+   "name": "Headquarters and Headquarters Detachment, 43d Signal Battalion",
+   "date": "20 December 2011"
+  },
+  {
+   "name": "44th Signal Battalion",
+   "date": "23 March 2010"
+  },
+  {
+   "name": "50th Signal Battalion",
+   "date": "7 June 2013"
+  },
+  {
+   "name": "51st Signal Battalion",
+   "date": "16 June 2011"
+  },
+  {
+   "name": "Headquarters and Headquarters Detachment, 52d Signal Battalion",
+   "date": "1 October 2007"
+  },
+  {
+   "name": "53d Signal Battalion",
+   "date": "3 May 2006"
+  },
+  {
+   "name": "Headquarters and Headquarters Detachment, 54th Signal Battalion",
+   "date": "16 March 2018"
+  },
+  {
+   "name": "Headquarters and Headquarters Detachment, 56th Signal Battalion",
+   "date": "16 June 2011"
+  },
+  {
+   "name": "57th Signal Battalion",
+   "date": "22 February 2011"
+  },
+  {
+   "name": "58th Signal Battalion",
+   "date": "14 March 2008"
+  },
+  {
+   "name": "62d Signal Battalion",
+   "date": "11 December 2009"
+  },
+  {
+   "name": "63d Signal Battalion",
+   "date": "23 December 2010"
+  },
+  {
+   "name": "67th Signal Battalion",
+   "date": "23 September 2010"
+  },
+  {
+   "name": "Headquarters and Headquarters Detachment, 69th Signal Battalion",
+   "date": "24 April 2007"
+  },
+  {
+   "name": "72d Signal Battalion",
+   "date": "31 January 2012"
+  },
+  {
+   "name": "Headquarters and Headquarters Detachment, 78th Signal Battalion",
+   "date": "22 February 2011"
+  },
+  {
+   "name": "82d Signal Battalion",
+   "date": "23 March 1995"
+  },
+  {
+   "name": "86th Signal Battalion",
+   "date": "13 July 2011"
+  },
+  {
+   "name": "98th Signal Battalion",
+   "date": "2 October 2008"
+  },
+  {
+   "name": "100th Signal Battalion",
+   "date": "29 October 2014"
+  },
+  {
+   "name": "Headquarters and Headquarters Detachment, 102d Signal Battalion",
+   "date": "23 January 2009"
+  },
+  {
+   "name": "112th Signal Battalion",
+   "date": "29 April 2008"
+  },
+  {
+   "name": "Headquarters and Headquarters Detachment, 114th Signal Battalion",
+   "date": "16 June 2011"
+  },
+  {
+   "name": "121st Signal Battalion",
+   "date": "12 March 2003"
+  },
+  {
+   "name": "122d Signal Battalion",
+   "date": "12 March 2003"
+  },
+  {
+   "name": "123d Signal Battalion",
+   "date": "10 February 1997"
+  },
+  {
+   "name": "124th Signal Battalion",
+   "date": "19 March 1998"
+  },
+  {
+   "name": "141st Signal Battalion",
+   "date": "25 February 2003"
+  },
+  {
+   "name": "151st Signal Battalion",
+   "date": "15 April 2009"
+  },
+  {
+   "name": "198th Signal Battalion",
+   "date": "29 October 2014"
+  },
+  {
+   "name": "Headquarters and Headquarters Detachment, 302d Signal Battalion",
+   "date": "16 June 2011"
+  },
+  {
+   "name": "304th Signal Battalion",
+   "date": "14 January 2004"
+  },
+  {
+   "name": "307th Signal Battalion",
+   "date": "24 March 2009"
+  },
+  {
+   "name": "319th Signal Battalion",
+   "date": "11 December 2007"
+  },
+  {
+   "name": "324th Signal Battalion",
+   "date": "2 October 2008"
+  },
+  {
+   "name": "327th Signal Battalion",
+   "date": "31 October 1996"
+  },
+  {
+   "name": "369th Signal Battalion",
+   "date": "2 October 2001"
+  },
+  {
+   "name": "392d Signal Battalion",
+   "date": "4 November 2011"
+  },
+  {
+   "name": "422d Signal Battalion",
+   "date": "6 February 2013"
+  },
+  {
+   "name": "440th Signal Battalion",
+   "date": "30 July 2003"
+  },
+  {
+   "name": "442d Signal Battalion",
+   "date": "10 May 2011"
+  },
+  {
+   "name": "447th Signal Battalion",
+   "date": "2 October 2001"
+  },
+  {
+   "name": "501st Signal Battalion",
+   "date": "3 December 1996"
+  },
+  {
+   "name": "Headquarters and Headquarters Detachment, 504th Signal Battalion",
+   "date": "15 November 2006"
+  },
+  {
+   "name": "Headquarters and Headquarters Detachment, 509th Signal Battalion",
+   "date": "2 December 2016"
+  },
+  {
+   "name": "536th Signal Battalion",
+   "date": "25 January 2008"
+  },
+  {
+   "name": "551st Signal Battalion",
+   "date": "2 October 2001"
+  }
+ ],
+ "companies": [
+  {
+   "name": "16th Signal Company",
+   "date": "20 November 2008"
+  },
+  {
+   "name": "19th Signal Company",
+   "date": "26 January 2001"
+  },
+  {
+   "name": "21st Signal Company",
+   "date": "20 November 2008"
+  },
+  {
+   "name": "54th Signal Company",
+   "date": "18 March 2011"
+  },
+  {
+   "name": "55th Signal Company",
+   "date": "23 August 2010"
+  },
+  {
+   "name": "56th Signal Company",
+   "date": "23 January 2009"
+  },
+  {
+   "name": "57th Signal Company",
+   "date": "1 February 2011"
+  },
+  {
+   "name": "63d Signal Company",
+   "date": "18 March 2011"
+  },
+  {
+   "name": "69th Signal Company",
+   "date": "19 April 2010"
+  },
+  {
+   "name": "73d Signal Company",
+   "date": "14 December 2011"
+  },
+  {
+   "name": "94th Signal Company",
+   "date": "20 November 2008"
+  },
+  {
+   "name": "128th Signal Company",
+   "date": "24 March 2009"
+  },
+  {
+   "name": "137th Signal Company",
+   "date": "16 May 2012"
+  },
+  {
+   "name": "138th Signal Company",
+   "date": "31 August 2015"
+  },
+  {
+   "name": "146th Signal Company",
+   "date": "1 June 2007"
+  },
+  {
+   "name": "149th Signal Company",
+   "date": "13 November 2009"
+  },
+  {
+   "name": "169th Signal Company",
+   "date": "22 January 2010"
+  },
+  {
+   "name": "176th Signal Company",
+   "date": "23 September 2010"
+  },
+  {
+   "name": "178th Signal Company",
+   "date": "20 December 2011"
+  },
+  {
+   "name": "181st Signal Company",
+   "date": "12 April 2007"
+  },
+  {
+   "name": "201th Signal Company",
+   "date": "23 September 2010"
+  },
+  {
+   "name": "205th Signal Company",
+   "date": "13 July 2011"
+  },
+  {
+   "name": "206th Signal Company",
+   "date": "24 April 2007"
+  },
+  {
+   "name": "208th Signal Company",
+   "date": "14 December 2011"
+  },
+  {
+   "name": "226th Signal Company",
+   "date": "14 December 2011"
+  },
+  {
+   "name": "228th Signal Company",
+   "date": "20 November 2008"
+  },
+  {
+   "name": "232d Signal Company",
+   "date": "22 April 2019"
+  },
+  {
+   "name": "252d Signal Company",
+   "date": "26 September 2002"
+  },
+  {
+   "name": "256th Signal Company",
+   "date": "1 February 2011"
+  },
+  {
+   "name": "258th Signal Company",
+   "date": "16 July 2008"
+  },
+  {
+   "name": "261st Signal Company",
+   "date": "14 December 2011"
+  },
+  {
+   "name": "267th Signal Company",
+   "date": "14 December 2011"
+  },
+  {
+   "name": "268th Signal Company",
+   "date": "12 March 2010"
+  },
+  {
+   "name": "269th Signal Company",
+   "date": "26 September 2006"
+  },
+  {
+   "name": "270th Signal Company",
+   "date": "24 August 2020"
+  },
+  {
+   "name": "275th Signal Company",
+   "date": "23 September 2010"
+  },
+  {
+   "name": "278th Signal Company",
+   "date": "21 July 2006"
+  },
+  {
+   "name": "286th Signal Company",
+   "date": "25 January 2008"
+  },
+  {
+   "name": "287th Signal Company",
+   "date": "22 February 2011"
+  },
+  {
+   "name": "293d Signal Company",
+   "date": "23 September 2010"
+  },
+  {
+   "name": "298th Signal Company",
+   "date": "23 December 2010"
+  },
+  {
+   "name": "301st Signal Company",
+   "date": "1 March 2004"
+  },
+  {
+   "name": "324th Signal Company",
+   "date": "23 December 2010"
+  },
+  {
+   "name": "327th Signal Company",
+   "date": "23 December 2010"
+  },
+  {
+   "name": "333d Signal Company",
+   "date": "15 November 2006"
+  },
+  {
+   "name": "334th Signal Company",
+   "date": "14 December 2011"
+  },
+  {
+   "name": "337th Signal Company",
+   "date": "3 September 2011"
+  },
+  {
+   "name": "338th Signal Company",
+   "date": "12 September 2013"
+  },
+  {
+   "name": "349th Signal Company",
+   "date": "3 May 2006"
+  },
+  {
+   "name": "362d Signal Company",
+   "date": "23 September 2010"
+  },
+  {
+   "name": "385th Signal Company",
+   "date": "17 August 2006"
+  },
+  {
+   "name": "396th Signal Company",
+   "date": "6 December 2006"
+  },
+  {
+   "name": "404th Signal Company",
+   "date": "23 August 2018"
+  },
+  {
+   "name": "414th Signal Company",
+   "date": "14 December 2011"
+  },
+  {
+   "name": "433d Signal Company",
+   "date": "13 March 2019"
+  },
+  {
+   "name": "472d Signal Company",
+   "date": "18 March 2011"
+  },
+  {
+   "name": "501st Signal Company",
+   "date": "23 September 2010"
+  },
+  {
+   "name": "504th Signal Company",
+   "date": "14 December 2011"
+  },
+  {
+   "name": "507th Signal Company",
+   "date": "22 July 2004"
+  },
+  {
+   "name": "514th Signal Company",
+   "date": "4 November 2011"
+  },
+  {
+   "name": "518th Signal Company",
+   "date": "28 May 2008"
+  },
+  {
+   "name": "519th Signal Company",
+   "date": "15 June 2009"
+  },
+  {
+   "name": "525th Signal Company",
+   "date": "1 February 2011"
+  },
+  {
+   "name": "529th Signal Company",
+   "date": "25 April 2007"
+  },
+  {
+   "name": "532d Signal Company",
+   "date": "18 March 2011"
+  },
+  {
+   "name": "534th Signal Company",
+   "date": "14 December 2011"
+  },
+  {
+   "name": "550th Signal Company",
+   "date": "12 May 2009"
+  },
+  {
+   "name": "552d Signal Company",
+   "date": "23 September 2010"
+  },
+  {
+   "name": "556th Signal Company",
+   "date": "14 December 2011"
+  },
+  {
+   "name": "558th Signal Company",
+   "date": "23 March 2010"
+  },
+  {
+   "name": "578th Signal Company",
+   "date": "4 November 2011"
+  },
+  {
+   "name": "579th Signal Company",
+   "date": "20 December 2011"
+  },
+  {
+   "name": "580th Signal Company",
+   "date": "28 March 2008"
+  },
+  {
+   "name": "581st Signal Company",
+   "date": "21 July 2006"
+  },
+  {
+   "name": "586th Signal Company",
+   "date": "14 December 2011"
+  },
+  {
+   "name": "587th Signal Company",
+   "date": "24 June 2009"
+  },
+  {
+   "name": "589th Signal Company",
+   "date": "1 February 2011"
+  },
+  {
+   "name": "596th Signal Company",
+   "date": "4 November 2011"
+  },
+  {
+   "name": "656th Signal Company",
+   "date": "26 April 2011"
+  },
+  {
+   "name": "804th Signal Company",
+   "date": "30 July 2003"
+  },
+  {
+   "name": "812th Signal Company",
+   "date": "11 June 2002"
+  },
+  {
+   "name": "820th Signal Company",
+   "date": "10 July 2009"
+  },
+  {
+   "name": "842d Signal Company",
+   "date": "10 December 2008"
+  },
+  {
+   "name": "982d Signal Company",
+   "date": "29 April 2008"
+  }
+ ],
+ "detachments": [
+  {
+   "name": "11th Signal Detachment",
+   "date": "16 August 2007"
+  },
+  {
+   "name": "14th Signal Detachment",
+   "date": "12 March 2003"
+  },
+  {
+   "name": "251st Signal Detachment",
+   "date": "30 September 2009"
+  },
+  {
+   "name": "255th Signal Detachment",
+   "date": "4 December 2002"
+  }
+ ]
+}

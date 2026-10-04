@@ -1,0 +1,162 @@
+<!-- ================= LOBBY ================= -->
+<section class="room active" id="room-lobby">
+  <div class="wrap">
+    <div class="hero">
+      <img class="seal-big" src="assets/logo.png" data-img="logo" alt="Museum seal">
+      <h1>Welcome to the Museum</h1>
+      <div class="sub">Secure Our Story</div>
+      <p class="welcome">The <strong>Signal &amp; Cyber Corps Museum Society</strong> — formerly the Fort Gordon Historical Museum Society — is a 501(c)(3) of volunteers preserving the history of Americans who served at Fort Eisenhower, formerly Fort Gordon, in the Signal Regiment, and in the Army's Cyber Corps. The Signal Corps Museum on post closed on 25 February 2021 for base construction, and its collection is in storage while the Society raises funds for a new museum building outside the gates. This virtual museum keeps that collection open to the public in the meantime, room by room.</p>
+    </div>
+
+    <div class="hero-3d" id="hero-3d">
+      <div class="h3d-card">
+        <div class="h3d-back"></div>
+        <div class="h3d-face">
+          <img src="assets/building.jpg" data-img="building" alt="The Signal &amp; Cyber Corps Museum building">
+          <div class="h3d-glare"></div>
+        </div>
+        <div class="h3d-plaque">THE MUSEUM — FORT GORDON, AUGUSTA, GEORGIA</div>
+      </div>
+      <div class="h3d-floor"></div>
+    </div>
+
+    <div class="section" id="map-section" style="margin-top:40px;">
+      <h3 style="text-align:center;">Museum Map</h3>
+      <p class="lede" style="text-align:center; margin-left:auto; margin-right:auto;">Search for a room, or click anywhere on the floor plan to go there.</p>
+
+      <div class="map-search-wrap">
+        <input type="text" id="map-search" class="map-search" placeholder="Search rooms — try &quot;aviation&quot; or &quot;donor&quot;" autocomplete="off">
+        <div id="map-search-results" class="map-search-results"></div>
+      </div>
+
+      <div class="map-svg-wrap">
+        <svg id="museum-map-svg" viewBox="0 0 760 672" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Museum floor plan">
+          <!-- outer walls -->
+          <rect x="6" y="6" width="748" height="660" fill="none" stroke="#2a4a37" stroke-width="3"/>
+
+          <!-- Row 1 -->
+          <g class="map-room" data-goto="command-gallery" data-roomname="Command Gallery">
+            <rect x="16" y="16" width="228" height="130" rx="2"/>
+            <text x="130" y="70">Command</text>
+            <text x="130" y="90">Gallery</text>
+          </g>
+          <g class="map-room" data-goto="aviation" data-roomname="Aviation Annex">
+            <rect x="256" y="16" width="228" height="130" rx="2"/>
+            <text x="370" y="70">Aviation</text>
+            <text x="370" y="90">Annex</text>
+          </g>
+          <g class="map-room" data-goto="hello-girls" data-roomname="Hello Girls">
+            <rect x="496" y="16" width="228" height="130" rx="2"/>
+            <text x="610" y="80">Hello Girls</text>
+          </g>
+
+          <!-- Row 2 -->
+          <g class="map-room" data-goto="signal-story" data-roomname="The Signal Story">
+            <rect x="16" y="158" width="150" height="130" rx="2"/>
+            <text x="91" y="213">Signal</text>
+            <text x="91" y="233">Story</text>
+          </g>
+          <g class="map-room map-room-lobby" data-goto="lobby" data-roomname="Lobby">
+            <rect x="178" y="158" width="404" height="130" rx="2"/>
+            <text x="380" y="228" class="map-room-title">LOBBY</text>
+          </g>
+          <g class="map-room" data-goto="cyber-story" data-roomname="The Cyber Story">
+            <rect x="594" y="158" width="150" height="130" rx="2"/>
+            <text x="669" y="213">Cyber</text>
+            <text x="669" y="233">Story</text>
+          </g>
+
+          <!-- Row 3 -->
+          <g class="map-room" data-goto="fireside" data-roomname="Fireside Chats">
+            <rect x="16" y="300" width="150" height="130" rx="2"/>
+            <text x="91" y="355">Fireside</text>
+            <text x="91" y="375">Chats</text>
+          </g>
+          <g class="map-room" data-goto="auditorium" data-roomname="Auditorium">
+            <rect x="178" y="300" width="404" height="130" rx="2"/>
+            <text x="380" y="370" class="map-room-title">AUDITORIUM</text>
+          </g>
+          <g class="map-room" data-goto="donor-spotlight" data-roomname="Donor Spotlight">
+            <rect x="594" y="300" width="150" height="130" rx="2"/>
+            <text x="669" y="355">Donor</text>
+            <text x="669" y="375">Spotlight</text>
+          </g>
+
+          <!-- Row 4 -->
+          <g class="map-room" data-goto="people" data-roomname="Honor Roll">
+            <rect x="16" y="442" width="228" height="102" rx="2"/>
+            <text x="130" y="498">Honor Roll</text>
+          </g>
+          <g class="map-room" data-goto="give" data-roomname="Support the Museum">
+            <rect x="256" y="442" width="228" height="102" rx="2"/>
+            <text x="370" y="488">Support the</text>
+            <text x="370" y="508">Museum</text>
+          </g>
+          <g class="map-room" data-goto="timeline" data-roomname="Timeline">
+            <rect x="496" y="442" width="228" height="102" rx="2"/>
+            <text x="610" y="498">Timeline</text>
+          </g>
+
+          <!-- Row 5 -->
+          <g class="map-room" data-goto="camp-gordon" data-roomname="Camp Gordon: The WWI Era">
+            <rect x="16" y="556" width="228" height="102" rx="2"/>
+            <text x="130" y="602">Camp Gordon</text>
+            <text x="130" y="622">WWI Era</text>
+          </g>
+          <g class="map-room" data-goto="combat-camera" data-roomname="Combat Camera &amp; Video">
+            <rect x="256" y="556" width="228" height="102" rx="2"/>
+            <text x="370" y="602">Combat Camera</text>
+            <text x="370" y="622">&amp; Video</text>
+          </g>
+          <g class="map-room" data-goto="news" data-roomname="News &amp; Announcements">
+            <rect x="496" y="556" width="228" height="102" rx="2"/>
+            <text x="610" y="602">News &amp;</text>
+            <text x="610" y="622">Announcements</text>
+          </g>
+        </svg>
+      </div>
+    </div>
+
+    <div class="section">
+      <h3>The building to come</h3>
+      <p class="lede">Architectural floor plan of the U.S. Army Signal &amp; Cyber Corps Museum: lobby, café, display areas, meeting rooms, and the curved exhibit hall. Click to enlarge.</p>
+      <div class="card-grid" style="grid-template-columns:1fr;">        <div class="figure artifact-sheet" role="button" tabindex="0" data-lightbox="floor_plan" data-lightbox-cap="U.S. Army Signal &amp; Cyber Corps Museum floor plan">
+          <img loading="lazy" decoding="async" src="assets/floor_plan.jpg" data-img="floor_plan" alt="U.S. Army Signal &amp; Cyber Corps Museum floor plan">
+          <div class="cap">U.S. Army Signal &amp; Cyber Corps Museum floor plan<span class="zoom">View full size ⤢</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="hero-photo" style="margin-top:20px;">
+      <img loading="lazy" decoding="async" src="assets/lobby_interior.jpg" data-img="lobby_interior" alt="Museum atrium, with a biplane and satellite model overhead">
+      <div class="cap">THE ATRIUM — AVIATION AND SATELLITE ERAS SIDE BY SIDE</div>
+    </div>
+
+    <div class="section" style="margin-top:44px; text-align:center;">
+      <div class="figure" style="max-width:420px; margin:0 auto;">
+        <div style="padding:26px 24px;">
+          <div style="font-family:var(--serif); font-size:19px; font-weight:600; margin-bottom:8px;">Visit the Auditorium</div>
+          <p style="font-size:13.5px; color:var(--muted); margin:0 0 14px;">Every video in the museum's collection, organized by exhibit. Watch any of them there.</p>
+          <button type="button" data-goto="auditorium" style="background:var(--gold); color:var(--ink); border:none; padding:10px 20px; font-family:var(--sans); font-size:13px; font-weight:600; cursor:pointer; border-radius:2px;">Enter the Auditorium →</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="directory">
+      <div class="directory-label">Museum Directory</div>
+      <h2>Where would you like to go?</h2>
+      <div class="dir-grid" id="dir-grid"><!-- filled by JS --></div>
+    </div>
+
+    <div class="room-foot" style="justify-content:center; border-top:none; padding-top:0;">
+      <button type="button" class="map-foot-link" data-goto="map">🗺 Museum Map</button>
+    </div>
+
+    <div class="donate-note">
+      Every room in this museum stays open because of donors and members.
+      <br><button type="button" onclick="window.open('https://givebutter.com/hpEeXi','_blank')">Donate Here</button>
+      <div style="margin-top:14px; font-size:12px;"><a href="https://www.signalandcybercorpsmuseum.org/en" target="_blank" rel="noopener">signalandcybercorpsmuseum.org</a> &nbsp;·&nbsp; <a href="https://www.signalandcybercorpsmuseum.org/en/our-sponsors" target="_blank" rel="noopener">Our supporters</a></div>
+    </div>
+  </div>
+</section>
+

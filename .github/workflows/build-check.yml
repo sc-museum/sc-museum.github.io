@@ -1,0 +1,17 @@
+name: Build check
+
+# index.html is built from rooms/, src/, css/, js/ and data/ by
+# tools/build-index.pl. This fails a push or pull request whose index.html
+# was not rebuilt after its parts changed.
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  index-is-built:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: index.html matches its parts
+        run: perl tools/build-index.pl --check

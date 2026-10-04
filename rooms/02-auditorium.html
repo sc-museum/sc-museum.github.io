@@ -1,0 +1,71 @@
+<!-- ================= AUDITORIUM ================= -->
+<section class="room" id="room-auditorium">
+  <div class="wrap">
+    <div class="room-head">
+      <div class="room-kicker">The Theater</div>
+      <h1 class="room-title">Auditorium</h1>
+      <p class="room-dek">Every video in the museum's collection, in one room. Pick an exhibit, then pick a video.</p>
+    </div>
+
+    <div class="billboard">
+    <div class="bb-head">
+      <div class="bb-kicker">In the Auditorium</div>
+      <div class="bb-title">Now Showing</div>
+    </div>
+    <div class="subnav" id="auditorium-subnav">
+      <button class="active" data-sub="welcome">Welcome</button>
+      <button data-sub="signal">Signal Story</button>
+      <button data-sub="cyber">Cyber Story</button>
+      <button data-sub="hellogirls">Hello Girls</button>
+      <button data-sub="fireside">Fireside Chats</button>
+    </div>
+
+    <div class="subpanel active" id="sub-welcome">
+      <div class="section">
+        <h3>Welcome to the museum</h3>
+        <p class="lede">Orientation videos from the museum's collection.</p>
+        <div class="video-grid" data-video-group="welcome"></div>
+      </div>
+      <div class="section">
+        <h3>Shorts</h3>
+        <p class="lede">Quick takes from the museum's YouTube channel.</p>
+        <div class="video-grid shorts" data-video-group="shorts"></div>
+      </div>
+    </div>
+    <div class="subpanel" id="sub-signal">
+      <div class="section">
+        <h3>The Signal Story</h3>
+        <p class="lede">Signal Regiment footage from the museum's collection.</p>
+        <div class="video-grid" data-video-group="signal"></div>
+      </div>
+    </div>
+    <div class="subpanel" id="sub-cyber">
+      <div class="section">
+        <h3>The Cyber Story</h3>
+        <p class="lede">Cyber Regiment footage from the museum's collection.</p>
+        <div class="video-grid single" data-video-group="cyber"></div>
+      </div>
+    </div>
+    <div class="subpanel" id="sub-hellogirls">
+      <div class="section">
+        <h3>The Hello Girls</h3>
+        <p class="lede">The documentary that brought their story back to light.</p>
+        <div class="video-grid single" data-video-group="hellogirls"></div>
+      </div>
+    </div>
+    <div class="subpanel" id="sub-fireside">
+      <div class="section">
+        <h3>Fireside Chats</h3>
+        <p class="lede">Fireside chats, panels, and Save Our Story interviews from the museum's oral history collection.</p>
+        <div class="video-grid" data-video-group="fireside"></div>
+      </div>
+    </div>
+    </div>
+
+    <div class="room-foot">
+      <button data-goto="lobby">← Lobby</button>
+      <button data-goto="signal-story">Next: The Signal Story →</button>
+    </div>
+  </div>
+</section>
+

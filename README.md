@@ -20,11 +20,34 @@ Eisenhower; $250,000 has been donated so far. This virtual museum keeps the coll
 
 | Path | What it is |
 |---|---|
-| `index.html` | The museum itself: a single page whose rooms switch in place. Its images live in `assets/`. |
+| `index.html` | The museum itself: a single page whose rooms switch in place. **Built** from the parts below; do not edit it by hand. |
+| `rooms/` | One file per room, in floor order: `01-lobby.html` to `16-magazine.html`. Each room's story and content lives here. |
+| `src/index.html` | The page shell: head, top bar, pop-up viewers, and placeholders for the rooms, styles, script and data. |
+| `css/museum.css`, `js/museum.js` | The museum's styles and behaviour, loaded by the page as files. |
+| `data/` | `images.json` (the image registry) and `roster.json` (the Signal Regiment roster), inlined into the page at build time. |
 | `assets/` | Photographs, portraits, patches and magazine pages used by the museum rooms. |
 | `lineage/` | Mirror of the official lineage, campaign participation credit, and unit citations for the 171 Signal Regiment units in the Command Gallery roster, plus a filterable index. |
 | `heritage/` | The Heritage magazine reading room: every issue as readable text and page scans, plus a PDF download of each. |
 | `tools/` | Fetch and build scripts for the lineage mirror and the Heritage reading room (`tools/heritage/`), each with its own README. |
+
+## Editing the museum
+
+Each room is its own file in `rooms/`. To change a story, edit that room (or the
+styles, script, data or page shell), then rebuild the page:
+
+```bash
+perl tools/build-index.pl
+```
+
+Commit the rebuilt `index.html` together with your edits. The build check on
+GitHub fails a push whose `index.html` is out of date with its parts; run the
+build and push again. `perl tools/build-index.pl --check` runs the same check
+locally, and `--inline` builds a single self-contained page with the styles and
+script inside it.
+
+To add a room, add `rooms/NN-name.html` with a
+`<section class="room" id="room-name">`, and a button or map link that
+navigates to it with `data-goto="name"`.
 
 ## A note on names
 

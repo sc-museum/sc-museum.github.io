@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- Built by tools/build-index.pl from src/index.html, rooms/, css/, js/ and data/. Edit those files, not this one. -->
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Signal &amp; Cyber Corps Museum Society — Virtual Museum</title>
+<meta name="description" content="The virtual museum of the Signal &amp; Cyber Corps Museum Society: the story of the U.S. Army Signal Corps and Cyber Corps, and the official lineage and honors of 171 Signal Regiment units. Secure Our Story.">
+<link rel="canonical" href="https://sc-museum.github.io/">
+<link rel="icon" type="image/png" href="seal.png">
+<link rel="apple-touch-icon" href="seal.png">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Signal &amp; Cyber Corps Museum Society">
+<meta property="og:title" content="Signal &amp; Cyber Corps Museum Society — Virtual Museum">
+<meta property="og:description" content="The story of the U.S. Army Signal Corps and Cyber Corps, and the official lineage and honors of 171 Signal Regiment units. Secure Our Story.">
+<meta property="og:url" content="https://sc-museum.github.io/">
+<meta property="og:image" content="https://sc-museum.github.io/seal.png">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Signal &amp; Cyber Corps Museum Society — Virtual Museum">
+<meta name="twitter:description" content="The story of the U.S. Army Signal Corps and Cyber Corps, and the official lineage and honors of 171 Signal Regiment units.">
+<meta name="twitter:image" content="https://sc-museum.github.io/seal.png">
+<meta name="theme-color" content="#0d1f16">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,500;0,600;0,700;1,400&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<!-- @css css/museum.css -->
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to museum content</a>
+
+<header class="topbar">
+  <div class="topbar-inner">
+    <img class="seal" src="assets/logo.png" data-img="logo" alt="Signal &amp; Cyber Corps Museum Society seal">
+    <div class="topbar-name" data-goto="lobby">
+      Signal &amp; Cyber Corps Museum Society
+      <small>VIRTUAL MUSEUM</small>
+    </div>
+    <nav class="topbar-nav">
+      <button data-goto="lobby">Lobby</button>
+      <button data-goto="auditorium">Auditorium</button>
+      <button data-goto="command-gallery">Command Gallery</button>
+      <button data-goto="aviation">Aviation Annex</button>
+      <button data-goto="hello-girls">Hello Girls</button>
+      <button data-goto="combat-camera">Combat Camera</button>
+      <button data-goto="fireside">Fireside Chats</button>
+      <button data-goto="people">Honor Roll</button>
+      <button data-goto="give">Support</button>
+      <button data-goto="map">Map</button>
+    </nav>
+  </div>
+</header>
+
+<main id="main" tabindex="-1">
+
+<!-- @rooms -->
+</main>
+<!-- ================= MUSEUM MAP ================= -->
+
+
+<div class="lightbox" id="lightbox" role="dialog" aria-label="Artifact viewer">
+  <button type="button" class="lightbox-close" id="lightbox-close" aria-label="Close">&times;</button>
+  <img id="lightbox-img" src="" alt="">
+  <div class="lightbox-cap" id="lightbox-cap"></div>
+</div>
+
+<div class="biobox" id="biobox" role="dialog" aria-modal="true" aria-labelledby="biobox-name">
+  <button type="button" class="biobox-close" id="biobox-close" aria-label="Close biography">&times;</button>
+  <div class="biobox-inner">
+    <div class="biobox-head">
+      <img id="biobox-portrait" src="" alt="">
+      <div>
+        <h3 id="biobox-name"></h3>
+        <div class="rl" id="biobox-role"></div>
+        <div class="af" id="biobox-org"></div>
+      </div>
+    </div>
+    <div class="own" id="biobox-own"></div>
+    <div id="biobox-body"></div>
+    <p class="bionote" id="biobox-note"></p>
+    <p class="src" id="biobox-src"></p>
+  </div>
+</div>
+
+<div class="video-pop" id="video-pop" role="dialog" aria-label="Video player">
+  <div class="video-pop-bar" id="video-pop-bar">
+    <div class="video-pop-title" id="video-pop-title">Now playing</div>
+    <button type="button" class="video-pop-btn" id="video-pop-min" aria-label="Minimize" title="Minimize">&#8211;</button>
+    <button type="button" class="video-pop-btn size" id="video-pop-size" aria-label="Larger player" title="Larger player">&#10530;</button>
+    <button type="button" class="video-pop-btn close" id="video-pop-close" aria-label="Close" title="Close">&times;</button>
+  </div>
+  <div class="video-pop-frame" id="video-pop-frame"></div>
+  <div class="video-pop-foot">
+    <span class="video-pop-hint">Drag the bar to move the player &nbsp;&middot;&nbsp; </span><a id="video-pop-yt-link" href="#" target="_blank" rel="noopener">Watch on YouTube &#8599;</a>
+  </div>
+</div>
+
+<!-- @json data-images data/images.json -->
+<!-- @json data-roster data/roster.json -->
+<!-- @js js/museum.js -->
+</body>
+</html>
