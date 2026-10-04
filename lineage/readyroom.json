@@ -1,5 +1,5 @@
 {
-  "_about": "Unit Ready Room entries, keyed by lineage file name without .htm (e.g. 0501scbn). Each entry: year (the year the material is about, or null for ongoing), kind (Exhibit, Article, Photo, Video, Magazine, Memorial, Record, Association, Oral history, Document), title, url (relative links are to this lineage folder), source, and optional date and note. Entries are sorted by year on the page; order within a year is kept as written.",
+  "_about": "Unit Ready Room entries, keyed by lineage file name without .htm (e.g. 0501scbn). Each entry: year (the year the material is about, or null for ongoing), kind (Exhibit, Article, Photo, Video, Magazine, Memorial, Record, Association, Oral history, Document), title, url (relative links are to this lineage folder), source, and optional date, note, when (a label such as 1990s, used when year is null) and thumbs (preview image paths). Entries are sorted by year on the page; order within a year is kept as written.",
   "units": {
     "0001scbde": [
       {
@@ -9,6 +9,24 @@
         "url": "#unit-history",
         "source": "Unit history, on this page",
         "date": "1 Apr 1966 to today"
+      },
+      {
+        "year": 2010,
+        "kind": "Album",
+        "title": "Visit of LTG Via: 144 photographs",
+        "url": "photos/0001scbde/2010-ltg-via/",
+        "source": "1st Signal Brigade photo collection",
+        "date": "15–16 Mar 2010",
+        "thumbs": ["photos/0001scbde/2010-ltg-via/thumbs/dsc06681.jpg", "photos/0001scbde/2010-ltg-via/thumbs/dsc06705.jpg", "photos/0001scbde/2010-ltg-via/thumbs/dsc06729.jpg", "photos/0001scbde/2010-ltg-via/thumbs/dsc06753.jpg", "photos/0001scbde/2010-ltg-via/thumbs/dsc06777.jpg", "photos/0001scbde/2010-ltg-via/thumbs/dsc06801.jpg"]
+      },
+      {
+        "year": 2010,
+        "kind": "Album",
+        "title": "Troka: 193 photographs",
+        "url": "photos/0001scbde/2010-troka/",
+        "source": "1st Signal Brigade photo collection",
+        "date": "6–15 Mar 2010",
+        "thumbs": ["photos/0001scbde/2010-troka/thumbs/dsc06485.jpg", "photos/0001scbde/2010-troka/thumbs/dsc06518.jpg", "photos/0001scbde/2010-troka/thumbs/dsc06550.jpg", "photos/0001scbde/2010-troka/thumbs/dsc06582.jpg", "photos/0001scbde/2010-troka/thumbs/dsc06614.jpg", "photos/0001scbde/2010-troka/thumbs/dsc06646.jpg"]
       },
       {
         "year": 2020,
@@ -23,6 +41,27 @@
         "title": "1st Signal Brigade Association: leader photographs and brigade history",
         "url": "https://1sba.wildapricot.org/page-1858144",
         "source": "1st Signal Brigade Association"
+      }
+    ],
+    "0035scbde": [
+      {
+        "year": null,
+        "when": "1990s",
+        "kind": "Photo",
+        "title": "GEN Hugh Shelton and the young Captain Chase",
+        "url": "photos/0035scbde/shelton-chase.jpg",
+        "source": "Collection of BG (Ret.) Welton Chase, Jr.",
+        "note": "On the flight line before an airborne operation; Captain Chase served with D Company, 327th Signal Battalion (Airborne), 35th Signal Brigade.",
+        "thumbs": ["photos/0035scbde/thumbs/shelton-chase.jpg"]
+      },
+      {
+        "year": null,
+        "when": "1990s",
+        "kind": "Magazine",
+        "title": "Chairman's Corner, with the same photograph",
+        "url": "../heritage/issue-3.html#p-4",
+        "source": "Heritage, Issue 3",
+        "date": "Summer–Fall 2021"
       }
     ],
     "0112scbn": [

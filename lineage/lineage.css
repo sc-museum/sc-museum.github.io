@@ -181,6 +181,28 @@ header.bar:has(+ .ready-bar){margin-bottom:0;}
   .unit-history .leaders, .unit-history .card-grid{grid-template-columns:1fr;}
 }
 
+/* ---- photo albums (lineage/photos/<unit>/<album>/) ---- */
+.album.wrap{max-width:1100px;}
+.al-note{font-family:var(--sans); font-size:14px; color:var(--muted); margin:-14px 0 24px;}
+.al-grid{display:grid; grid-template-columns:repeat(auto-fill, minmax(170px, 1fr)); gap:8px;}
+.al-tile{display:block; aspect-ratio:3/2; overflow:hidden; background:var(--panel); border:1px solid var(--hair);}
+.al-tile img{width:100%; height:100%; object-fit:cover; display:block; transition:transform .2s, opacity .2s;}
+.al-tile:hover img, .al-tile:focus-visible img{transform:scale(1.04); opacity:.9;}
+.al-tile:focus-visible{outline:2px solid var(--gold); outline-offset:2px;}
+.al-box{position:fixed; inset:0; z-index:100; background:rgba(5,12,8,0.95); display:flex; flex-direction:column;}
+.al-box[hidden]{display:none;}
+.al-bar{display:flex; align-items:center; gap:8px; padding:10px 14px; border-bottom:1px solid var(--hair); font-family:var(--mono); font-size:12px; color:var(--gold-bright);}
+.al-bar span{flex:1;}
+.al-bar button, .al-bar a{background:none; border:1px solid var(--hair); color:var(--paper); font-size:16px; min-width:38px; height:34px; border-radius:2px; cursor:pointer; display:inline-flex; align-items:center; justify-content:center; text-decoration:none;}
+.al-bar button:hover, .al-bar a:hover{border-color:var(--gold);}
+.al-stage{flex:1; display:flex; align-items:center; justify-content:center; padding:14px; min-height:0;}
+.al-stage img{max-width:100%; max-height:100%; object-fit:contain; box-shadow:0 10px 40px rgba(0,0,0,0.6);}
+@media (max-width:600px){ .al-grid{grid-template-columns:repeat(3, 1fr); gap:4px;} }
+
+/* ready room: thumbnail strip under an album or photo entry */
+.rr-thumbs{display:flex; gap:4px; margin-top:6px;}
+.rr-thumbs img{width:64px; height:43px; object-fit:cover; border:1px solid var(--hair); display:block;}
+
 /* ---- provenance ---- */
 footer.src{
   margin-top:46px; padding-top:18px; border-top:1px solid var(--hair);

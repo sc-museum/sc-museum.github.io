@@ -110,3 +110,25 @@ The bar markup and `readyroom.js` are part of the page template in
 `gen-lineage.pl`, so regenerating the pages keeps them. The script also still
 supports the older in-page tile (`<section class="ready" …>`), and either one may
 name its unit explicitly with `data-unit="0501scbn"`.
+
+### Photos and albums
+
+Photos for a unit live under `lineage/photos/<unit>/`, as web-sized copies
+(1600 px on the long side) with a `thumbs/` folder of 480 px versions under the
+same file names. Camera originals stay out of the repository.
+
+- **A single photo** is a Ready Room entry whose `url` is the image, e.g.
+  `photos/0035scbde/shelton-chase.jpg`; it opens in a new tab.
+- **An album** is a folder `lineage/photos/<unit>/<album>/` plus an `index.html`
+  made by `gen-album.pl`, which gives a thumbnail grid and a full-size viewer
+  (arrow keys, Esc):
+
+  ```bash
+  perl tools/gen-album.pl lineage/photos/0001scbde/2010-troka "Troka" "6–15 March 2010" "Optional note."
+  ```
+
+  Link it from the Ready Room with `"kind": "Album"` and `"url": "photos/<unit>/<album>/"`.
+- Any entry may carry `"thumbs": [...]`, up to six image paths shown as a strip
+  under its title.
+- When the exact year is unknown, set `"year": null` and `"when": "1990s"`; such
+  labels sort after the dated years and before "Ongoing".

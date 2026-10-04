@@ -21,24 +21,26 @@
     if (text != null) n.textContent = text;
     return n;
   }
-  function yearLabel(y){ return y == null ? 'Ongoing' : String(y); }
+  // an entry's group: its year, or a free label such as "1990s" when the exact
+  // year is unknown ("when"), or "Ongoing" for undated, continuing material
+  function yearLabel(it){ return it.year != null ? String(it.year) : (it.when || 'Ongoing'); }
+  function rank(k){ return /^\d{4}$/.test(k) ? [0, Number(k)] : k === 'Ongoing' ? [2, 0] : [1, parseInt(k, 10) || 0]; }
 
   function render(items){
     if (!items.length){ count.textContent = 'Nothing filed yet · add material'; return; }
-    // group by year; "Ongoing" (null) sorts last
+    // group by year; labelled eras follow the years, "Ongoing" sorts last
     var groups = {}, order = [];
     items.forEach(function(it){
-      var k = yearLabel(it.year);
+      var k = yearLabel(it);
       if (!groups[k]){ groups[k] = []; order.push(k); }
       groups[k].push(it);
     });
     order.sort(function(a, b){
-      if (a === 'Ongoing') return 1;
-      if (b === 'Ongoing') return -1;
-      return Number(a) - Number(b);
+      var ra = rank(a), rb = rank(b);
+      return ra[0] - rb[0] || ra[1] - rb[1];
     });
 
-    var dated = order.filter(function(k){ return k !== 'Ongoing'; });
+    var dated = order.filter(function(k){ return /^\d{4}$/.test(k); });
     count.textContent = items.length + (items.length === 1 ? ' item' : ' items')
       + (dated.length ? ' · ' + dated[0] + (dated.length > 1 ? '–' + dated[dated.length - 1] : '') : '');
 
@@ -52,13 +54,20 @@
         var ext = /^https?:/i.test(it.url);
         var a = el('a', 'rr-item');
         a.href = it.url;
-        if (ext){ a.target = '_blank'; a.rel = 'noopener'; }
+        if (ext || /\.(jpe?g|png|pdf)$/i.test(it.url)){ a.target = '_blank'; a.rel = 'noopener'; }
         a.appendChild(el('span', 'rr-kind', it.kind || 'Item'));
         var main = el('span', 'rr-main');
         main.appendChild(el('span', 'rr-t', it.title + (ext ? ' ↗' : '')));
         var meta = [it.source, it.date].filter(Boolean).join(' · ');
         if (meta) main.appendChild(el('span', 'rr-m', meta));
         if (it.note) main.appendChild(el('span', 'rr-n', it.note));
+        if (it.thumbs && it.thumbs.length){
+          var strip = el('span', 'rr-thumbs');
+          it.thumbs.slice(0, 6).forEach(function(src){
+            var im = el('img'); im.src = src; im.alt = ''; im.loading = 'lazy'; strip.appendChild(im);
+          });
+          main.appendChild(strip);
+        }
         a.appendChild(main);
         list.appendChild(a);
       });
@@ -112,5 +121,5 @@
   fetch('readyroom.json', {cache: 'no-cache'})
     .then(function(r){ return r.ok ? r.json() : null; })
     .then(function(data){ render((data && data.units && data.units[key]) || []); })
-    .catch(function(){ /* keep the empty-state text */ });
+    .catch(function(e){ if (window.console) console.warn("Unit Ready Room:", e); /* the empty-state text stays */ });
 })();
