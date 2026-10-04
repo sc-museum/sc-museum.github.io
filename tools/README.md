@@ -132,3 +132,16 @@ same file names. Camera originals stay out of the repository.
   under its title.
 - When the exact year is unknown, set `"year": null` and `"when": "1990s"`; such
   labels sort after the dated years and before "Ongoing".
+
+### Page layout
+
+`lineage/unit.js` arranges every unit page from the record already on it: an
+**at a glance** strip under the title (when the unit was constituted or
+organized, and how many campaigns and decorations it holds) and an **on this
+page** index linking to the unit history, lineage, campaigns, decorations and
+the Ready Room. Campaign lists of eight or more run in columns. It is part of the
+page template in `gen-lineage.pl`.
+
+Album captions: put a `captions.tsv` (`file<TAB>caption`) in the album folder
+before running `gen-album.pl`; each caption shows on the thumbnail and under the
+photo in the viewer.

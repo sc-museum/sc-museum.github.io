@@ -197,11 +197,34 @@ header.bar:has(+ .ready-bar){margin-bottom:0;}
 .al-bar button:hover, .al-bar a:hover{border-color:var(--gold);}
 .al-stage{flex:1; display:flex; align-items:center; justify-content:center; padding:14px; min-height:0;}
 .al-stage img{max-width:100%; max-height:100%; object-fit:contain; box-shadow:0 10px 40px rgba(0,0,0,0.6);}
+.al-cap{text-align:center; font-family:var(--serif); font-size:17px; color:var(--paper-2); padding:0 16px 16px; min-height:1.6em;}
 @media (max-width:600px){ .al-grid{grid-template-columns:repeat(3, 1fr); gap:4px;} }
 
 /* ready room: thumbnail strip under an album or photo entry */
 .rr-thumbs{display:flex; gap:4px; margin-top:6px;}
 .rr-thumbs img{width:64px; height:43px; object-fit:cover; border:1px solid var(--hair); display:block;}
+
+/* ---- unit page: at a glance + on this page (built by unit.js) ---- */
+.unit-glance{margin:-12px 0 34px; padding-bottom:20px; border-bottom:1px solid var(--hair);}
+.ug-facts{display:grid; grid-template-columns:repeat(auto-fit, minmax(150px, 1fr)); gap:10px; margin:0 0 16px;}
+.ug-fact{background:var(--panel); border:1px solid var(--hair); border-left:3px solid var(--gold); padding:9px 12px;}
+.ug-fact dt{font-family:var(--mono); font-size:10px; letter-spacing:1.2px; text-transform:uppercase; color:var(--muted);}
+.ug-fact dd{margin:3px 0 0; font-family:var(--serif); font-size:17px; color:var(--paper-2); line-height:1.3;}
+.ug-nav{display:flex; flex-wrap:wrap; align-items:center; gap:6px 8px; font-family:var(--sans); font-size:13px;}
+.ug-label{font-family:var(--mono); font-size:10.5px; letter-spacing:1.2px; text-transform:uppercase; color:var(--gold); margin-right:4px;}
+.ug-nav a, .ug-rr{
+  color:var(--paper); text-decoration:none; border:1px solid var(--hair); border-radius:2px;
+  padding:5px 11px; background:none; font:inherit; cursor:pointer;
+}
+.ug-nav a:hover, .ug-rr:hover{border-color:var(--gold); color:var(--gold-bright);}
+.ug-rr{border-color:rgba(201,162,39,0.6); color:var(--gold-bright);}
+.wrap > h2[id]{scroll-margin-top:64px;}
+/* the "as of" line now sits above the glance strip, so drop its own rule */
+.wrap > .asof:has(+ .unit-glance){border-bottom:0; padding-bottom:0; margin-bottom:24px;}
+ul.camps.camps-cols{columns:2; column-gap:24px;}
+ul.camps.camps-cols li{break-inside:avoid;}
+@media (min-width:760px){ ul.camps.camps-cols{columns:3;} }
+@media (max-width:600px){ ul.camps.camps-cols{columns:1;} }
 
 /* ---- provenance ---- */
 footer.src{

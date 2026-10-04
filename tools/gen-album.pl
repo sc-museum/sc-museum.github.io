@@ -24,6 +24,13 @@ my @photos = sort grep { /\.jpe?g$/i && -f "$dir/thumbs/$_" } readdir $dh;
 closedir $dh;
 die "no photos with thumbnails in $dir\n" unless @photos;
 
+# optional captions.tsv in the album folder: file<TAB>caption, one line per photo
+my %cap;
+if (open my $c, '<:encoding(UTF-8)', "$dir/captions.tsv") {
+  while (<$c>) { chomp; s/\r$//; my ($f, $t) = split /\t/, $_, 2; $cap{$f} = $t if defined $t && length $t; }
+  close $c;
+}
+
 # unit name from the unit's lineage page
 my $unitname = $unit;
 if (open my $u, '<:encoding(UTF-8)', "$dir/../../../$unit.htm") {
@@ -34,8 +41,10 @@ if (open my $u, '<:encoding(UTF-8)', "$dir/../../../$unit.htm") {
 my $n = scalar @photos;
 my $tiles = join "\n", map {
   my $i = $_; my $f = $photos[$i];
-  sprintf '      <a class="al-tile" href="%s" data-i="%d"><img src="thumbs/%s" loading="lazy" decoding="async" alt="%s, photo %d of %d"></a>',
-    esc($f), $i, esc($f), esc($title), $i + 1, $n
+  my $c = $cap{$f} // '';
+  my $alt = length $c ? "$c (photo " . ($i + 1) . " of $n)" : "$title, photo " . ($i + 1) . " of $n";
+  sprintf '      <a class="al-tile" href="%s" data-i="%d" data-cap="%s"%s><img src="thumbs/%s" loading="lazy" decoding="async" alt="%s"></a>',
+    esc($f), $i, esc($c), (length $c ? ' title="' . esc($c) . '"' : ''), esc($f), esc($alt)
 } 0 .. $#photos;
 
 my $page = <<"HTML";
@@ -73,6 +82,7 @@ $tiles
       <button type="button" id="al-close" aria-label="Close">&#215;</button>
     </div>
     <div class="al-stage"><img id="al-img" alt=""></div>
+    <div class="al-cap" id="al-cap"></div>
   </div>
 <script>
 (function(){
@@ -86,6 +96,7 @@ $tiles
     img.src = t.getAttribute('href'); img.alt = t.querySelector('img').alt;
     orig.href = t.getAttribute('href');
     count.textContent = (at + 1) + ' / ' + tiles.length;
+    document.getElementById('al-cap').textContent = t.getAttribute('data-cap') || '';
     if (box.hidden){ back = document.activeElement; box.hidden = false; document.getElementById('al-close').focus(); }
   }
   function hide(){ box.hidden = true; img.removeAttribute('src'); if (back) back.focus(); }

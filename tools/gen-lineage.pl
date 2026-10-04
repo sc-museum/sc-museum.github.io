@@ -250,6 +250,7 @@ for my $file (@files) {
     <p class="asof">$aesc</p>
 $body      <footer class="src">$src</footer>
   </div>
+<script src="unit.js" defer></script>
 <script src="readyroom.js" defer></script>
 </body>
 </html>
