@@ -103,6 +103,9 @@
     });
     document.addEventListener('click', function(e){
       if (!panel.hidden && !tile.contains(e.target)) setOpen(false);
+      // an item that jumps within this page closes the panel so the target shows
+      var a = e.target.closest && e.target.closest('.rr-item');
+      if (a && a.getAttribute('href').charAt(0) === '#') setOpen(false);
     });
   }
 

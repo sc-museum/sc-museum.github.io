@@ -151,6 +151,36 @@ header.bar:has(+ .ready-bar){margin-bottom:0;}
   color:var(--paper-2); margin:10px 0 0; padding:0; border:0;
 }
 
+/* ---- unit history (moved here from the museum's Command Gallery) ---- */
+.unit-history{margin:0 0 10px; font-family:var(--sans); scroll-margin-top:64px;}
+.uh-kicker{font-family:var(--mono); font-size:11px; letter-spacing:1.4px; text-transform:uppercase; color:var(--gold);}
+.unit-history h2.uh-title{
+  font-family:var(--serif); font-size:26px; font-weight:600; letter-spacing:0; text-transform:none;
+  color:var(--paper-2); margin:4px 0 10px; padding:0; border:0;
+}
+.unit-history .lede{font-family:var(--serif); font-size:17px; color:var(--paper); margin:0 0 22px; max-width:none;}
+.unit-history .prose p{font-family:var(--serif); font-size:16px; margin:0 0 14px;}
+.unit-history a, .unit-history .ext-link{color:var(--gold-bright);}
+.unit-history .leaders{display:grid; grid-template-columns:1fr 1fr; gap:18px; align-items:start;}
+.unit-history .leader-list{border:1px solid var(--hair); background:var(--panel); padding:4px 18px 12px;}
+.unit-history .leader-list h4{font-family:var(--mono); font-size:11px; letter-spacing:1.2px; text-transform:uppercase; color:var(--gold); margin:12px 0 4px; font-weight:500;}
+.unit-history .leader-list .u{display:flex; justify-content:space-between; gap:12px; padding:7px 0; border-bottom:1px solid rgba(255,255,255,0.05); font-size:13px;}
+.unit-history .leader-list .u:last-child{border-bottom:none;}
+.unit-history .leader-list .u .name{color:var(--paper-2);}
+.unit-history .leader-list .u .note{display:block; font-size:11px; color:var(--muted);}
+.unit-history .leader-list .u .name a{color:var(--paper-2); text-decoration:underline; text-decoration-color:rgba(201,162,39,0.45); text-underline-offset:2px;}
+.unit-history .leader-list .u .name a:hover{color:var(--gold-bright);}
+.unit-history .leader-list .u .date{font-family:var(--mono); font-size:11px; color:var(--muted); white-space:nowrap; text-align:right; font-variant-numeric:tabular-nums;}
+.unit-history .leader-list .u.current .name{color:var(--gold-bright);}
+.unit-history .card-grid{display:grid; grid-template-columns:1fr 1fr; gap:22px;}
+.unit-history .figure{background:var(--panel); border:1px solid var(--hair);}
+.unit-history .figure img{width:100%; display:block;}
+.unit-history .figure .cap{padding:12px 14px; font-size:12.5px; color:var(--muted); border-top:1px solid var(--hair);}
+.unit-history .source-note{font-size:12px; color:var(--muted); margin-top:12px;}
+@media (max-width:700px){
+  .unit-history .leaders, .unit-history .card-grid{grid-template-columns:1fr;}
+}
+
 /* ---- provenance ---- */
 footer.src{
   margin-top:46px; padding-top:18px; border-top:1px solid var(--hair);
