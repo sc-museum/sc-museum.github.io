@@ -3,7 +3,7 @@
 (function(){
   var tile = document.getElementById('ready-room');
   if (!tile) return;
-  var key = (location.pathname.split('/').pop() || '').replace(/\.html?$/i, '');
+  var key = tile.getAttribute('data-unit') || (location.pathname.split('/').pop() || '').replace(/\.html?$/i, '');
   var unitName = (document.querySelector('h1') || {}).textContent || key;
   var body = document.getElementById('rr-body');
   var years = document.getElementById('rr-years');
@@ -84,6 +84,25 @@
       var k = b.getAttribute('data-filter');
       years.querySelectorAll('.rr-chip').forEach(function(c){ c.setAttribute('aria-pressed', String(c === b)); });
       body.querySelectorAll('.rr-year').forEach(function(s){ s.hidden = k !== '*' && s.getAttribute('data-year') !== k; });
+    });
+  }
+
+  // Pop-out bar variant: a pinned bar whose panel opens on demand.
+  var toggle = document.getElementById('rb-toggle');
+  if (toggle){
+    var panel = document.getElementById('rb-panel');
+    var cue = document.getElementById('rb-cue');
+    var setOpen = function(open){
+      panel.hidden = !open;
+      toggle.setAttribute('aria-expanded', String(open));
+      cue.innerHTML = open ? 'Close &#9652;' : 'Open &#9662;';
+    };
+    toggle.addEventListener('click', function(){ setOpen(panel.hidden); });
+    document.addEventListener('keydown', function(e){
+      if (e.key === 'Escape' && !panel.hidden){ setOpen(false); toggle.focus(); }
+    });
+    document.addEventListener('click', function(e){
+      if (!panel.hidden && !tile.contains(e.target)) setOpen(false);
     });
   }
 

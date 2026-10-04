@@ -106,3 +106,13 @@ needs no rebuild: add an entry and commit.
 
 The tile markup and `readyroom.js` are part of the page template in
 `gen-lineage.pl`, so regenerating the pages keeps them.
+
+### Pop-out bar variant
+
+A page can show its Ready Room as a slim bar pinned under the site header
+instead of a tile: "Unit Ready Room · 9 items · 2003–2026" with an Open button
+that drops the year-by-year panel over the page (Esc or a click elsewhere closes
+it). `0501scbn.htm` uses it. To switch another page, replace its
+`<section class="ready" …>` tile with the `<section class="ready-bar" …>` block
+from `0501scbn.htm`, placed right after `</header>`. Both variants read the same
+`readyroom.json`; a section may also name its unit with `data-unit="0501scbn"`.
