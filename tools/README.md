@@ -69,10 +69,12 @@ of `index.html`. If the museum's palette changes, change both.
 
 ## Unit Ready Room
 
-Every unit page has a **Unit Ready Room** tile below its lineage record: photos, orders,
-articles, films, magazine pages and stories about that unit, grouped by year with
-a year filter. Units with nothing filed yet show an invitation and a pre-addressed
-"Suggest material" email to the executive director.
+Every unit page has a **Unit Ready Room** bar pinned under the site header. It
+reads "Unit Ready Room · 9 items · 2003–2026" and its Open button drops a panel
+over the page: photos, orders, articles, films, magazine pages and stories about
+that unit, grouped by year with a year filter. Esc or a click elsewhere closes it.
+Units with nothing filed yet show an invitation and a pre-addressed "Suggest
+material" email to the executive director.
 
 The content lives in one file, **`lineage/readyroom.json`**, keyed by the unit's
 lineage file name without `.htm` (`0501scbn` for `0501scbn.htm`). Adding material
@@ -104,15 +106,7 @@ needs no rebuild: add an entry and commit.
 - Only add material the museum may show: public records, the Society's own
   publications, or items whose owners have given permission.
 
-The tile markup and `readyroom.js` are part of the page template in
-`gen-lineage.pl`, so regenerating the pages keeps them.
-
-### Pop-out bar variant
-
-A page can show its Ready Room as a slim bar pinned under the site header
-instead of a tile: "Unit Ready Room · 9 items · 2003–2026" with an Open button
-that drops the year-by-year panel over the page (Esc or a click elsewhere closes
-it). `0501scbn.htm` uses it. To switch another page, replace its
-`<section class="ready" …>` tile with the `<section class="ready-bar" …>` block
-from `0501scbn.htm`, placed right after `</header>`. Both variants read the same
-`readyroom.json`; a section may also name its unit with `data-unit="0501scbn"`.
+The bar markup and `readyroom.js` are part of the page template in
+`gen-lineage.pl`, so regenerating the pages keeps them. The script also still
+supports the older in-page tile (`<section class="ready" …>`), and either one may
+name its unit explicitly with `data-unit="0501scbn"`.

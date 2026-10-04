@@ -24,7 +24,7 @@
   function yearLabel(y){ return y == null ? 'Ongoing' : String(y); }
 
   function render(items){
-    if (!items.length) return;
+    if (!items.length){ count.textContent = 'Nothing filed yet · add material'; return; }
     // group by year; "Ongoing" (null) sorts last
     var groups = {}, order = [];
     items.forEach(function(it){
