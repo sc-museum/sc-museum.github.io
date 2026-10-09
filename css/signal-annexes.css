@@ -1,0 +1,54 @@
+/* Civil War Signal Annex and Satellite Annex */
+.sat-tl{border-left:2px solid var(--gold);margin:24px 0 0 8px;padding-left:24px;display:grid;gap:22px}
+.sat-card{position:relative}.sat-card:before{content:"";position:absolute;left:-32px;top:6px;width:14px;height:14px;border-radius:50%;background:var(--gold)}
+.sat-yr{font-size:12px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);margin-bottom:6px}
+.sat-card h3{margin:0 0 6px;font-size:1.25rem}.sat-card p{margin:0;line-height:1.65;max-width:68ch}
+.sat-src{font-size:13px;color:var(--muted);max-width:68ch;margin:28px 0 0}
+.sat-h{font-family:var(--serif);font-size:1.5rem;margin:34px 0 0}
+#room-civil-war .sy{max-width:980px;margin:0 auto;padding:28px 16px 56px}
+#room-civil-war .sy h1{font-family:Spectral,Georgia,serif;font-size:clamp(1.9rem,4vw,2.6rem);margin:0 0 6px}
+#room-civil-war .sy .kick{font:600 12px/1 "IBM Plex Mono",monospace;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);margin:0 0 10px}
+#room-civil-war .sy .dek{color:var(--muted);max-width:62ch;margin:0 0 22px}
+#room-civil-war .tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px}
+#room-civil-war .tabs button,#room-civil-war .btn,#room-civil-war .mode button{font:600 14px/1 "IBM Plex Sans",sans-serif;border:1px solid var(--line);background:var(--panel);color:var(--ink);padding:11px 16px;border-radius:6px;cursor:pointer;min-height:44px}
+#room-civil-war .tabs button[aria-selected="true"],#room-civil-war .mode button[aria-pressed="true"]{background:var(--gold);color:#fff;border-color:var(--gold)}
+#room-civil-war button:focus-visible,#room-civil-war input:focus-visible,#room-civil-war select:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
+#room-civil-war .btn.primary{background:var(--gold);color:#fff;border-color:var(--gold)}
+#room-civil-war .card{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:18px}
+#room-civil-war .grid{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);gap:18px}
+@media (max-width:760px){#room-civil-war .grid{grid-template-columns:1fr}}
+#room-civil-war .stage{border-radius:8px;overflow:hidden;border:1px solid var(--line);background:var(--sky)}
+#room-civil-war .stage.night{background:var(--night)}
+#room-civil-war .stage svg{display:block;width:100%;height:auto}
+#room-civil-war .mode{display:flex;gap:8px;flex-wrap:wrap;margin:0 0 14px}
+#room-civil-war .row{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin:12px 0}
+#room-civil-war .choices{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+@media (max-width:420px){#room-civil-war .choices{grid-template-columns:repeat(2,1fr)}}
+#room-civil-war .choices button{font:600 22px/1 "IBM Plex Mono",monospace;padding:14px 0}
+#room-civil-war .status{min-height:2.9em;font-weight:500}
+#room-civil-war .status.ok{color:var(--ok)}.status.bad{color:var(--bad)}
+#room-civil-war .score{font:500 13px/1.4 "IBM Plex Mono",monospace;color:var(--muted)}
+#room-civil-war .big{font:600 44px/1 "IBM Plex Mono",monospace;letter-spacing:.06em;text-align:center;margin:6px 0}
+#room-civil-war .seq{font:600 20px/1.3 "IBM Plex Mono",monospace;text-align:center;min-height:1.4em;letter-spacing:.12em}
+#room-civil-war .pad{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:8px}
+#room-civil-war .pad button{font-size:15px;padding:16px 8px}
+#room-civil-war .pad .wide{grid-column:1/-1}
+#room-civil-war input[type=text]{font:600 20px/1 "IBM Plex Mono",monospace;text-transform:uppercase;padding:12px;border:1px solid var(--line);border-radius:6px;background:var(--bg);color:var(--ink);width:100%;max-width:340px}
+#room-civil-war table.chart{border-collapse:collapse;width:100%;font:500 13.5px/1.3 "IBM Plex Mono",monospace}
+#room-civil-war table.chart td{padding:5px 6px;border-bottom:1px solid var(--line)}
+#room-civil-war table.chart td:nth-child(odd){font-weight:600;color:var(--gold)}
+#room-civil-war details.ref{margin-top:14px}
+#room-civil-war details.ref summary{cursor:pointer;font-weight:600;min-height:44px;display:flex;align-items:center}
+#room-civil-war .note{font-size:13px;color:var(--muted);margin:10px 0 0}
+#room-civil-war .lamp{width:18px;height:18px;border-radius:50%;background:var(--line);display:inline-block;vertical-align:middle;margin-right:8px;border:1px solid var(--line)}
+#room-civil-war .lamp.on{background:#ffd34d;box-shadow:0 0 12px 3px #ffd34d}
+#room-civil-war .sr{position:absolute;left:-9999px}
+#room-civil-war #pole{transform-origin:200px 150px;transition:transform .22s ease-in-out}
+@media (prefers-reduced-motion:reduce){#room-civil-war #pole{transition:none}}
+#room-civil-war .sy{--bg:#0d1f16;--panel:#13291d;--ink:#ece6d3;--muted:#a3b0a6;--line:#2a4a37;--gold:#d8b448;--gold-bg:#3a3314;--ok:#6fd08f;--bad:#f08a8a;--sky:#1b3140;--ground:#3b3a26;--uniform:#5d7bb5;--night:#0b1410;max-width:none;padding:0}
+#room-civil-war .tabs button[aria-selected="true"],#room-civil-war .mode button[aria-pressed="true"],#room-civil-war .btn.primary{color:#10200f}
+#room-civil-war .sy button{font-family:var(--sans)}
+#room-civil-war .pad button,#room-civil-war .choices button{background:var(--panel);color:var(--ink);border:1px solid var(--line);cursor:pointer}
+#room-civil-war .pad button.btn.primary{background:var(--gold);color:#10200f;border-color:var(--gold)}
+#room-civil-war .pad button:hover,#room-civil-war .choices button:hover{border-color:var(--gold)}
+#room-civil-war .choices button:disabled{opacity:.45;cursor:default}
