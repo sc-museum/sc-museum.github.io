@@ -6,29 +6,83 @@
 <title>Activation and Change of Command Program, 5 June 2026 &#8212; 501st Signal Battalion</title>
 <meta name="description" content="Ceremony program: 21st Brigade Engineer Battalion inactivation, 501st Division Signal Battalion activation and change of command, McAuliffe Hall, Fort Campbell, Kentucky, 5 June 2026.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,600;1,400&family=IBM+Plex+Sans:wght@400;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,600;0,700;1,400;1,600&family=IBM+Plex+Sans:wght@400;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link href="../../../lineage.css" rel="stylesheet">
 <style>
-  .prog{max-width:1100px;}
-  .prog-actions{display:flex; gap:10px; flex-wrap:wrap; margin:-12px 0 30px;}
+  .prog{max-width:1180px;}
+  .prog-intro{max-width:760px; font-size:17px; margin:-6px 0 18px;}
+  .prog-actions{display:flex; gap:10px; flex-wrap:wrap; margin:0 0 34px;}
   .prog-actions a{font-family:var(--sans); font-size:13px; font-weight:600; text-decoration:none; padding:9px 16px; border-radius:2px; border:1px solid var(--gold); color:var(--gold-bright);}
   .prog-actions a.primary{background:var(--gold); color:var(--ink);}
-  .panel{display:grid; grid-template-columns:minmax(0, 420px) minmax(0, 1fr); gap:34px; align-items:start; padding:30px 0; border-top:1px solid var(--hair);}
-  .panel figure{margin:0;}
-  .panel figure a{display:block; border:1px solid var(--hair); background:#fff;}
-  .panel figure img{display:block; width:100%; height:auto;}
-  .panel figcaption{font-family:var(--mono); font-size:11px; color:var(--muted); margin-top:8px; letter-spacing:.4px;}
-  .panel h2{margin-top:0;}
-  .t-list{list-style:none; margin:0; padding:0;}
-  .t-list li{padding:9px 0 9px 16px; border-left:2px solid var(--hair); margin-bottom:6px;}
-  .t-list li b{font-weight:600; color:var(--paper-2);}
-  .t-list li i{display:block; color:var(--muted); font-size:15px;}
-  .t-list li.stand b::before{content:"\2605  "; color:var(--gold);}
-  .t-cover{font-size:20px; line-height:1.5; color:var(--paper-2);}
-  .t-cover span{display:block; font-size:16px; color:var(--muted); margin-top:10px;}
-  .verse{font-style:italic; margin:0 0 14px; white-space:pre-line;}
-  .note-small{font-family:var(--sans); font-size:13px; color:var(--muted);}
-  @media (max-width:760px){ .panel{grid-template-columns:1fr; gap:18px;} }
+
+  /* ---- the program, re-set as clean pages ---- */
+  .sheets{display:grid; grid-template-columns:repeat(2, minmax(0, 1fr)); gap:34px;}
+  @media (max-width:820px){ .sheets{grid-template-columns:minmax(0, 1fr);} }
+  .sheet-wrap{margin:0; min-width:0;}
+  .sheet-wrap figcaption{display:flex; justify-content:space-between; gap:12px; font-family:var(--mono); font-size:11px; letter-spacing:.5px; color:var(--muted); margin-top:9px;}
+  .sheet-wrap figcaption a{color:var(--gold-bright);}
+  .pp{
+    --orange:#e8701f; --grey:#9a9a9a;
+    aspect-ratio:11/17; position:relative; padding:4.2%;
+    background:conic-gradient(from 0deg at 50% 50%, var(--grey) 0 25%, var(--orange) 0 50%, var(--grey) 0 75%, var(--orange) 0 100%);
+    box-shadow:0 14px 34px rgba(0,0,0,0.45); container-type:inline-size;
+  }
+  .pp.alt{background:conic-gradient(from 0deg at 50% 50%, var(--orange) 0 25%, var(--grey) 0 50%, var(--orange) 0 75%, var(--grey) 0 100%);}
+  .pg{
+    height:100%; background:#fff; color:#1d1d1d; text-align:center;
+    display:flex; flex-direction:column; align-items:center; justify-content:space-between;
+    padding:7% 6% 6%; font-family:'Book Antiqua', Palatino, 'Palatino Linotype', Spectral, Georgia, serif;
+    font-size:4.4cqw; line-height:1.25;
+  }
+  .pg h2{all:unset; display:block; font-family:inherit; font-style:italic; font-weight:600; font-size:1.55em; text-decoration:underline; text-underline-offset:.18em; text-decoration-thickness:.05em; margin-bottom:.5em;}
+  .pg .cv-div{font-weight:700; font-size:1.6em; line-height:1.15; white-space:nowrap;}
+  .pg .cv-big{font-weight:700; font-size:1.4em; line-height:1.18; color:#333;}
+  .pg .cv-and{font-weight:700; font-size:.8em;}
+  .pg .cv-coc{font-weight:700; font-size:1.5em; line-height:1.15;}
+  .pg .cv-place{font-size:1.25em; line-height:1.35;}
+  .pg .crest{width:36%; height:auto; display:block;}
+  .pg.seq{font-size:3.85cqw; justify-content:space-between;}
+  .pg.seq h2{margin-bottom:.35em;}
+  .pg .ev{margin:.3em 0 0;}
+  .pg .ev b{display:block; font-weight:700; font-size:1.12em;}
+  .pg .ev i{display:block; font-size:1.02em;}
+  .pg .ev .st::before{content:"\2605\00a0"; color:#d79b10; -webkit-text-stroke:.04em #333;}
+  .pg .stand{align-self:flex-start; font-style:italic; font-size:.95em; padding-top:.4em;}
+  .pg .stand::before{content:"\2605\00a0"; color:#d79b10;}
+  .pg .op{margin:.55em 0;}
+  .pg .op b{display:block; font-weight:700; font-size:1.3em;}
+  .pg .op i{display:block; font-size:1.1em;}
+  .pg .ins{display:flex; align-items:flex-end; justify-content:space-between; width:100%; gap:3%;}
+  .pg .ins img{display:block; height:auto;}
+  .pg .ins .i21{width:28%;}
+  .pg .ins .i501{width:28%;}
+  .pg .ins .i101{width:30%; display:flex; flex-direction:column; align-items:center; margin-bottom:6%;}
+  .pg .tab{width:100%; background:#111; color:#f2c230; border-radius:.9em .9em .25em .25em; padding:.28em 0 .22em; margin-bottom:.35em;
+           font:700 .82em/1 'IBM Plex Sans', Arial, sans-serif; letter-spacing:.02em; white-space:nowrap; border:.12em solid #111; box-shadow:inset 0 0 0 .1em #f2c230;}
+  .pg .ins .i101 img{width:100%;}
+  .pg.songs{justify-content:flex-start; font-style:italic; font-size:3.6cqw; line-height:1.25; padding-top:5%;}
+  .pg.songs h2{margin:.1em 0 .45em;}
+  .pg.songs h2 + p{margin-top:0;}
+  .pg.songs p{margin:0 0 .6em; font-weight:600;}
+  .pg.songs .gap{height:.6em;}
+
+  .scan-note{font-family:var(--sans); font-size:13px; color:var(--muted); margin:30px 0 0; max-width:760px;}
+
+  /* ?panel=<id> shows one page alone, filling the window (used to make thumbnails) */
+  html.solo, html.solo body{margin:0; background:#fff; overflow:hidden;}
+  html.solo .bar, html.solo .wrap > :not(.sheets), html.solo .sheet-wrap:not(.on), html.solo figcaption{display:none !important;}
+  html.solo .wrap, html.solo .sheets{display:block; max-width:none; padding:0; margin:0;}
+  html.solo .pp{width:100vw; height:100vh; aspect-ratio:auto; box-shadow:none;}
+
+  @media print{
+    @page{size:5.5in 8.5in; margin:0;}
+    body{background:#fff;}
+    .bar, .kicker, h1, .asof, .prog-intro, .prog-actions, .unit-glance, .scan-note, footer.src, .sheet-wrap figcaption{display:none !important;}
+    .wrap{max-width:none; padding:0; margin:0;}
+    .sheets{display:block;}
+    .sheet-wrap{margin:0; break-after:page; page-break-after:always;}
+    .pp{width:5.5in; height:8.5in; aspect-ratio:auto; box-shadow:none; -webkit-print-color-adjust:exact; print-color-adjust:exact;}
+  }
 </style>
 </head>
 <body>
@@ -42,89 +96,83 @@
     <div class="kicker">Unit Ready Room &#183; Ceremony program</div>
     <h1>Activation and Change of Command, 5 June 2026</h1>
     <p class="asof">101st Airborne Division (Air Assault) &#183; McAuliffe Hall, Fort Campbell, Kentucky</p>
+    <p class="prog-intro">In a single ceremony the 101st Airborne Division inactivated the 21st Brigade Engineer Battalion and activated the 501st Division Signal Battalion in its place, with command passing to the first commander of the reactivated 501st. The program is re-set below page for page, as printed.</p>
     <div class="prog-actions">
-      <a class="primary" href="501st-activation-program-2026.pdf" download>Download the program (PDF, 1.2 MB)</a>
+      <a class="primary" href="501st-activation-program-2026.pdf" download>Download the program (PDF)</a>
       <a href="../../../0501scbn.htm#unit-history">The 501st's history</a>
     </div>
 
-    <section class="panel" id="cover">
-      <figure><a href="p1-cover.jpg" target="_blank" rel="noopener"><img src="p1-cover.jpg" width="1080" height="1800" alt="Program cover: 101st Airborne Division (Air Assault), 21st Brigade Engineer Battalion Inactivation, 501st Division Signal Battalion Activation and Change of Command Ceremony, with the 501st crest and motto Vox Aquilae"></a><figcaption>Cover &#183; select to enlarge</figcaption></figure>
-      <div>
-        <h2>The ceremony</h2>
-        <p class="t-cover">101st Airborne Division (Air Assault)<br>21st Brigade Engineer Battalion Inactivation<br>501st Division Signal Battalion Activation<br>and Change of Command Ceremony
-          <span>McAuliffe Hall &#183; Fort Campbell, Kentucky &#183; 05 June 2026</span></p>
-        <p>In a single ceremony the 101st Airborne Division inactivated the 21st Brigade Engineer Battalion and activated the 501st Division Signal Battalion in its place, with command passing from the outgoing 21st BEB commander to the first commander of the reactivated 501st. The cover carries the 501st's distinctive unit insignia and its motto, <i>Vox Aquilae</i>, &#8220;Voice of the Eagle.&#8221;</p>
-      </div>
-    </section>
+    <div class="sheets">
+      <figure class="sheet-wrap" id="cover">
+        <div class="pp alt"><div class="pg">
+          <div class="cv-div">101st Airborne Division<br>(Air Assault)</div>
+          <div class="cv-big">21st Brigade Engineer<br>Battalion Inactivation</div>
+          <div class="cv-big">501st Division Signal<br>Battalion Activation</div>
+          <div class="cv-and">and</div>
+          <div class="cv-coc">Change of Command<br>Ceremony</div>
+          <img class="crest" src="insignia/501st-signal-bn-dui.png" alt="501st Signal Battalion distinctive unit insignia, motto Vox Aquilae">
+          <div class="cv-place">McAuliffe Hall<br>Fort Campbell, Kentucky<br>05 June 2026</div>
+        </div></div>
+        <figcaption><span>Cover</span><a href="scans/p1-cover.jpg" target="_blank" rel="noopener">Original scan &#8599;</a></figcaption>
+      </figure>
 
-    <section class="panel" id="sequence">
-      <figure><a href="p2-sequence.jpg" target="_blank" rel="noopener"><img src="p2-sequence.jpg" width="1166" height="1800" alt="Sequence of Events page of the program" loading="lazy"></a><figcaption>Sequence of Events &#183; select to enlarge</figcaption></figure>
-      <div>
-        <h2>Sequence of Events</h2>
-        <ul class="t-list">
-          <li class="stand"><b>Invocation</b><i>CH (CPT) Christopher Back</i></li>
-          <li class="stand"><b>National Anthem</b><i>CPT Anna Roberts, Vocalist</i></li>
-          <li><b>21st Brigade Engineer Battalion Inactivation</b></li>
-          <li><b>501st Division Signal Battalion Activation</b></li>
-          <li><b>Change of Command</b></li>
-          <li><b>Remarks</b><i>COL Jeffrey Pickler, Deputy Commanding Officer for Support<br>LTC Tucker Hughes, Outgoing 21st BEB Commander<br>LTC Brett Gilbert, Incoming 501st DSIG Commander</i></li>
-          <li class="stand"><b>Screaming Eagles Song</b><i>101st Airborne Division (Air Assault) Band</i></li>
-          <li class="stand"><b>The Army Song</b><i>101st Airborne Division (Air Assault) Band</i></li>
-        </ul>
-        <p class="note-small">&#9733; Please stand. The printed program also carried a QR code linking to the ceremony photographs.</p>
-      </div>
-    </section>
+      <figure class="sheet-wrap" id="sequence">
+        <div class="pp"><div class="pg seq">
+          <h2>Sequence of Events</h2>
+          <div class="ev"><b class="st">Invocation</b><i>CH (CPT) Christopher Back</i></div>
+          <div class="ev"><b class="st">National Anthem</b><i>CPT Anna Roberts, Vocalist</i></div>
+          <div class="ev"><b>21st Brigade Engineer Battalion Inactivation</b></div>
+          <div class="ev"><b>501st Division Signal Battalion Activation</b></div>
+          <div class="ev"><b>Change of Command</b></div>
+          <div class="ev"><b>Remarks</b><i><b style="display:inline;font-size:1em">COL Jeffrey Pickler,</b><br>Deputy Commanding Officer for Support</i></div>
+          <div class="ev"><i><b style="display:inline;font-size:1em">LTC Tucker Hughes,</b><br>Outgoing 21st BEB Commander</i></div>
+          <div class="ev"><i><b style="display:inline;font-size:1em">LTC Brett Gilbert,</b><br>Incoming 501st DSIG Commander</i></div>
+          <div class="ev"><b class="st">Screaming Eagles Song</b><i>101st Airborne Division (Air Assault) Band</i></div>
+          <div class="ev"><b class="st">The Army Song</b><i>101st Airborne Division (Air Assault) Band</i></div>
+          <div class="stand">Please Stand</div>
+        </div></div>
+        <figcaption><span>Sequence of Events</span><a href="scans/p2-sequence.jpg" target="_blank" rel="noopener">Original scan &#8599;</a></figcaption>
+      </figure>
 
-    <section class="panel" id="official-party">
-      <figure><a href="p3-official-party.jpg" target="_blank" rel="noopener"><img src="p3-official-party.jpg" width="1162" height="1800" alt="Official Party page with the 21st Brigade Engineer Battalion crest, the 101st Airborne Division shoulder patch and the 501st Signal Battalion crest" loading="lazy"></a><figcaption>Official Party &#183; select to enlarge</figcaption></figure>
-      <div>
-        <h2>Official Party</h2>
-        <ul class="t-list">
-          <li><b>COL Jeffrey Pickler</b><i>Presiding Officer</i></li>
-          <li><b>LTC Tucker Hughes</b><i>Outgoing Commander</i></li>
-          <li><b>LTC Brett Gilbert</b><i>Incoming Commander</i></li>
-          <li><b>MAJ Troy Meyers</b><i>Commander of Troops</i></li>
-          <li><b>CSM Luke Topasna</b><i>Battalion Command Sergeant Major</i></li>
-        </ul>
-        <p class="note-small">The page closes with three insignia: the 21st Engineer crest, the 101st Airborne Division's Screaming Eagle shoulder patch, and the 501st Signal Battalion crest.</p>
-      </div>
-    </section>
+      <figure class="sheet-wrap" id="official-party">
+        <div class="pp alt"><div class="pg">
+          <h2>Official Party</h2>
+          <div class="op"><b>COL Jeffrey Pickler</b><i>Presiding Officer</i></div>
+          <div class="op"><b>LTC Tucker Hughes</b><i>Outgoing Commander</i></div>
+          <div class="op"><b>LTC Brett Gilbert</b><i>Incoming Commander</i></div>
+          <div class="op"><b>MAJ Troy Meyers</b><i>Commander of Troops</i></div>
+          <div class="op"><b>CSM Luke Topasna</b><i>Battalion Command Sergeant Major</i></div>
+          <div class="ins">
+            <img class="i21" src="insignia/21st-engineer-bn-dui.jpg" alt="21st Engineer Battalion distinctive unit insignia">
+            <div class="i101"><div class="tab">AIRBORNE</div><img src="insignia/101st-abn-div-ssi.png" alt="101st Airborne Division shoulder sleeve insignia, the Screaming Eagle"></div>
+            <img class="i501" src="insignia/501st-signal-bn-dui.png" alt="501st Signal Battalion distinctive unit insignia">
+          </div>
+        </div></div>
+        <figcaption><span>Official Party</span><a href="scans/p3-official-party.jpg" target="_blank" rel="noopener">Original scan &#8599;</a></figcaption>
+      </figure>
 
-    <section class="panel" id="songs">
-      <figure><a href="p4-songs.jpg" target="_blank" rel="noopener"><img src="p4-songs.jpg" width="1128" height="1800" alt="Back page with the words of the Screaming Eagles Song and The Army Song over the national and division colors" loading="lazy"></a><figcaption>The songs &#183; select to enlarge</figcaption></figure>
-      <div>
-        <h2>Screaming Eagles Song</h2>
-        <p class="verse">We have a rendezvous with destiny,
-Our strength and courage strike the spark
-That will always make men free!
+      <figure class="sheet-wrap" id="songs">
+        <div class="pp"><div class="pg songs">
+          <h2>Screaming Eagles Song</h2>
+          <p>We have a rendezvous with destiny,<br>Our strength and courage strike the spark<br>That will always make men free!</p>
+          <p>Assault right down through the skies of blue;<br>Keep your eyes on the job to be done<br>We&#8217;re the Soldiers of the Hundred-First<br>We&#8217;ll fight &#8217;til the battle&#8217;s won!</p>
+          <h2>The Army Song</h2>
+          <p>March along, sing our song,<br>with the Army of the free.<br>Count the brave, count the true,<br>who have fought to victory.<br>We&#8217;re the Army and proud of our name!<br>We&#8217;re the Army and proudly proclaim:</p>
+          <p>First to fight for the right,<br>And to build the Nation&#8217;s might,<br>And The Army Goes Rolling Along!<br>Proud of all we have done!<br>Fighting &#8217;til the battle&#8217;s won,<br>And The Army Goes Rolling Along!</p>
+          <p>Then it&#8217;s Hi! Hi! Hey! The Army&#8217;s on its way,<br>Count off the cadence loud and strong;<br>For where&#8217;er we go, You will always know<br>That The Army Goes Rolling Along!</p>
+        </div></div>
+        <figcaption><span>The songs</span><a href="scans/p4-songs.jpg" target="_blank" rel="noopener">Original scan &#8599;</a></figcaption>
+      </figure>
+    </div>
 
-Assault right down through the skies of blue;
-Keep your eyes on the job to be done
-We're the Soldiers of the Hundred-First
-We'll fight 'til the battle's won!</p>
-        <h2>The Army Song</h2>
-        <p class="verse">March along, sing our song,
-with the Army of the free.
-Count the brave, count the true,
-who have fought to victory.
-We're the Army and proud of our name!
-We're the Army and proudly proclaim:
-
-First to fight for the right,
-And to build the Nation's might,
-And The Army Goes Rolling Along!
-Proud of all we have done!
-Fighting 'til the battle's won,
-And The Army Goes Rolling Along!
-
-Then it's Hi! Hi! Hey! The Army's on its way,
-Count off the cadence loud and strong;
-For where'er we go, You will always know
-That The Army Goes Rolling Along!</p>
-      </div>
-    </section>
-
-    <footer class="src">From the printed program for the ceremony, in the collection of BG (Ret.) Welton Chase, Jr. Transcribed as printed. <a href="../../../0501scbn.htm">Back to the 501st Signal Battalion's lineage and Ready Room</a>.</footer>
+    <p class="scan-note">The printed program also carried a QR code beside &#8220;Photos:&#8221; on the Sequence of Events page, linking to the ceremony photographs. Insignia are the U.S. Army&#8217;s official artwork, in the public domain (via Wikimedia Commons).</p>
+    <footer class="src">Re-set from the printed program in the collection of BG (Ret.) Welton Chase, Jr., as printed; the original scans are linked under each page. <a href="../../../0501scbn.htm">Back to the 501st Signal Battalion&#8217;s lineage and Ready Room</a>.</footer>
   </div>
+<script>
+(function(){
+  var p = new URLSearchParams(location.search).get('panel'), f = p && document.getElementById(p);
+  if (f){ document.documentElement.classList.add('solo'); f.classList.add('on'); }
+})();
+</script>
 </body>
 </html>
