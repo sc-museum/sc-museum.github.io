@@ -176,3 +176,41 @@
 #room-auditorium .tmh-month{margin-top:14px;}
 #room-auditorium .tmh-month[hidden]{display:none;}
 #room-auditorium .tmh-label{font:600 11px/1 "IBM Plex Mono",monospace; letter-spacing:.16em; text-transform:uppercase; color:#e0bc4a;}
+
+/* ---------- Aviation Annex: Western Front chapter (review batch signal-aviation-wwi-2026-10) ---------- */
+#room-aviation .wf{--pur:#e0782b; --obs:#2f8f9d; --bom:#c0392b; --train:#7a6fb0; --wf-accent:#f08a3c;}
+#room-aviation .wf-prose p{max-width:68ch; line-height:1.65;}
+#room-aviation .wf-h{font-family:var(--serif); font-size:1.5rem; margin:38px 0 0; color:var(--white);}
+#room-aviation .wf-kick{font:500 11px/1 var(--mono); letter-spacing:.14em; text-transform:uppercase; color:var(--wf-accent); margin:8px 0 12px;}
+#room-aviation .wf .muted{color:var(--muted); max-width:68ch; margin:0 0 14px;}
+#room-aviation .wf .cap{font-size:13px; color:var(--muted); font-style:italic; margin:0;}
+#room-aviation .wf .grid2{display:grid; grid-template-columns:repeat(auto-fit,minmax(min(100%,400px),1fr)); gap:16px;}
+#room-aviation .wf .grid3{display:grid; grid-template-columns:repeat(auto-fit,minmax(min(100%,270px),1fr)); gap:16px;}
+#room-aviation .wf .card{background:var(--panel); border:1px solid var(--hair); border-radius:4px; padding:16px; display:grid; gap:10px; align-content:start; min-width:0;}
+#room-aviation .wf .card h4{font-family:var(--serif); font-size:19px; font-weight:600; margin:0; color:var(--white);}
+#room-aviation .wf .card p{margin:0; font-size:14.5px; line-height:1.6;}
+#room-aviation .wf .plane svg, #room-aviation .wf .mission svg{width:100%; height:auto; display:block;}
+#room-aviation .wf .sky{background:linear-gradient(#22402f,#163024); border-radius:3px;}
+#room-aviation .wf .specs{display:flex; flex-wrap:wrap; gap:6px 16px; font:12.5px var(--mono); color:var(--muted);}
+#room-aviation .wf .specs b{color:var(--white); font-weight:500;}
+#room-aviation .wf .ins{grid-template-columns:96px 1fr; gap:14px; align-items:start;}
+#room-aviation .wf .ins svg{width:96px; height:96px;}
+#room-aviation .wf .ins .unit{font-family:var(--serif); font-size:18px; font-weight:600; line-height:1.15; color:var(--white); margin-bottom:6px;}
+#room-aviation .wf .ins .nick{font:12px var(--mono); color:var(--wf-accent); text-transform:uppercase; letter-spacing:.06em; margin-bottom:2px;}
+#room-aviation .wf .mapwrap{display:grid; gap:12px;}
+#room-aviation .wf .phases{display:flex; flex-wrap:wrap; gap:6px;}
+#room-aviation .wf .phases button{font:600 13px var(--sans); background:transparent; color:var(--white); border:1px solid var(--hair); border-radius:3px; padding:8px 12px; cursor:pointer;}
+#room-aviation .wf .phases button:hover{border-color:var(--wf-accent);}
+#room-aviation .wf .phases button[aria-pressed="true"]{background:var(--wf-accent); border-color:var(--wf-accent); color:#1a0d03;}
+#room-aviation .wf .phases button:focus-visible{outline:3px solid var(--gold); outline-offset:2px;}
+#room-aviation .wf .mapbox{display:grid; grid-template-columns:minmax(0,1fr); gap:16px;}
+#room-aviation .wf .phase-text{max-width:68ch;}
+#room-aviation .wf .grid3 + .muted{margin-top:16px;}
+#room-aviation #wf-map{width:100%; height:auto; display:block; border-radius:4px; background:#c9d8dc;}
+#room-aviation .wf .phase-text{display:grid; gap:10px;}
+#room-aviation .wf .phase-text h4{font-family:var(--serif); font-size:20px; margin:0; color:var(--white);}
+#room-aviation .wf .phase-text p{margin:0; font-size:14.5px; line-height:1.6;}
+#room-aviation .wf .phase-text .dates{font:13px var(--mono); color:var(--wf-accent);}
+#room-aviation .wf .legend{display:flex; flex-wrap:wrap; gap:6px 14px; font-size:13px; color:var(--muted);}
+#room-aviation .wf .legend span::before{content:""; display:inline-block; width:18px; height:3px; vertical-align:middle; margin-right:6px; background:var(--c);}
+#room-aviation .wf .legend .dot::before{width:9px; height:9px; border-radius:50%;}
