@@ -145,7 +145,7 @@
 #room-aviation .av-photos:has(> .av-photo:only-child){max-width:360px;}
 @media (max-width:560px){ #room-aviation .av-photo img{height:auto; max-height:320px;} }
 
-/* Auditorium: This Month in History (approved in review batch october-2026) */
+/* Auditorium: This Month in History (review batches october-2026 and months-2026-27) */
 .tmh{--g:#e0bc4a;--g2:#c9a227;--cr:#a53344;--pn:#132a1e;--hr:#2a4a37;--tx:#f4f3ee;--mu:#a9bdb0;display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));margin:14px 0 0;font-family:'Spectral',Georgia,serif}
 .tmh .banner{grid-column:1/-1;position:relative;overflow:hidden;border:1px solid var(--g2);border-radius:6px;padding:16px 18px;background:linear-gradient(115deg,#1b3a29,#0f2a1c 55%,#2a1b20);color:var(--tx)}
 .tmh .banner b{display:block;font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--g);margin-bottom:4px}

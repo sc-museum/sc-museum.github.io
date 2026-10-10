@@ -321,7 +321,7 @@
     var now = new Date(), m = now.getMonth() + 1, d = now.getDate();
     var MON = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'][m - 1];
     var current = lists.filter(function(l){ return +l.getAttribute('data-month') === m; })[0];
-    // until a month's list is approved, keep showing the newest one there is
+    // every month has a list; if one is ever missing, show the last one on the page
     var shown = current || lists[lists.length - 1];
     lists.forEach(function(l){ l.hidden = l !== shown; });
     if (!current) return;
