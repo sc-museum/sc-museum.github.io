@@ -214,3 +214,83 @@
 #room-aviation .wf .legend{display:flex; flex-wrap:wrap; gap:6px 14px; font-size:13px; color:var(--muted);}
 #room-aviation .wf .legend span::before{content:""; display:inline-block; width:18px; height:3px; vertical-align:middle; margin-right:6px; background:var(--c);}
 #room-aviation .wf .legend .dot::before{width:9px; height:9px; border-radius:50%;}
+
+/* Fort Gordon, Then and Now */
+#room-fort-gordon .fg-kicker{display:block; font:500 11px/1.3 var(--mono); letter-spacing:.14em; text-transform:uppercase; color:var(--gold);}
+#room-fort-gordon .section > .sat-h{margin-top:8px;}
+#room-fort-gordon .prose{margin-top:14px;}
+#room-fort-gordon .prose p{line-height:1.65;}
+#room-fort-gordon .section > .lede{margin-top:10px;}
+#room-fort-gordon .fg-sub{font-family:var(--serif); font-size:1.2rem; margin:34px 0 0;}
+#room-fort-gordon .fg-link{background:none; border:0; padding:0; font:inherit; color:var(--gold-bright); text-decoration:underline; cursor:pointer;}
+#room-fort-gordon button:focus-visible, #room-fort-gordon a:focus-visible{outline:2px solid var(--gold-bright); outline-offset:2px;}
+#room-fort-gordon .fg-photo{margin:24px 0 8px; max-width:660px; background:var(--panel); border:1px solid var(--hair); border-radius:4px; overflow:hidden;}
+#room-fort-gordon .fg-photo > a{display:block; background:#111;}
+#room-fort-gordon .fg-photo img{display:block; width:100%; height:auto; filter:grayscale(.15);}
+#room-fort-gordon .fg-photo figcaption{padding:10px 12px 12px; font-size:12.5px; line-height:1.45; color:var(--muted);}
+#room-fort-gordon .fg-credit{display:block; margin-top:6px; font-size:11px; opacity:.85;}
+#room-fort-gordon .fg-credit a{color:inherit; text-decoration:underline;}
+/* map of the sites */
+#room-fort-gordon .fg-map-wrap{display:grid; grid-template-columns:minmax(0,340px) minmax(0,1fr); gap:22px; align-items:start; margin-top:16px;}
+#room-fort-gordon .fg-map{background:var(--panel); border:1px solid var(--hair); padding:6px;}
+#room-fort-gordon .fg-map svg{display:block; width:100%; height:auto;}
+#room-fort-gordon .fg-land{fill:var(--panel-2); stroke:var(--gold); stroke-width:1.5; stroke-linejoin:round;}
+#room-fort-gordon .fg-river, #room-fort-gordon .fg-state{font:500 9px var(--mono); letter-spacing:.14em; fill:var(--muted);}
+#room-fort-gordon .fg-state{font-size:11px; letter-spacing:.3em; opacity:.55;}
+#room-fort-gordon .fg-city{font:italic 13px var(--serif); fill:var(--white);}
+#room-fort-gordon .fg-lead line{stroke:var(--muted); stroke-width:1;}
+#room-fort-gordon .fg-dot circle{fill:var(--white);}
+#room-fort-gordon .fg-pin circle{fill:var(--paper); stroke:var(--ink); stroke-width:2;}
+#room-fort-gordon .fg-pin text{font:600 12px var(--mono); text-anchor:middle; fill:var(--paper-ink);}
+#room-fort-gordon .fg-pin.fg-p3 circle{fill:var(--crimson);}
+#room-fort-gordon .fg-pin.fg-p3 text{fill:var(--white);}
+#room-fort-gordon .fg-pin.fg-p4 circle{fill:var(--panel); stroke:var(--muted);}
+#room-fort-gordon .fg-pin.fg-p4 text{fill:var(--muted);}
+#room-fort-gordon .fg-pin.fg-p5 circle{fill:var(--gold);}
+#room-fort-gordon .fg-pin.fg-p5 text{fill:var(--ink);}
+#room-fort-gordon .fg-legend{list-style:none; margin:0; padding:0; display:grid; gap:12px; counter-reset:fg;}
+#room-fort-gordon .fg-legend li{counter-increment:fg; position:relative; padding-left:36px; font-size:14px; line-height:1.5;}
+#room-fort-gordon .fg-legend li::before{content:counter(fg); position:absolute; left:0; top:0; width:24px; height:24px; border-radius:50%; display:grid; place-items:center; font:600 12px var(--mono); background:var(--paper); color:var(--paper-ink);}
+#room-fort-gordon .fg-legend li.fg-p3::before{background:var(--crimson); color:var(--white);}
+#room-fort-gordon .fg-legend li.fg-p4::before{background:var(--panel); color:var(--muted); box-shadow:inset 0 0 0 1px var(--muted);}
+#room-fort-gordon .fg-legend li.fg-p5::before{background:var(--gold); color:var(--ink);}
+#room-fort-gordon .fg-yr{font:500 11px var(--mono); letter-spacing:.06em; color:var(--gold); white-space:nowrap;}
+#room-fort-gordon .fg-nt{display:block; color:var(--muted); font-size:13px;}
+@media (max-width:640px){ #room-fort-gordon .fg-map-wrap{grid-template-columns:1fr;} #room-fort-gordon .fg-map{max-width:340px;} }
+/* renaming timeline: filled dots mark the dates the name itself changed */
+#room-fort-gordon .sat-card:not(.fg-name):before{background:var(--ink); box-shadow:inset 0 0 0 2px var(--gold);}
+#room-fort-gordon .fg-tag{display:inline-block; margin-left:8px; padding:2px 6px; border:1px solid var(--hair); border-radius:3px; font:500 10px/1.3 var(--mono); letter-spacing:.08em; color:var(--muted);}
+/* featured panels and name tiles */
+#room-fort-gordon .fg-feature{display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:14px; margin-top:14px;}
+#room-fort-gordon .fg-blowout, #room-fort-gordon .fg-tile{display:grid; gap:5px; align-content:start; text-align:left; cursor:pointer; font-family:var(--sans); color:var(--white); background:var(--panel); border:1px solid var(--hair); border-radius:3px; padding:16px 18px;}
+#room-fort-gordon .fg-blowout{border-left:3px solid var(--gold); padding:18px 20px;}
+#room-fort-gordon .fg-blowout.fg-companion{border-left-color:var(--crimson);}
+#room-fort-gordon .fg-blowout b{font-family:var(--serif); font-size:21px; font-weight:600; line-height:1.2;}
+#room-fort-gordon .fg-blowout span:not(.fg-kicker){font-size:14px;}
+#room-fort-gordon .fg-blowout small{font-size:12.5px; color:var(--gold-bright); margin-top:4px;}
+#room-fort-gordon .fg-tiles{display:grid; grid-template-columns:repeat(auto-fill,minmax(230px,1fr)); gap:12px;}
+#room-fort-gordon .fg-tile b{font-family:var(--serif); font-size:18px; font-weight:600; line-height:1.2;}
+#room-fort-gordon .fg-tile span{font-size:13.5px;}
+#room-fort-gordon .fg-tile small{font:400 11px/1.4 var(--mono); color:var(--muted);}
+#room-fort-gordon .fg-tile.fg-gone{border-style:dashed;}
+#room-fort-gordon .fg-blowout:hover, #room-fort-gordon .fg-tile:hover{border-color:var(--gold); background:var(--panel-2);}
+/* pop-up panels */
+#room-fort-gordon .fg-dlg{border:0; border-top:4px solid var(--gold); padding:0; width:100%; max-width:min(560px,calc(100vw - 32px)); max-height:min(86vh,860px); background:var(--panel); color:var(--white); border-radius:3px; box-shadow:0 18px 50px rgba(0,0,0,.55);}
+#room-fort-gordon .fg-dlg[open]{display:flex;}
+#room-fort-gordon .fg-dlg.fg-dlg-wide{max-width:min(700px,calc(100vw - 32px));}
+#room-fort-gordon .fg-dlg::backdrop{background:rgba(5,12,8,.72);}
+#room-fort-gordon .fg-dlg-in{flex:1; min-width:0; overflow-y:auto; padding:22px clamp(18px,4vw,32px) 26px;}
+#room-fort-gordon .fg-dlg-in > * + *{margin-top:12px;}
+#room-fort-gordon .fg-x{float:right; margin:0 0 8px 12px; background:none; border:1px solid var(--hair); border-radius:3px; padding:7px 10px; cursor:pointer; color:var(--white); font:500 11px/1 var(--mono); letter-spacing:.1em; text-transform:uppercase;}
+#room-fort-gordon .fg-x:hover{border-color:var(--gold);}
+#room-fort-gordon .fg-dlg h2{font-family:var(--serif); font-size:clamp(1.5rem,4vw,1.9rem); line-height:1.15; margin-bottom:0;}
+#room-fort-gordon .fg-dlg h3{font-family:var(--serif); font-size:1.15rem; margin-top:22px; margin-bottom:0; color:var(--gold-bright);}
+#room-fort-gordon .fg-dlg p{margin-bottom:0; line-height:1.65; max-width:64ch;}
+#room-fort-gordon .fg-who{font-size:15px; font-weight:600; margin-top:4px;}
+#room-fort-gordon .fg-facts{display:grid; grid-template-columns:auto 1fr; gap:6px 16px; margin-bottom:0; padding:14px 0; border-top:1px solid var(--hair); border-bottom:1px solid var(--hair); font-size:14px;}
+#room-fort-gordon .fg-facts dt{font:500 11px/1.9 var(--mono); letter-spacing:.1em; text-transform:uppercase; color:var(--muted);}
+#room-fort-gordon .fg-facts dd{margin:0;}
+#room-fort-gordon .fg-quote{margin:18px 0 0; padding:2px 0 2px 16px; border-left:3px solid var(--gold); font-family:var(--serif); font-style:italic; font-size:1.1rem; line-height:1.5;}
+#room-fort-gordon .fg-quote cite{display:block; margin-top:6px; font:normal 12px/1.5 var(--sans); color:var(--muted);}
+#room-fort-gordon .fg-src{margin-top:20px; padding-top:12px; border-top:1px solid var(--hair); font-size:12px; color:var(--muted);}
+#room-fort-gordon .fg-src a{color:var(--gold-bright);}
