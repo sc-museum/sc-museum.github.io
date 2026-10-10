@@ -313,3 +313,15 @@
 #room-fort-gordon .fg-photos{gap:26px 22px;}
 @media (prefers-reduced-motion:reduce){ #room-fort-gordon .fg-photo > a{transition:none;} }
 @media (max-width:640px){ #room-fort-gordon .fg-photo{--rx:3deg; --ry:-3deg; padding:8px 10px 0;} #room-fort-gordon .fg-photos > .fg-photo:nth-child(even){--ry:3deg;} }
+/* namesake portraits and one-line summaries */
+#room-fort-gordon .fg-did{font-style:normal; font-size:12.5px; line-height:1.45; color:var(--muted); margin-top:4px;}
+#room-fort-gordon .fg-has-face{grid-template-columns:60px minmax(0,1fr); column-gap:14px;}
+#room-fort-gordon .fg-has-face > :not(.fg-face){grid-column:2;}
+#room-fort-gordon .fg-face{grid-column:1; grid-row:1 / span 5; width:60px; height:60px; border-radius:50%; object-fit:cover; object-position:50% 18%; border:1px solid var(--gold); background:var(--panel-2);}
+#room-fort-gordon .fg-blowout.fg-has-face{grid-template-columns:76px minmax(0,1fr);}
+#room-fort-gordon .fg-blowout .fg-face{width:76px; height:76px;}
+#room-fort-gordon .fg-portrait{float:left; width:132px; height:auto; margin:4px 20px 10px 0; border:1px solid var(--gold); border-radius:3px; box-shadow:0 8px 22px rgba(0,0,0,.45);}
+#room-fort-gordon .fg-dlg h3, #room-fort-gordon .fg-facts, #room-fort-gordon .fg-quote, #room-fort-gordon .fg-src{clear:left;}
+#room-fort-gordon .fg-pcredit{margin-top:8px; padding-top:0; border-top:0;}
+@media (max-width:480px){ #room-fort-gordon .fg-portrait{width:96px; margin-right:14px;} }
+#room-fort-gordon .fg-units{grid-template-columns:repeat(auto-fit,minmax(280px,1fr));}
