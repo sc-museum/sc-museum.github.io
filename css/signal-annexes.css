@@ -298,3 +298,5 @@
 #room-fort-gordon .fg-cols{display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:14px; margin-top:14px;}
 #room-fort-gordon .fg-cols > div{background:var(--panel); border:1px solid var(--hair); border-top:2px solid var(--gold); padding:14px 16px 16px;}
 #room-fort-gordon .fg-cols p{margin:0; font-size:14.5px; line-height:1.6;}
+#room-fort-gordon .fg-photos{display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:16px; margin-top:14px; align-items:start;}
+#room-fort-gordon .fg-photos .fg-photo{margin:0; max-width:none;}
