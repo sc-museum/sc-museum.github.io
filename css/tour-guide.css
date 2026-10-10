@@ -1,0 +1,123 @@
+/* ---- Virtual tour guide (js/tour-guide.js) ---- */
+
+/* The exhibit being read */
+.tg-reading{
+  outline:2px solid var(--gold-bright); outline-offset:6px; border-radius:2px;
+  background-color:rgba(201,162,39,0.07);
+  transition:outline-color .2s, background-color .2s;
+}
+
+/* Launcher, bottom left (the video player sits bottom right) */
+.tg-launch{
+  position:fixed; left:20px; bottom:20px; z-index:90;
+  background:var(--gold); color:var(--ink); border:none; border-radius:999px;
+  padding:11px 18px; font-family:var(--sans); font-size:13.5px; font-weight:600;
+  box-shadow:0 10px 30px rgba(0,0,0,0.5); cursor:pointer;
+}
+.tg-launch:hover{background:var(--gold-bright);}
+.tg-launch[hidden]{display:none;}
+
+/* Lobby invitation and per-room Listen button */
+.tg-cta{display:flex; flex-wrap:wrap; align-items:center; justify-content:center; gap:10px 14px; margin:18px auto 0; max-width:640px;}
+.tg-cta span{font-size:13.5px; color:var(--muted);}
+.tg-cta-go{
+  background:var(--gold); color:var(--ink); border:none; border-radius:2px;
+  padding:11px 20px; font-family:var(--sans); font-size:14px; font-weight:600; cursor:pointer;
+}
+.tg-cta-go:hover{background:var(--gold-bright);}
+.tg-listen{
+  display:inline-flex; align-items:center; gap:6px; margin-top:12px;
+  background:none; border:1px solid var(--hair); color:var(--gold-bright); border-radius:999px;
+  padding:6px 14px; font-family:var(--sans); font-size:12.5px; font-weight:500; cursor:pointer;
+}
+.tg-listen:hover{border-color:var(--gold);}
+
+/* The guide panel */
+.tg-panel{
+  position:fixed; left:20px; bottom:20px; z-index:95;
+  width:min(420px, calc(100vw - 40px));
+  background:var(--panel); color:var(--paper); border:1px solid var(--gold);
+  box-shadow:0 18px 50px rgba(0,0,0,0.65); font-family:var(--sans);
+}
+.tg-panel[hidden]{display:none;}
+.tg-head{display:flex; align-items:center; gap:10px; padding:10px 10px 10px 12px; border-bottom:1px solid var(--hair);}
+.tg-avatar{width:40px; height:40px; border-radius:50%; flex:none; background:var(--ink);}
+.tg-panel.tg-playing .tg-avatar{box-shadow:0 0 0 2px var(--gold); animation:tg-pulse 1.6s ease-in-out infinite;}
+@keyframes tg-pulse{50%{box-shadow:0 0 0 5px rgba(201,162,39,0.25);}}
+.tg-who{flex:1; min-width:0;}
+.tg-role{font-family:var(--mono); font-size:10.5px; letter-spacing:1.2px; text-transform:uppercase; color:var(--gold);}
+.tg-where{font-family:var(--serif); font-size:16px; font-weight:600; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;}
+.tg-step{font-family:var(--mono); font-size:11px; color:var(--muted); white-space:nowrap;}
+.tg-icon{
+  background:none; border:none; color:var(--muted); cursor:pointer;
+  width:32px; height:32px; font-size:18px; line-height:1; border-radius:2px; flex:none;
+}
+.tg-icon:hover{color:var(--paper-2); background:var(--panel-2);}
+
+.tg-body{padding:12px 14px 14px;}
+.tg-panel.tg-min .tg-body, .tg-panel.tg-min .tg-nav{display:none;}
+.tg-caption{
+  font-family:var(--serif); font-size:16px; line-height:1.5; color:var(--muted);
+  max-height:7.6em; overflow-y:auto; min-height:3em; scroll-behavior:smooth;
+}
+.tg-caption .tg-now{color:var(--paper-2);}
+.tg-caption.tg-guide-line{font-style:italic;}
+.tg-caption.tg-guide-line .tg-now{color:var(--gold-bright);}
+.tg-panel.tg-nocap .tg-caption{display:none;}
+.tg-progress{height:3px; background:var(--hair); margin:12px 0 10px;}
+.tg-progress span{display:block; height:100%; width:0; background:var(--gold); transition:width .3s;}
+
+.tg-controls{display:flex; align-items:center; gap:8px;}
+.tg-btn{
+  width:40px; height:40px; border-radius:50%; border:1px solid var(--hair);
+  background:var(--ink); color:var(--paper); font-size:14px; cursor:pointer; flex:none;
+}
+.tg-btn:hover:not(:disabled){border-color:var(--gold);}
+.tg-btn:disabled{opacity:0.35; cursor:default;}
+.tg-play{width:48px; height:48px; background:var(--gold); color:var(--ink); border:none; font-size:16px;}
+.tg-play:hover{background:var(--gold-bright);}
+.tg-text{
+  background:none; border:none; color:var(--gold-bright); cursor:pointer;
+  font-family:var(--sans); font-size:13px; font-weight:600; padding:8px 4px; margin-left:auto;
+}
+.tg-text[hidden]{display:none;}
+.tg-text[hidden] + .tg-gear{margin-left:auto;}
+
+.tg-settings{margin-top:12px; padding-top:12px; border-top:1px solid var(--hair); display:grid; gap:10px; font-size:13px; color:var(--paper);}
+.tg-settings[hidden]{display:none;}
+.tg-settings label{display:flex; align-items:center; gap:10px;}
+.tg-settings label[hidden]{display:none;}
+.tg-settings select{
+  flex:1; min-width:0; background:var(--ink); color:var(--paper); border:1px solid var(--hair);
+  padding:6px 8px; font-family:var(--sans); font-size:13px; border-radius:2px;
+}
+.tg-settings input[type=checkbox]{accent-color:var(--gold); width:16px; height:16px;}
+.tg-hint{margin:0; font-size:12px; color:var(--muted);}
+
+.tg-nav{
+  display:block; width:100%; border:none; border-top:1px solid var(--hair);
+  background:var(--panel-2); color:var(--gold-bright); padding:12px 14px; text-align:left;
+  font-family:var(--sans); font-size:13.5px; font-weight:600; cursor:pointer;
+}
+.tg-nav[hidden]{display:none;}
+.tg-nav:hover{background:var(--ink);}
+.tg-hidden-nav{display:none;}
+
+.tg-panel button:focus-visible, .tg-launch:focus-visible, .tg-listen:focus-visible, .tg-cta-go:focus-visible{
+  outline:2px solid var(--paper-2); outline-offset:2px;
+}
+
+/* Leave room at the foot of the page so the panel never covers the last exhibit */
+body.tg-on{padding-bottom:240px;}
+
+@media (max-width:640px){
+  .tg-launch{left:12px; bottom:12px;}
+  .tg-panel{left:8px; right:8px; bottom:8px; width:auto; padding-bottom:env(safe-area-inset-bottom);}
+  .tg-caption{font-size:15px; max-height:6em;}
+  body.tg-on{padding-bottom:260px;}
+}
+@media (prefers-reduced-motion:reduce){
+  .tg-panel.tg-playing .tg-avatar{animation:none;}
+  .tg-caption{scroll-behavior:auto;}
+}
+@media print{.tg-launch, .tg-panel, .tg-listen, .tg-cta{display:none !important;}}
