@@ -17,6 +17,17 @@
 .tg-launch:hover{background:var(--gold-bright);}
 .tg-launch[hidden]{display:none;}
 
+/* Donate Now, bottom right, opposite the Guided Tour launcher (the video player covers it while open) */
+.give-launch{
+  position:fixed; right:20px; bottom:20px; z-index:90;
+  display:inline-flex; align-items:center; gap:6px;
+  background:var(--crimson); color:var(--white); border:none; border-radius:999px;
+  padding:11px 18px; font-family:var(--sans); font-size:13.5px; font-weight:600;
+  line-height:normal; text-decoration:none; box-shadow:0 10px 30px rgba(0,0,0,0.5); cursor:pointer;
+}
+.give-launch:hover{background:#bb3d50;}
+.give-launch:focus-visible{outline:2px solid var(--paper-2); outline-offset:2px;}
+
 /* Lobby invitation and per-room Listen button */
 .tg-cta{display:flex; flex-wrap:wrap; align-items:center; justify-content:center; gap:10px 14px; margin:18px auto 0; max-width:640px;}
 .tg-cta span{font-size:13.5px; color:var(--muted);}
@@ -112,6 +123,7 @@ body.tg-on{padding-bottom:240px;}
 
 @media (max-width:640px){
   .tg-launch{left:12px; bottom:12px;}
+  .give-launch{right:12px; bottom:12px;}
   .tg-panel{left:8px; right:8px; bottom:8px; width:auto; padding-bottom:env(safe-area-inset-bottom);}
   .tg-caption{font-size:15px; max-height:6em;}
   body.tg-on{padding-bottom:260px;}
@@ -120,4 +132,4 @@ body.tg-on{padding-bottom:240px;}
   .tg-panel.tg-playing .tg-avatar{animation:none;}
   .tg-caption{scroll-behavior:auto;}
 }
-@media print{.tg-launch, .tg-panel, .tg-listen, .tg-cta{display:none !important;}}
+@media print{.give-launch, .tg-launch, .tg-panel, .tg-listen, .tg-cta{display:none !important;}}

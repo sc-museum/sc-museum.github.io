@@ -237,6 +237,15 @@
   launcher.setAttribute('aria-label', 'Start the guided tour');
   document.body.appendChild(launcher);
 
+  var give = document.createElement('a');
+  give.className = 'give-launch';
+  give.href = 'https://givebutter.com/hpEeXi';
+  give.target = '_blank';
+  give.rel = 'noopener';
+  give.innerHTML = '<span aria-hidden="true">&#10084;</span> Donate Now';
+  give.setAttribute('aria-label', 'Donate now to help build the museum (opens in a new tab)');
+  document.body.appendChild(give);
+
   var $ = function(id){ return document.getElementById(id); };
   var ui = {
     where: $('tg-where'), step: $('tg-step'), caption: $('tg-caption'), bar: $('tg-bar'),
