@@ -18,6 +18,8 @@
   // in the floor plan itself (rooms/01-lobby.html). Use this list for quick
   // additions until a room earns its place in the drawing.
   var MORE_ROOMS = [
+    { go: 'wireless', name: 'Wireless Radio Annex', lines: ['Wireless Radio', 'Annex'] },
+    { go: 'wired', name: 'Wired Communications Annex', lines: ['Wired Communications', 'Annex'] },
     // { go: 'new-room', name: 'New Room Name', lines: ['New Room', 'Name'] },
   ];
 

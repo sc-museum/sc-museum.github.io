@@ -233,5 +233,32 @@ window.ROOM_GAMES = {
       { "left": "Topham Training Center", "right": "Sergeant who set up networks in the Middle East, then taught at Fort Gordon" },
       { "left": "Signal Towers", "right": "Ten-story landmark that once housed the Signal Corps Museum" }
     ]
+  },
+  "wireless": {
+    "type": "order",
+    "title": "Tune In the Years",
+    "intro": "Put these moments in Army radio in order, earliest first.",
+    "items": [
+      { "label": "The Army's first wireless link joins Fire Island and its lightship", "when": "April 1899" },
+      { "label": "Radio crosses 107 miles of Norton Sound between St. Michael and Nome", "when": "1904" },
+      { "label": "Radio research moves to Camp Alfred Vail in New Jersey", "when": "Spring 1918" },
+      { "label": "Signal Corps radar detects an airplane seven miles away at Newark", "when": "December 1936" },
+      { "label": "Two privates at Opana see a large echo and are told to forget it", "when": "December 7, 1941" },
+      { "label": "SINCGARS frequency-hopping radios begin reaching units in Korea", "when": "1988" }
+    ]
+  },
+  "wired": {
+    "type": "match",
+    "title": "Who Ran the Line?",
+    "intro": "Match each name or tool to its place in the story of Army wire.",
+    "pairs": [
+      { "left": "Billy Mitchell", "right": "Built the Eagle-to-Valdez telegraph line in Alaska, traveling by dog sled" },
+      { "left": "Charles E. Kilbourne Jr.", "right": "Climbed a telegraph pole under fire in Manila to repair a broken wire" },
+      { "left": "The buzzer", "right": "Sent Morse code through telephone receivers, even over bare wire" },
+      { "left": "The EE-8", "right": "A field telephone of about ten pounds, standardized in 1932" },
+      { "left": "Spiral-four", "right": "A cable that became standard in February 1942" },
+      { "left": "The breast reel", "right": "Held about half a mile of light wire in the trenches" }
+    ]
   }
+
 };
