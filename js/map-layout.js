@@ -14,10 +14,10 @@
  * Load order: this file must come BEFORE museum.js in src/index.html.
  */
 (function () {
+  // The Civil War Annex, Satellite Annex and Signal Training Yard are now drawn
+  // in the floor plan itself (rooms/01-lobby.html). Use this list for quick
+  // additions until a room earns its place in the drawing.
   var MORE_ROOMS = [
-    { go: 'civil-war',  name: 'Civil War Signal Annex', lines: ['Civil War', 'Signal Annex'] },
-    { go: 'satellites', name: 'Satellite Annex',        lines: ['Satellite', 'Annex'] },
-    { go: 'civil-war',  sub: 'games', name: 'Signal Training Yard games', lines: ['Signal Training', 'Yard (Games)'] }
     // { go: 'new-room', name: 'New Room Name', lines: ['New Room', 'Name'] },
   ];
 

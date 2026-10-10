@@ -305,4 +305,20 @@ tabs.morse.addEventListener("click", function(){ show("morse"); });
 var tablist = document.querySelector('[role=tablist]');
 tablist.addEventListener("keydown", function(e){ var ks=["flag","torch","morse"]; var cur = ks.filter(function(k){return tabs[k].getAttribute("aria-selected")==="true";})[0]; var i = ks.indexOf(cur); if (e.key==="ArrowRight"){ i=(i+1)%3; } else if (e.key==="ArrowLeft"){ i=(i+2)%3; } else return; e.preventDefault(); show(ks[i]); tabs[ks[i]].focus(); });
 show("flag");
+
+// The room's menu (and the "Try the code" row under the story) carry one
+// button per game: data-game="flag|torch|morse". Opening one switches to the
+// games panel and starts that game; the menu button shows which game is up.
+var subnav = document.getElementById("civil-war-subnav");
+document.addEventListener("click", function(e){
+  var b = e.target.closest && e.target.closest("#room-civil-war [data-game]");
+  if (!b) return;
+  var g = b.getAttribute("data-game");
+  var menuBtn = subnav && subnav.querySelector('[data-game="' + g + '"]');
+  if (menuBtn && b !== menuBtn){ menuBtn.click(); return; }   // routes back here via the menu button
+  if (tabs[g]) show(g);
+  if (b !== menuBtn) return;
+  var sy = document.getElementById("sy");
+  if (sy && sy.getBoundingClientRect().top < 0) sy.scrollIntoView({block: "start"});
+});
 })();
