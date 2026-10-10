@@ -29,9 +29,10 @@ die "no rooms found in rooms/\n" unless @rooms;
 my $rooms = join '', map { slurp($_) } @rooms;
 $page =~ s{<!-- \@rooms -->\n}{$rooms} or die "src/index.html has no <!-- \@rooms --> placeholder\n";
 
-$page =~ s{<!-- \@css (\S+) -->\n}{ $opt{'--inline'} ? "<style>\n" . slurp($1) . "</style>\n" : qq{<link rel="stylesheet" href="$1">\n} }e
+# every @css and @js placeholder, in the order they appear in the shell
+$page =~ s{<!-- \@css (\S+) -->\n}{ $opt{'--inline'} ? "<style>\n" . slurp($1) . "</style>\n" : qq{<link rel="stylesheet" href="$1">\n} }ge
   or die "no \@css placeholder\n";
-$page =~ s{<!-- \@js (\S+) -->\n}{ $opt{'--inline'} ? "<script>\n" . slurp($1) . "</script>\n" : qq{<script src="$1"></script>\n} }e
+$page =~ s{<!-- \@js (\S+) -->\n}{ $opt{'--inline'} ? "<script>\n" . slurp($1) . "</script>\n" : qq{<script src="$1"></script>\n} }ge
   or die "no \@js placeholder\n";
 $page =~ s{<!-- \@json (\S+) (\S+) -->\n}{
   my ($id, $path) = ($1, $2); (my $j = slurp($path)) =~ s/\n\z//;
