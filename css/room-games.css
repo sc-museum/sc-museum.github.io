@@ -1,0 +1,50 @@
+/* Room games: the "Play" panel at the foot of each room (js/room-games.js) */
+.rg{margin:44px 0 10px; padding:24px clamp(16px,3vw,28px) 26px; background:var(--panel); border:1px solid var(--hair); border-top:3px solid var(--gold); border-radius:3px;}
+.rg-kicker{font:500 11px/1.3 var(--mono); letter-spacing:.16em; text-transform:uppercase; color:var(--gold);}
+.rg-title{font-family:var(--serif); font-size:clamp(20px,3vw,26px); font-weight:600; margin:6px 0 6px; color:var(--white); text-wrap:balance;}
+.rg-intro{margin:0 0 16px; font-size:14.5px; color:var(--muted); max-width:62ch;}
+.rg-row{display:flex; flex-wrap:wrap; align-items:center; gap:14px; margin-top:12px;}
+.rg-meta{font-size:13px; color:var(--muted);}
+.rg button{font-family:var(--sans);}
+.rg button:focus-visible{outline:2px solid var(--paper-2); outline-offset:2px;}
+.rg-go{font-size:14.5px; font-weight:600; padding:12px 22px; border-radius:2px; cursor:pointer; background:var(--gold); color:var(--ink); border:1px solid var(--gold); margin-top:14px;}
+.rg-row .rg-go{margin-top:0;}
+.rg-go:hover{background:var(--gold-bright);}
+.rg-count{font:500 11px/1.3 var(--mono); letter-spacing:.12em; text-transform:uppercase; color:var(--muted);}
+.rg-q{font-family:var(--serif); font-size:clamp(18px,2.4vw,21px); font-weight:600; margin:8px 0 14px; max-width:60ch; color:var(--white);}
+.rg-choices{display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:10px;}
+.rg-choice, .rg-card{text-align:left; font-size:14.5px; line-height:1.4; padding:13px 15px; min-height:48px; border-radius:3px; cursor:pointer; color:var(--white); background:var(--panel-2); border:1px solid var(--hair); transition:border-color .15s, background .15s, transform .15s;}
+.rg-choice:hover:not(:disabled), .rg-card:hover:not(:disabled){border-color:var(--gold); transform:translateY(-1px);}
+.rg-choice:disabled, .rg-card:disabled{cursor:default;}
+.rg-choice:disabled:not(.right):not(.wrong){opacity:.55;}
+.rg .right{border-color:#6cc38f; background:rgba(108,195,143,.16);}
+.rg .wrong{border-color:#ec8c84; background:rgba(236,140,132,.16);}
+.rg-choice.right::after, .rg-card.right::after{content:" ✓"; color:#6cc38f; font-weight:700;}
+.rg-choice.wrong::after{content:" ✗"; color:#ec8c84; font-weight:700;}
+.rg-fb{margin:14px 0 0; min-height:1.5em; font-size:14.5px; line-height:1.55; max-width:64ch; color:var(--muted);}
+.rg-fb.good{color:#a8e0bf;}
+.rg-fb.bad{color:#f3b3ad;}
+/* put it in order */
+.rg-order{list-style:none; margin:0; padding:0; display:grid; gap:8px; counter-reset:rg;}
+.rg-item{counter-increment:rg; display:grid; grid-template-columns:30px minmax(0,1fr) auto; align-items:center; gap:12px; padding:10px 12px; background:var(--panel-2); border:1px solid var(--hair); border-radius:3px; font-size:14.5px; line-height:1.4;}
+.rg-item::before{content:counter(rg); display:grid; place-items:center; width:26px; height:26px; border-radius:50%; background:var(--ink); color:var(--gold-bright); font:600 12px var(--mono);}
+.rg-when{font:500 12px/1.3 var(--mono); color:var(--gold-bright); white-space:nowrap;}
+.rg-moves{display:flex; gap:6px;}
+.rg-move{width:40px; height:40px; border-radius:3px; cursor:pointer; background:var(--ink); color:var(--gold-bright); border:1px solid var(--hair); font-size:13px;}
+.rg-move:hover:not(:disabled){border-color:var(--gold);}
+.rg-move:disabled{opacity:.3; cursor:default;}
+.rg-solution{margin-top:12px; opacity:.9;}
+.rg-solution .rg-item{background:none; border-style:dashed;}
+/* match-up */
+.rg-match{display:grid; grid-template-columns:minmax(0,2fr) minmax(0,3fr); gap:14px;}
+.rg-col{display:grid; gap:8px; align-content:start;}
+.rg-card{font-weight:600;}
+.rg-card.rg-right{font-weight:400; font-size:13.5px;}
+.rg-card.picked{border-color:var(--gold); background:rgba(201,162,39,.2); box-shadow:0 0 0 1px var(--gold) inset;}
+@media (max-width:520px){ .rg-match{gap:8px;} .rg-card{padding:10px 10px; font-size:13.5px;} .rg-card.rg-right{font-size:12.5px;} }
+/* score card */
+.rg-end{text-align:center; padding:8px 0 4px;}
+.rg-stars{font-size:38px; letter-spacing:6px; color:var(--gold-bright); line-height:1;}
+.rg-score{font-family:var(--serif); font-size:28px; font-weight:700; margin-top:8px; color:var(--white);}
+.rg-verdict{margin:6px auto 0; max-width:46ch; font-size:14.5px; color:var(--muted);}
+@media (prefers-reduced-motion:reduce){ .rg-choice, .rg-card{transition:none;} .rg-choice:hover:not(:disabled), .rg-card:hover:not(:disabled){transform:none;} }
