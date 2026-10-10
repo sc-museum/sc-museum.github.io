@@ -17,7 +17,7 @@
     {n:'04', t:'Signal Training Yard', d:'Games: send flag and torch signals and work a telegraph key, then test yourself.', go:'civil-war', sub:'games'},
     {n:'05', t:'The Cyber Story', d:'The Army\u2019s newest branch, built on Signal\u2019s oldest instinct.', go:'cyber-story'},
     {n:'06', t:'Camp Gordon: The WWI Era', d:'The first Camp Gordon, the 82d Division, and nineteen National Archives photographs.', go:'camp-gordon'},
-    {n:'07', t:'Fort Gordon, Then and Now', d:'From the 1898 camps to the Cyber Center of Excellence: five sites on a map, the story of the name, Master Sgt. Gary Gordon, who the buildings remember, and the Navy\u2019s ships named Augusta.', go:'fort-gordon'},
+    {n:'07', t:'Fort Gordon, Then and Now', d:'From the 1898 camps to the Cyber Center of Excellence: five sites on a map, the nurses of 1917\u20131919, the divisions that trained here, the story of the name, Master Sgt. Gary Gordon, who the buildings remember, and the Navy\u2019s ships named Augusta.', go:'fort-gordon'},
     {n:'08', t:'Command Gallery', d:'The Signal Regiment order of battle, with lineage links, the 1st Signal Brigade, and the 501st Signal Battalion.', go:'command-gallery'},
     {n:'09', t:'Aviation Annex', d:'From Army balloons and the first military airplane to the winter flying school in Augusta, namesake airfields, and the industry the aviators founded.', go:'aviation'},
     {n:'10', t:'Satellite Annex', d:'From a radar echo off the Moon to satellite training at Fort Gordon.', go:'satellites'},
