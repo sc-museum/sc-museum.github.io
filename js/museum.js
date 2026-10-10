@@ -20,16 +20,17 @@
     {n:'07', t:'Command Gallery', d:'The Signal Regiment order of battle, with lineage links, the 1st Signal Brigade, and the 501st Signal Battalion.', go:'command-gallery'},
     {n:'08', t:'Aviation Annex', d:'Signal Corps aviators, namesake airfields, and the defense industry they founded.', go:'aviation'},
     {n:'09', t:'Satellite Annex', d:'From a radar echo off the Moon to satellite training at Fort Gordon.', go:'satellites'},
-    {n:'10', t:'The Hello Girls', d:'223 women, one war, and the medal a century in the making.', go:'hello-girls'},
-    {n:'11', t:'Combat Camera & Video', d:'Signal Corps film and photography, from Dr. Seuss to The Longest Day.', go:'combat-camera'},
-    {n:'12', t:'Fireside Chats', d:'First-person recollections from Signal and Cyber veterans.', go:'fireside'},
-    {n:'13', t:'Donor Spotlight', d:'The Campaign Circle, Signal Champions, and the donors who keep the doors open.', go:'donor-spotlight'},
-    {n:'14', t:'Honor Roll', d:'Staff, board, advisors, distinguished members, Hall of Fame.', go:'people'},
-    {n:'15', t:'Support the Museum', d:'Sponsorship tiers and easy ways to help.', go:'give'},
-    {n:'16', t:'Timeline', d:'Where the museum started, and where it is today.', go:'timeline'},
-    {n:'17', t:'News & Announcements', d:'Heritage magazine issues and the museum\u2019s YouTube channel.', go:'news'},
-    {n:'18', t:'Heritage Magazine', d:'Every page of the Society\u2019s magazine issues, readable full size.', go:'magazine'},
-    {n:'19', t:'Museum Map', d:'Search for a room, or click the floor plan to go there.', go:'map'}
+    {n:'10', t:'Weather Annex', d:'The nation’s weather service from 1870 to 1891, from Army surgeons’ diaries to TIROS. Plus: read a weather map.', go:'weather'},
+    {n:'11', t:'The Hello Girls', d:'223 women, one war, and the medal a century in the making.', go:'hello-girls'},
+    {n:'12', t:'Combat Camera & Video', d:'Signal Corps film and photography, from Dr. Seuss to The Longest Day.', go:'combat-camera'},
+    {n:'13', t:'Fireside Chats', d:'First-person recollections from Signal and Cyber veterans.', go:'fireside'},
+    {n:'14', t:'Donor Spotlight', d:'The Campaign Circle, Signal Champions, and the donors who keep the doors open.', go:'donor-spotlight'},
+    {n:'15', t:'Honor Roll', d:'Staff, board, advisors, distinguished members, Hall of Fame.', go:'people'},
+    {n:'16', t:'Support the Museum', d:'Sponsorship tiers and easy ways to help.', go:'give'},
+    {n:'17', t:'Timeline', d:'Where the museum started, and where it is today.', go:'timeline'},
+    {n:'18', t:'News & Announcements', d:'Heritage magazine issues and the museum\u2019s YouTube channel.', go:'news'},
+    {n:'19', t:'Heritage Magazine', d:'Every page of the Society\u2019s magazine issues, readable full size.', go:'magazine'},
+    {n:'20', t:'Museum Map', d:'Search for a room, or click the floor plan to go there.', go:'map'}
   ];
   var dirGrid = document.getElementById('dir-grid');
   DIRECTORY.forEach(function(d){

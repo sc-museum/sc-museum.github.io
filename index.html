@@ -42,6 +42,7 @@
       <button data-goto="aviation">Aviation Annex</button>
       <button data-goto="civil-war">Civil War Annex</button>
       <button data-goto="satellites">Satellite Annex</button>
+      <button data-goto="weather">Weather Annex</button>
       <button data-goto="civil-war" data-avsub="games">Games</button>
       <button data-goto="hello-girls">Hello Girls</button>
       <button data-goto="combat-camera">Combat Camera</button>
@@ -187,9 +188,14 @@
           </g>
 
           <!-- Row 6 -->
+          <g class="map-room" data-goto="weather" data-roomname="Weather Annex">
+            <rect x="16" y="626" width="173" height="80" rx="2"/>
+            <text x="102.5" y="661">Weather</text>
+            <text x="102.5" y="681">Annex</text>
+          </g>
           <g class="map-room" data-goto="magazine" data-roomname="Heritage Magazine">
-            <rect x="16" y="626" width="728" height="80" rx="2"/>
-            <text x="380" y="671">Heritage Magazine</text>
+            <rect x="201" y="626" width="543" height="80" rx="2"/>
+            <text x="472.5" y="671">Heritage Magazine</text>
           </g>
         </svg>
       </div>
@@ -1665,6 +1671,91 @@
     <p class="sat-src">Sources: U.S. Army Center of Military History; U.S. Army CECOM and C5ISR historians; U.S. Army Space and Missile Defense Command; U.S. Army Signal School and Fort Gordon.</p>
     <div class="room-foot">
       <button data-goto="aviation">← Aviation Annex</button>
+      <button data-goto="weather">Next: Weather Annex →</button>
+    </div>
+  </div>
+</section>
+<section class="room" id="room-weather">
+  <div class="wrap">
+    <div class="room-head">
+      <div class="room-kicker">Weather Annex</div>
+      <h1 class="room-title">The Weather Annex</h1>
+      <p class="room-dek">From Army surgeons' weather diaries to the forecast on your phone: from 1870 to 1891 the Signal Corps was the nation's weather service, and it kept working on Army weather long after.</p>
+    </div>
+
+    <div class="section">
+      <h2 class="sat-h">The line of descent</h2>
+      <div class="wx-tree" role="img" aria-label="Timeline: Army surgeons' weather diaries, 1814. The Signal Corps weather service, 1870. The civilian line: Weather Bureau in the Department of Agriculture, 1890 to 1891; Department of Commerce, 1940; Environmental Science Services Administration, 1965; National Weather Service in NOAA, 1970. The military line: the Signal Corps keeps military meteorology, 1891; Meteorological Service in France, 1917 to 1918; Army Air Corps Weather Service, 1937; Air Force Weather, serving the Air Force and Army, 1947.">
+        <svg viewBox="0 0 960 300" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <g class="wx-lanes">
+            <text x="8" y="70" class="wx-lane">Civilian</text>
+            <text x="8" y="246" class="wx-lane">Military</text>
+          </g>
+          <!-- trunk -->
+          <line x1="70" y1="158" x2="250" y2="158" class="wx-line"/>
+          <path d="M250 158 C 290 158, 290 76, 330 76" class="wx-line" fill="none"/>
+          <path d="M250 158 C 290 158, 290 240, 330 240" class="wx-line wx-mil" fill="none"/>
+          <line x1="330" y1="76" x2="930" y2="76" class="wx-line"/>
+          <line x1="330" y1="240" x2="930" y2="240" class="wx-line wx-mil"/>
+          <!-- nodes -->
+          <g class="wx-node"><circle cx="90" cy="158" r="9"/><text x="90" y="132" class="wx-yr">1814</text><text x="90" y="188" class="wx-lbl">Army surgeons'</text><text x="90" y="204" class="wx-lbl">weather diaries</text></g>
+          <g class="wx-node wx-key"><circle cx="230" cy="158" r="12"/><text x="230" y="130" class="wx-yr">1870</text><text x="230" y="190" class="wx-lbl">Signal Corps</text><text x="230" y="206" class="wx-lbl">weather service</text></g>
+
+          <g class="wx-node"><circle cx="380" cy="76" r="9"/><text x="380" y="52" class="wx-yr">1890–91</text><text x="380" y="104" class="wx-lbl">Weather Bureau,</text><text x="380" y="120" class="wx-lbl">Agriculture</text></g>
+          <g class="wx-node"><circle cx="560" cy="76" r="9"/><text x="560" y="52" class="wx-yr">1940</text><text x="560" y="104" class="wx-lbl">Department of</text><text x="560" y="120" class="wx-lbl">Commerce</text></g>
+          <g class="wx-node"><circle cx="720" cy="76" r="9"/><text x="720" y="52" class="wx-yr">1965</text><text x="720" y="104" class="wx-lbl">ESSA</text></g>
+          <g class="wx-node wx-key"><circle cx="880" cy="76" r="12"/><text x="880" y="50" class="wx-yr">1970</text><text x="880" y="106" class="wx-lbl">National Weather</text><text x="880" y="122" class="wx-lbl">Service, NOAA</text></g>
+
+          <g class="wx-node wx-mil"><circle cx="380" cy="240" r="9"/><text x="380" y="216" class="wx-yr">1891</text><text x="380" y="268" class="wx-lbl">Signal Corps keeps</text><text x="380" y="284" class="wx-lbl">military meteorology</text></g>
+          <g class="wx-node wx-mil"><circle cx="560" cy="240" r="9"/><text x="560" y="216" class="wx-yr">1917–18</text><text x="560" y="268" class="wx-lbl">Meteorological</text><text x="560" y="284" class="wx-lbl">Service, France</text></g>
+          <g class="wx-node wx-mil"><circle cx="720" cy="240" r="9"/><text x="720" y="216" class="wx-yr">1937</text><text x="720" y="268" class="wx-lbl">Air Corps</text><text x="720" y="284" class="wx-lbl">Weather Service</text></g>
+          <g class="wx-node wx-mil"><circle cx="880" cy="240" r="9"/><text x="880" y="216" class="wx-yr">1947</text><text x="880" y="268" class="wx-lbl">Air Force Weather,</text><text x="880" y="284" class="wx-lbl">for Air Force and Army</text></g>
+        </svg>
+      </div>
+
+      <h2 class="sat-h">The Signal Service years</h2>
+      <div class="sat-tl">
+        <article class="sat-card"><div class="sat-yr">1814–1873</div><h3>Army doctors keep the first weather diaries</h3><p>The Army was recording weather long before it had a weather service. In 1814 the Surgeon General had Army post and hospital surgeons keep weather diaries, because doctors wanted to understand how weather and disease were connected. The National Archives calls this the first nationwide federal weather system. The Smithsonian began gathering weather reports from volunteer observers in 1847, and in 1873 those observers were handed over to the Signal Corps.</p></article>
+        <article class="sat-card"><div class="sat-yr">1870</div><h3>Congress hands the job to the Army</h3><p>In 1870 a series of freak storms killed several people on the Great Lakes. Congress responded with a law, approved February 9, 1870, directing the War Department to take weather observations at military posts and share them by telegraph. A Wisconsin congressman, Halbert Paine, wrote the measure and argued that military discipline would give the quickest, most regular and most accurate reports. On March 15, 1870, the job went to the Chief Signal Officer, Albert J. Myer, and the Signal Corps became the nation's weather service.</p></article>
+        <article class="sat-card"><div class="sat-yr">1870–1880</div><h3>Myer builds the network</h3><p>Myer trained signalmen to run the new service, and soldiers took observations at stations across the country, with reports sent by telegraph. According to the Army's concise history, there were 25 regular stations in 1870 and 60 the next year, and one of them was in Augusta, Georgia. By the time Myer died in 1880 the service was world renowned. In the 1880s weather work took up nearly all of the Signal Corps' effort.</p></article>
+        <article class="sat-card"><div class="sat-yr">1880–1881</div><h3>From Myer to the Arctic</h3><p>Myer died in 1880. In 1881 Lt. Adolphus Greely led a Signal Corps party to the Arctic to take part in the First International Polar Year. Their station at Lady Franklin Bay, which the Army also calls Fort Conger, was the northernmost polar site that year. Greely later supervised the handover of the weather service to the Department of Agriculture.</p></article>
+        <article class="sat-card"><div class="sat-yr">1890–1891</div><h3>The weather goes civilian</h3><p>In 1890 Congress decided the nation's weather service should be civilian. President Benjamin Harrison signed the law on October 1, 1890, creating the Weather Bureau in the Department of Agriculture. The Signal Corps' weather network moved to the new bureau, and the change took effect on July 1, 1891. The Army sources say the Signal Corps kept responsibility for military weather work, and by then it operated about five hundred observation stations.</p></article>
+      </div>
+
+      <h2 class="sat-h">Weather for the Army</h2>
+      <div class="sat-tl">
+        <article class="sat-card"><div class="sat-yr">1917–1918</div><h3>The Army builds a Meteorological Service for the war</h3><p>When the United States entered World War I, the Army needed weather forecasts for aviators, artillery and gas attacks. In September 1917 Maj. William R. Blair went to France to organize a Signal Corps Meteorological Service. The first American weather station in France opened in May 1918, and by October 1918 there were twenty-two. By the end of the war the Army had trained about five hundred weathermen.</p></article>
+        <article class="sat-card"><div class="sat-yr">1919–1937</div><h3>Weather moves to the Air Corps</h3><p>After the war most of the trained weathermen left the Army. Capt. Randolph “Pinkie” Williams argued for a permanent military weather service, and in 1935 the Chief Signal Officer expanded the Corps' Meteorological Section. In 1937 a committee led by the Secretary of War recommended that the Air Corps run weather service in wartime. On July 1, 1937, the Meteorological Section moved from the Signal Corps to the Army Air Corps, which created the Army Air Corps Weather Service. The Signal Corps kept the job of developing and supplying weather equipment. In 1947, when the Air Force became a separate service, Air Force Weather took over weather support for both the Air Force and the Army.</p></article>
+        <article class="sat-card"><div class="sat-yr">1940s–1961</div><h3>The Signal Corps' instruments reach space</h3><p>Even after the weather forecasters left, the Signal Corps kept building the instruments. In the 1940s its laboratories used radar to track storms. On April 1, 1960, the first TIROS weather satellite was launched. The Signal Corps provided its meteorological instruments, including the television cameras, and Fort Monmouth hosted one of the two ground stations that received its pictures. TIROS-1 worked for 78 days and sent back nearly 23,000 cloud pictures, showing for the first time that satellites could survey the world's weather. The rest of the Signal Corps' road into space is told in the <button type="button" class="wx-link" data-goto="satellites">Satellite Annex</button>.</p></article>
+        <article class="sat-card"><div class="sat-yr">1940–1970</div><h3>What became of the Weather Bureau</h3><p>The Weather Bureau that grew out of the Signal Corps stayed civilian. It moved to the Department of Commerce in 1940, became part of the Environmental Science Services Administration in 1965, and in 1970 joined the new National Oceanic and Atmospheric Administration. The National Weather Service inside NOAA is its direct successor, so the forecast on your phone traces back to Army signalmen taking observations in 1870.</p></article>
+      </div>
+    </div>
+
+    <div class="section" id="weather-map">
+      <h2 class="sat-h">Read the weather map</h2>
+      <p class="lede">Signal Corps observers sent their readings by telegraph, and the War Department drew them onto weather maps of the country. Try reading one. This practice map was drawn for the museum and shows an imaginary day, not a historical chart.</p>
+      <div class="wx-game" id="wx-game">
+        <div class="wx-map-wrap"><svg class="wx-map" id="wx-map" viewBox="0 0 640 420" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Practice weather map of the eastern United States"></svg></div>
+        <div class="wx-panel">
+          <div class="wx-legend" aria-label="Map key">
+            <span><i class="k-low">L</i> Low pressure, a storm center</span>
+            <span><i class="k-iso"></i> Isobar: a line of equal pressure</span>
+            <span><i class="k-wind"></i> Wind arrow: points the way the wind blows</span>
+            <span><i class="k-rain"></i> Rain falling at the station</span>
+          </div>
+          <p class="wx-step" id="wx-step"></p>
+          <p class="wx-q" id="wx-q"></p>
+          <div class="wx-choices" id="wx-choices"></div>
+          <p class="wx-fb" id="wx-fb" role="status" aria-live="polite"></p>
+          <div class="wx-nav"><button type="button" class="wx-btn" id="wx-next" hidden>Next question</button><button type="button" class="wx-btn ghost" id="wx-restart" hidden>Start again</button></div>
+        </div>
+      </div>
+    </div>
+
+    <p class="sat-src">Sources: National Archives, Records of the Weather Bureau (RG 27) and of the Office of the Chief Signal Officer (RG 111); U.S. Army Center of Military History, <i>Signal Corps</i> (Army Lineage Series); <i>A Concise History of the U.S. Army Signal Corps</i>; army.mil (“Signal Corps Predicts the Weather”, “Signal Corps Birthday”, “Army space history: Signal Corps contributes to meteorological history”); National Museum of the United States Army; NOAA National Weather Service Heritage; 557th Weather Wing, U.S. Air Force.</p>
+
+    <div class="room-foot">
+      <button data-goto="satellites">← Satellite Annex</button>
       <button data-goto="hello-girls">Next: Hello Girls →</button>
     </div>
   </div>
@@ -2521,5 +2612,6 @@
 <script src="js/map-layout.js"></script>
 <script src="js/museum.js"></script>
 <script src="js/signal-yard.js"></script>
+<script src="js/weather-map.js"></script>
 </body>
 </html>
