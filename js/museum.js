@@ -13,28 +13,30 @@
   var DIRECTORY = [
     {n:'01', t:'Auditorium', d:'Every video in the museum\u2019s collection, organized by exhibit.', go:'auditorium'},
     {n:'02', t:'The Signal Story', d:'From wig-wag flags to fiber — and how Fort Gordon became Signal\u2019s home.', go:'signal-story'},
-  {n:'03', t:'Civil War Signal Annex', d:'Wig-wag flags, torches, Morse and the telegraph, plus games to try the code.', go:'civil-war'},
-    {n:'04', t:'The Cyber Story', d:'The Army\u2019s newest branch, built on Signal\u2019s oldest instinct.', go:'cyber-story'},
-    {n:'05', t:'Camp Gordon: The WWI Era', d:'The first Camp Gordon, the 82d Division, and nineteen National Archives photographs.', go:'camp-gordon'},
-    {n:'06', t:'Command Gallery', d:'The Signal Regiment order of battle, with lineage links, the 1st Signal Brigade, and the 501st Signal Battalion.', go:'command-gallery'},
-    {n:'07', t:'Aviation Annex', d:'Signal Corps aviators, namesake airfields, and the defense industry they founded.', go:'aviation'},
-  {n:'08', t:'Satellite Annex', d:'From a radar echo off the Moon to satellite training at Fort Gordon.', go:'satellites'},
-    {n:'09', t:'The Hello Girls', d:'223 women, one war, and the medal a century in the making.', go:'hello-girls'},
-    {n:'10', t:'Combat Camera & Video', d:'Signal Corps film and photography, from Dr. Seuss to The Longest Day.', go:'combat-camera'},
-    {n:'11', t:'Fireside Chats', d:'First-person recollections from Signal and Cyber veterans.', go:'fireside'},
-    {n:'12', t:'Donor Spotlight', d:'The Campaign Circle, Signal Champions, and the donors who keep the doors open.', go:'donor-spotlight'},
-    {n:'13', t:'Honor Roll', d:'Staff, board, advisors, distinguished members, Hall of Fame.', go:'people'},
-    {n:'14', t:'Support the Museum', d:'Sponsorship tiers and easy ways to help.', go:'give'},
-    {n:'15', t:'Timeline', d:'Where the museum started, and where it is today.', go:'timeline'},
-    {n:'16', t:'News & Announcements', d:'Heritage magazine issues and the museum\u2019s YouTube channel.', go:'news'},
-    {n:'17', t:'Heritage Magazine', d:'Every page of the Society\u2019s magazine issues, readable full size.', go:'magazine'},
-    {n:'18', t:'Museum Map', d:'Search for a room, or click the floor plan to go there.', go:'map'}
+    {n:'03', t:'Civil War Signal Annex', d:'Wig-wag flags, torches, Morse and the telegraph, plus games to try the code.', go:'civil-war'},
+    {n:'04', t:'Signal Training Yard', d:'Games: send flag and torch signals and work a telegraph key, then test yourself.', go:'civil-war', sub:'games'},
+    {n:'05', t:'The Cyber Story', d:'The Army\u2019s newest branch, built on Signal\u2019s oldest instinct.', go:'cyber-story'},
+    {n:'06', t:'Camp Gordon: The WWI Era', d:'The first Camp Gordon, the 82d Division, and nineteen National Archives photographs.', go:'camp-gordon'},
+    {n:'07', t:'Command Gallery', d:'The Signal Regiment order of battle, with lineage links, the 1st Signal Brigade, and the 501st Signal Battalion.', go:'command-gallery'},
+    {n:'08', t:'Aviation Annex', d:'Signal Corps aviators, namesake airfields, and the defense industry they founded.', go:'aviation'},
+    {n:'09', t:'Satellite Annex', d:'From a radar echo off the Moon to satellite training at Fort Gordon.', go:'satellites'},
+    {n:'10', t:'The Hello Girls', d:'223 women, one war, and the medal a century in the making.', go:'hello-girls'},
+    {n:'11', t:'Combat Camera & Video', d:'Signal Corps film and photography, from Dr. Seuss to The Longest Day.', go:'combat-camera'},
+    {n:'12', t:'Fireside Chats', d:'First-person recollections from Signal and Cyber veterans.', go:'fireside'},
+    {n:'13', t:'Donor Spotlight', d:'The Campaign Circle, Signal Champions, and the donors who keep the doors open.', go:'donor-spotlight'},
+    {n:'14', t:'Honor Roll', d:'Staff, board, advisors, distinguished members, Hall of Fame.', go:'people'},
+    {n:'15', t:'Support the Museum', d:'Sponsorship tiers and easy ways to help.', go:'give'},
+    {n:'16', t:'Timeline', d:'Where the museum started, and where it is today.', go:'timeline'},
+    {n:'17', t:'News & Announcements', d:'Heritage magazine issues and the museum\u2019s YouTube channel.', go:'news'},
+    {n:'18', t:'Heritage Magazine', d:'Every page of the Society\u2019s magazine issues, readable full size.', go:'magazine'},
+    {n:'19', t:'Museum Map', d:'Search for a room, or click the floor plan to go there.', go:'map'}
   ];
   var dirGrid = document.getElementById('dir-grid');
   DIRECTORY.forEach(function(d){
     var el = document.createElement('div');
     el.className = 'dir-item';
     el.setAttribute('data-goto', d.go);
+    if (d.sub) el.setAttribute('data-avsub', d.sub);
     el.innerHTML = '<span class="n">'+d.n+'</span><span class="t">'+d.t+'</span><span class="d">'+d.d+'</span>';
     dirGrid.appendChild(el);
   });
@@ -62,7 +64,7 @@
     var target = document.getElementById('room-'+roomId);
     if (target){ target.classList.add('active'); }
     document.querySelectorAll('.topbar-nav button').forEach(function(b){
-      b.classList.toggle('active', b.getAttribute('data-goto') === id);
+      b.classList.toggle('active', b.getAttribute('data-goto') === id && !b.hasAttribute('data-avsub'));
     });
     if (avsub && target){
       var subBtn = target.querySelector('.subnav button[data-sub="'+avsub+'"]');

@@ -6,16 +6,18 @@
  * taller by itself, so nothing else needs to change.
  *
  *   go    the room id: the part after "room-" in the room file's id (room-civil-war -> 'civil-war')
+ *   sub   optional: a tab inside the room to open, by its data-sub name (e.g. 'games')
  *   name  full name, used by the map search
  *   lines the tile label, one or two short lines
  *
- * To add a room: add a line, commit, and the auto-build rebuilds index.html.
+ * To add a room: add a line, run  perl tools/build-index.pl  and commit index.html with it.
  * Load order: this file must come BEFORE museum.js in src/index.html.
  */
 (function () {
   var MORE_ROOMS = [
     { go: 'civil-war',  name: 'Civil War Signal Annex', lines: ['Civil War', 'Signal Annex'] },
-    { go: 'satellites', name: 'Satellite Annex',        lines: ['Satellite', 'Annex'] }
+    { go: 'satellites', name: 'Satellite Annex',        lines: ['Satellite', 'Annex'] },
+    { go: 'civil-war',  sub: 'games', name: 'Signal Training Yard games', lines: ['Signal Training', 'Yard (Games)'] }
     // { go: 'new-room', name: 'New Room Name', lines: ['New Room', 'Name'] },
   ];
 
@@ -36,6 +38,7 @@
     var g = document.createElementNS(NS, 'g');
     g.setAttribute('class', 'map-room');
     g.setAttribute('data-goto', r.go);
+    if (r.sub) g.setAttribute('data-avsub', r.sub);   // open a tab inside the room
     g.setAttribute('data-roomname', r.name);
     var rect = document.createElementNS(NS, 'rect');
     rect.setAttribute('x', x); rect.setAttribute('y', y);
