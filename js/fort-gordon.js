@@ -1,5 +1,5 @@
 /*
- * Fort Gordon, Then and Now: opens and closes the room's pop-up panels, and tilts its framed photographs.
+ * Fort Gordon, Then and Now: opens and closes the room's pop-up panels, tilts its framed photographs, and turns the pages of its booklet readers.
  *
  * The panels are <dialog> elements written out in rooms/93-fort-gordon.html.
  *   data-fg-open="id"   on a button: open that panel (closing the one it sits in)
@@ -11,6 +11,7 @@
   if (!room) return;
 
   function show(d) {
+    if (d.fgStart) d.fgStart();
     if (d.showModal) d.showModal(); else d.setAttribute('open', '');
     d.scrollTop = 0;
     var inner = d.querySelector('.fg-dlg-in'); if (inner) inner.scrollTop = 0;
@@ -51,5 +52,31 @@
       fig.classList.remove('tracking');
       ['--rx', '--ry', '--gx', '--gy'].forEach(function (p) { fig.style.removeProperty(p); });
     });
+  });
+
+  // readers: a panel with data-pages turns through numbered page images
+  [].forEach.call(room.querySelectorAll('dialog[data-pages]'), function (d) {
+    var total = +d.getAttribute('data-pages'), src = d.getAttribute('data-src');
+    var labels = (d.getAttribute('data-labels') || '').split('|');
+    var img = d.querySelector('.fg-reader-page img'), label = d.querySelector('.fg-reader-label');
+    var prev = d.querySelector('[data-fg-page="prev"]'), next = d.querySelector('[data-fg-page="next"]');
+    var at = 1;
+    function file(n) { return src.replace('%', (n < 10 ? '0' : '') + n); }
+    function turn(n) {
+      at = Math.min(total, Math.max(1, n));
+      img.src = file(at);
+      img.alt = labels[at - 1] || ('Page ' + at);
+      label.textContent = (labels[at - 1] || 'Page ' + at) + ' \u00b7 ' + at + ' of ' + total;
+      prev.disabled = at === 1; next.disabled = at === total;
+      if (at < total) { var pre = new Image(); pre.src = file(at + 1); }   // have the next page ready
+    }
+    prev.addEventListener('click', function () { turn(at - 1); });
+    next.addEventListener('click', function () { turn(at + 1); });
+    d.addEventListener('keydown', function (e) {
+      if (e.key === 'ArrowLeft') { turn(at - 1); e.preventDefault(); }
+      if (e.key === 'ArrowRight') { turn(at + 1); e.preventDefault(); }
+    });
+    prev.disabled = true;
+    d.fgStart = function () { if (!img.getAttribute('src')) turn(1); };   // load the first page only when the reader is opened
   });
 })();

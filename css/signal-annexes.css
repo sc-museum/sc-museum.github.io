@@ -325,3 +325,22 @@
 #room-fort-gordon .fg-pcredit{margin-top:8px; padding-top:0; border-top:0;}
 @media (max-width:480px){ #room-fort-gordon .fg-portrait{width:96px; margin-right:14px;} }
 #room-fort-gordon .fg-units{grid-template-columns:repeat(auto-fit,minmax(280px,1fr));}
+/* the Terrify and Destroy booklet and its reader */
+#room-fort-gordon .fg-book{display:grid; grid-template-columns:minmax(0,220px) minmax(0,1fr); gap:30px; align-items:start; margin-top:18px;}
+#room-fort-gordon .fg-book-cover{padding:0; border:1px solid rgba(224,188,74,.55); border-radius:4px; background:#07110c; cursor:pointer; transform:perspective(900px) rotateY(-12deg) rotateX(3deg); transition:transform .5s cubic-bezier(.2,.7,.2,1); box-shadow:6px 0 0 #1c1410, 8px 2px 0 #120d0a, 0 26px 44px rgba(0,0,0,.6);}
+#room-fort-gordon .fg-book-cover:hover{transform:perspective(900px) rotateY(-3deg) rotateX(1deg);}
+#room-fort-gordon .fg-book-cover img{display:block; width:100%; height:auto; border-radius:3px;}
+#room-fort-gordon .fg-book .prose{margin-top:0;}
+#room-fort-gordon .fg-go{font-family:var(--sans); font-size:14px; font-weight:600; padding:11px 20px; border-radius:2px; cursor:pointer; background:var(--gold); color:var(--ink); border:1px solid var(--gold); margin-right:14px;}
+#room-fort-gordon .fg-go:hover{background:var(--gold-bright);}
+#room-fort-gordon .fg-dl{font-size:13.5px; white-space:nowrap;}
+@media (max-width:640px){ #room-fort-gordon .fg-book{grid-template-columns:1fr;} #room-fort-gordon .fg-book-cover{max-width:200px; margin:0 auto 6px;} }
+#room-fort-gordon .fg-dlg.fg-reader{max-width:min(1180px,calc(100vw - 24px)); max-height:min(94vh,1000px);}
+#room-fort-gordon .fg-reader h2{font-size:clamp(1.1rem,2.6vw,1.5rem);}
+#room-fort-gordon .fg-reader-page{background:#07110c; border:1px solid var(--hair); display:grid; place-items:center; min-height:200px;}
+#room-fort-gordon .fg-reader-page img{display:block; max-width:100%; max-height:min(66vh,760px); width:auto; height:auto;}
+#room-fort-gordon .fg-reader-bar{display:flex; align-items:center; justify-content:space-between; gap:12px;}
+#room-fort-gordon .fg-reader-label{font:500 12px/1.4 var(--mono); letter-spacing:.06em; color:var(--paper-2); text-align:center;}
+#room-fort-gordon .fg-rbtn{background:var(--panel-2); border:1px solid var(--hair); color:var(--white); font-family:var(--sans); font-size:13px; padding:9px 16px; border-radius:2px; cursor:pointer; min-height:38px; white-space:nowrap;}
+#room-fort-gordon .fg-rbtn:hover{border-color:var(--gold);}
+#room-fort-gordon .fg-rbtn:disabled{opacity:.4; cursor:default; border-color:var(--hair);}
