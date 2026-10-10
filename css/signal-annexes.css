@@ -294,3 +294,7 @@
 #room-fort-gordon .fg-quote cite{display:block; margin-top:6px; font:normal 12px/1.5 var(--sans); color:var(--muted);}
 #room-fort-gordon .fg-src{margin-top:20px; padding-top:12px; border-top:1px solid var(--hair); font-size:12px; color:var(--muted);}
 #room-fort-gordon .fg-src a{color:var(--gold-bright);}
+/* Gallery VI: the cruiser's war */
+#room-fort-gordon .fg-cols{display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:14px; margin-top:14px;}
+#room-fort-gordon .fg-cols > div{background:var(--panel); border:1px solid var(--hair); border-top:2px solid var(--gold); padding:14px 16px 16px;}
+#room-fort-gordon .fg-cols p{margin:0; font-size:14.5px; line-height:1.6;}
