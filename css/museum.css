@@ -58,7 +58,7 @@ header.topbar{
   max-width:1180px; margin:0 auto; padding:12px 24px;
   display:flex; align-items:center; gap:14px;
 }
-.topbar-inner img.seal{width:38px; height:38px; border-radius:50%; flex:none;}
+.topbar-inner img.seal{width:44px; height:44px; aspect-ratio:1; object-fit:contain; border-radius:50%; flex:none; display:block; filter:drop-shadow(0 1px 3px rgba(0,0,0,0.45));}
 .topbar-name{
   font-family:var(--serif); font-weight:600; font-size:16px; letter-spacing:0.2px;
   cursor:pointer; white-space:nowrap; flex:none;
@@ -115,7 +115,7 @@ p{margin:0 0 14px; font-size:15.5px;}
   padding:64px 0 40px;
   text-align:center;
 }
-.hero img.seal-big{width:112px; height:112px; margin:0 auto 22px; border-radius:50%;}
+.hero img.seal-big{width:120px; height:120px; aspect-ratio:1; object-fit:contain; margin:0 auto 22px; border-radius:50%; display:block; filter:drop-shadow(0 4px 14px rgba(0,0,0,0.5));}
 .hero h1{
   font-family:var(--serif); font-weight:700; font-size:44px; margin:0 0 10px; line-height:1.1;
 }
