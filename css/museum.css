@@ -719,3 +719,6 @@ a.cover:hover, a.cover:focus-visible{border-color:var(--gold);}
 .map-room.dim rect{opacity:0.25;}
 .map-room.dim text{opacity:0.35;}
 .map-room.match rect{stroke:var(--gold-bright); stroke-width:3; fill:rgba(201,162,39,0.22);}
+
+/* a link to another room, set inside running text */
+.room-link{background:none; border:0; padding:0; font:inherit; color:var(--gold-bright); text-decoration:underline; cursor:pointer;}

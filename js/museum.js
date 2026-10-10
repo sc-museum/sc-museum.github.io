@@ -18,7 +18,7 @@
     {n:'05', t:'The Cyber Story', d:'The Army\u2019s newest branch, built on Signal\u2019s oldest instinct.', go:'cyber-story'},
     {n:'06', t:'Camp Gordon: The WWI Era', d:'The first Camp Gordon, the 82d Division, and nineteen National Archives photographs.', go:'camp-gordon'},
     {n:'07', t:'Command Gallery', d:'The Signal Regiment order of battle, with lineage links, the 1st Signal Brigade, and the 501st Signal Battalion.', go:'command-gallery'},
-    {n:'08', t:'Aviation Annex', d:'Signal Corps aviators, namesake airfields, and the defense industry they founded.', go:'aviation'},
+    {n:'08', t:'Aviation Annex', d:'From Army balloons and the first military airplane to the winter flying school in Augusta, namesake airfields, and the industry the aviators founded.', go:'aviation'},
     {n:'09', t:'Satellite Annex', d:'From a radar echo off the Moon to satellite training at Fort Gordon.', go:'satellites'},
     {n:'10', t:'Weather Annex', d:'The nation’s weather service from 1870 to 1891, from Army surgeons’ diaries to TIROS. Plus: read a weather map.', go:'weather'},
     {n:'11', t:'The Hello Girls', d:'223 women, one war, and the medal a century in the making.', go:'hello-girls'},
@@ -428,13 +428,17 @@
   var mapSearch = document.getElementById('map-search');
   var mapResults = document.getElementById('map-search-results');
 
+  // a room matches on its name or on its data-keywords (what is inside it)
+  function mapRoomText(r){
+    return (r.getAttribute('data-roomname') + ' ' + (r.getAttribute('data-keywords') || '')).toLowerCase();
+  }
   function clearMapHighlight(){
     mapRooms.forEach(function(r){ r.classList.remove('dim', 'match'); });
   }
   function highlightMap(q){
     if (!q){ clearMapHighlight(); return; }
     mapRooms.forEach(function(r){
-      var isMatch = r.getAttribute('data-roomname').toLowerCase().indexOf(q) !== -1;
+      var isMatch = mapRoomText(r).indexOf(q) !== -1;
       r.classList.toggle('match', isMatch);
       r.classList.toggle('dim', !isMatch);
     });
@@ -442,7 +446,7 @@
   function renderMapResults(q){
     if (!q){ mapResults.classList.remove('open'); mapResults.innerHTML = ''; return; }
     var matches = mapRooms.filter(function(r){
-      return r.getAttribute('data-roomname').toLowerCase().indexOf(q) !== -1;
+      return mapRoomText(r).indexOf(q) !== -1;
     });
     if (!matches.length){
       mapResults.innerHTML = '<div class="none">No rooms match &quot;'+q+'&quot;</div>';
