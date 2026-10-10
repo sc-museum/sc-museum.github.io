@@ -116,3 +116,20 @@
 #room-weather .wx-nav{display:flex; gap:8px; margin-top:12px;}
 #room-weather .wx-btn{font:600 13px var(--sans); padding:9px 16px; border-radius:2px; border:1px solid var(--gold); background:var(--gold); color:var(--ink); cursor:pointer;}
 #room-weather .wx-btn.ghost{background:none; color:var(--gold-bright);}
+
+/* ---------- Aviation Annex: one chronological story ---------- */
+#room-aviation .av-chapters{display:flex; flex-wrap:wrap; gap:6px; margin:0 0 30px; padding-bottom:20px; border-bottom:1px solid var(--hair);}
+#room-aviation .av-chapters a{display:flex; flex-direction:column; gap:2px; text-decoration:none; color:var(--white); font:500 13px/1.25 var(--sans);
+  padding:8px 12px; border:1px solid var(--hair); background:var(--panel); border-radius:2px;}
+#room-aviation .av-chapters a span{font:11px var(--mono); color:var(--gold); letter-spacing:.04em;}
+#room-aviation .av-chapters a:hover, #room-aviation .av-chapters a:focus-visible{border-color:var(--gold); color:var(--gold-bright);}
+#room-aviation .av-ch{scroll-margin-top:110px; margin-top:40px;}
+#room-aviation .av-ch > .sat-h{margin-top:4px;}
+#room-aviation .av-kicker{font:500 11px/1 var(--mono); letter-spacing:.14em; text-transform:uppercase; color:var(--gold);}
+#room-aviation .av-ch .profile, #room-aviation .av-ch .figure{margin-top:26px;}
+#room-aviation .av-sub{margin-top:30px;}
+#room-aviation .av-note{max-width:68ch; margin:0 0 22px; padding:16px 20px; background:var(--panel); border:1px solid var(--hair); border-left:3px solid var(--gold);}
+#room-aviation .av-note .name{font-family:var(--serif); font-size:18px; font-weight:600; color:var(--white); margin-bottom:6px;}
+#room-aviation .av-note p{margin:0; line-height:1.65;}
+#room-aviation .av-local{padding:22px 24px 26px; background:linear-gradient(180deg, rgba(201,162,39,0.10), rgba(201,162,39,0.02)); border:1px solid rgba(201,162,39,0.45);}
+#room-aviation .sat-card figure{max-width:560px;}
