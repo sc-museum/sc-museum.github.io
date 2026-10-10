@@ -2,7 +2,7 @@
 
 The online museum of the **Signal & Cyber Corps Museum Society**, formerly the
 Fort Gordon Historical Museum Society — a 501(c)(3) of volunteers preserving the
-history of Americans who served at Fort Eisenhower (formerly Fort Gordon), in the
+history of Americans who served at Fort Gordon, in the
 Signal Regiment, and in the Army's Cyber Corps.
 
 **Secure Our Story**
@@ -14,7 +14,7 @@ Signal Regiment, and in the Army's Cyber Corps.
 The Signal Corps Museum on post closed on 25 February 2021 when base construction
 took its building, and the collection has been in storage since. The Society is
 raising funds to buy and renovate a building outside the gates of Fort
-Eisenhower; $250,000 has been donated so far. This virtual museum keeps the collection open to the public meanwhile.
+Gordon; about $500,000 has been raised so far. This virtual museum keeps the collection open to the public meanwhile.
 
 ## What is here
 
@@ -57,8 +57,10 @@ does not treat them as such:
 - **Fort Gordon** is kept wherever the record uses it — Camp Gordon in the First
   World War, Fort Gordon as the Signal Corps' home, the 2013 stand-up of the
   Cyber Center of Excellence, and every line of official CMH lineage text.
-- **Fort Eisenhower** is used for the present day. The post was redesignated on
-  27 October 2023 for General of the Army Dwight D. Eisenhower.
+- **Fort Eisenhower** is used for 27 October 2023 to 11 June 2025, when the post
+  carried the name of General of the Army Dwight D. Eisenhower.
+- **Fort Gordon** is used again for the present day. Since 11 June 2025 the name
+  honors Master Sgt. Gary I. Gordon, Medal of Honor.
 
 Likewise **FGHMS** stays on the artifacts that carry it — the Society's own fact
 sheets and the pages of *Heritage* — because those are documents, not branding.

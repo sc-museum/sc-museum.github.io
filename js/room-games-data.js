@@ -49,7 +49,7 @@ window.ROOM_GAMES = {
       { "q": "What does the crest look like?", "choices": ["Two crossed flags over a torch", "An eagle holding a telephone", "A satellite circling a globe", "A shield split in black and white beneath a raised dagger"], "answer": 3, "why": "The room describes the crest as a shield split in black and white beneath a raised dagger." },
       { "q": "Cyber training at Fort Gordon was brought together alongside which school?", "choices": ["The Signal School", "The Military Police School", "The flying school", "The Army Nurse Corps school"], "answer": 0, "why": "The Army consolidated its cyber, electronic warfare, and information operations training alongside the Signal School." },
       { "q": "Before Cyber, what was the last new Army branch to be created?", "choices": ["Infantry", "Aviation", "Special Forces", "Signal Corps"], "answer": 2, "why": "The room says Cyber was the first new branch created since Special Forces in 1987." },
-      { "q": "In what year did the Cyber Center of Excellence begin standing up at Fort Gordon?", "choices": ["1860", "2013", "1941", "1987"], "answer": 1, "why": "Army Cyber Command and the Cyber Center of Excellence began standing up at Fort Gordon starting in 2013." }
+      { "q": "In what year did the Cyber Center of Excellence begin standing up at Fort Gordon?", "choices": ["1860", "2014", "1941", "1987"], "answer": 1, "why": "Army Cyber Command and the Cyber Center of Excellence began standing up at Fort Gordon starting in 2014." }
     ]
   },
   "camp-gordon": {
