@@ -144,3 +144,35 @@
 #room-aviation .av-credit a{color:inherit; text-decoration:underline;}
 #room-aviation .av-photos:has(> .av-photo:only-child){max-width:360px;}
 @media (max-width:560px){ #room-aviation .av-photo img{height:auto; max-height:320px;} }
+
+/* Auditorium: This Month in History (approved in review batch october-2026) */
+.tmh{--g:#e0bc4a;--g2:#c9a227;--cr:#a53344;--pn:#132a1e;--hr:#2a4a37;--tx:#f4f3ee;--mu:#a9bdb0;display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));margin:14px 0 0;font-family:'Spectral',Georgia,serif}
+.tmh .banner{grid-column:1/-1;position:relative;overflow:hidden;border:1px solid var(--g2);border-radius:6px;padding:16px 18px;background:linear-gradient(115deg,#1b3a29,#0f2a1c 55%,#2a1b20);color:var(--tx)}
+.tmh .banner b{display:block;font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--g);margin-bottom:4px}
+.tmh .banner span{font-size:20px;line-height:1.25}
+.tmh .co{position:relative;overflow:hidden;display:flex;flex-direction:column;gap:10px;padding:18px 18px 16px 18px;border-radius:8px;color:var(--tx);background:linear-gradient(160deg,#1d3f2d 0%,#132a1e 60%,#0f2418 100%);border:1px solid var(--g2);box-shadow:0 0 0 1px rgba(224,188,74,.18),0 8px 26px rgba(0,0,0,.45),0 0 22px rgba(224,188,74,.12);transition:transform .25s ease,box-shadow .25s ease}
+.tmh .co:hover,.tmh .co:focus-within{transform:translateY(-3px);box-shadow:0 0 0 1px rgba(224,188,74,.5),0 12px 30px rgba(0,0,0,.5),0 0 34px rgba(224,188,74,.28)}
+.tmh .co::before{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(105deg,transparent 35%,rgba(255,240,180,.16) 50%,transparent 65%);transform:translateX(-120%);animation:tmhsweep 7s ease-in-out infinite}
+.tmh .co:nth-child(3n)::before{animation-delay:2.4s}.tmh .co:nth-child(3n+1)::before{animation-delay:4.6s}
+@keyframes tmhsweep{0%,55%{transform:translateX(-120%)}85%,100%{transform:translateX(120%)}}
+.tmh .co.today{border-color:var(--g);animation:tmhpulse 2.6s ease-in-out infinite}
+@keyframes tmhpulse{0%,100%{box-shadow:0 0 0 1px rgba(224,188,74,.4),0 8px 26px rgba(0,0,0,.45),0 0 18px rgba(224,188,74,.25)}50%{box-shadow:0 0 0 2px rgba(224,188,74,.8),0 8px 26px rgba(0,0,0,.45),0 0 40px rgba(224,188,74,.55)}}
+.tmh .top{display:flex;align-items:center;gap:14px}
+.tmh .dt{flex:none;width:68px;text-align:center;border-radius:8px;background:linear-gradient(180deg,var(--g),var(--g2));color:#241d10;padding:6px 0 7px;box-shadow:inset 0 -3px 0 rgba(0,0,0,.18)}
+.tmh .dt i{display:block;font:600 10px/1 'IBM Plex Mono',monospace;letter-spacing:.16em;text-transform:uppercase;font-style:normal}
+.tmh .dt strong{display:block;font:700 30px/1.05 'Spectral',serif}
+.tmh .dt em{display:block;font:500 10.5px/1 'IBM Plex Mono',monospace;font-style:normal;letter-spacing:.06em;opacity:.8}
+.tmh .ic{margin-left:auto;width:56px;height:56px;flex:none;color:var(--g)}
+.tmh .tag{display:inline-block;align-self:flex-start;font:600 10.5px/1 'IBM Plex Mono',monospace;letter-spacing:.14em;text-transform:uppercase;color:#fff;background:var(--cr);padding:5px 8px;border-radius:3px}
+.tmh .co.today .tag{background:var(--g);color:#241d10}
+.tmh h4{margin:0;font:600 21px/1.2 'Spectral',serif;color:var(--tx)}
+.tmh p{margin:0;font:400 15.5px/1.55 'Spectral',serif;color:#e7e6df}
+.tmh .go{margin-top:auto;align-self:flex-start;font:600 12.5px/1 'IBM Plex Sans',sans-serif;color:var(--g);background:transparent;border:1px solid var(--g2);border-radius:999px;padding:8px 14px;cursor:pointer;text-decoration:none}
+.tmh .go:hover,.tmh .go:focus-visible{background:var(--g);color:#241d10;outline:none}
+.tmh .also{grid-column:1/-1;border:1px dashed var(--hr);border-radius:6px;padding:12px 16px;color:var(--mu);font:400 14.5px/1.5 'Spectral',serif}
+.tmh .also b{color:var(--g);font:600 11px/1 'IBM Plex Mono',monospace;letter-spacing:.14em;text-transform:uppercase;margin-right:8px}
+@media (prefers-reduced-motion:reduce){.tmh .co::before{animation:none;display:none}.tmh .co.today{animation:none}.tmh .co{transition:none}}
+
+#room-auditorium .tmh-month{margin-top:14px;}
+#room-auditorium .tmh-month[hidden]{display:none;}
+#room-auditorium .tmh-label{font:600 11px/1 "IBM Plex Mono",monospace; letter-spacing:.16em; text-transform:uppercase; color:#e0bc4a;}

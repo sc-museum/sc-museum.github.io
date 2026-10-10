@@ -306,12 +306,31 @@
     var panel = document.getElementById('sub-' + btn.getAttribute('data-sub'));
     if (!panel) return;
     var n = panel.querySelectorAll('.yt-facade').length;
+    if (!n) return;   // tabs without videos (This Month in History) get no count
     var c = document.createElement('span');
     c.className = 'bb-count';
     c.textContent = n;
     c.setAttribute('aria-hidden', 'true');
     btn.appendChild(c);
   });
+
+  // ---- This Month in History: show this month's list and light up today's card ----
+  (function(){
+    var lists = Array.prototype.slice.call(document.querySelectorAll('.tmh-month[data-month]'));
+    if (!lists.length) return;
+    var now = new Date(), m = now.getMonth() + 1, d = now.getDate();
+    var MON = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'][m - 1];
+    var current = lists.filter(function(l){ return +l.getAttribute('data-month') === m; })[0];
+    // until a month's list is approved, keep showing the newest one there is
+    var shown = current || lists[lists.length - 1];
+    lists.forEach(function(l){ l.hidden = l !== shown; });
+    if (!current) return;
+    current.querySelectorAll('.co[data-month="' + MON + '"][data-day="' + d + '"]').forEach(function(c){
+      c.classList.add('today');
+      var tag = c.querySelector('.tag');
+      if (tag) tag.textContent = 'Today · ' + tag.textContent;
+    });
+  })();
 
   function playFacade(facade){
     var title = facade.querySelector('.vt') ? facade.querySelector('.vt').textContent : 'Now playing';
