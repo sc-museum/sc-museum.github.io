@@ -703,6 +703,12 @@
       <a class="unit-card-link" href="lineage/0501scbn.htm#unit-history">The battalion in Iraq, its media and lineage &#8594;</a>
     </div>
 
+    <div class="placard">
+      <div class="tag">Volunteers wanted</div>
+      <h4>Be a unit's digital docent</h4>
+      <p>Know one of these units? Volunteer to look after its room, or send its stories and photographs. <a href="#write-to-us">Write to the museum &#8594;</a></p>
+    </div>
+
     <div class="room-foot">
       <button data-goto="fort-gordon">← Fort Gordon</button>
       <button data-goto="aviation">Next: Aviation Annex →</button>
@@ -1810,8 +1816,42 @@
       <div class="card-grid">
         <div class="figure"><div style="padding:20px;"><strong>Tell five people</strong><p style="font-size:13px; color:var(--muted); margin:8px 0 0;">about the Signal &amp; Cyber Corps Museum Society.</p></div></div>
         <div class="figure"><div style="padding:20px;"><strong>Visit the website</strong><p style="font-size:13px; color:var(--muted); margin:8px 0 0;">at <a href="https://www.signalandcybercorpsmuseum.org/en" target="_blank" rel="noopener" style="color:var(--gold-bright);">signalandcybercorpsmuseum.org</a> and follow the museum's ongoing work.</p></div></div>
-        <div class="figure"><div style="padding:20px;"><strong>Share your story</strong><p style="font-size:13px; color:var(--muted); margin:8px 0 0;">— your service history helps build the collection.</p></div></div>
+        <div class="figure"><div style="padding:20px;"><strong>Share your story</strong><p style="font-size:13px; color:var(--muted); margin:8px 0 0;">— your service history helps build the collection. <a href="#write-to-us" style="color:var(--gold-bright);">Write to the museum ↓</a></p></div></div>
       </div>
+    </div>
+
+    <div class="section" id="write-to-us">
+      <h3>Write to the museum</h3>
+      <p class="lede">Tell us what you think of the virtual museum, or help us build it. We are looking for:</p>
+      <ul class="contact-asks">
+        <li><strong>Stories, pictures and artifacts.</strong> Your own service, a family member's, or your unit's. The Society will consider each one for the museum.</li>
+        <li><strong>Digital docents.</strong> Volunteers who know a unit and would look after its room: checking the record, gathering photographs and stories, and answering questions. Any of the unit rooms in the <button type="button" class="room-link" data-goto="command-gallery">Command Gallery</button> can have one.</li>
+        <li><strong>Room sponsors.</strong> If you or your business would like to sponsor a room, reach out here and a volunteer will be in touch.</li>
+      </ul>
+
+      <form class="contact-form" id="contact-form" data-tour-skip novalidate>
+        <div class="contact-row">
+          <label for="contact-name">Your name<input type="text" id="contact-name" name="name" autocomplete="name" required maxlength="120"></label>
+          <label for="contact-email">Your email<input type="email" id="contact-email" name="email" autocomplete="email" required maxlength="200"></label>
+        </div>
+        <fieldset>
+          <legend>What is this about? Choose any that apply.</legend>
+          <label class="contact-check"><input type="checkbox" id="contact-t-feedback" name="topic" value="Feedback on the virtual museum"> Feedback on the virtual museum</label>
+          <label class="contact-check"><input type="checkbox" id="contact-t-story" name="topic" value="A story to share"> A story to share</label>
+          <label class="contact-check"><input type="checkbox" id="contact-t-items" name="topic" value="Pictures or artifacts to offer"> Pictures or artifacts to offer</label>
+          <label class="contact-check"><input type="checkbox" id="contact-t-docent" name="topic" value="Volunteering as a digital docent"> Volunteering as a digital docent for a unit room</label>
+          <label class="contact-check"><input type="checkbox" id="contact-t-sponsor" name="topic" value="Sponsoring a room"> Sponsoring a room</label>
+        </fieldset>
+        <label for="contact-unit">Unit or room, if this is about one <span class="contact-opt">(optional)</span><input type="text" id="contact-unit" name="unit" maxlength="160" placeholder="For example: 501st Signal Battalion"></label>
+        <label for="contact-message">Your message<textarea id="contact-message" name="message" rows="6" required maxlength="5000"></textarea></label>
+        <p class="contact-hint">Have pictures or documents? Describe them here and we will reply with how to send them, or email them to <a class="ext-link" href="mailto:scmsreg@gmail.com">scmsreg@gmail.com</a>.</p>
+        <input type="text" name="_honey" id="contact-website" class="contact-trap" tabindex="-1" autocomplete="off" aria-hidden="true">
+        <div class="contact-actions">
+          <button type="submit" id="contact-send">Send message</button>
+          <span class="contact-status" id="contact-status" role="status" aria-live="polite"></span>
+        </div>
+        <p class="source-note">Your message goes by email to the Society's volunteers at scmsreg@gmail.com, delivered by FormSubmit, a form-to-email service. We use your name and email only to reply.</p>
+      </form>
     </div>
 
     <div class="section">
@@ -3870,6 +3910,7 @@
 <script src="js/room-games-data.js"></script>
 <script src="js/room-games.js"></script>
 <script src="js/aviation-front.js"></script>
+<script src="js/contact.js"></script>
 <script src="js/tour-guide.js"></script>
 <script src="js/analytics.js"></script>
 </body>
