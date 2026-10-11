@@ -113,6 +113,7 @@ $tiles
   });
 })();
 </script>
+<script src="/js/analytics.js" defer></script>
 </body>
 </html>
 HTML

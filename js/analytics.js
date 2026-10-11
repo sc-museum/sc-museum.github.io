@@ -9,8 +9,13 @@
  *   video_complete  a video is watched to the end      (video_title, room_name)
  *   donate_click    a Donate button is pressed         (donate_source, room_name)
  *
- * A cookie notice (styled in css/tour-guide.css) lets a visitor turn counting
- * off; a browser's Global Privacy Control signal does the same.
+ * A cookie notice lets a visitor turn counting off; a browser's Global Privacy
+ * Control signal does the same.
+ *
+ * Loaded by every page on the site: the museum (through the build), and the
+ * Heritage, Lineage and Honors, photo album and 404 pages (a script tag before
+ * </body>, written by their generators in tools/). Outside the museum only the
+ * page view, Donate clicks and the notice apply.
  *
  * Runs only on the public site, so the share copy and local previews are never
  * counted. To test, add ?ga_debug=1 to the address and watch GA4 > Admin >
@@ -42,9 +47,11 @@
   tag.async = true;
   tag.src = 'https://www.googletagmanager.com/gtag/js?id=' + GA_ID;
   document.head.appendChild(tag);
-  // Rooms send their own page views below. debug_mode is left out unless asked
-  // for: GA4 treats even debug_mode:false as on.
-  var config = { send_page_view: false };
+  // In the museum, rooms send their own page views below; every other page
+  // (Heritage, Lineage and Honors, the 404 page) sends the ordinary one.
+  // debug_mode is left out unless asked for: GA4 treats even debug_mode:false as on.
+  var isMuseum = !!document.querySelector('.room');
+  var config = { send_page_view: !isMuseum };
   if (/[?&]ga_debug=1/.test(location.search)) config.debug_mode = true;
   gtag('js', new Date());
   gtag('config', GA_ID, config);
@@ -135,8 +142,27 @@
     });
   }
   if (choice !== 'ok'){
+    // Styled here, in the museum's colours, so the notice looks the same on every page.
+    var css = document.createElement('style');
+    css.textContent =
+      '.cookie-notice{position:fixed; left:50%; bottom:20px; transform:translateX(-50%); z-index:95;' +
+        ' box-sizing:border-box; width:min(440px, calc(100vw - 24px)); padding:14px 16px;' +
+        ' background:#183324; color:#f4f3ee; border:1px solid #c9a227; border-radius:4px;' +
+        ' box-shadow:0 14px 40px rgba(0,0,0,0.6); font-family:"IBM Plex Sans", -apple-system, sans-serif; text-align:left;}' +
+      '.cookie-notice.above-launchers{bottom:76px;}' + // clear of Guided Tour and Donate Now
+      '.cookie-notice p{margin:0 0 10px; font-size:13.5px; line-height:1.5; color:#f4f3ee; max-width:none;}' +
+      '.cookie-notice-row{display:flex; gap:8px; justify-content:flex-end;}' +
+      '.cookie-notice button{font:600 13px/1.2 "IBM Plex Sans", -apple-system, sans-serif; padding:8px 16px;' +
+        ' margin:0; border-radius:2px; cursor:pointer; border:1px solid #c9a227;}' +
+      '.cookie-notice .cookie-ok{background:#c9a227; color:#0d1f16;}' +
+      '.cookie-notice .cookie-ok:hover{background:#e0bc4a;}' +
+      '.cookie-notice .cookie-no{background:none; color:#f4f3ee; border-color:#2a4a37;}' +
+      '.cookie-notice .cookie-no:hover{border-color:#c9a227;}' +
+      '.cookie-notice button:focus-visible{outline:2px solid #f4ecd6; outline-offset:2px;}' +
+      '@media print{.cookie-notice{display:none !important;}}';
+    document.head.appendChild(css);
     var notice = document.createElement('div');
-    notice.className = 'cookie-notice';
+    notice.className = 'cookie-notice' + (isMuseum ? ' above-launchers' : '');
     notice.setAttribute('role', 'region');
     notice.setAttribute('aria-label', 'Cookie notice');
     notice.innerHTML =

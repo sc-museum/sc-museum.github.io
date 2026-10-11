@@ -340,6 +340,7 @@ $a{content}
   <div><a href="../">← Back to the virtual museum</a></div>
 </div></footer>
 $a{script}
+<script src="/js/analytics.js" defer></script>
 </body>
 </html>
 HTML

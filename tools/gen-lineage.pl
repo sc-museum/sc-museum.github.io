@@ -252,6 +252,7 @@ $body      <footer class="src">$src</footer>
   </div>
 <script src="unit.js" defer></script>
 <script src="readyroom.js" defer></script>
+<script src="/js/analytics.js" defer></script>
 </body>
 </html>
 HTML

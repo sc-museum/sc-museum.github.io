@@ -28,25 +28,6 @@
 .give-launch:hover{background:#bb3d50;}
 .give-launch:focus-visible{outline:2px solid var(--paper-2); outline-offset:2px;}
 
-/* Cookie notice (js/analytics.js), centred above the two launchers until answered */
-.cookie-notice{
-  position:fixed; left:50%; bottom:76px; transform:translateX(-50%); z-index:95;
-  width:min(440px, calc(100vw - 24px)); padding:14px 16px;
-  background:var(--panel-2); color:var(--white); border:1px solid var(--gold); border-radius:4px;
-  box-shadow:0 14px 40px rgba(0,0,0,0.6);
-}
-.cookie-notice p{margin:0 0 10px; font-size:13.5px; line-height:1.5;}
-.cookie-notice-row{display:flex; gap:8px; justify-content:flex-end;}
-.cookie-notice button{
-  font-family:var(--sans); font-size:13px; font-weight:600; padding:8px 16px;
-  border-radius:2px; cursor:pointer; border:1px solid var(--gold);
-}
-.cookie-notice .cookie-ok{background:var(--gold); color:var(--ink);}
-.cookie-notice .cookie-ok:hover{background:var(--gold-bright);}
-.cookie-notice .cookie-no{background:none; color:var(--white); border-color:var(--hair);}
-.cookie-notice .cookie-no:hover{border-color:var(--gold);}
-.cookie-notice button:focus-visible{outline:2px solid var(--paper-2); outline-offset:2px;}
-
 /* Lobby invitation and per-room Listen button */
 .tg-cta{display:flex; flex-wrap:wrap; align-items:center; justify-content:center; gap:10px 14px; margin:18px auto 0; max-width:640px;}
 .tg-cta span{font-size:13.5px; color:var(--muted);}
@@ -151,4 +132,4 @@ body.tg-on{padding-bottom:240px;}
   .tg-panel.tg-playing .tg-avatar{animation:none;}
   .tg-caption{scroll-behavior:auto;}
 }
-@media print{.cookie-notice, .give-launch, .tg-launch, .tg-panel, .tg-listen, .tg-cta{display:none !important;}}
+@media print{.give-launch, .tg-launch, .tg-panel, .tg-listen, .tg-cta{display:none !important;}}
