@@ -9,6 +9,9 @@
  *   video_complete  a video is watched to the end      (video_title, room_name)
  *   donate_click    a Donate button is pressed         (donate_source, room_name)
  *
+ * A cookie notice (styled in css/tour-guide.css) lets a visitor turn counting
+ * off; a browser's Global Privacy Control signal does the same.
+ *
  * Runs only on the public site, so the share copy and local previews are never
  * counted. To test, add ?ga_debug=1 to the address and watch GA4 > Admin >
  * DebugView, or Reports > Realtime.
@@ -18,6 +21,18 @@
   var GA_ID = 'G-8VYFV63CSW';
   var SITE = 'Signal & Cyber Corps Museum Society';
   if (location.hostname !== 'sc-museum.github.io') return;
+
+  // ---- the visitor's choice ----
+  // Counting is on until a visitor says no. "No thanks" on the cookie notice, or
+  // a browser sending the Global Privacy Control signal, turns it off entirely.
+  var CHOICE_KEY = 'museum-analytics';
+  var choice = null;
+  try { choice = localStorage.getItem(CHOICE_KEY); } catch(e){}
+  function remember(v){ try { localStorage.setItem(CHOICE_KEY, v); } catch(e){} }
+  if (choice === 'no' || navigator.globalPrivacyControl){
+    window['ga-disable-' + GA_ID] = true;
+    return;
+  }
 
   // ---- Google tag ----
   window.dataLayer = window.dataLayer || [];
@@ -110,6 +125,35 @@
       room_name: roomName(activeRoom())
     });
   }, true);
+
+  // ---- cookie notice, shown until the visitor answers ----
+  function stopCounting(){
+    window['ga-disable-' + GA_ID] = true;
+    ['_ga', '_ga_' + GA_ID.replace(/^G-/, '')].forEach(function(n){
+      document.cookie = n + '=; Max-Age=0; path=/';
+      document.cookie = n + '=; Max-Age=0; path=/; domain=' + location.hostname;
+    });
+  }
+  if (choice !== 'ok'){
+    var notice = document.createElement('div');
+    notice.className = 'cookie-notice';
+    notice.setAttribute('role', 'region');
+    notice.setAttribute('aria-label', 'Cookie notice');
+    notice.innerHTML =
+      '<p>This site uses Google Analytics cookies to count visits and to see which rooms and videos are used.</p>' +
+      '<div class="cookie-notice-row">' +
+        '<button type="button" class="cookie-ok">OK</button>' +
+        '<button type="button" class="cookie-no">No thanks</button>' +
+      '</div>';
+    notice.addEventListener('click', function(e){
+      var b = e.target.closest('button');
+      if (!b) return;
+      if (b.classList.contains('cookie-no')){ remember('no'); stopCounting(); }
+      else { remember('ok'); }
+      notice.remove();
+    });
+    document.body.appendChild(notice);
+  }
 
   // ---- videos: every video plays in the pop-out player, as a YouTube embed ----
   var popFrame = document.getElementById('video-pop-frame');
