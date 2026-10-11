@@ -5,6 +5,8 @@
  * caption in data-k / data-t / data-d and its camera move in CSS variables on the element:
  *   --ox, --oy   the point the camera pushes toward
  *   --from, --to the zoom at the start and the end of the scene
+ * data-rooms lists the virtual museum rooms to offer at that stop, as "id:Label|id:Label";
+ * they appear as buttons under the picture and open the room.
  * To add a stop, add a .fly-scene; nothing here needs to change.
  */
 (function () {
@@ -20,6 +22,7 @@
   var startCard = root.querySelector('.fly-start'), endCard = root.querySelector('.fly-end');
   var playBtn = root.querySelector('[data-fly="play"]'), prevBtn = root.querySelector('[data-fly="prev"]'), nextBtn = root.querySelector('[data-fly="next"]');
   var dotsBox = root.querySelector('.fly-dots');
+  var roomsBox = root.querySelector('.fly-rooms'), roomsList = root.querySelector('.fly-rooms-list');
   var at = -1, playing = false, timer = null, left = 0, since = 0;
 
   root.style.setProperty('--dur', SECONDS + 's');
@@ -58,10 +61,27 @@
     cap.t.textContent = s.getAttribute('data-t');
     cap.d.textContent = s.getAttribute('data-d');
     capBox.hidden = false;
+    showRooms(s.getAttribute('data-rooms'));
     startCard.hidden = true; endCard.hidden = true;
     prevBtn.disabled = i === 0;
     nextBtn.disabled = false;
     left = SECONDS * 1000;
+  }
+
+  // the rooms offered at this stop; museum.js opens a room on any [data-goto] click
+  function showRooms(list) {
+    if (!roomsBox) return;
+    roomsList.textContent = '';
+    (list || '').split('|').forEach(function (pair) {
+      var cut = pair.indexOf(':');
+      if (cut < 1) return;
+      var b = document.createElement('button');
+      b.type = 'button'; b.className = 'fly-room';
+      b.setAttribute('data-goto', pair.slice(0, cut));
+      b.textContent = pair.slice(cut + 1) + ' →';
+      roomsList.appendChild(b);
+    });
+    roomsBox.hidden = !roomsList.firstChild;
   }
 
   function schedule() {
@@ -90,6 +110,7 @@
     clearTimeout(timer);
     dots.forEach(function (d) { d.classList.remove('now'); d.classList.add('done'); });
     capBox.hidden = true;
+    showRooms('');
     endCard.hidden = false;
     playBtn.textContent = 'Replay';
     nextBtn.disabled = true;
