@@ -20,6 +20,7 @@
   var MORE_ROOMS = [
     { go: 'wireless', name: 'Wireless Radio Annex', lines: ['Wireless Radio', 'Annex'] },
     { go: 'wired', name: 'Wired Communications Annex', lines: ['Wired Communications', 'Annex'] },
+    { go: 'codes', name: 'Coding and Encryption Annex', lines: ['Coding and Encryption', 'Annex'] },
     // { go: 'new-room', name: 'New Room Name', lines: ['New Room', 'Name'] },
   ];
 
