@@ -75,3 +75,14 @@
     }).then(function () { send.disabled = false; });
   });
 })();
+
+// "Write to Us" in the top bar: museum.js opens the room that holds #write-to-us
+// and scrolls to it whenever the address changes to that anchor.
+(function () {
+  [].forEach.call(document.querySelectorAll('[data-contact-jump]'), function (b) {
+    b.addEventListener('click', function () {
+      if (location.hash === '#write-to-us') history.replaceState(null, '', location.pathname + location.search);
+      location.hash = 'write-to-us';
+    });
+  });
+})();

@@ -752,3 +752,6 @@ a.cover:hover, a.cover:focus-visible{border-color:var(--gold);}
 .contact-status.ok{color:var(--gold-bright);}
 .contact-status.bad{color:#f0a3ad;}
 .contact-form .source-note{margin:0;}
+/* "Write to Us" in the top bar: opens the form in the Get Involved room */
+.topbar-nav button.nav-write{color:var(--gold-bright); border:1px solid var(--gold); padding:7px 12px; margin-left:4px;}
+.topbar-nav button.nav-write:hover{background:var(--gold); color:var(--ink);}
