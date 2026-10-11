@@ -24,6 +24,7 @@ Gordon; about $500,000 has been raised so far. This virtual museum keeps the col
 | `rooms/` | One file per room, in floor order: `01-lobby.html` to `16-magazine.html`. Each room's story and content lives here. |
 | `src/index.html` | The page shell: head, top bar, pop-up viewers, and placeholders for the rooms, styles, script and data. |
 | `css/museum.css`, `js/museum.js` | The museum's styles and behaviour, loaded by the page as files. |
+| `js/analytics.js` | Google Analytics 4: page views per room, navigation, video and Donate clicks. Runs only on the public site; add `?ga_debug=1` to the address to test. |
 | `data/` | `images.json` (the image registry) and `roster.json` (the Signal Regiment roster), inlined into the page at build time. |
 | `assets/` | Photographs, portraits, patches and magazine pages used by the museum rooms. |
 | `lineage/` | Mirror of the official lineage, campaign participation credit, and unit citations for the 171 Signal Regiment units in the Command Gallery roster, plus a filterable index. |

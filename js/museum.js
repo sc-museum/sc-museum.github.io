@@ -371,7 +371,7 @@
   }
   function openVideoPop(id, title, facade){
     popTitle.textContent = title || 'Now playing';
-    popFrame.innerHTML = '<iframe src="https://www.youtube.com/embed/'+encodeURIComponent(id)+'?autoplay=1&rel=0&playsinline=1" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>';
+    popFrame.innerHTML = '<iframe src="https://www.youtube.com/embed/'+encodeURIComponent(id)+'?autoplay=1&rel=0&playsinline=1&enablejsapi=1" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>';
     popFrame.querySelector('iframe').title = title || 'video';
     popLink.href = 'https://www.youtube.com/watch?v='+encodeURIComponent(id);
     if (playingFacade) playingFacade.classList.remove('playing');
