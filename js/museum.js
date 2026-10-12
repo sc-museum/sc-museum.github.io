@@ -24,17 +24,18 @@
     {n:'11', t:'Weather Annex', d:'The nation’s weather service from 1870 to 1891, from Army surgeons’ diaries to TIROS. Plus: read a weather map.', go:'weather'},
     {n:'12', t:'Wireless Radio Annex', d:'From the Army\u2019s first wireless link in 1899 to the walkie-talkie, radar and today\u2019s networked radios.', go:'wireless'},
     {n:'13', t:'Wired Communications Annex', d:'Telegraph, telephone, field wire and cable, an animated map of the lines across France in 1918, and an ode to the wireman and lineman.', go:'wired'},
-    {n:'14', t:'Coding and Encryption Annex', d:'A working Enigma replica, the Army2019s code makers and code breakers, artificial intelligence, and Army Cyber Command at Fort Gordon.', go:'codes'},
-    {n:'15', t:'The Hello Girls', d:'223 women, one war, and the medal a century in the making.', go:'hello-girls'},
-    {n:'16', t:'Combat Camera & Video', d:'Signal Corps film and photography, from Dr. Seuss to The Longest Day.', go:'combat-camera'},
-    {n:'17', t:'Fireside Chats', d:'First-person recollections from Signal and Cyber veterans.', go:'fireside'},
-    {n:'18', t:'Donor Spotlight', d:'The Campaign Circle, Signal Champions, and the donors who keep the doors open.', go:'donor-spotlight'},
-    {n:'19', t:'Honor Roll', d:'Staff, board, advisors, distinguished members, Hall of Fame.', go:'people'},
-    {n:'20', t:'Support the Museum', d:'Sponsorship tiers and easy ways to help.', go:'give'},
-    {n:'21', t:'Timeline', d:'Where the museum started, and where it is today.', go:'timeline'},
-    {n:'22', t:'News & Announcements', d:'Heritage magazine issues and the museum\u2019s YouTube channel.', go:'news'},
-    {n:'23', t:'Heritage Magazine', d:'Every page of the Society\u2019s magazine issues, readable full size.', go:'magazine'},
-    {n:'24', t:'Museum Map', d:'Search for a room, or click the floor plan to go there.', go:'map'}
+    {n:'14', t:'Coding and Encryption Annex', d:'A working Enigma replica, the Army’s code makers and code breakers, artificial intelligence, and Army Cyber Command at Fort Gordon.', go:'codes'},
+    {n:'15', t:'Desert Shield & Desert Storm Annex', d:'1990\u20131991: from two leased circuits to the largest switched network in the Army\u2019s history, with the network diagram, a two-phase map, the Army\u2019s official maps and voices from the soldiers who built it.', go:'desert-storm'},
+    {n:'16', t:'The Hello Girls', d:'223 women, one war, and the medal a century in the making.', go:'hello-girls'},
+    {n:'17', t:'Combat Camera & Video', d:'Signal Corps film and photography, from Dr. Seuss to The Longest Day.', go:'combat-camera'},
+    {n:'18', t:'Fireside Chats', d:'First-person recollections from Signal and Cyber veterans.', go:'fireside'},
+    {n:'19', t:'Donor Spotlight', d:'The Campaign Circle, Signal Champions, and the donors who keep the doors open.', go:'donor-spotlight'},
+    {n:'20', t:'Honor Roll', d:'Staff, board, advisors, distinguished members, Hall of Fame.', go:'people'},
+    {n:'21', t:'Support the Museum', d:'Sponsorship tiers and easy ways to help.', go:'give'},
+    {n:'22', t:'Timeline', d:'Where the museum started, and where it is today.', go:'timeline'},
+    {n:'23', t:'News & Announcements', d:'Heritage magazine issues and the museum\u2019s YouTube channel.', go:'news'},
+    {n:'24', t:'Heritage Magazine', d:'Every page of the Society\u2019s magazine issues, readable full size.', go:'magazine'},
+    {n:'25', t:'Museum Map', d:'Search for a room, or click the floor plan to go there.', go:'map'}
   ];
   var dirGrid = document.getElementById('dir-grid');
   DIRECTORY.forEach(function(d){
@@ -721,6 +722,7 @@
     lightboxImg.src = IMAGES[el.getAttribute('data-lightbox')] || '';
     lightboxImg.alt = el.getAttribute('data-lightbox-cap') || '';
     lightboxCap.textContent = el.getAttribute('data-lightbox-cap') || '';
+    lightbox.classList.toggle('wide', el.hasAttribute('data-lightbox-wide'));
     lightbox.classList.add('open');
     lightbox.scrollTop = 0;
   }

@@ -259,6 +259,19 @@ window.ROOM_GAMES = {
       { "left": "Spiral-four", "right": "A cable that became standard in February 1942" },
       { "left": "The breast reel", "right": "Held about half a mile of light wire in the trenches" }
     ]
+  },
+  "desert-storm": {
+    "type": "order",
+    "title": "Building the Desert Network",
+    "intro": "Put these moments in the Desert Shield and Desert Storm network in order, earliest first.",
+    "items": [
+      { "label": "Iraq invades Kuwait; the U.S. military has two leased telephone circuits in Saudi Arabia", "when": "2 August 1990" },
+      { "label": "The 67th Signal Battalion at Fort Gordon is alerted for Southwest Asia", "when": "22 September 1990" },
+      { "label": "The Army activates the 6th Signal Command to administer the theater network", "when": "4 December 1990" },
+      { "label": "The air war begins", "when": "17 January 1991" },
+      { "label": "The ground war begins and MSE gets its first combat test", "when": "24 February 1991" },
+      { "label": "The 93d Signal Brigade's colors return to Fort Gordon", "when": "5 December 1991" }
+    ]
   }
 
 };

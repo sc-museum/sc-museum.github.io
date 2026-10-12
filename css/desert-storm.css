@@ -1,0 +1,147 @@
+/* Desert Shield & Desert Storm Annex (rooms/97-desert-storm.html) and the Lobby's Arc of History timeline. */
+#room-desert-storm{--sand:#d8b46a; --sand-2:#b8924a; --dusk:#1b2a22;}
+#room-desert-storm .room-head{position:relative;}
+#room-desert-storm .room-kicker{color:var(--sand);}
+.ds-note{font-size:12.5px; color:var(--muted); max-width:68ch; margin:10px 0 0;}
+.ds-linkbtn{background:none; border:0; padding:0; font:inherit; color:var(--gold-bright); text-decoration:underline; cursor:pointer;}
+
+/* numbers */
+.ds-strip{display:grid; grid-template-columns:repeat(4,1fr); gap:1px; background:var(--hair); border:1px solid var(--hair); margin:26px 0 0;}
+.ds-stat{background:var(--panel); padding:16px 16px 14px;}
+.ds-stat .v{font-family:var(--mono); font-size:22px; color:var(--sand); line-height:1.2; font-variant-numeric:tabular-nums; white-space:nowrap;}
+.ds-stat .k{font-size:12px; color:var(--muted); margin-top:4px; line-height:1.35;}
+@media (max-width:700px){.ds-strip{grid-template-columns:1fr 1fr;}}
+#room-desert-storm .ds-strip + .ds-note{margin-bottom:48px;}
+
+/* network stack */
+.ds-net{display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1.15fr); gap:22px; align-items:start;}
+@media (max-width:760px){.ds-net{grid-template-columns:1fr;}}
+.ds-net-stack{display:flex; flex-direction:column; gap:14px; position:relative; padding-left:18px;}
+.ds-net-stack::before{content:""; position:absolute; left:6px; top:18px; bottom:18px; width:2px;
+  background:repeating-linear-gradient(to bottom, var(--sand) 0 6px, transparent 6px 11px); opacity:.7;}
+.ds-tier-pair{display:grid; grid-template-columns:1fr 1fr; gap:10px;}
+.ds-tier{position:relative; text-align:left; background:var(--panel); border:1px solid var(--hair); color:var(--white);
+  padding:12px 14px; cursor:pointer; border-radius:3px; font-family:var(--sans); transition:border-color .15s, background .15s;}
+.ds-tier::before{content:""; position:absolute; left:-17px; top:50%; width:10px; height:10px; margin-top:-5px; border-radius:50%;
+  background:var(--ink); box-shadow:inset 0 0 0 2px var(--sand);}
+.ds-tier-pair .ds-tier:last-child::before{display:none;}
+.ds-tier:hover{border-color:var(--sand-2);}
+.ds-tier[aria-selected="true"]{border-color:var(--sand); background:var(--panel-2);}
+.ds-tier[aria-selected="true"]::before{background:var(--sand);}
+.ds-tier-k{display:block; font-family:var(--mono); font-size:10.5px; letter-spacing:1px; text-transform:uppercase; color:var(--sand);}
+.ds-tier-t{display:block; font-family:var(--serif); font-size:16.5px; font-weight:600; margin:2px 0; line-height:1.25;}
+.ds-tier-s{display:block; font-size:12px; color:var(--muted);}
+.ds-net-panel{background:var(--paper); color:var(--paper-ink); border-radius:3px; padding:20px 22px; min-height:100%;
+  box-shadow:0 10px 30px rgba(0,0,0,.25);}
+@media (min-width:761px){.ds-net-panel{position:sticky; top:96px;}}
+.ds-pane h4{font-family:var(--serif); font-size:20px; margin:0 0 10px; color:var(--paper-ink);}
+.ds-pane p{font-size:14.5px; line-height:1.6; color:#3a2f1a;}
+.ds-pane p:last-child{margin-bottom:0;}
+
+/* map */
+.ds-map{background:var(--panel); border:1px solid var(--hair); border-radius:3px; overflow:hidden;}
+.ds-map-tabs{display:flex; flex-wrap:wrap; gap:6px; padding:12px; border-bottom:1px solid var(--hair);}
+.ds-map-tabs button{background:transparent; border:1px solid var(--hair); color:var(--muted); font:12.5px var(--sans); padding:8px 12px; border-radius:2px; cursor:pointer;}
+.ds-map-tabs button.active{background:var(--sand); border-color:var(--sand); color:var(--ink); font-weight:600;}
+.ds-map-svg{display:block; width:100%; height:auto; background:#1e2c22;}
+.ds-land{fill:#2a3424;}
+.ds-sea{fill:#16323b; stroke:#2e5561; stroke-width:1.5;}
+.ds-border{fill:none; stroke:#c9b27a; stroke-width:1.6; stroke-dasharray:7 4; opacity:.75;}
+.ds-road{fill:none; stroke:#8a7a55; stroke-width:2.5; opacity:.6;}
+.ds-road-l{font:11px var(--mono); fill:#a99a72;}
+.ds-country{font:600 22px var(--serif); fill:rgba(236,226,198,.38); letter-spacing:4px;}
+.ds-country.sm{font-size:12px; letter-spacing:2px; fill:rgba(236,226,198,.6);}
+.ds-country.sea{font-size:13px; letter-spacing:3px; fill:rgba(160,200,210,.55);}
+.ds-place circle{fill:var(--paper); stroke:var(--ink); stroke-width:1.5;}
+.ds-place text{font:12px var(--sans); fill:var(--paper); paint-order:stroke; stroke:#1e2c22; stroke-width:3px;}
+.ds-move{fill:none; stroke-width:5; stroke-linecap:round;}
+.ds-move.xviii{stroke:#e0bc4a; color:#e0bc4a;}
+.ds-move.vii{stroke:#d9705f; color:#d9705f;}
+.ds-tag rect{fill:rgba(13,31,22,.88); stroke-width:1.2;}
+.ds-tag.xviii rect{stroke:#e0bc4a;} .ds-tag.vii rect{stroke:#d9705f;}
+.ds-tag text{font:600 12.5px var(--sans); fill:var(--white);}
+.ds-tag text.s{font-weight:400; font-size:11.5px; fill:var(--muted);}
+.ds-nodes circle{fill:#1e2c22; stroke:#d9705f; stroke-width:2.5;}
+.ds-scale{font:11px var(--mono); fill:#8fa596;}
+.ds-layer{transition:opacity .35s ease;}
+.ds-map-svg[data-phase="shift"] .ds-attack, .ds-map-svg[data-phase="attack"] .ds-shift{opacity:0; pointer-events:none;}
+.ds-map-svg .ds-move{stroke-dasharray:900; stroke-dashoffset:0;}
+@keyframes ds-draw{from{stroke-dashoffset:900;} to{stroke-dashoffset:0;}}
+@media (prefers-reduced-motion:reduce){.ds-map-svg .ds-move{animation:none !important;}}
+.ds-map-cap{padding:14px 18px; border-top:1px solid var(--hair);}
+.ds-map-cap p{margin:0; font-size:14px; color:var(--paper-2); max-width:72ch;}
+
+/* units */
+.ds-units{display:grid; grid-template-columns:repeat(auto-fill,minmax(190px,1fr)); gap:12px;}
+.ds-unit{background:var(--panel); border:1px solid var(--hair); border-top:3px solid var(--sand-2); padding:14px 14px 12px;}
+.ds-unit.ds-home{border-top-color:var(--crimson); background:var(--panel-2);}
+.ds-unit-k{font-family:var(--mono); font-size:10px; letter-spacing:1px; text-transform:uppercase; color:var(--sand);}
+.ds-unit.ds-home .ds-unit-k{color:#e48b97;}
+.ds-unit h4{font-family:var(--serif); font-size:17px; margin:4px 0 6px;}
+.ds-unit p{font-size:13px; color:var(--muted); margin:0; line-height:1.5;}
+.ds-callout{margin-top:22px; border-left:3px solid var(--crimson); background:rgba(165,51,68,.08); padding:14px 18px;}
+.ds-callout-k{font-family:var(--mono); font-size:11px; letter-spacing:1px; text-transform:uppercase; color:#e48b97; margin-bottom:6px;}
+.ds-callout p{margin:0; font-size:14.5px; max-width:70ch;}
+
+/* voices */
+.ds-voices{columns:2 300px; column-gap:16px;}
+.ds-voice{break-inside:avoid; margin:0 0 16px; background:var(--paper); color:var(--paper-ink); padding:18px 20px 14px; border-radius:2px; position:relative;}
+.ds-voice::before{content:"\201C"; position:absolute; top:-8px; left:12px; font:700 54px/1 var(--serif); color:var(--sand-2); opacity:.55;}
+.ds-voice blockquote{margin:0; font-family:var(--serif); font-size:17px; line-height:1.45; font-style:italic;}
+.ds-voice figcaption{margin-top:12px; font-size:12.5px; color:#5a4c30; line-height:1.45;}
+.ds-voice figcaption b{color:var(--paper-ink);}
+.ds-voice figcaption a{display:block; margin-top:4px; color:#7a5a12; font-family:var(--mono); font-size:11px;}
+.ds-voice-doc{background:#e4dcc4; border-left:4px solid #8a7a55;}
+
+/* archives */
+.ds-arch{display:grid; grid-template-columns:repeat(auto-fill,minmax(240px,1fr)); gap:12px;}
+.ds-art{display:flex; flex-direction:column; gap:4px; text-decoration:none; background:var(--panel); border:1px solid var(--hair); padding:14px 16px; border-radius:2px; transition:border-color .15s, transform .15s;}
+.ds-art:hover, .ds-art:focus-visible{border-color:var(--sand); transform:translateY(-2px);}
+.ds-art-type{font-family:var(--mono); font-size:10.5px; letter-spacing:1px; text-transform:uppercase; color:var(--sand);}
+.ds-art-t{font-family:var(--serif); font-size:16px; font-weight:600; line-height:1.3; color:var(--white);}
+.ds-art-s{font-size:12.5px; color:var(--muted);}
+.ds-art-t::after{content:" ↗"; color:var(--sand); font-family:var(--sans); font-size:12px;}
+
+/* lessons */
+.ds-lessons{display:grid; grid-template-columns:repeat(3,1fr); gap:14px;}
+@media (max-width:760px){.ds-lessons{grid-template-columns:1fr;}}
+.ds-lessons > div{background:var(--panel); border:1px solid var(--hair); padding:16px;}
+.ds-lessons h4{font-family:var(--serif); font-size:17px; margin:0 0 6px; color:var(--sand);}
+.ds-lessons p{font-size:13.5px; color:var(--muted); margin:0;}
+
+/* ============ Lobby: Through the Arc of History ============ */
+.arc{margin:48px 0 0;}
+.arc h3{text-align:center;}
+.arc .lede{text-align:center; margin-left:auto; margin-right:auto;}
+.arc-rail{position:relative; display:flex; gap:12px; overflow-x:auto; scroll-snap-type:x mandatory; padding:26px 4px 14px;
+  scrollbar-width:thin; scrollbar-color:var(--hair) transparent; -webkit-overflow-scrolling:touch;}
+.arc-rail::before{content:""; position:absolute; left:0; right:0; top:39px; height:2px; min-width:var(--arc-w,100%);
+  background:linear-gradient(90deg, transparent, var(--gold) 3%, var(--gold) 97%, transparent);}
+.arc-stop{position:relative; flex:0 0 172px; scroll-snap-align:start; display:flex; flex-direction:column; gap:6px;
+  background:var(--panel); border:1px solid var(--hair); border-radius:3px; padding:28px 14px 14px; margin-top:6px;
+  color:var(--white); text-align:left; font-family:var(--sans); transition:border-color .15s, transform .15s, background .15s;}
+.arc-main{all:unset; box-sizing:border-box; display:flex; flex-direction:column; gap:6px; flex:1; cursor:pointer;}
+.arc-main:focus-visible{outline:2px solid var(--gold); outline-offset:4px;}
+.arc-stop::before{content:""; position:absolute; top:-13px; left:16px; width:14px; height:14px; border-radius:50%;
+  background:var(--ink); box-shadow:inset 0 0 0 2px var(--gold);}
+.arc-stop:hover, .arc-stop:focus-within{border-color:var(--gold); transform:translateY(-3px); background:var(--panel-2);}
+.arc-stop:hover::before, .arc-stop:focus-within::before{background:var(--gold);}
+.arc-yr{font-family:var(--mono); font-size:12px; letter-spacing:1px; color:var(--gold-bright);}
+.arc-t{font-family:var(--serif); font-size:16.5px; font-weight:600; line-height:1.25;}
+.arc-d{font-size:12.5px; color:var(--muted); line-height:1.45; flex:1;}
+.arc-go{font-family:var(--mono); font-size:10.5px; letter-spacing:.8px; text-transform:uppercase; color:var(--gold); margin-top:4px;}
+.arc-also{display:flex; flex-wrap:wrap; gap:4px; margin-top:2px;}
+.arc-also button{font:10.5px var(--sans); background:none; border:1px solid var(--hair); color:var(--muted); padding:2px 6px; border-radius:2px; cursor:pointer;}
+.arc-also button:hover, .arc-also button:focus-visible{color:var(--gold-bright); border-color:var(--gold);}
+.arc-stop.new{border-color:var(--crimson);}
+.arc-stop.new::before{box-shadow:inset 0 0 0 2px var(--crimson); background:var(--crimson);}
+.arc-stop.new .arc-badge{position:absolute; top:8px; right:10px; font-family:var(--mono); font-size:9.5px; letter-spacing:1px; background:var(--crimson); color:var(--white); padding:2px 6px; border-radius:2px;}
+.arc-nav{display:flex; justify-content:center; gap:8px; margin-top:6px;}
+.arc-nav button{background:var(--panel); border:1px solid var(--hair); color:var(--muted); font:12px var(--sans); padding:6px 12px; cursor:pointer; border-radius:2px;}
+.arc-nav button:hover{color:var(--white); border-color:var(--gold);}
+.arc-eras{display:flex; justify-content:space-between; font-family:var(--mono); font-size:10.5px; letter-spacing:1px; color:var(--muted); text-transform:uppercase; padding:0 4px; margin-top:2px;}
+
+/* the Army's official maps, each opening full size in the lightbox */
+.ds-maps{display:grid; grid-template-columns:repeat(auto-fill,minmax(240px,1fr)); gap:14px; margin-bottom:6px;}
+.ds-maps .figure img{aspect-ratio:3/2; object-fit:cover;}
+.ds-maps + .ds-note{margin-bottom:22px;}

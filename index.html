@@ -29,6 +29,8 @@
 <link rel="stylesheet" href="css/room-games.css">
 <link rel="stylesheet" href="css/wire-maps.css">
 <link rel="stylesheet" href="css/codes.css">
+<link rel="stylesheet" href="css/desert-storm.css">
+<link rel="stylesheet" href="css/map-pop.css">
 </head>
 <body>
 <a class="skip-link" href="#main">Skip to museum content</a>
@@ -52,6 +54,7 @@
       <button data-goto="wireless">Radio Annex</button>
       <button data-goto="wired">Wire Annex</button>
       <button data-goto="codes">Codes Annex</button>
+      <button data-goto="desert-storm">Desert Storm Annex</button>
       <button data-goto="civil-war" data-avsub="games">Games</button>
       <button data-goto="hello-girls">Hello Girls</button>
       <button data-goto="combat-camera">Combat Camera</button>
@@ -80,6 +83,27 @@
       </div>
     </div>
 
+    <div class="section arc" id="arc-section">
+      <h3>Through the Arc of History</h3>
+      <p class="lede">More than 160 years of Signal history, one era at a time. Choose a moment to walk into that part of the museum.</p>
+      <div class="arc-rail" id="arc-rail" data-tour-skip>
+        <div class="arc-stop"><button type="button" class="arc-main" data-goto="civil-war"><span class="arc-yr">1860–1865</span><span class="arc-t">Born in the Civil War</span><span class="arc-d">Congress creates the Signal Corps on 21 June 1860. Flags, torches and the telegraph.</span><span class="arc-go">Civil War Signal Annex →</span></button><div class="arc-also"><button type="button" data-goto="signal-story">The Signal Story</button></div></div>
+        <div class="arc-stop"><button type="button" class="arc-main" data-goto="weather"><span class="arc-yr">1870–1891</span><span class="arc-t">The nation's weather service</span><span class="arc-d">Signal observer-sergeants take the first synchronized readings and wire them to Washington.</span><span class="arc-go">Weather Annex →</span></button></div>
+        <div class="arc-stop"><button type="button" class="arc-main" data-goto="wired"><span class="arc-yr">1898–1945</span><span class="arc-t">Lines behind every army</span><span class="arc-d">Telegraph, telephone, field wire and cable, and the wiremen who laid them.</span><span class="arc-go">Wired Communications Annex →</span></button></div>
+        <div class="arc-stop"><button type="button" class="arc-main" data-goto="wireless"><span class="arc-yr">1899</span><span class="arc-t">Off the wire</span><span class="arc-d">A spark across twelve miles of water starts the Army's century of radio.</span><span class="arc-go">Wireless Radio Annex →</span></button></div>
+        <div class="arc-stop"><button type="button" class="arc-main" data-goto="aviation"><span class="arc-yr">1907</span><span class="arc-t">The first air arm</span><span class="arc-d">On 1 August 1907 the Signal Corps creates an Aeronautical Division of three.</span><span class="arc-go">Aviation Annex →</span></button></div>
+        <div class="arc-stop"><button type="button" class="arc-main" data-goto="camp-gordon"><span class="arc-yr">1917–1919</span><span class="arc-t">The Great War</span><span class="arc-d">The first Camp Gordon trains the 82d Division, and 223 Hello Girls connect the front.</span><span class="arc-go">Camp Gordon: The WWI Era →</span></button><div class="arc-also"><button type="button" data-goto="hello-girls">Hello Girls</button></div></div>
+        <div class="arc-stop"><button type="button" class="arc-main" data-goto="codes"><span class="arc-yr">1917–1945</span><span class="arc-t">Code makers, code breakers</span><span class="arc-d">From the cipher disk to the Enigma, keeping the Army's messages secret.</span><span class="arc-go">Coding and Encryption Annex →</span></button></div>
+        <div class="arc-stop"><button type="button" class="arc-main" data-goto="combat-camera"><span class="arc-yr">1941–1945</span><span class="arc-t">The Second World War</span><span class="arc-d">Camp Gordon rises at Augusta, and Signal Corps cameras film the war.</span><span class="arc-go">Combat Camera &amp; Video →</span></button><div class="arc-also"><button type="button" data-goto="fort-gordon">Fort Gordon, Then and Now</button></div></div>
+        <div class="arc-stop"><button type="button" class="arc-main" data-goto="satellites"><span class="arc-yr">1946–1969</span><span class="arc-t">Signals into space</span><span class="arc-d">A radar echo off the Moon, the first communications satellite, and Apollo 11.</span><span class="arc-go">Satellite Annex →</span></button></div>
+        <div class="arc-stop"><button type="button" class="arc-main" data-goto="signal-story"><span class="arc-yr">1948–1986</span><span class="arc-t">Signal comes home</span><span class="arc-d">The Signal Corps Training Center opens at Camp Gordon. Fort Gordon becomes the Regiment's home.</span><span class="arc-go">The Signal Story →</span></button><div class="arc-also"><button type="button" data-goto="command-gallery">Command Gallery</button></div></div>
+        <div class="arc-stop new"><span class="arc-badge">NEW</span><button type="button" class="arc-main" data-goto="desert-storm"><span class="arc-yr">1990–1991</span><span class="arc-t">Desert Shield &amp; Desert Storm</span><span class="arc-d">From two leased circuits to the largest switched network in the Army's history.</span><span class="arc-go">Desert Storm Annex →</span></button></div>
+        <div class="arc-stop"><button type="button" class="arc-main" data-goto="cyber-story"><span class="arc-yr">2014</span><span class="arc-t">A new branch</span><span class="arc-d">On 1 September 2014 Cyber becomes the Army's newest basic branch.</span><span class="arc-go">The Cyber Story →</span></button></div>
+        <div class="arc-stop"><button type="button" class="arc-main" data-goto="fort-gordon"><span class="arc-yr">Today</span><span class="arc-t">Fort Gordon, and a museum to come</span><span class="arc-d">The post's name returns in 2025, and the Society works toward a new museum building.</span><span class="arc-go">Fort Gordon, Then and Now →</span></button><div class="arc-also"><button type="button" data-goto="timeline">The museum's own timeline</button></div></div>
+      </div>
+      <div class="arc-nav"><button type="button" data-arc="prev" aria-label="Earlier eras">← Earlier</button><button type="button" data-arc="next" aria-label="Later eras">Later →</button></div>
+    </div>
+
     <div class="hero-3d" id="hero-3d">
       <div class="h3d-card">
         <div class="h3d-back"></div>
@@ -100,7 +124,7 @@
           <div class="fly-scene on" style="--ox:50%; --oy:52%; --from:1.02; --to:1.55" data-k="Arrival" data-t="The front door" data-d="A brick wing and a curved glass hall, under the sign U.S. Army Signal and Cyber Corps Museum." data-rooms=""><img src="assets/building.jpg" alt="Rendering of the museum from the parking lot: a brick wing joined to a curved glass hall, with the sign U.S. Army Signal and Cyber Corps Museum" decoding="async"></div>
           <div class="fly-scene" style="--ox:58%; --oy:50%; --from:1.04; --to:1.6" data-k="The entry hall" data-t="Through the doors" data-d="Brick, timber and glass: the reception desk, and a wall of soldier silhouettes under the Signal Corps motto, Pro Patria Vigilans." data-rooms="auditorium:Auditorium|fireside:Fireside Chats|combat-camera:Combat Camera &amp; Video"><img src="assets/entry_hall_render.jpg" alt="Rendering of the entry hall: a brick wall with posters, a wall of soldier silhouettes lettered Pro Patria Vigilans, and a reception desk beside tall windows" decoding="async"></div>
           <div class="fly-scene" style="--ox:32%; --oy:44%; --from:1.04; --to:1.6" data-k="The atrium" data-t="A café under a biplane and a satellite" data-d="The aviation and satellite eras hang side by side over the lobby and café." data-rooms="aviation:Aviation Annex|camp-gordon:Camp Gordon: The WWI Era|hello-girls:Hello Girls|civil-war:Civil War Signal Annex|weather:Weather Annex"><img src="assets/lobby_interior.jpg" alt="Rendering of the atrium with a café counter, a biplane and a satellite model hanging overhead" decoding="async"></div>
-          <div class="fly-scene" style="--ox:44%; --oy:42%; --from:1.04; --to:1.7" data-k="The Signal gallery" data-t="The story of the Corps" data-d="The planned Signal gallery, with an Albert James Myer exhibit and a section on Signal Corps film." data-rooms="signal-story:The Signal Story|fort-gordon:Fort Gordon, Then and Now|wireless:Wireless Radio Annex|wired:Wired Communications Annex"><img src="assets/signal_gallery_render.jpg" alt="Rendering of the Signal gallery with wall exhibits, display cases and visitors on a wooden floor" decoding="async"></div>
+          <div class="fly-scene" style="--ox:44%; --oy:42%; --from:1.04; --to:1.7" data-k="The Signal gallery" data-t="The story of the Corps" data-d="The planned Signal gallery, with an Albert James Myer exhibit and a section on Signal Corps film." data-rooms="signal-story:The Signal Story|fort-gordon:Fort Gordon, Then and Now|wireless:Wireless Radio Annex|wired:Wired Communications Annex|desert-storm:Desert Shield &amp; Desert Storm Annex"><img src="assets/signal_gallery_render.jpg" alt="Rendering of the Signal gallery with wall exhibits, display cases and visitors on a wooden floor" decoding="async"></div>
           <div class="fly-scene" style="--ox:46%; --oy:56%; --from:1.04; --to:1.7" data-k="The exhibit hall" data-t="Cyber and aviation under glass" data-d="The curved hall, with a biplane overhead and the Cyber and Aviation exhibits below." data-rooms="cyber-story:The Cyber Story|codes:Coding and Encryption Annex|command-gallery:Command Gallery|satellites:Satellite Annex"><img src="assets/aviation_render.jpg" alt="Rendering of the glass exhibit hall with a biplane overhead and Cyber and Technology exhibit walls" decoding="async"></div>
           <div class="fly-scene fit" style="--ox:62%; --oy:62%; --from:1.9; --to:1" data-k="The plan" data-t="The whole building" data-d="Lobby, café, display areas, meeting rooms and the curved exhibit hall." data-rooms="timeline:Timeline|people:Honor Roll|donor-spotlight:Donor Spotlight|give:Support the Museum|news:News &amp; Announcements|magazine:Heritage Magazine"><img src="assets/floor_plan.jpg" alt="Architectural floor plan of the museum" decoding="async"></div>
           <div class="fly-vignette"></div>
@@ -136,6 +160,7 @@
       <h3 style="text-align:center;">Museum Map</h3>
       <p class="lede" style="text-align:center; margin-left:auto; margin-right:auto;">Search for a room, or click anywhere on the floor plan to go there.</p>
 
+      <div class="map-pop-group" data-map-pop="Museum Map">
       <div class="map-search-wrap">
         <input type="text" id="map-search" class="map-search" placeholder="Search rooms — try &quot;aviation&quot; or &quot;donor&quot;" autocomplete="off">
         <div id="map-search-results" class="map-search-results"></div>
@@ -257,6 +282,7 @@
             <text x="565" y="671">Heritage Magazine</text>
           </g>
         </svg>
+      </div>
       </div>
     </div>
 
@@ -1111,7 +1137,7 @@
 
       <h3 class="wf-h">Where they flew from, and where they flew</h3>
       <p class="wf-kick">France, 1917–1918</p>
-      <div class="mapwrap">
+      <div class="mapwrap" data-map-pop="Where they flew from, and where they flew: France, 1917–1918">
     <div class="phases" role="group" aria-label="Choose a period">
       <button type="button" data-phase="train" aria-pressed="false">Training &amp; rear</button>
       <button type="button" data-phase="toul" aria-pressed="true">Toul sector</button>
@@ -2196,7 +2222,7 @@
         <div class="sat-tl"><article class="sat-card"><div class="sat-yr">1837–1844</div><h3>Morse, Vail and the dot-and-dash code</h3><p>Samuel F. B. Morse needed technical help, money and political support to turn his telegraph into a working system. Working with the technician Alfred Vail, he developed the system of dots and dashes that became known as Morse code, around 1837. On May 24, 1844, Morse sent “What hath God wrought?” from the Supreme Court room in the U.S. Capitol to Vail in Baltimore.</p></article><article class="sat-card"><div class="sat-yr">1862–1865</div><h3>Lincoln in the telegraph office</h3><p>In March 1862 the War Department set up its telegraph office in the old library of the War Department building, next to the White House. President Lincoln spent more time there than anywhere outside the White House, often walking over at night, and he slept on a cot there during key battles. He read the incoming “lightning messages” at a desk by the window while operators turned Morse code into written messages.</p></article><article class="sat-card"><div class="sat-yr">1861–1865</div><h3>Civilians on the wires</h3><p>The telegraph that served Lincoln was run by civilians. The U.S. Military Telegraph Corps, headed from October 1861 by former Western Union official Anson Stager, grew to more than 1,500 people and built about 15,000 miles of field, land and submarine line. Only its supervisors held military commissions. Operators received no military recognition until 1897. Important messages were sent in cipher.</p></article><article class="sat-card"><div class="sat-yr">1862–1863</div><h3>The Signal Corps&#x27; own telegraph</h3><p>The Signal Corps tried to run its own electric telegraph. Its Beardslee field telegraph used a hand-cranked generator and a dial instead of a key, so it did not send Morse code. It reached only about 5 to 8 miles, and its pointers often fell out of step. At Fredericksburg on December 13, 1862, signal corpsmen ran a line across the Rappahannock River under fire. At Chancellorsville in May 1863, after poor results, Military Telegraph operators replaced the Signal Corps&#x27; Beardslee operators.</p></article></div>
         <h2 class="sat-h">Watch the wires spread</h2>
         <p class="lede" style="margin-top:10px;">Press Play to follow the Union's military telegraph from the War Department in 1861 to more than fifteen thousand miles of wire in 1865. Each step draws its lines and tells what they carried.</p>
-        <div class="wm" data-wire-map="civil-war"></div>
+        <div class="wm" data-wire-map="civil-war" data-map-pop="The military telegraph, 1861–1865"></div>
 
         <div class="cw-try"><span>Try the code</span><button type="button" data-game="flag">Flag Drill</button><button type="button" data-game="torch">Torch Drill (night)</button><button type="button" data-game="morse">Telegraph Key</button></div>
         <p class="sat-src">Sources: U.S. Army (army.mil); Army Heritage Center Foundation; National Park Service; Library of Congress; History.com; Wikipedia, for cross-checks and the 1864 code table.</p>
@@ -2297,7 +2323,7 @@
     <div class="section" id="weather-map">
       <h2 class="sat-h">Read the weather map</h2>
       <p class="lede">Signal Corps observers sent their readings by telegraph, and the War Department drew them onto weather maps of the country. Try reading one. This practice map was drawn for the museum and shows an imaginary day, not a historical chart.</p>
-      <div class="wx-game" id="wx-game">
+      <div class="wx-game" id="wx-game" data-map-pop="Read the weather map">
         <div class="wx-map-wrap"><svg class="wx-map" id="wx-map" viewBox="0 0 640 420" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Practice weather map of the eastern United States"></svg></div>
         <div class="wx-panel">
           <div class="wx-legend" aria-label="Map key">
@@ -2358,7 +2384,7 @@
       <p class="source-note">Three of the nineteen panels in <button type="button" class="fg-link" data-goto="camp-gordon">Camp Gordon: The WWI Era</button>.</p>
 
       <h3 class="fg-sub">Five sites, one name</h3>
-      <div class="fg-map-wrap">
+      <div class="fg-map-wrap" data-map-pop="Five sites, one name">
         <div class="fg-map" role="img" aria-label="Map of Georgia marking five sites: Camp Gordon on St. Simons Island, Camp Gordon at Chamblee near Atlanta, Camp MacKenzie and Camp Hancock in Augusta, Fort McPherson in Atlanta, and Fort Gordon southwest of Augusta.">
           <svg viewBox="0 0 430 450" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
             <path class="fg-land" d="M36.7,31.5L227.8,31.5L236.0,38.7L255.1,63.9L269.7,88.2L295.7,125.1L312.5,153.0L323.2,173.7L343.1,202.5L356.1,225.9L378.3,279.9L398.2,298.8L386.7,317.7L373.7,343.8L368.4,373.5L358.4,394.2L354.6,417.6L333.9,414.9L310.2,412.2L309.5,433.8L295.7,430.2L159.5,421.2L93.7,417.6L83.0,391.5L74.6,366.3L78.4,337.5L72.3,315.9L83.0,274.5L69.3,223.2L37.1,33.3Z"/>
@@ -2999,7 +3025,7 @@
 
       <h2 class="sat-h">Watch the lines cross France</h2>
       <p class="lede" style="margin-top:10px;">Press Play to follow the Signal Corps' telegraph and telephone lines from a borrowed French wire in 1917 to a network of about 38,000 miles at the Armistice.</p>
-      <div class="wm" data-wire-map="ww1"></div>
+      <div class="wm" data-wire-map="ww1" data-map-pop="Signal Corps lines across France, 1918"></div>
 
       <div class="ax-photos">
         <figure class="ax-photo"><a href="assets/annex/wire-lineman-prauthoy-1919.jpg" target="_blank" rel="noopener"><img loading="lazy" decoding="async" src="assets/annex/wire-lineman-prauthoy-1919.jpg" width="1200" height="928" alt="A lineman high on a telephone pole in a French village street, with soldiers and townspeople watching from below"></a><figcaption>A Signal Corps lineman on the pole, fixing wires that run into the telephone and telegraph office of Company B, 307th Field Signal Battalion, 82nd Division, at Prauthoy, Haute-Marne, France, January 1919.<span class="ax-credit">National Archives, photo 111-SC-51977 · public domain · <a href="https://catalog.archives.gov/id/86709160" target="_blank" rel="noopener">source</a></span></figcaption></figure>
@@ -3187,6 +3213,284 @@
     </div>
   </div>
 </section>
+<!-- ================= DESERT SHIELD & DESERT STORM ANNEX ================= -->
+<section class="room" id="room-desert-storm">
+  <div class="wrap">
+    <div class="room-head">
+      <div class="room-kicker">Desert Shield &amp; Desert Storm Annex</div>
+      <h1 class="room-title">The Network in the Sand</h1>
+      <p class="room-dek">August 1990 to February 1991. When the first Americans reached Saudi Arabia, the U.S. military had two leased telephone circuits there. Seven months later, Signal Soldiers were running what the Army's lessons-learned center called "the largest automatic switched voice and message network in the history of the U.S. Army."</p>
+    </div>
+
+    <div class="ds-strip" aria-label="The network by the numbers">
+      <div class="ds-stat"><div class="v">2</div><div class="k">leased telephone circuits in Saudi Arabia when the buildup began</div></div>
+      <div class="ds-stat"><div class="v">15 + 5</div><div class="k">voice and message switches serving more than 90 locations</div></div>
+      <div class="ds-stat"><div class="v">10 million</div><div class="k">words of data a day, in and out of the combat zone</div></div>
+      <div class="ds-stat"><div class="v">7 → 128</div><div class="k">military satellite (DSCS) terminals, first to peak</div></div>
+      <div class="ds-stat"><div class="v">~50%</div><div class="k">of the theater's communications carried by DSCS satellites</div></div>
+      <div class="ds-stat"><div class="v">15,000</div><div class="k">e-mails a day between soldiers and their families and friends</div></div>
+      <div class="ds-stat"><div class="v">120,000</div><div class="k">square miles covered by the 35th Signal Brigade alone</div></div>
+      <div class="ds-stat"><div class="v">400</div><div class="k">miles of wire and cable laid by the 35th Signal Brigade</div></div>
+    </div>
+    <p class="ds-note">Figures from the U.S. Army Center of Military History (switches, data, e-mail, 35th Signal Brigade) and U.S. Army Space and Missile Defense Command historians (DSCS). Full sources at the foot of the room.</p>
+
+    <!-- ===== 1. The story ===== -->
+    <div class="section">
+      <h3>From two circuits to a theater</h3>
+      <div class="prose">
+        <p>Iraq invaded Kuwait on 2 August 1990. Within days the United States began moving forces to Saudi Arabia, and the Signal Corps faced a country with almost no military communications to build on. Army historian Rebecca Raines records that "the U.S. military had just two leased telephone circuits and two record traffic circuits" there when the buildup began.</p>
+        <p>The 11th Signal Brigade, the Army's theater signal brigade, arrived from Fort Huachuca, Arizona, and began building. Raines writes that by the end of August it "was running the largest common user data communications system ever present in a theater of operations." Its own 40th and 86th Signal Battalions were joined by the 44th and 63d from Germany and by the 67th Signal Battalion from Fort Gordon, until the brigade had five signal battalions and two companies.</p>
+        <p>Because military satellites were scarce, the Army also leased circuits on commercial satellites. Military satellite terminals of the Defense Satellite Communications System grew from seven at the start to 128 at their peak, and Army space historians credit DSCS with carrying about half of all the theater's communications.</p>
+        <p>As the force grew to two Army corps, so did the network. The 35th Signal Brigade came from Fort Bragg with XVIII Airborne Corps. The 93d Signal Brigade came from Germany with VII Corps, its equipment scattered "among twenty different ships." On 4 December 1990 the Army activated the 6th Signal Command at Fort Huachuca to administer the theater network. Its commander, Charles G. Sutten Jr., was the overall commander of all Army signal units in Operation Desert Storm.</p>
+        <p>By the time the ground war began, "fifteen voice and five message switches supplied communications support to more than ninety locations." Air Force Lieutenant General James Cassity, the Joint Staff's communications director, summed it up: "We put more electronic communications connectivity into the Gulf in 90 days than we put in Europe in 40 years."</p>
+      </div>
+    </div>
+
+    <!-- ===== 2. Network diagram ===== -->
+    <div class="section" id="ds-network">
+      <h3>How the network fit together</h3>
+      <p class="lede">Select a level to see who built it and what it carried. Calls and messages moved down this stack from Washington to a soldier's handset, and back up.</p>
+      <div class="ds-net" data-tour-skip>
+        <div class="ds-net-stack" role="tablist" aria-label="Levels of the theater network">
+          <button type="button" class="ds-tier" role="tab" aria-selected="false" data-tier="space"><span class="ds-tier-k">Strategic</span><span class="ds-tier-t">Satellites and the link home</span><span class="ds-tier-s">DSCS · leased commercial satellites</span></button>
+          <button type="button" class="ds-tier" role="tab" aria-selected="true" data-tier="theater"><span class="ds-tier-k">Theater</span><span class="ds-tier-t">6th Signal Command · 11th Signal Brigade</span><span class="ds-tier-s">Switches, message centers, troposcatter</span></button>
+          <div class="ds-tier-pair">
+            <button type="button" class="ds-tier" role="tab" aria-selected="false" data-tier="xviii"><span class="ds-tier-k">Corps</span><span class="ds-tier-t">35th Signal Brigade</span><span class="ds-tier-s">XVIII Airborne Corps</span></button>
+            <button type="button" class="ds-tier" role="tab" aria-selected="false" data-tier="vii"><span class="ds-tier-k">Corps</span><span class="ds-tier-t">93d Signal Brigade</span><span class="ds-tier-s">VII Corps</span></button>
+          </div>
+          <button type="button" class="ds-tier" role="tab" aria-selected="false" data-tier="division"><span class="ds-tier-k">Division</span><span class="ds-tier-t">Division signal battalions</span><span class="ds-tier-s">MSE node centers · TACSAT</span></button>
+          <button type="button" class="ds-tier" role="tab" aria-selected="false" data-tier="soldier"><span class="ds-tier-k">The Soldier</span><span class="ds-tier-t">Radios, phones and mail home</span><span class="ds-tier-s">SINCGARS · e-mail · phone banks</span></button>
+        </div>
+        <div class="ds-net-panel" aria-live="polite">
+          <div class="ds-pane" data-pane="space" hidden>
+            <h4>Satellites and the link home</h4>
+            <p>Military satellites of the Defense Satellite Communications System (DSCS) carried about half of the theater's traffic. Terminals grew from seven ground-mobile force terminals to 128 at the peak. A RAND study counted 110 terminals on 15 January 1991 and "50 major network configuration changes" during the operation.</p>
+            <p>"Due to a shortage of military satellites, the Army leased circuits from commercial satellites." The 35th Signal Brigade kept a permanent satellite link to its home at Fort Bragg.</p>
+          </div>
+          <div class="ds-pane" data-pane="theater">
+            <h4>The theater backbone</h4>
+            <p>The 11th Signal Brigade, the Army's theater signal brigade from Fort Huachuca, built the backbone behind both corps: telephone and message switches, the data network and long-haul radio links. It grew to five signal battalions and two companies, including the 67th Signal Battalion from Fort Gordon.</p>
+            <p>The 6th Signal Command, activated 4 December 1990, took on the job of administering the theater network. The Florida Army National Guard's 653d Signal Company added troposcatter radio links, which bounce signals off the lower atmosphere to reach beyond the horizon.</p>
+            <p>The Army's lessons-learned center found that eight organizations planned and managed parts of the switched network, from Central Command down to the three signal brigades.</p>
+          </div>
+          <div class="ds-pane" data-pane="xviii" hidden>
+            <h4>35th Signal Brigade with XVIII Airborne Corps</h4>
+            <p>From Fort Bragg, the brigade gave the corps "communications coverage over an area of more than 120,000 square miles in northern Saudi Arabia and southern Iraq." It "installed 169 separate communications systems as well as 400 miles of wire and cable." Its battalions included the 25th, the 50th (Airborne), the 327th and the 426th, joined by elements of the 57th Signal Battalion.</p>
+            <p>XVIII Airborne Corps made the longest move of the war, over 500 miles west to Rafha, and the brigade's network had to move with it.</p>
+          </div>
+          <div class="ds-pane" data-pane="vii" hidden>
+            <h4>93d Signal Brigade with VII Corps</h4>
+            <p>VII Corps came from Germany, and its signal brigade's equipment was dispersed "among twenty different ships." The brigade linked the corps headquarters, five divisions and an armored cavalry regiment, but only two of those five divisions had finished fielding Mobile Subscriber Equipment (MSE) before the war.</p>
+            <p>After the war the brigade's colors came home to Fort Gordon, where it was inactivated on 5 December 1991.</p>
+          </div>
+          <div class="ds-pane" data-pane="division" hidden>
+            <h4>Division signal battalions</h4>
+            <p>Mobile Subscriber Equipment, the Army's new tactical radiotelephone network, "received its battle testing in the harsh desert environment." The 3d Armored Division planned to "drop off the node centers every 30 - 35 km" behind its lead brigade as it advanced.</p>
+            <p>When the attack outran the nodes, satellites carried the load. The 24th Infantry Division's signal officer reported that "single channel TACSAT was the only means of long-distance communications during most of the attack into Iraq."</p>
+          </div>
+          <div class="ds-pane" data-pane="soldier" hidden>
+            <h4>The Soldier at the end of the line</h4>
+            <p>The new SINCGARS radio "achieved a mean time between failures rate of 7,000 hours," against 200 to 300 hours for the radio it replaced. An e-mail system let soldiers write to family and friends, and it handled "approximately fifteen thousand such messages each day."</p>
+            <p>Everyone wanted to call home. The 24th Infantry Division's signal officer reported "near grid lock on the military telephone system" until two Saudi telephone banks and two AT&amp;T phone banks were installed.</p>
+          </div>
+        </div>
+      </div>
+      <p class="ds-note">Museum illustration, simplified from descriptions by the Center of Military History, the Center for Army Lessons Learned, RAND and Army after-action reports. It is not an official network diagram.</p>
+    </div>
+
+    <!-- ===== 3. Map ===== -->
+    <div class="section" id="ds-map">
+      <h3>The shift west, and the hundred hours</h3>
+      <p class="lede">The ground plan depended on two corps moving west in secret, and on their signal brigades moving the network with them. Switch between the two phases.</p>
+      <div class="ds-map" data-tour-skip data-map-pop="The shift west, and the hundred hours">
+        <div class="ds-map-tabs" role="tablist">
+          <button type="button" class="active" data-phase="shift" role="tab" aria-selected="true">The shift west · 20 Jan to mid-Feb 1991</button>
+          <button type="button" data-phase="attack" role="tab" aria-selected="false">The ground war · 24 to 28 Feb 1991</button>
+        </div>
+        <svg class="ds-map-svg" viewBox="0 0 780 600" role="img" aria-labelledby="ds-map-title ds-map-desc" data-phase="shift">
+          <title id="ds-map-title">Schematic map of the shift west and the ground war</title>
+          <desc id="ds-map-desc">Saudi Arabia, Kuwait and southern Iraq. In the shift west, XVIII Airborne Corps moves more than 500 miles to Rafha and VII Corps more than 330 miles to positions west of Kuwait. In the ground war, XVIII Airborne Corps attacks north toward the Euphrates and VII Corps attacks north then east, with signal node centers dropped behind the advance.</desc>
+          <defs>
+            <marker id="ds-arr-x" viewBox="0 0 10 10" refX="6" refY="5" markerUnits="userSpaceOnUse" markerWidth="16" markerHeight="16" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#e0bc4a"/></marker>
+            <marker id="ds-arr-v" viewBox="0 0 10 10" refX="6" refY="5" markerUnits="userSpaceOnUse" markerWidth="16" markerHeight="16" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#d9705f"/></marker>
+            <pattern id="ds-sand" width="6" height="6" patternUnits="userSpaceOnUse"><circle cx="1" cy="1" r=".6" fill="rgba(224,188,74,.18)"/></pattern>
+          </defs>
+          <rect x="0" y="0" width="780" height="600" class="ds-land"/>
+          <rect x="0" y="0" width="780" height="600" fill="url(#ds-sand)"/>
+          <!-- sea -->
+          <path class="ds-sea" d="M576 175 L606 175 L708 231 L780 322 L780 600 L738 600 L728 543 L692 476 L696 434 L666 385 L624 336 L595 277 L570 210 Z"/>
+          <!-- borders -->
+          <path class="ds-border" d="M48 21 L216 98 L372 231 L483 238"/>
+          <path class="ds-border" d="M483 238 L534 277 L595 279"/>
+          <path class="ds-border" d="M483 238 L519 175 L576 175"/>
+          <!-- Tapline road -->
+          <path class="ds-road" d="M90 70 L216 126 L299 198 L380 255 L448 285"/>
+          <text x="196" y="146" class="ds-road-l" transform="rotate(30 196 146)">Tapline Road</text>
+          <!-- country labels -->
+          <text x="250" y="60" class="ds-country">IRAQ</text>
+          <text x="300" y="470" class="ds-country">SAUDI ARABIA</text>
+          <text x="508" y="262" class="ds-country sm">KUWAIT</text>
+          <text x="690" y="380" class="ds-country sea" transform="rotate(48 690 380)">PERSIAN GULF</text>
+          <!-- places -->
+          <g class="ds-place"><circle cx="492" cy="546" r="4"/><text x="502" y="550">Riyadh</text></g>
+          <g class="ds-place"><circle cx="696" cy="434" r="4"/><text x="650" y="452">Dhahran</text></g>
+          <g class="ds-place"><circle cx="420" cy="322" r="4"/><text x="300" y="336">King Khalid Military City</text></g>
+          <g class="ds-place"><circle cx="448" cy="285" r="4"/><text x="458" y="300">Hafar al-Batin</text></g>
+          <g class="ds-place"><circle cx="299" cy="201" r="4"/><text x="252" y="222">Rafha</text></g>
+          <g class="ds-place"><circle cx="569" cy="219" r="4"/><text x="578" y="232">Kuwait City</text></g>
+          <g class="ds-place"><circle cx="558" cy="140" r="4"/><text x="568" y="140">Basra</text></g>
+          <g class="ds-place"><circle cx="466" cy="102" r="4"/><text x="476" y="98">Nasiriyah</text></g>
+          <g class="ds-place"><circle cx="363" cy="140" r="4"/><text x="300" y="132">As Salman</text></g>
+          <!-- phase 1: shift west -->
+          <g class="ds-layer ds-shift">
+            <path class="ds-move xviii" d="M640 372 C560 330 470 300 420 300 C370 296 330 240 306 208" marker-end="url(#ds-arr-x)"/>
+            <path class="ds-move vii" d="M620 400 C560 380 500 360 456 340 C430 330 412 300 404 268" marker-end="url(#ds-arr-v)"/>
+            <g class="ds-tag xviii"><rect x="560" y="300" width="170" height="40" rx="3"/><text x="570" y="317">XVIII Airborne Corps</text><text x="570" y="332" class="s">over 500 miles to Rafha</text></g>
+            <g class="ds-tag vii"><rect x="520" y="404" width="150" height="40" rx="3"/><text x="530" y="421">VII Corps</text><text x="530" y="436" class="s">over 330 miles west</text></g>
+          </g>
+          <!-- phase 2: ground war -->
+          <g class="ds-layer ds-attack">
+            <path class="ds-move xviii" d="M300 196 C320 170 340 150 360 142" marker-end="url(#ds-arr-x)"/>
+            <path class="ds-move xviii" d="M350 222 C380 170 420 126 460 108" marker-end="url(#ds-arr-x)"/>
+            <path class="ds-move vii" d="M404 262 C420 210 440 180 470 170 C500 166 530 168 552 150" marker-end="url(#ds-arr-v)"/>
+            <path class="ds-move vii" d="M446 258 C470 236 500 222 528 206" marker-end="url(#ds-arr-v)"/>
+            <g class="ds-nodes">
+              <circle cx="410" cy="240" r="5"/><circle cx="420" cy="214" r="5"/><circle cx="436" cy="192" r="5"/><circle cx="458" cy="176" r="5"/><circle cx="486" cy="168" r="5"/>
+            </g>
+            <g class="ds-tag xviii"><rect x="120" y="236" width="150" height="40" rx="3"/><text x="130" y="253">XVIII Airborne Corps</text><text x="130" y="268" class="s">north to the Euphrates</text></g>
+            <g class="ds-tag vii"><rect x="590" y="236" width="170" height="54" rx="3"/><text x="600" y="253">VII Corps</text><text x="600" y="268" class="s">north, then east</text><text x="600" y="282" class="s">● MSE node centers</text></g>
+          </g>
+          <text x="16" y="588" class="ds-scale">Schematic, simplified. Positions approximate; not to scale.</text>
+        </svg>
+        <div class="ds-map-cap">
+          <p class="ds-cap-shift">The shift "began on 20 January, and the movement continued unabated for about three weeks." The Army gathered almost 4,000 heavy trucks for it, and at its height "about eighteen vehicles per minute passed along any given stretch of road." Each corps signal brigade had to pick up its network and rebuild it at the far end of the move.</p>
+          <p class="ds-cap-attack" hidden>The ground war opened on 24 February. As VII Corps attacked, the 3d Armored Division planned to drop off an MSE node center every 30 to 35 kilometers to keep its command posts connected. Kuwait City was liberated on 27 February, and the cease-fire took effect "at 0800, 28 February."</p>
+        </div>
+      </div>
+      <p class="ds-note">Museum illustration. Movement figures from <i>The Whirlwind War</i>, chapters 7 and 8 (U.S. Army Center of Military History). For the Army's official maps, see the archives below.</p>
+    </div>
+
+    <!-- ===== 4. Chronology ===== -->
+    <div class="section">
+      <h3>Building it, month by month</h3>
+      <ol class="chron">
+        <li class="key"><div class="when">2 August 1990</div><div class="what">Iraq invades Kuwait</div><p>The U.S. military has two leased telephone circuits and two record traffic circuits in Saudi Arabia.</p></li>
+        <li><div class="when">August 1990</div><div class="what">The first Guard signal unit</div><p>The South Carolina Army National Guard's 228th Signal Detachment becomes the first National Guard unit sent to the Persian Gulf.</p></li>
+        <li><div class="when">End of August 1990</div><div class="what">A theater data network</div><p>The 11th Signal Brigade is running "the largest common user data communications system ever present in a theater of operations."</p></li>
+        <li><div class="when">22 September 1990</div><div class="what">Fort Gordon's battalion is alerted</div><p>The 67th Signal Battalion, stationed at Fort Gordon, is alerted for Southwest Asia and goes under the operational control of the 11th Signal Brigade.</p></li>
+        <li><div class="when">November 1990</div><div class="what">VII Corps is ordered from Germany</div><p>Its 93d Signal Brigade ships out with its equipment spread across twenty ships. The 51st Signal Battalion, alerted 8 November, has people on the ground in Saudi Arabia within three weeks.</p></li>
+        <li class="key"><div class="when">4 December 1990</div><div class="what">6th Signal Command activated</div><p>The Army activates the 6th Signal Command at Fort Huachuca to administer the theater network.</p></li>
+        <li><div class="when">6 January 1991</div><div class="what">Troposcatter from Florida</div><p>The Florida Guard's 653d Signal Company, mobilized 6 December and the largest reserve-component signal unit sent to the theater, arrives. It reaches Camp Thunderbird three hours before the air war begins.</p></li>
+        <li><div class="when">15 January 1991</div><div class="what">110 satellite terminals</div><p>RAND counts 110 DSCS terminals on the network, sharing 67.65 megabits per second of satellite capacity.</p></li>
+        <li class="key"><div class="when">17 January 1991</div><div class="what">The air war begins</div><p>Operation Desert Shield becomes Operation Desert Storm.</p></li>
+        <li><div class="when">20 January 1991</div><div class="what">The shift west</div><p>Both corps begin moving west, XVIII Airborne Corps over 500 miles and VII Corps over 330. Their networks move with them.</p></li>
+        <li class="key"><div class="when">24 February 1991</div><div class="what">The ground war</div><p>Mobile Subscriber Equipment gets its first combat test, with single-channel satellite radio carrying long-distance traffic as the attack outruns the nodes.</p></li>
+        <li class="key"><div class="when">28 February 1991</div><div class="what">Cease-fire</div><p>The cease-fire takes effect at 0800, one hundred hours after the ground war began.</p></li>
+        <li><div class="when">March 1991</div><div class="what">Staying on</div><p>The 54th Signal Battalion is formed to provide information management support for the theater.</p></li>
+        <li><div class="when">5 December 1991</div><div class="what">Colors home to Fort Gordon</div><p>The 93d Signal Brigade's colors return to Fort Gordon for the brigade's inactivation.</p></li>
+      </ol>
+    </div>
+
+    <!-- ===== 5. Who built it ===== -->
+    <div class="section">
+      <h3>Who built it</h3>
+      <p class="lede">Active, Guard and Reserve signal units from across the Army. A few of them:</p>
+      <div class="ds-units">
+        <article class="ds-unit"><div class="ds-unit-k">Theater</div><h4>11th Signal Brigade</h4><p>Fort Huachuca, Arizona. Built the theater backbone and grew to five battalions: the 40th, 44th, 63d, 67th and 86th.</p></article>
+        <article class="ds-unit"><div class="ds-unit-k">Theater command</div><h4>6th Signal Command</h4><p>Activated 4 December 1990 at Fort Huachuca to administer the theater network.</p></article>
+        <article class="ds-unit"><div class="ds-unit-k">XVIII Airborne Corps</div><h4>35th Signal Brigade</h4><p>Fort Bragg, North Carolina. 169 systems, 400 miles of wire and cable, and 120,000 square miles covered.</p></article>
+        <article class="ds-unit"><div class="ds-unit-k">VII Corps</div><h4>93d Signal Brigade</h4><p>Germany. Linked the corps headquarters to five divisions and an armored cavalry regiment.</p></article>
+        <article class="ds-unit ds-home"><div class="ds-unit-k">From Fort Gordon</div><h4>67th Signal Battalion</h4><p>Stationed at Fort Gordon. Alerted 22 September 1990 and under the 11th Signal Brigade through both operations.</p></article>
+        <article class="ds-unit"><div class="ds-unit-k">Florida Army National Guard</div><h4>653d Signal Company</h4><p>Troposcatter radio. The largest reserve-component signal unit sent to the theater.</p></article>
+        <article class="ds-unit"><div class="ds-unit-k">South Carolina Army National Guard</div><h4>228th Signal Detachment</h4><p>The first National Guard unit sent to the Persian Gulf, in August 1990.</p></article>
+        <article class="ds-unit"><div class="ds-unit-k">Army Reserve, New York</div><h4>408th Signal Detachment</h4><p>Printing and reproduction for the theater.</p></article>
+      </div>
+      <div class="ds-callout">
+        <div class="ds-callout-k">The Fort Gordon connection</div>
+        <p>"In 1990-1991, the Signal Center played a vital role in preparing soldiers for deployment during Desert Shield/Desert Storm," the Cyber Center of Excellence history records. Fort Gordon sent the 67th Signal Battalion to the war and received the 93d Signal Brigade's colors when it came home. One of the captains who built networks for the 101st Airborne Division in the war's great air assault, Alan R. Lynn, came back to Fort Gordon twenty years later as Chief of Signal.</p>
+      </div>
+    </div>
+
+    <!-- ===== 6. Voices ===== -->
+    <div class="section" id="ds-voices">
+      <h3>Voices from the network</h3>
+      <p class="lede">In their own words, from oral histories, personal-experience papers and after-action reports. Each quotation links to where it was published.</p>
+      <div class="ds-voices">
+        <figure class="ds-voice"><blockquote>“We were the first to train on the Army's Mobile Subscriber Equipment.” Our job was “to set up radios and antennas to provide satellite phone communications to the commanders.”</blockquote><figcaption><b>Kelly Kennedy</b>, private first class, 17th Signal Battalion<a href="https://thewarhorse.org/chemicals-chemicals-and-more-chemicals-a-veteran-reflects-on-her-time-in-desert-storm/" target="_blank" rel="noopener">The War Horse, 2021 ↗</a></figcaption></figure>
+        <figure class="ds-voice"><blockquote>“For women, we were in the frontlines with our communication vans.”</blockquote><figcaption><b>Brenda E. Smull</b>, lieutenant and platoon leader, 13th Signal Battalion, 1st Cavalry Division<a href="https://brendasmull.com/2022/08/20/1st-cav-in-the-desert/" target="_blank" rel="noopener">“1st CAV in the Desert,” 2022 ↗</a></figcaption></figure>
+        <figure class="ds-voice"><blockquote>“We heard the chemical alarms go off through our masks.”</blockquote><figcaption><b>Kelly Kennedy</b>, 17th Signal Battalion, on the ground war<a href="https://thewarhorse.org/chemicals-chemicals-and-more-chemicals-a-veteran-reflects-on-her-time-in-desert-storm/" target="_blank" rel="noopener">The War Horse, 2021 ↗</a></figcaption></figure>
+        <figure class="ds-voice"><blockquote>“We put more electronic communications connectivity into the Gulf in 90 days than we put in Europe in 40 years.”</blockquote><figcaption><b>Lt. Gen. James Cassity</b>, U.S. Air Force, Joint Staff J6, as quoted by Maj. Ralph I. Ebener Jr.<a href="https://apps.dtic.mil/sti/pdfs/ADA300168.pdf" target="_blank" rel="noopener">School of Advanced Military Studies, 1995 ↗</a></figcaption></figure>
+        <figure class="ds-voice"><blockquote>“In my signal battalion, 132 trucks had to be adapted to carry signal shelters, painted and prepared for shipment.… This was accomplished in under three days working around the clock.”</blockquote><figcaption><b>Col. Walter M. Craig Jr.</b>, battalion commander, 1st Infantry Division, Fort Riley<a href="https://apps.dtic.mil/sti/pdfs/ADA295931.pdf" target="_blank" rel="noopener">Army War College, 1992 ↗</a></figcaption></figure>
+        <figure class="ds-voice"><blockquote>“She was the sergeant of this little remote radio tower.”</blockquote><figcaption><b>Brenda E. Smull</b>, on a sergeant in her platoon to whom Iraqi soldiers surrendered<a href="https://brendasmull.com/2022/08/20/1st-cav-in-the-desert/" target="_blank" rel="noopener">“1st CAV in the Desert,” 2022 ↗</a></figcaption></figure>
+        <figure class="ds-voice"><blockquote>“…the signal guys did their thing with their high-speed communication equipment.”</blockquote><figcaption><b>Gregory M. Smith</b>, unit supply specialist, B Company, 50th Signal Battalion (Airborne)<a href="https://apps.dtic.mil/sti/pdfs/AD1101622.pdf" target="_blank" rel="noopener">“My Desert Shield/Storm Experience,” 2006 ↗</a></figcaption></figure>
+        <figure class="ds-voice"><blockquote>“…one constantly got a busy signal on every number dialed—even at 0200 hours!”</blockquote><figcaption><b>Col. Paul E. Christopher</b>, chief of operations, VII Corps<a href="https://apps.dtic.mil/sti/pdfs/ADA295952.pdf" target="_blank" rel="noopener">Army War College, 1992 ↗</a></figcaption></figure>
+        <figure class="ds-voice ds-voice-doc"><blockquote>“…single channel TACSAT was the only means of long-distance communications during most of the attack into Iraq.”</blockquote><figcaption><b>Signal Officer, 24th Infantry Division (Mechanized)</b>, after-action report, 1991<a href="https://gulflink.health.mil/declassdocs/army/19960805/080596_jun96_decls21_0185.html" target="_blank" rel="noopener">GulfLINK declassified records ↗</a></figcaption></figure>
+      </div>
+      <p class="ds-note">Served in Desert Shield or Desert Storm as a Signal Soldier? The museum would like to record your story. <button type="button" class="ds-linkbtn" data-contact-jump>Write to us</button>.</p>
+    </div>
+
+    <!-- ===== 7. From the archives ===== -->
+    <div class="section" id="ds-archives">
+      <h3>From the archives</h3>
+      <p class="lede">The Army's official maps of the campaign, from the Center of Military History, open here full size. The diagrams, photographs and records below them are held by the Center of Military History, the National Archives and other government collections, and each opens at its source.</p>
+      <div class="ds-maps">
+        <div class="figure artifact-sheet" role="button" tabindex="0" data-lightbox="ds_map11" data-lightbox-wide data-lightbox-cap="Map 11: Preparing for the Ground War, 17 January–17 February 1991. U.S. Army Center of Military History, The Whirlwind War.">
+          <img loading="lazy" decoding="async" src="assets/annex/desert-storm-cmh-map11.jpg" data-img="ds_map11" alt="Army map of northeastern Saudi Arabia and Kuwait showing XVIII Airborne Corps and VII Corps moving west from their tactical assembly areas to forward assembly areas, with supply routes and logistics bases">
+          <div class="cap"><strong>Map 11 · Preparing for the Ground War, 17 January–17 February 1991</strong> The shift west: both corps move from their assembly areas to forward positions along the Iraqi border.<span class="zoom">Pop out map ⤢</span></div>
+        </div>
+        <div class="figure artifact-sheet" role="button" tabindex="0" data-lightbox="ds_map12" data-lightbox-wide data-lightbox-cap="Map 12: Jump Off Locations, 23 February 1991. U.S. Army Center of Military History, The Whirlwind War.">
+          <img loading="lazy" decoding="async" src="assets/annex/desert-storm-cmh-map12.jpg" data-img="ds_map12" alt="Army map of the Saudi border with Iraq and Kuwait showing where each coalition corps and division stood on 23 February 1991">
+          <div class="cap"><strong>Map 12 · Jump Off Locations, 23 February 1991</strong> Where each corps and division stood on the eve of the ground war.<span class="zoom">Pop out map ⤢</span></div>
+        </div>
+        <div class="figure artifact-sheet" role="button" tabindex="0" data-lightbox="ds_map13" data-lightbox-wide data-lightbox-cap="Map 13: Ground War Situation, 24 February 1991. U.S. Army Center of Military History, The Whirlwind War.">
+          <img loading="lazy" decoding="async" src="assets/annex/desert-storm-cmh-map13.jpg" data-img="ds_map13" alt="Army map of the ground war situation on 24 February 1991">
+          <div class="cap"><strong>Map 13 · Ground War Situation, 24 February 1991</strong> The first day of the ground war.<span class="zoom">Pop out map ⤢</span></div>
+        </div>
+        <div class="figure artifact-sheet" role="button" tabindex="0" data-lightbox="ds_map14" data-lightbox-wide data-lightbox-cap="Map 14: Ground War Situation, 25 February 1991. U.S. Army Center of Military History, The Whirlwind War.">
+          <img loading="lazy" decoding="async" src="assets/annex/desert-storm-cmh-map14.jpg" data-img="ds_map14" alt="Army map of the ground war situation on 25 February 1991">
+          <div class="cap"><strong>Map 14 · Ground War Situation, 25 February 1991</strong> The second day.<span class="zoom">Pop out map ⤢</span></div>
+        </div>
+        <div class="figure artifact-sheet" role="button" tabindex="0" data-lightbox="ds_map15" data-lightbox-wide data-lightbox-cap="Map 15: Ground War Situation, 26 February 1991. U.S. Army Center of Military History, The Whirlwind War.">
+          <img loading="lazy" decoding="async" src="assets/annex/desert-storm-cmh-map15.jpg" data-img="ds_map15" alt="Army map of the ground war situation on 26 February 1991">
+          <div class="cap"><strong>Map 15 · Ground War Situation, 26 February 1991</strong> The third day.<span class="zoom">Pop out map ⤢</span></div>
+        </div>
+        <div class="figure artifact-sheet" role="button" tabindex="0" data-lightbox="ds_map16" data-lightbox-wide data-lightbox-cap="Map 16: Ground War Situation, 27 February 1991. U.S. Army Center of Military History, The Whirlwind War.">
+          <img loading="lazy" decoding="async" src="assets/annex/desert-storm-cmh-map16.jpg" data-img="ds_map16" alt="Army map of the ground war situation on 27 February 1991, with coalition forces across southern Iraq and Kuwait">
+          <div class="cap"><strong>Map 16 · Ground War Situation, 27 February 1991</strong> The fourth day, when Kuwait City was liberated.<span class="zoom">Pop out map ⤢</span></div>
+        </div>
+      </div>
+      <p class="ds-note">Maps 11 to 16 from Frank N. Schubert and Theresa L. Kraus, eds., <i>The Whirlwind War</i> (U.S. Army Center of Military History). Works of the U.S. Government, in the public domain.</p>
+      <div class="ds-arch">
+        <a class="ds-art" href="https://webdoc.sub.gwdg.de/ebook/p/2005/CMH_2/www.army.mil/cmh-pg/books/www/p142.jpg" target="_blank" rel="noopener"><span class="ds-art-type">Photograph</span><span class="ds-art-t">Signal troop adjusts a tactical satellite dish at a desert installation</span><span class="ds-art-s">Center of Military History, <i>The Whirlwind War</i>, p. 142</span></a>
+        <a class="ds-art" href="https://picryl.com/media/a-soldier-sets-up-a-communications-system-during-operation-desert-shield-1cb624" target="_blank" rel="noopener"><span class="ds-art-type">Photograph</span><span class="ds-art-t">A soldier sets up a communications system during Operation Desert Shield</span><span class="ds-art-s">National Archives, Combined Military Service Digital Photographic Files, 21 February 1991</span></a>
+        <a class="ds-art" href="https://apps.dtic.mil/sti/pdfs/ADA282314.pdf" target="_blank" rel="noopener"><span class="ds-art-type">Diagram</span><span class="ds-art-t">Buildup of the CENTCOM satellite network</span><span class="ds-art-s">RAND for the U.S. Army, 1993, Figure 1, p. 9: terminals and capacity, month by month</span></a>
+        <a class="ds-art" href="https://apps.dtic.mil/sti/pdfs/ADA263904.pdf" target="_blank" rel="noopener"><span class="ds-art-type">Diagrams</span><span class="ds-art-t">The MSE area system, and MSE support of maneuver</span><span class="ds-art-s">U.S. Army War College study, 1993, Figures 4 and 6</span></a>
+        <a class="ds-art" href="https://gulflink.health.mil/declassdocs/army/19960820/081996_jul96_decls1_0024.html" target="_blank" rel="noopener"><span class="ds-art-type">Record</span><span class="ds-art-t">3d Armored Division: planning MSE node centers for the attack</span><span class="ds-art-s">Declassified division history, GulfLINK</span></a>
+        <a class="ds-art" href="https://gulflink.health.mil/declassdocs/army/19960805/080596_jun96_decls21_0182.html" target="_blank" rel="noopener"><span class="ds-art-type">Record</span><span class="ds-art-t">24th Infantry Division signal lessons learned</span><span class="ds-art-s">Declassified after-action report, GulfLINK, 1991</span></a>
+        <a class="ds-art" href="https://history.army.mil/books/30-17/S_11.htm" target="_blank" rel="noopener"><span class="ds-art-type">Book</span><span class="ds-art-t"><i>Getting the Message Through</i>, chapter 11</span><span class="ds-art-s">Rebecca Robbins Raines, the Center of Military History's branch history of the Signal Corps</span></a>
+        <a class="ds-art" href="https://www.globalsecurity.org/military/library/report/call/call_92-1_ch3.htm" target="_blank" rel="noopener"><span class="ds-art-type">Report</span><span class="ds-art-t">Center for Army Lessons Learned, Handbook 92-1, chapter 3</span><span class="ds-art-s">Communications lessons from the operation</span></a>
+        <a class="ds-art" href="https://apps.dtic.mil/sti/tr/pdf/ADA251082.pdf" target="_blank" rel="noopener"><span class="ds-art-type">Study</span><span class="ds-art-t">“Crossed Signals on the Battlefield”</span><span class="ds-art-s">Lt. Col. Jon P. Bird, Army War College, 1992: Guard and Reserve signal units in the war</span></a>
+      </div>
+    </div>
+
+    <!-- ===== 8. Legacy ===== -->
+    <div class="section">
+      <h3>What the desert taught</h3>
+      <div class="ds-lessons">
+        <div><h4>New equipment proved itself</h4><p>MSE and SINCGARS both had their first war in the desert, and both held up. SINCGARS failed about once in 7,000 hours, against 200 to 300 hours for the radio it replaced.</p></div>
+        <div><h4>Satellites became essential</h4><p>DSCS carried about half the theater's traffic, and single-channel TACSAT was often the only long-distance link once the attack began.</p></div>
+        <div><h4>Not everything fit together</h4><p>Raines notes that with new and older systems mixed in one network, "data transmission remained problematical." Reserve units without compatible equipment were left off the force list, and the official history records that "American field radios proved unreliable" for some units in the attack.</p></div>
+      </div>
+    </div>
+
+    <p class="sat-src">Sources: Rebecca Robbins Raines, <i>Getting the Message Through: A Branch History of the U.S. Army Signal Corps</i>, chapter 11 (U.S. Army Center of Military History); Frank N. Schubert and Theresa L. Kraus, eds., <i>The Whirlwind War</i> (Center of Military History); Center for Army Lessons Learned Handbook 92-1; U.S. Army Space and Missile Defense Command history office (army.mil, 2016); RAND N-3568-A (1993); Lt. Col. Jon P. Bird, Army War College (1992); Maj. Ralph I. Ebener Jr., School of Advanced Military Studies (1995); 24th Infantry Division and 3d Armored Division records on GulfLINK; Cyber Center of Excellence history (home.army.mil/gordon); unit histories of the 67th Signal Battalion, 93d Signal Brigade, 51st Signal Battalion and 228th Signal Brigade; and the first-person accounts linked above.</p>
+
+    <div class="room-foot">
+      <button data-goto="satellites">← Satellite Annex</button>
+      <button data-goto="cyber-story">Next: The Cyber Story →</button>
+    </div>
+  </div>
+</section>
 </main>
 <!-- ================= MUSEUM MAP ================= -->
 
@@ -3246,6 +3550,12 @@
   "dday_signal": "assets/dday_signal.jpg",
   "dirigible": "assets/dirigible.jpg",
   "donor_screenshot": "assets/donor_screenshot.jpg",
+  "ds_map11": "assets/annex/desert-storm-cmh-map11.jpg",
+  "ds_map12": "assets/annex/desert-storm-cmh-map12.jpg",
+  "ds_map13": "assets/annex/desert-storm-cmh-map13.jpg",
+  "ds_map14": "assets/annex/desert-storm-cmh-map14.jpg",
+  "ds_map15": "assets/annex/desert-storm-cmh-map15.jpg",
+  "ds_map16": "assets/annex/desert-storm-cmh-map16.jpg",
   "fireside_group": "assets/fireside_group.jpg",
   "flags": "assets/flags.jpg",
   "floor_plan": "assets/floor_plan.jpg",
@@ -4049,6 +4359,8 @@
 <script src="js/room-games.js"></script>
 <script src="js/aviation-front.js"></script>
 <script src="js/enigma.js"></script>
+<script src="js/desert-storm.js"></script>
+<script src="js/map-pop.js"></script>
 <script src="js/contact.js"></script>
 <script src="js/tour-guide.js"></script>
 <script src="js/analytics.js"></script>
