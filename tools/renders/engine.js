@@ -3,7 +3,9 @@
 // floors, green-marble cases, track lights) and hangs a room's own pictures in it.
 /* global THREE, ROOMS */
 const ASSET = new URL('../../', location.href).href; // the repo root
-const OUT_W = 1600, OUT_H = 900, SS = 1.5;
+const OUT_W = 1600, OUT_H = 900, SS = 2;
+const SHOW_PEOPLE = false; // the owner asked for rooms without figures (review, 16 Oct 2026)
+const GLOWS = []; // light sources to bloom in post: [position, strength]
 
 function rng(seed){ let s = seed >>> 0 || 1; return () => (s = (s * 1664525 + 1013904223) >>> 0) / 4294967296; }
 const R = rng(7);
@@ -94,7 +96,7 @@ function textTex(lines, o){
       g.font = `${i === 0 ? o.weight : '400'} ${sz}px ${o.font}`;
       if ('letterSpacing' in g) g.letterSpacing = (i === 0 ? o.track : 2) + 'px';
       let s = sz; while (g.measureText(ln).width > w * .9 && s > 10){ s -= 4; g.font = `${i === 0 ? o.weight : '400'} ${s}px ${o.font}`; }
-      const y = n === 1 ? h / 2 : h * (i === 0 ? .4 : .4 + .32 * i);
+      const y = n === 1 ? h / 2 : n === 2 ? h * (i === 0 ? .4 : .72) : h * (.5 + (i - (n - 1) / 2) * .2);
       g.fillText(ln, w / 2, y);
     });
   });
@@ -169,6 +171,7 @@ function spotOn(g, hh){
   // track-light can
   const can = cyl(.06, .08, .22, M.black, sp.position.x, sp.position.y - .05, sp.position.z, 12); can.castShadow = false;
   can.lookAt(wp); can.rotateX(Math.PI / 2);
+  GLOWS.push([new THREE.Vector3().copy(sp.position).lerp(wp, .045), .55]);
 }
 function caseOn(x, z, o){
   o = o || {};
@@ -183,6 +186,7 @@ function caseOn(x, z, o){
   const pl = new THREE.PointLight(0xfff0d0, .5, 1.6); pl.position.set(x, h + gh, z); scene.add(pl);
 }
 function person(x, z, ry, o){
+  if (!SHOW_PEOPLE) return new THREE.Group();
   o = o || {};
   const top = std({ color: o.top || 0x2a2d33, roughness: .8 }), leg = std({ color: o.leg || 0x1d2027, roughness: .8 }), skin = std({ color: o.skin || 0xb98563, roughness: .7 });
   blob(x, z, .38, .3, .6);
@@ -227,7 +231,28 @@ function shell(cfg){
   const floorMat = cfg.floor === "concrete" ? std({ map: carpetTex("#5a5d62", [W / 4, D / 4]), color: 0x8a8a8a, roughness: .55, metalness: .05, envMapIntensity: .25 })
     : cfg.floor === 'carpet' ? std({ map: carpetTex(cfg.carpet || '#6b1f24', [6, 6]), roughness: 1 })
     : std({ map: woodTex(cfg.wood || [112, 58, 34], [W / 3, D / 3]), color: 0xb0b0b0, roughness: .3, metalness: .05, envMapIntensity: .35 });
+  // surface relief: the brick, plank and plaster textures double as bump maps
+  [M.brick, M.brickSide].forEach(m => { m.bumpMap = m.map; m.bumpScale = -.06; });
+  M.wall.bumpMap = M.wall.map; M.wall.bumpScale = .01;
+  if (floorMat.map && cfg.floor !== 'carpet'){ floorMat.bumpMap = floorMat.map; floorMat.bumpScale = .012; }
   const fl = new THREE.Mesh(new THREE.PlaneGeometry(W, D), floorMat); fl.rotation.x = -Math.PI / 2; fl.receiveShadow = true; scene.add(fl);
+  // a polished floor reflects the room: blend in a mirrored render (see run)
+  const refl = cfg.floor === 'carpet' ? 0 : cfg.floor === 'concrete' ? .16 : (cfg.refl || .2);
+  if (refl){
+    FLOOR = fl;
+    floorMat.onBeforeCompile = sh => {
+      sh.uniforms.tReflect = { value: REFLECT.texture };
+      sh.uniforms.uRes = { value: new THREE.Vector2(OUT_W * SS, OUT_H * SS) };
+      sh.uniforms.uRefl = { value: refl };
+      sh.fragmentShader = 'uniform sampler2D tReflect;\nuniform vec2 uRes;\nuniform float uRefl;\n' + sh.fragmentShader.replace('#include <dithering_fragment>', `#include <dithering_fragment>
+        vec2 suv = gl_FragCoord.xy / uRes; vec3 rc = vec3(0.0);
+        for (int i = -2; i <= 2; i++) for (int j = -2; j <= 2; j++) rc += texture2D(tReflect, suv + vec2(float(i), float(j)) * vec2(0.0024, 0.0042)).rgb;
+        rc = LinearTosRGB(vec4(ACESFilmicToneMapping(rc / 25.0), 1.0)).rgb;
+        gl_FragColor.rgb = mix(gl_FragColor.rgb, rc, uRefl * (0.25 + 0.75 * smoothstep(0.0, 0.55, suv.y)));`);
+    };
+  }
+  // soft shading where walls meet the floor and the ceiling
+  aoEdges(cfg);
   const ceil = new THREE.Mesh(new THREE.PlaneGeometry(W, D), std({ color: cfg.ceil || 0x2d2f33, roughness: .9 })); ceil.rotation.x = Math.PI / 2; ceil.position.y = H; scene.add(ceil);
   const wallMat = k => cfg.walls && cfg.walls[k] === 'brick' ? (k === 'back' ? M.brick : M.brickSide) : cfg.walls && cfg.walls[k] === 'dark' ? M.dark : M.wall;
   const bw = new THREE.Mesh(new THREE.PlaneGeometry(W, H), wallMat('back')); bw.position.set(0, H / 2, -D / 2); bw.receiveShadow = true; scene.add(bw);
@@ -240,13 +265,15 @@ function shell(cfg){
     if (!(cfg.walls && cfg.walls.right === 'glass')) box(.06, .22, D, M.trim, W / 2 - .03, H - .5, 0);
   }
   box(W, .12, .03, M.black, 0, .06, -D / 2 + .02);
+  box(.03, .12, D, M.black, -W / 2 + .02, .06, 0);
+  if (!(cfg.walls && cfg.walls.right === 'glass')) box(.03, .12, D, M.black, W / 2 - .02, .06, 0);
   // timber beam grid and posts
   for (let x = -W / 2 + 4; x < W / 2; x += 4) box(.28, .4, D, M.timber, x, H - .2, 0).castShadow = false;
   for (let z = -D / 2 + 4; z < D / 2; z += 4) box(W, .32, .24, M.timber, 0, H - .16, z).castShadow = false;
   (cfg.posts || []).forEach(p => box(.3, H, .3, M.timber, p[0], H / 2, p[1]));
   // recessed downlights
   for (let x = -W / 2 + 2; x < W / 2; x += 4) for (let z = -D / 2 + 2; z < D / 2; z += 4){
-    const d = new THREE.Mesh(new THREE.CircleGeometry(.12, 20), new THREE.MeshBasicMaterial({ color: 0xfff6e0 })); d.rotation.x = Math.PI / 2; d.position.set(x, H - .01, z); scene.add(d);
+    const d = new THREE.Mesh(new THREE.CircleGeometry(.12, 20), new THREE.MeshBasicMaterial({ color: 0xfff6e0 })); d.rotation.x = Math.PI / 2; d.position.set(x, H - .01, z); scene.add(d); GLOWS.push([d.position.clone().setY(H - .03), 1]);
   }
   // light
   scene.add(new THREE.HemisphereLight(0xfff3e2, 0x3a2a1e, cfg.hemi || .28));
@@ -254,6 +281,24 @@ function shell(cfg){
   sun.castShadow = true; sun.shadow.mapSize.set(2048, 2048); const sc = sun.shadow.camera; sc.left = -W / 2; sc.right = W / 2; sc.top = D / 2; sc.bottom = -D / 2; sc.far = 40; sun.shadow.bias = -.0005; sun.shadow.radius = 4;
   scene.add(sun);
   for (let x = -W / 2 + 3; x < W / 2; x += 6) for (let z = -D / 2 + 3; z < D / 2; z += 6){ const pl = new THREE.PointLight(0xffe9c8, cfg.fill || .35, 10); pl.position.set(x, H - .4, z); scene.add(pl); }
+}
+let FLOOR = null, REFLECT = null;
+// gradient strips that darken the corners of the room, a stand-in for ambient occlusion
+function aoEdges(cfg){
+  const tex = canvasTex(8, 128, (g, w, h) => { const r = g.createLinearGradient(0, 0, 0, h); r.addColorStop(0, 'rgba(0,0,0,1)'); r.addColorStop(.35, 'rgba(0,0,0,.35)'); r.addColorStop(1, 'rgba(0,0,0,0)'); g.fillStyle = r; g.fillRect(0, 0, w, h); });
+  const mat = a => new THREE.MeshBasicMaterial({ map: tex, transparent: true, opacity: a, depthWrite: false, polygonOffset: true, polygonOffsetFactor: -2 });
+  const glass = cfg.walls && cfg.walls.right === 'glass';
+  const walls = [['back', W, 0, -D / 2, 0], ['left', D, -W / 2, 0, Math.PI / 2]];
+  if (!glass) walls.push(['right', D, W / 2, 0, -Math.PI / 2]);
+  // the gradient is dark along the texture's top edge
+  const flipped = () => { const t = tex.clone(); t.center.set(.5, .5); t.rotation = Math.PI; t.needsUpdate = true; return t; };
+  walls.forEach(([, len, x, z, ry]) => {
+    const n = new THREE.Vector3(Math.sin(ry), 0, Math.cos(ry)); // into the room
+    const at = (m, y, off) => { m.position.set(x + n.x * off, y, z + n.z * off); scene.add(m); return m; };
+    const base = new THREE.Mesh(new THREE.PlaneGeometry(len, .7), mat(.42)); base.material.map = flipped(); base.rotation.y = ry; at(base, .35, .006);
+    const top = new THREE.Mesh(new THREE.PlaneGeometry(len, .9), mat(.5)); top.rotation.y = ry; at(top, H - .45, .006);
+    const fl = new THREE.Mesh(new THREE.PlaneGeometry(len, .6), mat(.38)); fl.rotation.order = 'YXZ'; fl.rotation.y = ry; fl.rotation.x = -Math.PI / 2; at(fl, .003, .3);
+  });
 }
 function glassWall(){
   const sky = new THREE.Mesh(new THREE.PlaneGeometry(D * 3, H * 3), new THREE.MeshBasicMaterial({ map: skyTex() }));
@@ -283,6 +328,7 @@ async function run(){
   renderer.outputEncoding = THREE.sRGBEncoding; renderer.toneMapping = THREE.ACESFilmicToneMapping; renderer.toneMappingExposure = cfg.exposure || 1.0;
   renderer.shadowMap.enabled = true; renderer.shadowMap.type = THREE.PCFSoftShadowMap; renderer.physicallyCorrectLights = false;
   scene.environment = envMap();
+  REFLECT = new THREE.WebGLRenderTarget(OUT_W * SS / 2, OUT_H * SS / 2, { type: THREE.HalfFloatType });
   BLOB = canvasTex(128, 128, (g, w, h) => { const r = g.createRadialGradient(64, 64, 0, 64, 64, 64); r.addColorStop(0, "rgba(0,0,0,1)"); r.addColorStop(.55, "rgba(0,0,0,.6)"); r.addColorStop(1, "rgba(0,0,0,0)"); g.fillStyle = r; g.fillRect(0, 0, w, h); });
   shell(cfg);
   cfg.build();
@@ -293,9 +339,34 @@ async function run(){
   camera.lookAt(cm.lx || 0, cm.ly || 1.75, cm.lz !== undefined ? cm.lz : -D / 2);
   camera.updateMatrixWorld();
   scene.updateMatrixWorld(true);
+  if (FLOOR){ // the room mirrored in the floor, rendered first and blended in by the floor's shader
+    FLOOR.visible = false; scene.scale.y = -1; scene.updateMatrixWorld(true);
+    renderer.setRenderTarget(REFLECT); renderer.render(scene, camera); renderer.setRenderTarget(null);
+    FLOOR.visible = true; scene.scale.y = 1; scene.updateMatrixWorld(true);
+  }
   renderer.render(scene, camera);
   const c = document.createElement('canvas'); c.width = OUT_W; c.height = OUT_H;
   const g = c.getContext('2d'); g.imageSmoothingQuality = 'high'; g.drawImage(renderer.domElement, 0, 0, OUT_W, OUT_H);
+  // bloom around the lights that the camera can see
+  const rcg = new THREE.Raycaster();
+  g.globalCompositeOperation = 'lighter';
+  GLOWS.forEach(([p, k]) => {
+    const s = p.clone().project(camera); if (s.z > 1 || Math.abs(s.x) > 1.05 || Math.abs(s.y) > 1.05) return;
+    const dist = camera.position.distanceTo(p);
+    rcg.set(camera.position, p.clone().sub(camera.position).normalize());
+    const hit = rcg.intersectObjects(scene.children, true).find(h => h.object.material && !h.object.material.transparent);
+    if (hit && hit.distance < dist - .15) return;
+    const x = (s.x + 1) / 2 * OUT_W, y = (1 - s.y) / 2 * OUT_H, r = Math.min(90, 260 / dist) * k;
+    const gr = g.createRadialGradient(x, y, 0, x, y, r);
+    gr.addColorStop(0, 'rgba(255,240,215,.55)'); gr.addColorStop(.18, 'rgba(255,225,180,.18)'); gr.addColorStop(1, 'rgba(255,210,160,0)');
+    g.fillStyle = gr; g.fillRect(x - r, y - r, r * 2, r * 2);
+  });
+  g.globalCompositeOperation = 'source-over';
+  // a gentle S-curve and fine film grain
+  const px = g.getImageData(0, 0, OUT_W, OUT_H), a = px.data, curve = new Uint8ClampedArray(256);
+  for (let i = 0; i < 256; i++){ const t = i / 255; curve[i] = 255 * (t + .22 * t * (1 - t) * (t - .5) * 2); }
+  for (let i = 0; i < a.length; i += 4){ const n = (R() - .5) * 7; a[i] = curve[a[i]] + n; a[i + 1] = curve[a[i + 1]] + n; a[i + 2] = curve[a[i + 2]] + n; }
+  g.putImageData(px, 0, 0);
   // lens vignette, as in the architect renders
   const vg = g.createRadialGradient(OUT_W / 2, OUT_H / 2, OUT_H * .45, OUT_W / 2, OUT_H / 2, OUT_W * .62);
   vg.addColorStop(0, "rgba(0,0,0,0)"); vg.addColorStop(1, "rgba(0,0,0,.38)"); g.fillStyle = vg; g.fillRect(0, 0, OUT_W, OUT_H);

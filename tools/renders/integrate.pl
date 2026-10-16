@@ -23,9 +23,9 @@ my %desc = (
   'camp-gordon'     => 'a brick-walled gallery of First World War photographs, with a line of sandbags and display cases',
   'command-gallery' => 'a gallery of Signal Command patches, with unit photographs and a display board',
   'hello-girls'     => 'a gallery of 1918 photographs of the Signal Corps telephone operators, with a period switchboard and display cases',
-  'combat-camera'   => 'a gallery of Signal Corps photographs, with an Oscars wall and a newsreel camera on a tripod',
+  'combat-camera'   => 'a gallery of Signal Corps photographs, with an Oscars wall, the two Academy Award statuettes for Prelude to War and Seeds of Destiny in lit cases, and a newsreel camera on a tripod',
   'fireside'        => 'a fireside room with armchairs on a rug, a bookcase, and the Heritage magazine above the fireplace',
-  'donor-spotlight' => 'a donor wall with a gold plaque for each tier of the Campaign Circle',
+  'donor-spotlight' => 'a donor wall with a gold plaque for each tier of the Campaign Circle, beside portraits of Maj. Gen. Peter Kind and a frame for Maj. Gen. Patricia Frost',
   'people'          => 'an honor roll wall of portraits, with Hall of Fame pictures and display cases',
   'give'            => 'a campaign room with wartime posters, a fundraising panel, and pictures of the planned building',
   'timeline'        => 'a timeline wall with the Society\'s three seals for 2019, 2021 and 2024',
@@ -56,7 +56,7 @@ for my $r (sort keys %id){
   copy("$thumbs/$r.jpg", "assets/renders/thumbs/$r.jpg") or die "thumb $r: $!";
   (my $key = "render_$r") =~ tr/-/_/; $reg{$key} = "assets/renders/$r.jpg";
   my $room = slurp($f);
-  $room =~ s{\n    <figure class="render-fig">.*?</figure>\n}{\n}s;  # idempotent
+  $room =~ s{\n    <figure class="render-fig">.*?</figure>\n}{}s;  # idempotent
   my ($title) = $room =~ m{<h1 class="room-title">(.*?)</h1>}s;
   # alt text for every picture this room already shows
   my %alt;
@@ -84,7 +84,7 @@ for my $r (sort keys %id){
 # the Cyber Story already has a drawing: the architect's exhibit hall
 {
   my $f = $roomfile{'cyber-story'}; my $room = slurp($f);
-  $room =~ s{\n    <figure class="render-fig">.*?</figure>\n}{\n}s;
+  $room =~ s{\n    <figure class="render-fig">.*?</figure>\n}{}s;
   my $fig = qq{\n    <figure class="render-fig">\n      <div class="render-stage">\n        <img loading="lazy" decoding="async" src="assets/aviation_render.jpg" data-img="aviation_render" alt="Rendering of the glass exhibit hall with a biplane overhead and Cyber and Technology exhibit walls">\n      </div>\n      <figcaption><b>Where the Cyber exhibit is planned.</b> The architect's rendering of the curved exhibit hall, with the Cyber and Technology walls under the biplane. The finished museum may differ.</figcaption>\n    </figure>\n};
   $room =~ s{(<div class="room-head">.*?<p class="room-dek">.*?</p>\s*</div>\n)}{$1$fig}s or die "no room-head in $f";
   spew($f, $room);
@@ -93,7 +93,7 @@ for my $r (sort keys %id){
 # a lobby gallery of every room's drawing
 {
   my $f = $roomfile{'lobby'}; my $room = slurp($f);
-  $room =~ s{\n    <div class="section" id="rooms-drawn">.*?<!-- /rooms-drawn -->\n}{\n}s;
+  $room =~ s{\n    <div class="section" id="rooms-drawn">.*?<!-- /rooms-drawn -->\n}{}s;
   my @all = ([ 'signal-story', 'The Signal Story', undef, 'assets/signal_gallery_render.jpg', 'Architect' ], [ 'aviation', 'The Aviation Annex', undef, 'assets/aviation_render.jpg', 'Architect' ], [ 'cyber-story', 'The Cyber Story', undef, 'assets/aviation_render.jpg', 'Architect' ]);
   # floor order, as the rooms appear in the building
   my %order; my $i = 0; $order{$_} = $i++ for map { m{rooms/\d+-(.+)\.html$}; my $t = slurp($_); $t =~ /id="room-([^"]+)"/ ? $1 : () } sort glob 'rooms/*.html';

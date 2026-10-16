@@ -132,7 +132,22 @@ ROOMS['combat-camera'] = {
     [-.14, .14].forEach(k => { const r = new THREE.Mesh(new THREE.CylinderGeometry(.2, .2, .07, 24), mat(0x2f2f2f, { metalness: .5 })); r.rotation.z = Math.PI / 2; r.position.set(.0, 1.98, k * 1.6); r.rotation.set(0, 0, Math.PI / 2); r.position.set(k, 2.0, 0); r.rotation.set(Math.PI / 2, 0, 0); cg.add(r); });
     const lens = new THREE.Mesh(new THREE.CylinderGeometry(.06, .07, .25, 16), M.black); lens.rotation.x = Math.PI / 2; lens.position.set(0, 1.65, .28); cg.add(lens);
     blob(-3.2, -2.4, .6, .6, .6);
-    caseOn(4.6, -3, { item: item.reel() }); caseOn(6.2, -3, { item: item.reel() });
+    // the Corps' two Academy Awards, each statuette on its own lit plinth with its film named
+    const gold = std({ color: 0xd4a73a, metalness: 1, roughness: .22, envMapIntensity: 1.6 });
+    const oscar = (x, y, z) => {
+      cyl(.075, .085, .09, M.black, x, y + .045, z, 28); cyl(.05, .055, .03, gold, x, y + .105, z, 24);
+      cyl(.028, .036, .2, gold, x, y + .22, z, 16); cyl(.034, .028, .1, gold, x, y + .37, z, 16);
+      const hd = new THREE.Mesh(new THREE.SphereGeometry(.026, 16, 12), gold); hd.position.set(x, y + .45, z); scene.add(hd);
+      cyl(.012, .012, .2, gold, x, y + .19, z + .03, 8);
+    };
+    [[4.4, -2.6, 'PRELUDE TO WAR · 1942'], [6.4, -2.6, 'SEEDS OF DESTINY · 1946']].forEach(([x, z, t]) => {
+      caseOn(x, z, { w: .7, d: .7, h: 1.05, gh: .7, item: oscar });
+      const lb = new THREE.Mesh(new THREE.PlaneGeometry(.62, .12), std({ map: textTex([t], { w: 768, h: 150, bg: '#1d1d1f', fg: '#e0bc4a', size: 54, track: 2 }) }));
+      lb.position.set(x, .8, z + .36); scene.add(lb);
+      const sp = new THREE.SpotLight(0xfff3dc, 2.6, 6, .2, .4); sp.position.set(x, H - .3, z + .4); sp.target.position.set(x, 1.3, z); scene.add(sp, sp.target);
+      GLOWS.push([new THREE.Vector3(x, H - .32, z + .4), .5]);
+    });
+    caseOn(2.6, -4.8, { item: item.reel() });
     person(-.6, -3.6, Math.PI, P(0, 2)); person(4.2, -.6, -1.9, P(0, 0)); person(1.6, 1.4, Math.PI - .4, P(0, 1, { skirt: true }));
   },
 };
@@ -180,7 +195,18 @@ ROOMS['donor-spotlight'] = {
       const p = new THREE.Mesh(new THREE.PlaneGeometry(1.8, .56), std({ map: tx, metalness: .55, roughness: .35, envMapIntensity: 1.2 })); p.position.set(x, y, -6.86); scene.add(p);
     });
     const sp = new THREE.SpotLight(0xfff0d8, 3, 10, .55, .5); sp.position.set(0, 4.6, -3.5); sp.target.position.set(0, 2.1, -7); scene.add(sp, sp.target);
-    row('left', [['assets/peter_kind.jpg', 'Peter Kind'], ['assets/nara/fg-kind-1990.jpg', 'Peter Kind, 1990']], 2.1, 1.6, -2.2, 3.4);
+    picture('assets/nara/fg-kind-1990.jpg', 'left', -4.2, 2.1, 1.5, { alt: 'Peter Kind, 1990' });
+    picture('assets/peter_kind.jpg', 'back', -7.5, 2.1, 1.5, { alt: 'Peter Kind' });
+    // Maj. Gen. Patricia Frost beside General Kind (owner's review, 16 Oct 2026). Her portrait
+    // goes in this frame when the Society supplies one: set FROST_PORTRAIT to its path.
+    const FROST_PORTRAIT = null;
+    if (FROST_PORTRAIT) picture(FROST_PORTRAIT, 'back', -5.85, 2.1, 1.5, { alt: 'Maj. Gen. Patricia Frost' });
+    else {
+      const g = group(-5.85, 2.1, -D / 2 + .07, 0);
+      const fm = new THREE.Mesh(new THREE.BoxGeometry(1.29, 1.64, .05), M.frame); g.add(fm);
+      const pt = new THREE.Mesh(new THREE.PlaneGeometry(1.15, 1.5), std({ map: textTex(['MAJ. GEN.', 'PATRICIA FROST', 'U.S. ARMY, RETIRED'], { w: 600, h: 800, bg: '#e9e3d4', fg: '#1d1d1f', size: 64, sub: .9, border: '#c9a227' }) }));
+      pt.position.z = .03; g.add(pt); spotOn(g, 1.5);
+    }
     caseOn(4.2, -3.2, { item: item.medal() });
     person(-.8, -4.2, Math.PI + .1, P(0, 4)); person(1.4, -3.6, Math.PI - .3, P(0, 2, { skirt: true }));
   },
