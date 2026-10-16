@@ -755,3 +755,29 @@ a.cover:hover, a.cover:focus-visible{border-color:var(--gold);}
 /* "Write to Us" in the top bar: opens the form in the Get Involved room */
 .topbar-nav button.nav-write{color:var(--gold-bright); border:1px solid var(--gold); padding:7px 12px; margin-left:4px;}
 .topbar-nav button.nav-write:hover{background:var(--gold); color:var(--ink);}
+
+/* Room drawings: each room's concept drawing under its heading, with a hotspot
+   on every framed picture that leads to that picture in the room */
+.render-fig{margin:0 0 40px; border:1px solid var(--hair); background:var(--panel);}
+.render-stage{position:relative; line-height:0; overflow:hidden;}
+.render-stage img{display:block; width:100%; height:auto;}
+.render-hot{position:absolute; padding:0; margin:0; background:transparent; cursor:pointer;
+  border:1px dashed rgba(224,188,74,.75); border-radius:2px; transition:border-color .15s, box-shadow .15s, background .15s;}
+.render-hot span{position:absolute; left:50%; bottom:calc(100% + 6px); transform:translateX(-50%); width:max-content; max-width:240px;
+  background:var(--ink); color:var(--paper-2); border:1px solid var(--gold); font:12px/1.35 var(--sans); padding:5px 8px;
+  text-align:left; white-space:normal; opacity:0; pointer-events:none; transition:opacity .15s; z-index:2;}
+.render-hot:hover, .render-hot:focus-visible{border:2px solid var(--gold-bright); background:rgba(224,188,74,.12); box-shadow:0 0 0 3px rgba(13,31,22,.55); outline:none;}
+.render-hot:hover span, .render-hot:focus-visible span{opacity:1;}
+.render-fig figcaption{padding:12px 14px; font-size:12.5px; color:var(--muted); border-top:1px solid var(--hair); line-height:1.5;}
+.render-fig figcaption b{color:var(--paper-2); font-weight:600;}
+.render-flash{outline:3px solid var(--gold-bright); outline-offset:4px; transition:outline-color 1.2s;}
+@media (max-width:640px){ .render-hot span{display:none;} .render-hot{border-style:solid; border-color:rgba(224,188,74,.6);} }
+
+/* Lobby: every room's drawing, as a way in */
+.drawn-grid{display:grid; grid-template-columns:repeat(auto-fill, minmax(200px, 1fr)); gap:14px;}
+.drawn-card{display:block; padding:0; text-align:left; background:var(--panel); border:1px solid var(--hair); color:var(--paper-2); cursor:pointer; font:inherit; transition:border-color .15s, transform .15s;}
+.drawn-card img{display:block; width:100%; height:auto; aspect-ratio:16/9; object-fit:cover;}
+.drawn-card .drawn-k{display:block; padding:9px 11px 0; font-family:var(--mono); font-size:10.5px; letter-spacing:1px; text-transform:uppercase; color:var(--gold);}
+.drawn-card .drawn-t{display:block; padding:2px 11px 11px; font-family:var(--serif); font-size:15.5px; line-height:1.3;}
+.drawn-card:hover, .drawn-card:focus-visible{border-color:var(--gold); transform:translateY(-2px); outline:none;}
+@media (prefers-reduced-motion:reduce){ .drawn-card{transition:none;} .drawn-card:hover{transform:none;} }

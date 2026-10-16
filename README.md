@@ -27,6 +27,7 @@ Gordon; about $500,000 has been raised so far. This virtual museum keeps the col
 | `js/analytics.js` | Google Analytics 4: page views per room, navigation, video and Donate clicks. Runs only on the public site; add `?ga_debug=1` to the address to test. |
 | `data/` | `images.json` (the image registry) and `roster.json` (the Signal Regiment roster), inlined into the page at build time. |
 | `assets/` | Photographs, portraits, patches and magazine pages used by the museum rooms. |
+| `assets/renders/` | Concept drawings of the rooms, shown under each room's heading and in the lobby's "Every room, drawn" gallery. Made with `tools/renders/`. |
 | `lineage/` | Mirror of the official lineage, campaign participation credit, and unit citations for the 171 Signal Regiment units in the Command Gallery roster, plus a filterable index. |
 | `heritage/` | The Heritage magazine reading room: every issue as readable text and page scans, plus a PDF download of each. |
 | `tools/` | Fetch and build scripts for the lineage mirror and the Heritage reading room (`tools/heritage/`), each with its own README. |

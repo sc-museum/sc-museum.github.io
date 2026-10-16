@@ -741,6 +741,38 @@
     if (e.target === lightbox || e.target.id === 'lightbox-close') closeLightbox();
   });
 
+  // ---- room drawings: a hotspot on a framed picture leads to that picture in the room ----
+  document.addEventListener('click', function(e){
+    var hot = e.target.closest('.render-hot[data-render-src]');
+    if (!hot) return;
+    var room = hot.closest('.room'), src = hot.getAttribute('data-render-src');
+    var img = Array.prototype.find.call(room.querySelectorAll('img'), function(i){
+      return i.getAttribute('src') === src && !i.closest('.render-fig');
+    });
+    if (!img){ // a picture shown only in the drawing: open it full size
+      lightboxImg.src = src;
+      lightboxImg.alt = lightboxCap.textContent = hot.getAttribute('aria-label') || '';
+      lightbox.classList.remove('wide'); lightbox.classList.add('open'); lightbox.scrollTop = 0;
+      return;
+    }
+    var panel = img.closest('.subpanel');
+    if (panel && !panel.classList.contains('active')){
+      var tab = room.querySelector('.subnav button[data-sub="' + panel.id.replace(/^sub-/, '') + '"]');
+      if (tab) tab.click();
+    }
+    var det = img.closest('details'); if (det) det.open = true;
+    var dlg = img.closest('dialog');
+    if (dlg && !dlg.open){ // a picture inside a pop-up: open the pop-up the way its own button does
+      var opener = room.querySelector('[data-fg-open="' + dlg.id + '"]');
+      if (opener) opener.click(); else if (dlg.showModal) dlg.showModal();
+    }
+    var box = img.closest('.figure, figure, .sat-card, article') || img;
+    var still = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    box.scrollIntoView({behavior: still ? 'auto' : 'smooth', block: 'center'});
+    box.classList.add('render-flash');
+    setTimeout(function(){ box.classList.remove('render-flash'); }, 1600);
+  });
+
   goto('lobby');
 })();
 
