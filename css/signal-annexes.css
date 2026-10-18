@@ -2,7 +2,7 @@
 .sat-tl{border-left:2px solid var(--gold);margin:24px 0 0 8px;padding-left:24px;display:grid;gap:22px}
 .sat-card{position:relative}.sat-card:before{content:"";position:absolute;left:-32px;top:6px;width:14px;height:14px;border-radius:50%;background:var(--gold)}
 .sat-yr{font-size:12px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);margin-bottom:6px}
-.sat-card h3{margin:0 0 6px;font-size:1.25rem}.sat-card p{margin:0;line-height:1.65;max-width:68ch}
+.sat-card h3{margin:0 0 6px;font-size:1.25rem}.sat-card p{margin:0;line-height:1.65;max-width:68ch}.sat-card p + p{margin-top:8px}
 .sat-src{font-size:13px;color:var(--muted);max-width:68ch;margin:28px 0 0}
 .sat-h{font-family:var(--serif);font-size:1.5rem;margin:34px 0 0}
 #room-civil-war .sy{max-width:980px;margin:0 auto;padding:28px 16px 56px}
