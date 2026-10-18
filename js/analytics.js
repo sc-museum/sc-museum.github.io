@@ -3,6 +3,7 @@
  * Events sent:
  *   page_view       one per room, so each room shows in the Pages report
  *   room_enter      a visitor enters a room            (room_name)
+ *   room_time       seconds spent in a room, tab visible (room_name, time_in_room_sec)
  *   nav_click       map tile / directory / menu / link (nav_target, nav_source)
  *   video_play      a video starts                     (video_title, room_name)
  *   video_progress  25 / 50 / 75 % watched             (video_title, video_percent)
@@ -71,19 +72,38 @@
     return clean((tile && tile.getAttribute('data-roomname')) || (title && title.textContent) || id);
   }
 
-  var currentId = null;
+  // Time in a room counts only while the tab is visible; it is sent as room_time
+  // (room_name, time_in_room_sec) when the visitor leaves the room or the site.
+  var currentId = null, currentName = '', shownMs = 0, shownAt = null;
+  function visible(){ return document.visibilityState !== 'hidden'; }
+  function pause(){ if (shownAt !== null){ shownMs += Date.now() - shownAt; shownAt = null; } }
+  function resume(){ if (shownAt === null && visible()) shownAt = Date.now(); }
+  function leaveRoom(){
+    if (!currentId) return;
+    pause();
+    var sec = Math.round(shownMs / 1000);
+    if (sec >= 1) send('room_time', { room_name: currentName, time_in_room_sec: sec, transport_type: 'beacon' });
+    shownMs = 0;
+  }
   function enterRoom(){
     var room = activeRoom();
     var id = roomId(room);
     if (!id || id === currentId) return;
+    leaveRoom();
     currentId = id;
-    var name = roomName(room);
+    var name = currentName = roomName(room);
+    var loc = location.origin + location.pathname + location.search + (id === 'lobby' ? '' : '#' + id);
+    // later automatic events (engagement time, scrolls) belong to this room too
+    gtag('set', { page_location: loc, page_title: name + ' | ' + SITE });
     send('room_enter', { room_name: name });
-    send('page_view', {
-      page_title: name + ' | ' + SITE,
-      page_location: location.origin + location.pathname + location.search + (id === 'lobby' ? '' : '#' + id)
-    });
+    send('page_view', { page_title: name + ' | ' + SITE, page_location: loc });
+    resume();
   }
+  document.addEventListener('visibilitychange', function(){
+    if (visible()) resume();
+    else { leaveRoom(); resume(); } // report what was seen so far; a closed tab never comes back
+  });
+  window.addEventListener('pagehide', leaveRoom);
   // After museum.js has opened any room named in the address
   setTimeout(function(){
     enterRoom();

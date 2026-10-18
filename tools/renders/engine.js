@@ -5,7 +5,10 @@
 const ASSET = new URL('../../', location.href).href; // the repo root
 const OUT_W = 1600, OUT_H = 900, SS = 2;
 const SHOW_PEOPLE = false; // the owner asked for rooms without figures (review, 16 Oct 2026)
+const PIC_SCALE = 1.2, CLOSER = .32; // bigger pictures, nearer camera: the owner asked for readable walls
 const GLOWS = []; // light sources to bloom in post: [position, strength]
+// picture lights hang from black tracks on rods, 1.7 m out from each wall, as in the Signal gallery
+const TRACK_OFF = 1.7, TRACK_DROP = .75;
 
 function rng(seed){ let s = seed >>> 0 || 1; return () => (s = (s * 1664525 + 1013904223) >>> 0) / 4294967296; }
 const R = rng(7);
@@ -40,28 +43,51 @@ function woodTex(base, rep){
     }
   }, rep);
 }
+// one tile is 1.2 m square: 16 courses of 75 mm, bricks 215 mm long, like the entry hall's
+// old red brick: deep red-browns with the odd dark or orange brick, thin grey mortar
 function brickTex(rep){
-  return canvasTex(512, 512, (g, w, h) => {
-    g.fillStyle = '#b9ab98'; g.fillRect(0, 0, w, h);
-    const bh = 32, bw = 96;
+  return canvasTex(1024, 1024, (g, w, h) => {
+    g.fillStyle = '#857a6e'; g.fillRect(0, 0, w, h);
+    for (let i = 0; i < 9000; i++){ g.fillStyle = `rgba(${R() < .5 ? '0,0,0' : '255,255,255'},${R() * .08})`; g.fillRect(R() * w, R() * h, 2, 2); }
+    const bh = 64, bw = 184, m = 5;
     for (let r = 0; r < h / bh; r++){
       for (let x = (r % 2) * -bw / 2; x < w; x += bw){
-        const v = R(); g.fillStyle = `rgb(${150 + v * 50 | 0},${58 + v * 22 | 0},${38 + v * 14 | 0})`;
-        g.fillRect(x + 3, r * bh + 3, bw - 6, bh - 6);
-        g.fillStyle = `rgba(0,0,0,${R() * .12})`; g.fillRect(x + 3 + R() * 40, r * bh + 3, 30, bh - 6);
+        const v = R(), k = R();
+        const c = k < .08 ? [92, 38, 30] : k < .14 ? [168, 88, 58] : [128 + v * 36, 52 + v * 16, 38 + v * 10];
+        const x0 = x + m / 2 + (R() - .5) * 2, y0 = r * bh + m / 2 + (R() - .5) * 2;
+        g.fillStyle = `rgb(${c[0] | 0},${c[1] | 0},${c[2] | 0})`; g.fillRect(x0, y0, bw - m, bh - m);
+        // fired-clay mottling, a darker lower edge and a lit upper edge
+        for (let s = 0; s < 26; s++){ g.fillStyle = `rgba(${R() < .55 ? '30,10,5' : '200,120,90'},${R() * .16})`; g.beginPath(); g.ellipse(x0 + R() * bw, y0 + R() * bh, 4 + R() * 22, 2 + R() * 9, 0, 0, 7); g.fill(); }
+        g.fillStyle = 'rgba(0,0,0,.22)'; g.fillRect(x0, y0 + bh - m - 5, bw - m, 5);
+        g.fillStyle = 'rgba(255,220,200,.1)'; g.fillRect(x0, y0, bw - m, 3);
       }
     }
   }, rep);
 }
+// the cases' muted sage-green stone, as in the Signal gallery: soft clouding, faint veins
 function marbleTex(){
-  return canvasTex(256, 256, (g, w, h) => {
-    g.fillStyle = '#4e8a74'; g.fillRect(0, 0, w, h);
-    for (let i = 0; i < 40; i++){
-      g.strokeStyle = `rgba(${R() < .5 ? '230,245,235' : '20,50,40'},${.08 + R() * .15})`; g.lineWidth = .5 + R() * 2;
+  return canvasTex(512, 512, (g, w, h) => {
+    g.fillStyle = '#76a090'; g.fillRect(0, 0, w, h);
+    for (let i = 0; i < 70; i++){
+      const x = R() * w, y = R() * h, r = 20 + R() * 60, gr = g.createRadialGradient(x, y, 0, x, y, r);
+      gr.addColorStop(0, `rgba(${R() < .5 ? '170,205,190' : '60,95,82'},${.06 + R() * .07})`); gr.addColorStop(1, 'rgba(0,0,0,0)');
+      g.fillStyle = gr; g.fillRect(x - r, y - r, r * 2, r * 2);
+    }
+    for (let i = 0; i < 9; i++){
+      g.strokeStyle = `rgba(225,240,232,${.06 + R() * .1})`; g.lineWidth = .6 + R() * 1.2;
       g.beginPath(); let x = R() * w, y = R() * h; g.moveTo(x, y);
-      for (let k = 0; k < 6; k++){ x += (R() - .5) * 90; y += (R() - .3) * 60; g.lineTo(x, y); } g.stroke();
+      for (let k = 0; k < 14; k++){ x += (R() - .3) * 40; y += (R() - .5) * 26; g.lineTo(x, y); } g.stroke();
     }
   });
+}
+// woven burlap for sandbags
+function burlapTex(){
+  return canvasTex(256, 256, (g, w, h) => {
+    g.fillStyle = '#a38a5f'; g.fillRect(0, 0, w, h);
+    for (let y = 0; y < h; y += 4){ g.fillStyle = `rgba(60,40,15,${.12 + R() * .1})`; g.fillRect(0, y, w, 1.5); }
+    for (let x = 0; x < w; x += 4){ g.fillStyle = `rgba(60,40,15,${.1 + R() * .1})`; g.fillRect(x, 0, 1.5, h); }
+    for (let i = 0; i < 40; i++){ g.fillStyle = `rgba(${R() < .5 ? '70,50,20' : '220,200,160'},${R() * .12})`; g.beginPath(); g.ellipse(R() * w, R() * h, 10 + R() * 30, 6 + R() * 16, R() * 3, 0, 7); g.fill(); }
+  }, [2, 1]);
 }
 function plasterTex(col){
   return canvasTex(256, 256, (g, w, h) => {
@@ -142,15 +168,15 @@ function picture(src, wall, u, y, h, o){
   pending.push(new Promise(res => {
     new THREE.TextureLoader().load(ASSET + src, t => {
       t.encoding = THREE.sRGBEncoding; t.anisotropy = 8;
-      const ar = t.image.width / t.image.height; let hh = h, ww = h * ar;
-      if (o.maxW && ww > o.maxW){ ww = o.maxW; hh = ww / ar; }
+      const ar = t.image.width / t.image.height; let hh = h * PIC_SCALE, ww = hh * ar;
+      if (o.maxW && ww > o.maxW * 1.1){ ww = o.maxW * 1.1; hh = ww / ar; }
       const g = group(p.x, y, p.z, p.ry);
       const fr = o.frame === undefined ? 0.07 : o.frame;
       if (fr){
         const fm = new THREE.Mesh(new THREE.BoxGeometry(ww + fr * 2, hh + fr * 2, .05), o.frameMat || M.frame); fm.castShadow = true; g.add(fm);
         if (o.mat !== false){ const mt = new THREE.Mesh(new THREE.PlaneGeometry(ww + fr * .9, hh + fr * .9), M.matboard); mt.position.z = .027; g.add(mt); }
       }
-      const im = new THREE.Mesh(new THREE.PlaneGeometry(ww, hh), std({ map: t, roughness: .55, emissive: 0xffffff, emissiveMap: t, emissiveIntensity: o.glow || .28 }));
+      const im = new THREE.Mesh(new THREE.PlaneGeometry(ww, hh), std({ map: t, roughness: .55, emissive: 0xffffff, emissiveMap: t, emissiveIntensity: o.glow || .4, envMapIntensity: .2 }));
       im.position.z = .03; g.add(im);
       if (o.label){
         const lt = textTex([o.label], { w: 512, h: 96, bg: '#f4f1ea', fg: '#222', size: 40, weight: '400', track: 1 });
@@ -166,10 +192,10 @@ function spotOn(g, hh){
   const wp = new THREE.Vector3(); g.getWorldPosition(wp);
   const n = new THREE.Vector3(0, 0, 1).applyQuaternion(g.quaternion);
   const sp = new THREE.SpotLight(0xffe2b8, 3.2, 9, .42, .55, 1.4);
-  sp.position.copy(wp).addScaledVector(n, 1.7); sp.position.y = H - .25;
+  sp.position.copy(wp).addScaledVector(n, TRACK_OFF); sp.position.y = H - TRACK_DROP - .12;
   sp.target.position.copy(wp); scene.add(sp, sp.target);
-  // track-light can
-  const can = cyl(.06, .08, .22, M.black, sp.position.x, sp.position.y - .05, sp.position.z, 12); can.castShadow = false;
+  // a can on the suspended track
+  const can = cyl(.055, .075, .2, M.black, sp.position.x, sp.position.y, sp.position.z, 12); can.castShadow = false;
   can.lookAt(wp); can.rotateX(Math.PI / 2);
   GLOWS.push([new THREE.Vector3().copy(sp.position).lerp(wp, .045), .55]);
 }
@@ -184,6 +210,20 @@ function caseOn(x, z, o){
   box(w - .02, .02, d - .02, M.black, x, h + .05 + gh, z).castShadow = false;
   if (o.item) o.item(x, h + .04, z);
   const pl = new THREE.PointLight(0xfff0d0, .5, 1.6); pl.position.set(x, h + gh, z); scene.add(pl);
+}
+// a tall tower vitrine with a brick-red frame, like the ones along the Signal gallery's back wall
+function vitrine(x, z, ry, o){
+  o = o || {};
+  const g = group(x, 0, z, ry || 0), fr = std({ color: 0x4e1b16, roughness: .45 }), w = .8, d = .55, h = 2.2;
+  const add = (geo, m, px, py, pz) => { const me = new THREE.Mesh(geo, m); me.position.set(px, py, pz); me.castShadow = true; g.add(me); return me; };
+  add(new THREE.BoxGeometry(w, .3, d), M.marble, 0, .15, 0);
+  [[-1, -1], [1, -1], [1, 1], [-1, 1]].forEach(([a, b]) => add(new THREE.BoxGeometry(.05, h - .3, .05), fr, a * (w / 2 - .025), .3 + (h - .3) / 2, b * (d / 2 - .025)));
+  add(new THREE.BoxGeometry(w, .08, d), fr, 0, h, 0);
+  const gl = add(new THREE.BoxGeometry(w - .06, h - .38, d - .06), M.glass, 0, .3 + (h - .38) / 2, 0); gl.castShadow = false;
+  [.75, 1.3].forEach(y => add(new THREE.BoxGeometry(w - .1, .015, d - .1), M.glass, 0, y, 0).castShadow = false);
+  if (o.items) o.items.forEach((it, i) => { const wp = new THREE.Vector3(0, [.3, .75, 1.3][i], 0).applyMatrix4(g.matrixWorld.compose(g.position, g.quaternion, g.scale)); it(wp.x, wp.y, wp.z); });
+  const pl = new THREE.PointLight(0xfff0d0, .6, 2); pl.position.set(x, h - .2, z); scene.add(pl);
+  blob(x, z, .6, .45, .6);
 }
 function person(x, z, ry, o){
   if (!SHOW_PEOPLE) return new THREE.Group();
@@ -220,14 +260,16 @@ function shell(cfg){
   M.frame = std({ color: 0x2b2118, roughness: .5, metalness: .2 });
   M.matboard = std({ color: 0xf3efe6, roughness: .9 });
   M.black = std({ color: 0x18191b, roughness: .5, metalness: .3 });
-  M.timber = std({ color: 0x2e140b, roughness: .55, envMapIntensity: .4 });
-  M.trim = std({ color: 0x7a2f22, roughness: .6 });
-  M.marble = std({ map: marbleTex(), roughness: .25, metalness: .05 });
+  M.timber = std({ color: 0x3a180e, roughness: .55, envMapIntensity: .4 });
+  M.post = std({ color: 0x4e1b16, roughness: .5, envMapIntensity: .4 });
+  M.trim = std({ color: 0x55211a, roughness: .6 });
+  M.marble = std({ map: marbleTex(), roughness: .3, metalness: .05, envMapIntensity: .8 });
+  M.burlap = std({ map: burlapTex(), roughness: 1 }); M.burlap.bumpMap = M.burlap.map; M.burlap.bumpScale = .02;
   M.glass = std({ color: 0xdfeff2, transparent: true, opacity: .14, roughness: .02, metalness: .2, envMapIntensity: 2.5, depthWrite: false });
   M.wall = std({ map: plasterTex(cfg.wallColor || "#ebe7df"), roughness: .95, envMapIntensity: .6 });
   M.dark = std({ color: 0x24262a, roughness: .7 });
-  M.brick = std({ map: brickTex([W / 3, H / 1.2]), roughness: .9 });
-  M.brickSide = std({ map: brickTex([D / 3, H / 1.2]), roughness: .9 });
+  M.brick = std({ map: brickTex([W / 1.2, H / 1.2]), roughness: .9 });
+  M.brickSide = std({ map: brickTex([D / 1.2, H / 1.2]), roughness: .9 });
   const floorMat = cfg.floor === "concrete" ? std({ map: carpetTex("#5a5d62", [W / 4, D / 4]), color: 0x8a8a8a, roughness: .55, metalness: .05, envMapIntensity: .25 })
     : cfg.floor === 'carpet' ? std({ map: carpetTex(cfg.carpet || '#6b1f24', [6, 6]), roughness: 1 })
     : std({ map: woodTex(cfg.wood || [112, 58, 34], [W / 3, D / 3]), color: 0xb0b0b0, roughness: .3, metalness: .05, envMapIntensity: .35 });
@@ -253,7 +295,7 @@ function shell(cfg){
   }
   // soft shading where walls meet the floor and the ceiling
   aoEdges(cfg);
-  const ceil = new THREE.Mesh(new THREE.PlaneGeometry(W, D), std({ color: cfg.ceil || 0x2d2f33, roughness: .9 })); ceil.rotation.x = Math.PI / 2; ceil.position.y = H; scene.add(ceil);
+  const ceil = new THREE.Mesh(new THREE.PlaneGeometry(W, D), std({ color: cfg.ceil || 0x4a4c50, roughness: .9 })); ceil.rotation.x = Math.PI / 2; ceil.position.y = H; scene.add(ceil);
   const wallMat = k => cfg.walls && cfg.walls[k] === 'brick' ? (k === 'back' ? M.brick : M.brickSide) : cfg.walls && cfg.walls[k] === 'dark' ? M.dark : M.wall;
   const bw = new THREE.Mesh(new THREE.PlaneGeometry(W, H), wallMat('back')); bw.position.set(0, H / 2, -D / 2); bw.receiveShadow = true; scene.add(bw);
   const lw = new THREE.Mesh(new THREE.PlaneGeometry(D, H), wallMat('left')); lw.position.set(-W / 2, H / 2, 0); lw.rotation.y = Math.PI / 2; lw.receiveShadow = true; scene.add(lw);
@@ -270,7 +312,18 @@ function shell(cfg){
   // timber beam grid and posts
   for (let x = -W / 2 + 4; x < W / 2; x += 4) box(.28, .4, D, M.timber, x, H - .2, 0).castShadow = false;
   for (let z = -D / 2 + 4; z < D / 2; z += 4) box(W, .32, .24, M.timber, 0, H - .16, z).castShadow = false;
-  (cfg.posts || []).forEach(p => box(.3, H, .3, M.timber, p[0], H / 2, p[1]));
+  (cfg.posts || []).forEach(p => box(.3, H, .3, M.post, p[0], H / 2, p[1]));
+  // suspended light tracks along each solid wall, hung on rods
+  if (cfg.tracks !== false){
+    const ty = H - TRACK_DROP, glass = cfg.walls && cfg.walls.right === 'glass';
+    const rail = (len, x, z, ry) => {
+      box(len, .045, .05, M.black, x, ty, z, ry).castShadow = false;
+      for (let s = -len / 2 + 1; s <= len / 2 - 1; s += 3){ const dx = Math.cos(ry || 0) * s, dz = -Math.sin(ry || 0) * s; cyl(.008, .008, TRACK_DROP, M.black, x + dx, H - TRACK_DROP / 2, z + dz, 6).castShadow = false; }
+    };
+    rail(W - 2 * TRACK_OFF - .6, 0, -D / 2 + TRACK_OFF, 0);
+    rail(D - TRACK_OFF - 1.2, -W / 2 + TRACK_OFF, TRACK_OFF / 2 - .3, Math.PI / 2);
+    if (!glass) rail(D - TRACK_OFF - 1.2, W / 2 - TRACK_OFF, TRACK_OFF / 2 - .3, Math.PI / 2);
+  }
   // recessed downlights
   for (let x = -W / 2 + 2; x < W / 2; x += 4) for (let z = -D / 2 + 2; z < D / 2; z += 4){
     const d = new THREE.Mesh(new THREE.CircleGeometry(.12, 20), new THREE.MeshBasicMaterial({ color: 0xfff6e0 })); d.rotation.x = Math.PI / 2; d.position.set(x, H - .01, z); scene.add(d); GLOWS.push([d.position.clone().setY(H - .03), 1]);
@@ -336,6 +389,9 @@ async function run(){
   const cm = cfg.cam || {};
   camera = new THREE.PerspectiveCamera(cm.fov || 50, OUT_W / OUT_H, .05, 100);
   camera.position.set(cm.x || 0, cm.y || 1.65, cm.z !== undefined ? cm.z : D / 2 - .6);
+  // step in toward the walls so the pictures read (owner's review, 16 Oct 2026)
+  const look = new THREE.Vector3(cm.lx || 0, camera.position.y, cm.lz !== undefined ? cm.lz : -D / 2);
+  camera.position.lerp(look, cm.closer !== undefined ? cm.closer : CLOSER); camera.position.y = cm.y || 1.65;
   camera.lookAt(cm.lx || 0, cm.ly || 1.75, cm.lz !== undefined ? cm.lz : -D / 2);
   camera.updateMatrixWorld();
   scene.updateMatrixWorld(true);
@@ -369,7 +425,7 @@ async function run(){
   g.putImageData(px, 0, 0);
   // lens vignette, as in the architect renders
   const vg = g.createRadialGradient(OUT_W / 2, OUT_H / 2, OUT_H * .45, OUT_W / 2, OUT_H / 2, OUT_W * .62);
-  vg.addColorStop(0, "rgba(0,0,0,0)"); vg.addColorStop(1, "rgba(0,0,0,.38)"); g.fillStyle = vg; g.fillRect(0, 0, OUT_W, OUT_H);
+  vg.addColorStop(0, "rgba(0,0,0,0)"); vg.addColorStop(1, "rgba(0,0,0,.28)"); g.fillStyle = vg; g.fillRect(0, 0, OUT_W, OUT_H);
   const jpg = c.toDataURL('image/jpeg', .84);
   // hotspots: projected bounds of each visible picture, in percent
   const rc = new THREE.Raycaster(), spots = [];
@@ -380,9 +436,14 @@ async function run(){
     x0 = Math.max(-1, x0); x1 = Math.min(1, x1); y0 = Math.max(-1, y0); y1 = Math.min(1, y1);
     if (x1 - x0 < .035 || y1 - y0 < .04) return;
     const ctr = new THREE.Vector3().applyMatrix4(hp.mesh.matrixWorld);
-    rc.setFromCamera({ x: (x0 + x1) / 2, y: (y0 + y1) / 2 }, camera);
-    const hit = rc.intersectObjects(scene.children, true).find(h => h.object.material && !h.object.material.transparent);
-    if (!hit || hit.object !== hp.mesh) return;
+    // visible if most of a 3x3 grid of points across it reach the picture (thin rods and poles don't hide it)
+    let seen = 0;
+    for (const fx of [.25, .5, .75]) for (const fy of [.25, .5, .75]){
+      rc.setFromCamera({ x: x0 + (x1 - x0) * fx, y: y0 + (y1 - y0) * fy }, camera);
+      const hit = rc.intersectObjects(scene.children, true).find(h => h.object.material && !h.object.material.transparent);
+      if (hit && hit.object === hp.mesh) seen++;
+    }
+    if (seen < 5) return;
     spots.push({ src: hp.src, alt: hp.label, l: +((x0 + 1) * 50).toFixed(2), t: +((1 - y1) * 50).toFixed(2), w: +((x1 - x0) * 50).toFixed(2), h: +((y1 - y0) * 50).toFixed(2) });
   });
   document.getElementById('out').textContent = JSON.stringify({ room: id, spots }) + '\n@@JPG@@' + jpg;

@@ -28,6 +28,16 @@ function totem(x, z, ry, word, h){
   blob(x, z, 1.3, .45, .6);
   return g;
 }
+// a wall of burlap sandbags laid in running bond: flattened, slightly squashed pillows
+function sandbags(x, z, n, rows){
+  const geo = new THREE.SphereGeometry(.5, 20, 12);
+  for (let r = 0; r < rows; r++) for (let i = 0; i < n - (r % 2); i++){
+    const m = new THREE.Mesh(geo, M.burlap); m.scale.set(.62 + R() * .04, .2, .34);
+    m.position.set(x + i * .6 + (r % 2) * .3, .1 + r * .19, z + (R() - .5) * .04); m.rotation.y = (R() - .5) * .08;
+    m.castShadow = true; m.receiveShadow = true; scene.add(m);
+  }
+  blob(x + n * .3 - .3, z, n * .36, .5, .55);
+}
 function chair(x, z, ry, c){
   const g = group(x, 0, z, ry); const m = mat(c || 0x7b2a22, { roughness: .8 });
   const s = new THREE.Mesh(new THREE.BoxGeometry(.6, .18, .55), m); s.position.y = .42; s.castShadow = true; g.add(s);
@@ -45,7 +55,7 @@ function table(x, z, w, d, c){
 // ---------------- AUDITORIUM ----------------
 ROOMS['auditorium'] = {
   W: 16, D: 16, H: 6, floor: 'carpet', carpet: "#3a0f13", walls: { back: 'dark', left: 'brick', right: 'brick' }, trim: false, hemi: .2, fill: .2,
-  cam: { x: 0, y: 3.6, z: 7.8, ly: 2.4, lz: -8, fov: 55 },
+  cam: { x: 0, y: 3.6, z: 7.8, ly: 2.4, lz: -8, fov: 55, closer: .12 },
   build(){
     // the screen and stage
     box(12, .6, 2.4, M.timber, 0, .3, -6.8);
@@ -75,7 +85,7 @@ ROOMS['auditorium'] = {
 
 // ---------------- CAMP GORDON: WWI ----------------
 ROOMS['camp-gordon'] = {
-  W: 20, D: 16, walls: { back: 'brick', left: 'white', right: 'white' }, wood: [104, 64, 40], posts: [[-2, -2], [6, -2]],
+  W: 20, D: 16, walls: { back: "white", left: "brick", right: "white" }, wood: [104, 64, 40], posts: [[-7, -1], [7, -1]],
   cam: { x: 2.4, z: 7.2, lx: -1.5, lz: -8 },
   build(){
     sign(['CAMP GORDON', 'The WWI Era · 1917–1919'], 'back', 0, 4.0, { w: 4.4, bg: '#1d1d1f' });
@@ -83,13 +93,12 @@ ROOMS['camp-gordon'] = {
     row('left', [['assets/wwi_nurses.jpg', 'Army nurses'], ['assets/wwi_flu.jpg', 'The 1918 influenza'], ['assets/wwi_pt.jpg', 'Physical training']], 2.1, 1.4, -2, 3.6);
     row('right', [['assets/wwi_black_soldiers.jpg', 'Black soldiers at Camp Gordon'], ['assets/wwi_record.jpg', 'A service record']], 2.1, 1.4, -3.5, 4);
     // trench-line display: sandbags, barrels, a duckboard
-    const bag = mat(0xb59a6a, { roughness: 1 });
-    for (let i = 0; i < 9; i++) for (let j = 0; j < 3 - (i % 2 ? 1 : 0); j++){ const m = new THREE.Mesh(new THREE.SphereGeometry(.32, 14, 10), bag); m.scale.set(1.2, .45, .7); m.position.set(-6.4 + i * .55, .16 + j * .27, -1.3 + (j % 2) * .05); m.castShadow = true; scene.add(m); }
+    sandbags(-6.6, -1.3, 8, 3);
     blob(-4.2, -1.3, 2.8, .7, .5);
     const bar = mat(0x4a3424, { roughness: .8 });
     cyl(.32, .3, .9, bar, -7.6, .45, .3, 20); cyl(.32, .3, .9, bar, -7.0, .45, .9, 20);
     for (let k = 0; k < 3; k++) cyl(.335, .335, .04, M.black, -7.6, .1 + k * .35, .3, 20);
-    caseOn(3.0, -3.8, { item: item.helmet() }); caseOn(4.6, -3.8, { item: item.book(0x5a4630) }); caseOn(3.0, -5.4, { item: item.medal() });
+    vitrine(8.4, -6.3, -.3, { items: [item.helmet(), item.book(0x5a4630), item.medal()] }); caseOn(3.0, -3.8, { item: item.helmet() }); caseOn(4.6, -3.8, { item: item.book(0x5a4630) }); caseOn(3.0, -5.4, { item: item.medal() });
     person(0.4, -4.2, Math.PI - .2, P(0, 0)); person(-1.6, -.2, -2.3, P(0, 4)); person(4.6, -1.6, Math.PI + .5, P(0, 2, { skirt: true }));
   },
 };
@@ -183,32 +192,36 @@ ROOMS['fireside'] = {
 // ---------------- DONOR SPOTLIGHT ----------------
 ROOMS['donor-spotlight'] = {
   W: 18, D: 14, walls: { back: 'white', left: 'brick' }, wood: [112, 66, 40],
-  cam: { x: 2.6, z: 6.2, lx: -.8, lz: -7 },
+  cam: { x: 2.4, z: 6.4, lx: -.4, lz: -7, closer: .12, fov: 54 },
   build(){
-    sign(['CAMPAIGN CIRCLE', 'Donor Spotlight'], 'back', 0, 4.05, { w: 4.4, bg: '#1d1d1f' });
+    const bx = 2.4; // the donor wall sits right of centre, the portraits to its left
+    sign(['CAMPAIGN CIRCLE', 'Donor Spotlight'], 'back', bx, 4.05, { w: 4.4, bg: '#1d1d1f' });
     // the donor wall: a plaque for each tier of the Campaign Circle
     const tiers = ['Monmouth', 'Germantown', 'Brandywine', 'Princeton', 'Trenton', 'Long Island', 'Charleston', 'Quebec', 'Boston', 'Ticonderoga', 'Lexington'];
-    box(8.6, 2.9, .12, mat(0x2a2c2f, { roughness: .4 }), 0, 2.15, -6.93);
+    box(8.6, 2.9, .12, mat(0x2a2c2f, { roughness: .4 }), bx, 2.15, -6.93);
     tiers.forEach((t, i) => {
-      const c = i % 4, r = i / 4 | 0, x = -3.1 + c * 2.07, y = 3.05 - r * .82;
+      const c = i % 4, r = i / 4 | 0, x = bx - 3.1 + c * 2.07, y = 3.05 - r * .82;
       const tx = textTex([t.toUpperCase()], { w: 512, h: 160, bg: '#c9a227', fg: '#1d1608', size: 58, track: 3, border: '#8a6d14' });
       const p = new THREE.Mesh(new THREE.PlaneGeometry(1.8, .56), std({ map: tx, metalness: .55, roughness: .35, envMapIntensity: 1.2 })); p.position.set(x, y, -6.86); scene.add(p);
     });
-    const sp = new THREE.SpotLight(0xfff0d8, 3, 10, .55, .5); sp.position.set(0, 4.6, -3.5); sp.target.position.set(0, 2.1, -7); scene.add(sp, sp.target);
+    const sp = new THREE.SpotLight(0xfff0d8, 3, 10, .55, .5); sp.position.set(bx, 4.6, -3.5); sp.target.position.set(bx, 2.1, -7); scene.add(sp, sp.target);
     picture('assets/nara/fg-kind-1990.jpg', 'left', -4.2, 2.1, 1.5, { alt: 'Peter Kind, 1990' });
-    picture('assets/peter_kind.jpg', 'back', -7.5, 2.1, 1.5, { alt: 'Peter Kind' });
-    // Maj. Gen. Patricia Frost beside General Kind (owner's review, 16 Oct 2026). Her portrait
-    // goes in this frame when the Society supplies one: set FROST_PORTRAIT to its path.
+    // portraits side by side (owner's review, 16 Oct 2026): Kind, Frost, Chase, Foley
+    const PH = 1.15, at = [-7.75, -6.35, -4.95, -3.55];
+    picture('assets/peter_kind.jpg', 'back', at[0], 2.15, PH, { alt: 'Peter Kind', maxW: 1.05 });
+    // Maj. Gen. Patricia Frost's portrait goes in this frame when the Society supplies one: set FROST_PORTRAIT to its path.
     const FROST_PORTRAIT = null;
-    if (FROST_PORTRAIT) picture(FROST_PORTRAIT, 'back', -5.85, 2.1, 1.5, { alt: 'Maj. Gen. Patricia Frost' });
+    if (FROST_PORTRAIT) picture(FROST_PORTRAIT, 'back', at[1], 2.15, PH, { alt: 'Maj. Gen. Patricia Frost', maxW: 1.05 });
     else {
-      const g = group(-5.85, 2.1, -D / 2 + .07, 0);
-      const fm = new THREE.Mesh(new THREE.BoxGeometry(1.29, 1.64, .05), M.frame); g.add(fm);
-      const pt = new THREE.Mesh(new THREE.PlaneGeometry(1.15, 1.5), std({ map: textTex(['MAJ. GEN.', 'PATRICIA FROST', 'U.S. ARMY, RETIRED'], { w: 600, h: 800, bg: '#e9e3d4', fg: '#1d1d1f', size: 64, sub: .9, border: '#c9a227' }) }));
-      pt.position.z = .03; g.add(pt); spotOn(g, 1.5);
+      const h = PH * PIC_SCALE, w = h * .75;
+      const g = group(at[1], 2.15, -D / 2 + .07, 0);
+      const fm = new THREE.Mesh(new THREE.BoxGeometry(w + .14, h + .14, .05), M.frame); g.add(fm);
+      const pt = new THREE.Mesh(new THREE.PlaneGeometry(w, h), std({ map: textTex(['MAJ. GEN.', 'PATRICIA FROST', 'U.S. ARMY, RETIRED'], { w: 600, h: 800, bg: '#e9e3d4', fg: '#1d1d1f', size: 64, sub: .9, border: '#c9a227' }), emissive: 0xffffff, emissiveIntensity: .05 }));
+      pt.position.z = .03; g.add(pt); spotOn(g, h);
     }
-    caseOn(4.2, -3.2, { item: item.medal() });
-    person(-.8, -4.2, Math.PI + .1, P(0, 4)); person(1.4, -3.6, Math.PI - .3, P(0, 2, { skirt: true }));
+    picture('assets/bio_chase.jpg', 'back', at[2], 2.15, PH, { alt: 'Welton Chase Jr.', maxW: 1.05 });
+    picture('assets/bio_foley.png', 'back', at[3], 2.15, PH, { alt: 'Jeffery Foley', maxW: 1.05 });
+    caseOn(5.6, -3.2, { item: item.medal() });
   },
 };
 
@@ -230,7 +243,7 @@ ROOMS['people'] = {
 
 // ---------------- GET INVOLVED ----------------
 ROOMS['give'] = {
-  W: 18, D: 14, walls: { back: 'brick', left: 'white', right: 'white' }, wood: [128, 76, 46],
+  W: 18, D: 14, walls: { back: "white", left: "white", right: "brick" }, wood: [128, 76, 46],
   cam: { x: -2.4, z: 6.2, lx: 1, lz: -7 },
   build(){
     sign(['SECURE OUR STORY', 'A building for the collection'], 'back', 0, 4.0, { w: 4.6, bg: '#1d1d1f', fg: '#e0bc4a' });
@@ -252,7 +265,7 @@ ROOMS['give'] = {
 
 // ---------------- TIMELINE ----------------
 ROOMS['timeline'] = {
-  W: 22, D: 12, walls: { back: 'white', left: 'brick', right: 'brick' }, wood: [104, 60, 36],
+  W: 22, D: 12, walls: { back: 'white', left: 'brick', right: "white" }, wood: [104, 60, 36],
   cam: { x: 0, z: 5.2, lz: -6 },
   build(){
     sign(['TIME WAITS FOR NO ONE'], 'back', 0, 4.15, { w: 5, h: .7, size: 100 });
@@ -305,7 +318,7 @@ ROOMS['magazine'] = {
 
 // ---------------- CIVIL WAR ----------------
 ROOMS['civil-war'] = {
-  W: 20, D: 16, walls: { back: 'brick', left: 'white', right: 'white' }, wood: [96, 56, 34], posts: [[-4, -2], [4, -2]],
+  W: 20, D: 16, walls: { back: "white", left: "brick", right: "white" }, wood: [96, 56, 34], posts: [[-4, -2], [4, -2]],
   cam: { x: 2.8, z: 7.2, lx: -1.2, lz: -8 },
   build(){
     sign(['THE CIVIL WAR SIGNAL ANNEX', 'Flags by day, torches by night'], 'back', 0, 4.05, { w: 5 });
@@ -320,7 +333,7 @@ ROOMS['civil-war'] = {
     blob(-3, -3.6, 1.1, 1.1, .5);
     // the wig-wag flags: white with a red square, red with a white square
     flagPole(1.2, -4.8, flagTex('#ffffff', '#b3121f', 28), 2.6); flagPole(2.6, -5.0, flagTex('#b3121f', '#ffffff', 28), 2.6);
-    caseOn(5.2, -3.2, { item: item.book(0x4a3424) }); caseOn(6.8, -3.2, { item: (x, y, z) => { box(.3, .1, .2, M.timber, x, y + .05, z); cyl(.02, .02, .12, mat(0xb08d57, { metalness: .8 }), x + .05, y + .14, z, 8); } });
+    vitrine(6.6, -5.4, -.2, { items: [item.book(0x4a3424), item.medal(), item.book(0x29405e)] }); caseOn(5.2, -3.2, { item: item.book(0x4a3424) }); caseOn(6.8, -3.2, { item: (x, y, z) => { box(.3, .1, .2, M.timber, x, y + .05, z); cyl(.02, .02, .12, mat(0xb08d57, { metalness: .8 }), x + .05, y + .14, z, 8); } });
     person(.4, -2.8, Math.PI - .2, P(0, 4)); person(4.6, -1.4, Math.PI + .5, P(0, 0));
   },
 };
@@ -371,14 +384,14 @@ ROOMS['weather'] = {
     [0, 2.1, 4.2].forEach(a => { const l = new THREE.Mesh(new THREE.CylinderGeometry(.02, .02, 1.4, 8), M.timber); l.position.set(Math.cos(a) * .28, .65, Math.sin(a) * .28); l.rotation.set(Math.sin(a) * .4, 0, -Math.cos(a) * .4); tg.add(l); });
     const tb = new THREE.Mesh(new THREE.CylinderGeometry(.08, .1, .3, 16), mat(0xb08d57, { metalness: .8, roughness: .3 })); tb.position.y = 1.45; tg.add(tb);
     const sc = new THREE.Mesh(new THREE.CylinderGeometry(.05, .05, .4, 12), M.black); sc.rotation.z = Math.PI / 2; sc.position.y = 1.65; tg.add(sc);
-    caseOn(-5.4, -3.6, { item: item.book(0x29405e) }); caseOn(-5.4, -1.8, { item: item.machine(0xb08d57) });
+    vitrine(7.4, -6.2, -.3, { items: [item.machine(0xb08d57), item.book(0x29405e), item.book(0x6b2a1e)] }); caseOn(-5.4, -3.6, { item: item.book(0x29405e) }); caseOn(-5.4, -1.8, { item: item.machine(0xb08d57) });
     person(1.2, -4.8, Math.PI, P(0, 4)); person(-2.6, -1.2, Math.PI + .6, P(0, 2, { skirt: true }));
   },
 };
 
 // ---------------- FORT GORDON, THEN AND NOW ----------------
 ROOMS['fort-gordon'] = {
-  W: 24, D: 18, walls: { back: 'brick', left: 'white', right: 'white' }, wood: [104, 60, 36], posts: [[-4, -1], [4, -1]],
+  W: 24, D: 18, walls: { back: "white", left: "brick", right: "white" }, wood: [104, 60, 36], posts: [[-4, -1], [4, -1]],
   cam: { x: 0, z: 8.2, lz: -9 },
   build(){
     sign(['FORT GORDON', 'Then and Now'], 'back', 0, 4.05, { w: 4.4, bg: '#1d1d1f' });
@@ -416,14 +429,14 @@ ROOMS['wireless'] = {
     for (let y = .5; y < 4; y += .5) [0, Math.PI / 2].forEach(r => { const br = new THREE.Mesh(new THREE.BoxGeometry(.4, .02, .02), wh); br.position.y = y; br.rotation.y = r; mg.add(br); });
     const lt = new THREE.Mesh(new THREE.SphereGeometry(.07, 12, 8), new THREE.MeshBasicMaterial({ color: 0xff3020 })); lt.position.y = 4.05; mg.add(lt);
     blob(-3.4, -3.4, .6, .6, .5);
-    caseOn(1.6, -3.6, { item: item.radio() }); caseOn(3.2, -3.6, { item: item.radio() }); caseOn(4.8, -3.6, { item: item.phone() });
+    vitrine(5.6, -.6, -.4, { items: [item.radio(), item.phone(), item.radio()] }); caseOn(1.6, -3.6, { item: item.radio() }); caseOn(3.2, -3.6, { item: item.radio() }); caseOn(4.8, -3.6, { item: item.phone() });
     person(.4, -1.6, Math.PI + .4, P(0, 4)); person(3.2, -1.8, Math.PI - .2, P(0, 0)); person(-1.2, -4.8, Math.PI - .2, P(0, 2, { skirt: true }));
   },
 };
 
 // ---------------- WIRED ----------------
 ROOMS['wired'] = {
-  W: 20, D: 16, walls: { back: 'brick', left: 'white', right: 'white' }, wood: [96, 56, 34],
+  W: 20, D: 16, walls: { back: "white", left: "white", right: "brick" }, wood: [96, 56, 34],
   cam: { x: -2.6, z: 7.2, lx: 1.2, lz: -8 },
   build(){
     sign(['THE WIRED COMMUNICATIONS ANNEX'], 'back', 1, 4.15, { w: 5, h: .7, size: 90 });
@@ -432,7 +445,7 @@ ROOMS['wired'] = {
     picture('assets/annex/wire-lineman-prauthoy-1919.jpg', 'left', -3.2, 2.2, 1.6, { alt: 'Lineman at Prauthoy, 1919' });
     picture('assets/annex/wire-field-telephones.jpg', 'left', 1, 2.2, 1.3, { alt: 'Field telephones' });
     // a telegraph pole with crossarms and glass insulators
-    const px = -3.6, pz = -4.6, wood = mat(0x5e4630, { roughness: .95 });
+    const px = -3.6, pz = -4.6, wood = mat(0x4a3524, { roughness: .95 });
     cyl(.13, .16, 4.6, wood, px, 2.3, pz, 14); blob(px, pz, .5, .5, .6);
     [3.9, 3.4].forEach(y => { box(1.8, .1, .12, wood, px, y, pz); for (let i = -2; i <= 2; i++){ if (!i) continue; cyl(.035, .045, .13, std({ color: 0x5fae9e, transparent: true, opacity: .8, roughness: .1 }), px + i * .38, y + .12, pz, 10); } });
     // a cable reel and field telephones in cases
@@ -440,7 +453,7 @@ ROOMS['wired'] = {
     [-.35, .35].forEach(k => { const d = new THREE.Mesh(new THREE.CylinderGeometry(.6, .6, .06, 28), wood); d.rotation.x = Math.PI / 2; d.position.set(0, .6, k); d.castShadow = true; rl.add(d); });
     const core = new THREE.Mesh(new THREE.CylinderGeometry(.42, .42, .64, 28), mat(0x1d1d1d, { roughness: .7 })); core.rotation.x = Math.PI / 2; core.position.y = .6; rl.add(core);
     blob(-.8, -3.2, .8, .6, .5);
-    caseOn(3.4, -3.4, { item: item.phone() }); caseOn(5, -3.4, { item: item.phone() });
+    vitrine(-6.4, -1, .3, { items: [item.phone(), item.reel(), item.book(0x3a2a1e)] }); caseOn(3.4, -3.4, { item: item.phone() }); caseOn(5, -3.4, { item: item.phone() });
     person(1.6, -4.6, Math.PI, P(0, 3)); person(-1.6, -.8, Math.PI - .5, P(0, 1)); person(4.2, -1.4, Math.PI + .3, P(0, 2, { skirt: true }));
   },
 };
