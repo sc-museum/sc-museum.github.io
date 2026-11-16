@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Eyes on the High Ground — Little Round Top, July 2, 1863 · Signal &amp; Cyber Corps Museum Society</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=IM+Fell+English:ital@0;1&family=IM+Fell+English+SC&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+  :root{--ink:#3b2f22;--paper:#eadcbc;--blue:#2c4a86;--gray:#8c3a2b;--night:#0c1424;--gold:#c9a24a}
+  *{box-sizing:border-box}
+  html,body{margin:0;background:#0d1f16;color:#f1e7d2;font-family:"IM Fell English",Georgia,serif}
+  .wrap{max-width:1040px;margin:0 auto;padding:14px 12px 28px}
+  .stage{position:relative;border-radius:10px;overflow:hidden;box-shadow:0 10px 40px rgba(0,0,0,.6);background:var(--paper)}
+  svg{display:block;width:100%;height:auto}
+  .cap{min-height:4.6em;margin:14px 4px 10px;font-size:clamp(16px,2.3vw,21px);line-height:1.35;transition:opacity .35s}
+  .ctrl{display:flex;align-items:center;gap:10px}
+  button{background:#2a241d;color:#f1e7d2;border:1px solid #5a4b38;border-radius:8px;padding:9px 14px;font:inherit;font-size:15px;cursor:pointer;min-width:44px}
+  button:hover{background:#3a3128}
+  input[type=range]{flex:1;accent-color:var(--gold)}
+  .time{font-family:"JetBrains Mono",monospace;font-size:12px;color:#b9a888;min-width:72px;text-align:right}
+  .note{margin-top:14px;font-size:13px;color:#a8977a;line-height:1.45}
+  .mono{font-family:"JetBrains Mono",monospace}
+</style>
+</head>
+<body>
+<div class="wrap">
+<div class="stage">
+<svg id="svg" viewBox="0 0 1000 700" xmlns="http://www.w3.org/2000/svg" aria-label="Animated map of the Union signal station on Little Round Top, July 2, 1863">
+  <defs>
+    <filter id="paper" x="0" y="0" width="100%" height="100%">
+      <feTurbulence type="fractalNoise" baseFrequency=".9" numOctaves="2" seed="4" result="n"/>
+      <feColorMatrix in="n" type="matrix" values="0 0 0 0 .45  0 0 0 0 .36  0 0 0 0 .22  0 0 0 .18 0"/>
+      <feBlend in="SourceGraphic" mode="multiply"/>
+    </filter>
+    <radialGradient id="vign" cx="50%" cy="50%" r="70%">
+      <stop offset="60%" stop-color="#000" stop-opacity="0"/>
+      <stop offset="100%" stop-color="#3b2a14" stop-opacity=".45"/>
+    </radialGradient>
+    <linearGradient id="cone" x1="1" y1="0" x2="0" y2="0">
+      <stop offset="0" stop-color="#f6e7a6" stop-opacity=".55"/>
+      <stop offset="1" stop-color="#f6e7a6" stop-opacity="0"/>
+    </linearGradient>
+    <linearGradient id="titleband" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#0d0b08" stop-opacity=".92"/>
+      <stop offset="1" stop-color="#0d0b08" stop-opacity=".78"/>
+    </linearGradient>
+    <radialGradient id="glow"><stop offset="0" stop-color="#7fd3ff" stop-opacity=".9"/><stop offset="1" stop-color="#7fd3ff" stop-opacity="0"/></radialGradient>
+  </defs>
+
+  <!-- ===== MAP ===== -->
+  <g id="map">
+    <rect width="1000" height="700" fill="#eadcbc" filter="url(#paper)"/>
+    <!-- grid -->
+    <g stroke="#7a6446" stroke-opacity=".12" stroke-width="1">
+      <path d="M0 100H1000M0 200H1000M0 300H1000M0 400H1000M0 500H1000M0 600H1000M100 0V700M200 0V700M300 0V700M400 0V700M500 0V700M600 0V700M700 0V700M800 0V700M900 0V700"/>
+    </g>
+    <!-- ridges -->
+    <g fill="none" stroke="#9c8463" stroke-linecap="round" stroke-opacity=".35">
+      <path d="M470 110 L440 200 L410 300 L385 390 L360 480 L345 600" stroke-width="34"/>
+      <path d="M612 205 L600 300 L594 400 L596 480" stroke-width="26"/>
+      <path d="M250 120 L235 200 L225 260" stroke-width="22"/>
+    </g>
+    <!-- hills with contours -->
+    <g fill="none" stroke="#7d6443" stroke-opacity=".55">
+      <g id="hLRT"><ellipse cx="602" cy="545" rx="34" ry="26"/><ellipse cx="602" cy="545" rx="22" ry="16"/><ellipse cx="602" cy="545" rx="10" ry="7"/></g>
+      <g><ellipse cx="640" cy="625" rx="46" ry="38"/><ellipse cx="640" cy="625" rx="32" ry="26"/><ellipse cx="640" cy="625" rx="18" ry="14"/><ellipse cx="640" cy="625" rx="7" ry="5"/></g>
+      <g><ellipse cx="735" cy="175" rx="38" ry="28"/><ellipse cx="735" cy="175" rx="24" ry="17"/><ellipse cx="735" cy="175" rx="10" ry="7"/></g>
+      <g><ellipse cx="615" cy="190" rx="30" ry="20"/><ellipse cx="615" cy="190" rx="16" ry="10"/></g>
+    </g>
+    <!-- features -->
+    <g fill="#6f8a4a" fill-opacity=".22">
+      <path d="M480 440 l60 -10 l20 50 l-62 14z"/>
+      <circle cx="418" cy="432" r="22"/>
+    </g>
+    <g fill="#7d6443" fill-opacity=".5"><circle cx="537" cy="548" r="4"/><circle cx="545" cy="540" r="3"/><circle cx="530" cy="540" r="3"/><circle cx="541" cy="555" r="3"/></g>
+    <!-- roads -->
+    <g fill="none" stroke="#5c4630" stroke-width="2.4" stroke-dasharray="7 4" stroke-opacity=".75">
+      <path d="M560 115 L480 260 L420 400 L360 540 L300 690"/>
+      <path d="M570 120 L640 300 L670 480 L700 690"/>
+      <path d="M555 112 L420 160 L330 205 L250 270 L185 322 L95 370"/>
+      <path d="M560 110 L470 60 L300 30 L120 10"/>
+    </g>
+    <!-- town -->
+    <g fill="#5c4630" fill-opacity=".8">
+      <rect x="535" y="88" width="12" height="9"/><rect x="552" y="92" width="10" height="8"/><rect x="566" y="86" width="12" height="10"/><rect x="545" y="104" width="10" height="8"/><rect x="560" y="106" width="13" height="9"/><rect x="578" y="100" width="9" height="8"/><rect x="530" y="102" width="9" height="7"/>
+    </g>
+    <!-- buildings -->
+    <rect x="180" y="312" width="12" height="9" fill="#5c4630"/>
+    <rect x="636" y="250" width="12" height="9" fill="#5c4630"/>
+    <!-- labels -->
+    <g font-family="IM Fell English SC, serif" fill="#3b2f22" font-size="15">
+      <text x="556" y="76" text-anchor="middle" font-size="20" letter-spacing="2">GETTYSBURG</text>
+      <text x="372" y="245" transform="rotate(-72 372 245)" text-anchor="middle" letter-spacing="3" font-size="14" fill-opacity=".75">SEMINARY RIDGE</text>
+      <text x="628" y="365" transform="rotate(-87 628 365)" text-anchor="middle" letter-spacing="3" font-size="14" fill-opacity=".75">CEMETERY RIDGE</text>
+      <text x="735" y="222" text-anchor="middle" font-size="13">Culp's Hill</text>
+      <text x="606" y="166" text-anchor="middle" font-size="13">Cemetery Hill</text>
+      <text x="650" y="534" font-size="14" font-weight="bold">Little Round Top</text>
+      <text x="690" y="640" font-size="13">Big Round Top</text>
+      <text x="498" y="575" font-size="12">Devil's Den</text>
+      <text x="482" y="425" font-size="12">Wheatfield</text>
+      <text x="380" y="470" font-size="12">Peach Orchard</text>
+      <text x="230" y="112" font-size="13" text-anchor="middle">Herr Ridge</text>
+      <text x="172" y="345" font-size="12" text-anchor="middle">Black Horse Tavern</text>
+      <text x="654" y="276" font-size="11">Meade's HQ</text>
+      <g font-size="10" fill-opacity=".6" font-style="italic" font-family="IM Fell English, serif">
+        <text x="306" y="650" transform="rotate(-66 306 650)">Emmitsburg Road</text>
+        <text x="690" y="660" transform="rotate(84 690 660)">Taneytown Road</text>
+        <text x="110" y="356" transform="rotate(-28 110 356)">Fairfield Road</text>
+      </g>
+    </g>
+    <!-- compass -->
+    <g transform="translate(940 640)" fill="#3b2f22" font-family="IM Fell English SC, serif">
+      <circle r="22" fill="none" stroke="#3b2f22" stroke-opacity=".5"/>
+      <path d="M0 -20 L6 0 L0 20 L-6 0Z" fill-opacity=".7"/>
+      <text y="-27" text-anchor="middle" font-size="13">N</text>
+    </g>
+    <text x="20" y="688" font-size="11" fill="#3b2f22" fill-opacity=".6" font-style="italic">Stylized map — not to scale</text>
+    <rect width="1000" height="700" fill="url(#vign)" pointer-events="none"/>
+  </g>
+
+  <!-- ===== LINES OF BATTLE ===== -->
+  <g id="lines" opacity="0">
+    <path id="unionLine" d="M752 160 Q735 212 680 208 Q622 200 606 228 L598 330 L593 430 L592 480" fill="none" stroke="#2c4a86" stroke-width="9" stroke-linecap="round" pathLength="1" stroke-dasharray="1" stroke-dashoffset="1"/>
+    <path id="confLine" d="M780 120 Q680 110 600 92 Q520 80 478 118 L448 200 L420 290 L398 360" fill="none" stroke="#8c3a2b" stroke-width="9" stroke-linecap="round" pathLength="1" stroke-dasharray="1" stroke-dashoffset="1"/>
+    <g font-family="IM Fell English SC, serif" font-size="15" font-weight="bold">
+      <text id="lblU" x="660" y="410" fill="#2c4a86" opacity="0">UNION</text>
+      <text id="lblC" x="300" y="300" fill="#8c3a2b" opacity="0">CONFEDERATE</text>
+    </g>
+  </g>
+
+  <!-- ===== SIGHT CONE ===== -->
+  <g id="coneG" opacity="0">
+    <polygon points="602,540 140,250 120,520" fill="url(#cone)"/>
+    <line id="scan" x1="602" y1="540" x2="140" y2="330" stroke="#fff3c0" stroke-width="2" stroke-opacity=".8"/>
+  </g>
+
+  <!-- ===== SIGNAL STATION ===== -->
+  <g id="station" opacity="0">
+    <line x1="602" y1="545" x2="602" y2="505" stroke="#3b2f22" stroke-width="2.5"/>
+    <g id="miniFlag"><rect x="602" y="505" width="18" height="14" fill="#fbf7ee" stroke="#3b2f22" stroke-width="1"/><rect x="607" y="508.5" width="8" height="7" fill="#b3261e"/></g>
+    <circle cx="602" cy="545" r="5" fill="#2c4a86"/>
+  </g>
+
+  <!-- ===== RELAY TO HQ ===== -->
+  <g id="relay" opacity="0">
+    <path id="relayPath" d="M604 505 Q680 400 642 262" fill="none" stroke="#b3261e" stroke-width="2" stroke-dasharray="5 5"/>
+    <circle id="pulse1" r="6" fill="#b3261e"/>
+    <circle id="pulse2" r="6" fill="#b3261e"/>
+    <circle id="hqRing" cx="642" cy="254" r="10" fill="none" stroke="#b3261e" stroke-width="3" opacity="0"/>
+  </g>
+
+  <!-- ===== LONGSTREET ===== -->
+  <path id="march1" d="M245 150 L230 225 L188 316" fill="none"/>
+  <path id="march2" d="M188 316 L228 238 L268 272 L292 360 L318 450 L348 522 L398 560" fill="none"/>
+  <path id="trail1" d="M245 150 L230 225 L188 316" fill="none" stroke="#8c3a2b" stroke-width="2" stroke-dasharray="3 6" pathLength="1" opacity=".7"/>
+  <path id="trail2" d="M188 316 L228 238 L268 272 L292 360 L318 450 L348 522 L398 560" fill="none" stroke="#8c3a2b" stroke-width="2" stroke-dasharray="3 6" opacity="0"/>
+  <g id="column"></g>
+  <g id="spot" opacity="0">
+    <circle id="rip1" cx="188" cy="316" r="10" fill="none" stroke="#b3261e" stroke-width="3"/>
+    <circle id="rip2" cx="188" cy="316" r="10" fill="none" stroke="#b3261e" stroke-width="2"/>
+    <g transform="translate(110 262)">
+      <rect x="-4" y="-18" width="140" height="26" rx="4" fill="#b3261e"/>
+      <text x="66" y="0" fill="#fff" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="13" font-weight="600">COLUMN SPOTTED</text>
+    </g>
+  </g>
+  <g id="lostTime" opacity="0" font-family="IM Fell English SC, serif">
+    <text x="210" y="420" font-size="18" fill="#8c3a2b" text-anchor="middle">Countermarch</text>
+    <text x="210" y="440" font-size="13" fill="#3b2f22" text-anchor="middle" font-style="italic" font-family="IM Fell English, serif">surprise lost · hours lost</text>
+  </g>
+
+  <!-- ===== ASSAULT ===== -->
+  <g id="assault">
+    <g class="arw" data-c="#8c3a2b"><path d="M392 548 Q470 520 528 542" /></g>
+    <g class="arw" data-c="#8c3a2b"><path d="M396 584 Q500 600 578 566" /></g>
+    <g class="arw" data-c="#8c3a2b"><path d="M410 620 Q540 660 604 584" /></g>
+    <g class="arw" data-c="#2c4a86"><path d="M585 438 Q570 490 588 524" /></g>
+    <g class="arw" data-c="#2c4a86"><path d="M606 430 Q628 480 612 522" /></g>
+  </g>
+  <g id="assaultLbl" opacity="0" font-family="IM Fell English SC, serif">
+    <g transform="translate(470 175)">
+      <rect x="0" y="0" width="140" height="0" />
+    </g>
+    <text x="625" y="598" font-size="13" fill="#2c4a86" font-weight="bold">20th Maine</text>
+    <text x="410" y="660" font-size="14" fill="#8c3a2b">Hood's Division</text>
+    <text x="618" y="472" font-size="13" fill="#2c4a86">Vincent's Brigade</text>
+  </g>
+  <g id="warren" opacity="0">
+    <circle cx="602" cy="545" r="16" fill="none" stroke="#c9a24a" stroke-width="3"/>
+    <g transform="translate(728 470)">
+      <rect x="-6" y="-18" width="196" height="46" rx="5" fill="#fbf4e2" stroke="#3b2f22" stroke-opacity=".5"/>
+      <text x="4" y="0" font-size="14" fill="#3b2f22" font-family="IM Fell English SC, serif">Gen. G. K. Warren</text>
+      <text x="4" y="18" font-size="12" fill="#3b2f22" font-style="italic">finds only the signalmen</text>
+    </g>
+    <line x1="618" y1="540" x2="722" y2="485" stroke="#3b2f22" stroke-opacity=".5"/>
+  </g>
+  <g id="held" opacity="0">
+    <rect x="540" y="488" width="124" height="26" rx="4" fill="#2c4a86"/>
+    <text x="602" y="506" text-anchor="middle" fill="#fff" font-family="JetBrains Mono, monospace" font-size="13" font-weight="600">THE HILL HOLDS</text>
+  </g>
+
+  <!-- ===== WIG-WAG INSET ===== -->
+  <g id="inset" opacity="0" transform="translate(0 -35)">
+    <rect x="712" y="300" width="270" height="250" rx="8" fill="#f7efdc" stroke="#3b2f22" stroke-opacity=".6" stroke-width="1.5"/>
+    <text x="847" y="324" text-anchor="middle" font-family="IM Fell English SC, serif" font-size="15" fill="#3b2f22">Wig-Wag Signal</text>
+    <g id="bigFlagRig">
+      <line x1="800" y1="500" x2="800" y2="370" stroke="#4a3520" stroke-width="4" stroke-linecap="round"/>
+      <rect x="800" y="370" width="46" height="38" fill="#fbf7ee" stroke="#3b2f22" stroke-width="1.2"/>
+      <rect x="814" y="381" width="18" height="16" fill="#b3261e"/>
+    </g>
+    <!-- flagman -->
+    <g fill="#2c4a86">
+      <circle cx="800" cy="482" r="7"/>
+      <rect x="793" y="489" width="14" height="26" rx="4"/>
+    </g>
+    <g font-family="JetBrains Mono, monospace" fill="#3b2f22">
+      <text id="motionTxt" x="900" y="392" text-anchor="middle" font-size="12"></text>
+      <text id="digitTxt" x="900" y="440" text-anchor="middle" font-size="40" font-weight="600" fill="#b3261e"></text>
+      <text x="900" y="462" text-anchor="middle" font-size="8.5" fill-opacity=".7">1 his right · 2 his left · 3 front</text>
+    </g>
+    <g id="msgRow" font-family="JetBrains Mono, monospace" font-size="15" font-weight="600"></g>
+  </g>
+
+  <!-- ===== CLOCK BADGE ===== -->
+  <g id="clock" opacity="0">
+    <rect x="18" y="18" width="232" height="34" rx="6" fill="#1b1611" fill-opacity=".85"/>
+    <text id="clockTxt" x="134" y="41" text-anchor="middle" fill="#f1e7d2" font-family="JetBrains Mono, monospace" font-size="14" letter-spacing="1">JULY 2, 1863</text>
+  </g>
+
+  <!-- ===== CYBER LEGACY ===== -->
+  <g id="cyber" opacity="0">
+    <rect width="1000" height="700" fill="#0c1424"/>
+    <g id="net"></g>
+    <g id="cyFlag" transform="translate(500 330)">
+      <circle r="90" fill="url(#glow)" opacity=".35"/>
+      <line x1="0" y1="60" x2="0" y2="-60" stroke="#c9d6ea" stroke-width="4"/>
+      <rect x="0" y="-60" width="60" height="48" fill="#fbf7ee"/>
+      <rect x="18" y="-46" width="24" height="20" fill="#b3261e"/>
+    </g>
+    <g text-anchor="middle">
+      <text id="cy1" x="500" y="500" font-family="IM Fell English, serif" font-size="30" fill="#f1e7d2" opacity="0">See first. Communicate fast.</text>
+      <text id="cy2" x="500" y="542" font-family="IM Fell English, serif" font-size="30" fill="#7fd3ff" opacity="0">Protect the message.</text>
+      <text id="cy3" x="500" y="590" font-family="JetBrains Mono, monospace" font-size="14" fill="#8aa0bf" letter-spacing="3" opacity="0">WIG-WAG · TELEGRAPH · RADIO · SATELLITE · CYBER</text>
+    </g>
+  </g>
+
+  <!-- ===== TITLE / END CARDS ===== -->
+  <g id="title" opacity="1">
+    <rect width="1000" height="700" fill="url(#titleband)"/>
+    <g text-anchor="middle">
+      <text x="500" y="250" font-family="JetBrains Mono, monospace" font-size="15" letter-spacing="6" fill="#c9a24a">SIGNAL &amp; CYBER CORPS MUSEUM SOCIETY</text>
+      <text x="500" y="330" font-family="IM Fell English, serif" font-size="64" fill="#f1e7d2">Eyes on the High Ground</text>
+      <text x="500" y="380" font-family="IM Fell English, serif" font-style="italic" font-size="26" fill="#d9cbae">The Signal Corps at Little Round Top · July 2, 1863</text>
+      <line x1="380" y1="415" x2="620" y2="415" stroke="#c9a24a" stroke-width="1.5"/>
+    </g>
+  </g>
+  <g id="endcard" opacity="0">
+    <rect width="1000" height="700" fill="#0c1424"/>
+    <g text-anchor="middle">
+      <g transform="translate(500 230)">
+        <line x1="0" y1="40" x2="0" y2="-40" stroke="#c9d6ea" stroke-width="3"/>
+        <rect x="0" y="-40" width="40" height="32" fill="#fbf7ee"/>
+        <rect x="12" y="-31" width="16" height="14" fill="#b3261e"/>
+      </g>
+      <text x="500" y="350" font-family="IM Fell English SC, serif" font-size="44" fill="#f1e7d2" letter-spacing="1">Signal &amp; Cyber Corps Museum</text>
+      <text x="500" y="395" font-family="JetBrains Mono, monospace" font-size="17" letter-spacing="8" fill="#c9a24a">SECURE OUR STORY</text>
+      <text x="500" y="470" font-family="IM Fell English, serif" font-style="italic" font-size="24" fill="#d9cbae">From the flag on Little Round Top to the networks of today.</text>
+    </g>
+  </g>
+</svg>
+</div>
+
+<div class="cap" id="cap"></div>
+<div class="ctrl">
+  <button id="play" aria-label="Play or pause">▶</button>
+  <button id="replay" aria-label="Replay">↺</button>
+  <input id="scrub" type="range" min="0" max="72" step="0.05" value="0" aria-label="Timeline">
+  <span class="time" id="tm">0:00</span>
+</div>
+<p class="note">Map is stylized and not to scale; times are approximate. The message is spelled in the July 1864 General Service Code used in the museum's Flag Drill (1 = flag to the signalman's right, 2 = to his left, 3 = front, ending a word). At Gettysburg in 1863 an earlier code was still in use, so this shows the method, not the exact signals sent that day.</p>
+<p class="note"><a href="../index.html#room-civil-war" target="_top" style="color:#e0bc4a">&larr; Civil War Signal Annex, Signal &amp; Cyber Corps Museum Society virtual museum</a></p>
+</div>
+
+<script>
+(function(){
+const $=id=>document.getElementById(id);
+const NS="http://www.w3.org/2000/svg";
+const T=72;
+const cl=x=>Math.max(0,Math.min(1,x));
+const seg=(t,a,b)=>cl((t-a)/(b-a));
+const ez=x=>x<.5?2*x*x:1-Math.pow(-2*x+2,2)/2;
+const op=(el,v)=>el.setAttribute("opacity",v.toFixed(3));
+
+/* captions */
+const caps=[
+ [0,5,"An animated story from the Signal &amp; Cyber Corps Museum Society."],
+ [5,11,"<b>July 2, 1863.</b> Day two at Gettysburg. The Union army holds a fishhook-shaped line from Culp's Hill down Cemetery Ridge."],
+ [11,17,"At the far Union left, a small Signal Corps team on Little Round Top watches the countryside for any movement."],
+ [17,26,"Around midday, General Longstreet's corps marches south, aiming to strike the exposed Union left by surprise."],
+ [26,29.5,"From the summit, signal officers spot the column near Black Horse Tavern."],
+ [29.5,40.5,"They send the warning by <b>wig-wag</b>: one flag swung left, right and front, each pattern a letter, relayed toward army headquarters."],
+ [40.5,46.5,"Fearing he has been seen, Longstreet halts and countermarches on a longer, hidden route. The surprise is gone, and hours are lost."],
+ [46.5,51.5,"About 4 PM, Gen. Gouverneur K. Warren reaches Little Round Top and finds it nearly empty except for the signalmen."],
+ [51.5,56.5,"He rushes in Vincent's Brigade just as Hood's Confederates attack. The 20th Maine anchors the far left. <b>The hill holds.</b>"],
+ [56.5,66,"Then and now, the mission is the same."],
+ [66,T+1,"Signal &amp; Cyber Corps Museum Society · Secure Our Story"]
+];
+const capEl=$("cap");let curCap=-1;
+function setCap(t){const i=caps.findIndex(c=>t>=c[0]&&t<c[1]);if(i!==curCap){curCap=i;capEl.style.opacity=0;setTimeout(()=>{capEl.innerHTML=i>=0?caps[i][2]:"";capEl.style.opacity=1},180)}}
+
+/* column of soldiers */
+const colG=$("column");const soldiers=[];
+for(let i=0;i<14;i++){const r=document.createElementNS(NS,"rect");r.setAttribute("width",8);r.setAttribute("height",8);r.setAttribute("x",-4);r.setAttribute("y",-4);r.setAttribute("fill",i===0?"#5e1f15":"#8c3a2b");r.setAttribute("stroke","#3b2f22");r.setAttribute("stroke-width",".6");colG.appendChild(r);soldiers.push(r)}
+const m1=$("march1"),m2=$("march2");const L1=m1.getTotalLength(),L2=m2.getTotalLength();
+function placeColumn(path,len,d,alpha){soldiers.forEach((s,i)=>{const dd=d-i*13;if(dd<0||alpha<=0){s.setAttribute("opacity",0);return}const p=path.getPointAtLength(Math.min(dd,len));const p2=path.getPointAtLength(Math.min(dd+1,len));const a=Math.atan2(p2.y-p.y,p2.x-p.x)*180/Math.PI;s.setAttribute("transform",`translate(${p.x} ${p.y}) rotate(${a})`);s.setAttribute("opacity",alpha)})}
+const tr1=$("trail1"),tr2=$("trail2");tr2.setAttribute("pathLength","1");
+
+/* arrows */
+const arrows=[...document.querySelectorAll(".arw")].map(g=>{const p=g.querySelector("path");const c=g.dataset.c;p.setAttribute("fill","none");p.setAttribute("stroke",c);p.setAttribute("stroke-width","7");p.setAttribute("stroke-linecap","round");p.setAttribute("opacity",".85");const len=p.getTotalLength();p.setAttribute("stroke-dasharray",len);p.setAttribute("stroke-dashoffset",len);const h=document.createElementNS(NS,"polygon");h.setAttribute("points","0,-11 18,0 0,11");h.setAttribute("fill",c);h.setAttribute("opacity",0);g.appendChild(h);return{p,h,len}});
+function drawArrow(a,f){a.p.setAttribute("stroke-dashoffset",a.len*(1-f));if(f<=0){a.h.setAttribute("opacity",0);return}const pt=a.p.getPointAtLength(a.len*f),pb=a.p.getPointAtLength(Math.max(0,a.len*f-2));const ang=Math.atan2(pt.y-pb.y,pt.x-pb.x)*180/Math.PI;a.h.setAttribute("transform",`translate(${pt.x} ${pt.y}) rotate(${ang})`);a.h.setAttribute("opacity",.95)}
+
+/* wig-wag message (illustrative two-element code) */
+const code={E:"12",N:"11",M:"1221",Y:"111",O:"21",L:"221",F:"2221",T:"2"};
+const words=["ENEMY","ON","LEFT"];const seq=[];const letters=[];
+words.forEach((w,wi)=>{[...w].forEach(ch=>{const li=letters.length;letters.push(ch);[...code[ch]].forEach(d=>seq.push({d,li}))});seq.push({d:"3",li:-1})});
+const msgRow=$("msgRow");const letEls=[];let x0=847-(letters.length+2)*14/2,xi=0;
+words.forEach((w,wi)=>{[...w].forEach(ch=>{const t=document.createElementNS(NS,"text");t.setAttribute("x",x0+xi*14);t.setAttribute("y",532);t.textContent=ch;t.setAttribute("fill","#3b2f22");t.setAttribute("fill-opacity",".25");msgRow.appendChild(t);letEls.push(t);xi++});xi++});
+const WW0=29.8,WWd=10.4/seq.length;
+const rig=$("bigFlagRig");const motionTxt=$("motionTxt"),digitTxt=$("digitTxt");const mini=$("miniFlag");
+
+/* network for cyber scene */
+const net=$("net");const nodes=[];let seed=7;const rnd=()=>{seed=(seed*16807)%2147483647;return seed/2147483647};
+for(let i=0;i<34;i++){const a=rnd()*Math.PI*2,r=140+rnd()*330;nodes.push({x:500+Math.cos(a)*r*1.25,y:330+Math.sin(a)*r*.62})}
+const edges=[];nodes.forEach((n,i)=>{const ds=nodes.map((m,j)=>[Math.hypot(m.x-n.x,m.y-n.y),j]).sort((a,b)=>a[0]-b[0]);[1,2].forEach(k=>{const j=ds[k][1];if(i<j)edges.push([i,j])});});
+nodes.forEach(n=>edges.push([nodes.indexOf(n),-1]));
+const edgeEls=edges.filter(e=>e[1]>=0||rnd()<.3).map((e,k)=>{const a=nodes[e[0]],b=e[1]>=0?nodes[e[1]]:{x:500,y:330};const l=document.createElementNS(NS,"line");l.setAttribute("x1",a.x);l.setAttribute("y1",a.y);l.setAttribute("x2",b.x);l.setAttribute("y2",b.y);l.setAttribute("stroke","#3d6fa8");l.setAttribute("stroke-width","1.2");l.setAttribute("pathLength","1");l.setAttribute("stroke-dasharray","1");l.setAttribute("stroke-dashoffset","1");net.appendChild(l);return{l,k}});
+const nodeEls=nodes.map(n=>{const c=document.createElementNS(NS,"circle");c.setAttribute("cx",n.x);c.setAttribute("cy",n.y);c.setAttribute("r",3.5);c.setAttribute("fill","#7fd3ff");c.setAttribute("opacity",0);net.appendChild(c);return c});
+const packets=[];for(let i=0;i<10;i++){const c=document.createElementNS(NS,"circle");c.setAttribute("r",3);c.setAttribute("fill","#fff");net.appendChild(c);packets.push({c,e:edgeEls[Math.floor(rnd()*edgeEls.length)],o:rnd()})}
+
+/* render */
+function render(t){
+ setCap(t);
+ op($("title"),1-seg(t,4,5.2));
+ // lines
+ op($("lines"),seg(t,4.8,5.6));
+ $("unionLine").setAttribute("stroke-dashoffset",1-ez(seg(t,5.4,9)));
+ $("confLine").setAttribute("stroke-dashoffset",1-ez(seg(t,6.2,10)));
+ op($("lblU"),seg(t,8.5,9.5));op($("lblC"),seg(t,9.5,10.5));
+ // clock
+ op($("clock"),seg(t,5,6)*(1-seg(t,56,57)));
+ $("clockTxt").textContent=t<17?"JULY 2, 1863 · MORNING":t<46.5?"JULY 2, 1863 · MIDDAY":"JULY 2, 1863 · ~4:00 PM";
+ // station + cone
+ op($("station"),seg(t,11,12));
+ const coneA=seg(t,12,13.5)*(1-seg(t,44,46.5));op($("coneG"),coneA);
+ const sw=Math.sin(t*1.3)*.5+.5;$("scan").setAttribute("x2",140-10*sw);$("scan").setAttribute("y2",260+250*sw);
+ // march 1
+ const d1=ez(seg(t,17,26))*(L1+13*13);
+ const inM2=t>=40.5;
+ tr1.setAttribute("stroke-dasharray",`${seg(t,17,26)} 1`);op(tr1,t<17?0:.6);
+ tr1.setAttribute("stroke-dasharray","3 6");tr1.setAttribute("opacity",t<17?0:(.25+.35*seg(t,17,26)));
+ if(!inM2){placeColumn(m1,L1,Math.min(d1,L1+0),t<17?0:1)}
+ else{const d2=ez(seg(t,40.5,46.5))*(L2+13*13);placeColumn(m2,L2,Math.min(d2,L2),1-seg(t,55,56.5)*.6)}
+ op(tr2,inM2?.55:0);
+ // spotted
+ const sp=t>=26&&t<41?1:0;op($("spot"),sp*Math.min(seg(t,26,26.4),1-seg(t,40,40.8)));
+ const rp=(t*0.9)%1;$("rip1").setAttribute("r",10+40*rp);op($("rip1"),(1-rp));const rp2=(t*0.9+.5)%1;$("rip2").setAttribute("r",10+40*rp2);op($("rip2"),(1-rp2));
+ op($("lostTime"),seg(t,42,43)*(1-seg(t,46.5,47.5)));
+ // wig-wag
+ op($("inset"),seg(t,29,29.8)*(1-seg(t,40.2,41)));
+ let ang=0,sy=1,cur=null;
+ if(t>=WW0&&t<WW0+seq.length*WWd){const k=Math.floor((t-WW0)/WWd);const f=((t-WW0)/WWd)%1;cur=seq[k];const s=Math.sin(Math.PI*f);if(cur.d==="1")ang=-70*s;else if(cur.d==="2")ang=70*s;else{sy=1-.55*s}
+  digitTxt.textContent=cur.d;motionTxt.textContent=cur.d==="1"?"TO HIS RIGHT":cur.d==="2"?"TO HIS LEFT":"FRONT · END WORD";
+  letEls.forEach((e,i)=>{e.setAttribute("fill-opacity",i<cur.li||(cur.li<0&&i<=lastLi(k))?".95":i===cur.li?"1":".25");e.setAttribute("fill",i===cur.li?"#b3261e":"#3b2f22")});
+ }else if(t>=WW0+seq.length*WWd){digitTxt.textContent="✓";motionTxt.textContent="MESSAGE SENT";letEls.forEach(e=>{e.setAttribute("fill-opacity",".95");e.setAttribute("fill","#3b2f22")})}
+ else{digitTxt.textContent="";motionTxt.textContent="";}
+ rig.setAttribute("transform",`rotate(${ang} 800 500) translate(800 500) scale(1 ${sy}) translate(-800 -500)`);
+ mini.setAttribute("transform",`rotate(${ang} 602 545)`);
+ // relay
+ op($("relay"),seg(t,30,31)*(1-seg(t,44,45.5)));
+ const rp3=$("relayPath"),RL=rp3.getTotalLength();
+ [[$("pulse1"),0],[$("pulse2"),.5]].forEach(([c,o])=>{const f=((t*0.45)+o)%1;const pt=rp3.getPointAtLength(RL*f);c.setAttribute("cx",pt.x);c.setAttribute("cy",pt.y);op(c,t>30.5&&t<40.5?1-f*.3:0)});
+ const hq=seg(t,39.6,41.6);$("hqRing").setAttribute("r",10+28*hq);op($("hqRing"),hq>0&&hq<1?1-hq:0);
+ // assault
+ op($("warren"),seg(t,47,48)*(1-seg(t,53,54)));
+ drawArrow(arrows[0],ez(seg(t,49,52)));drawArrow(arrows[1],ez(seg(t,49.5,52.5)));drawArrow(arrows[2],ez(seg(t,50,53)));
+ drawArrow(arrows[3],ez(seg(t,51.5,53.5)));drawArrow(arrows[4],ez(seg(t,52,54)));
+ const asOut=1-seg(t,56.5,57);$("assault").style.opacity=asOut;
+ op($("assaultLbl"),seg(t,51,52)*asOut);
+ op($("held"),seg(t,54.3,55)*asOut);
+ // cyber
+ op($("cyber"),seg(t,56.5,58));
+ const nf=seg(t,58,62);edgeEls.forEach((e,i)=>e.l.setAttribute("stroke-dashoffset",1-cl(nf*1.6-i/edgeEls.length*.6)));
+ nodeEls.forEach((c,i)=>op(c,cl(nf*1.5-i/nodeEls.length*.5)));
+ packets.forEach(p=>{const l=p.e.l;const f=((t*0.5)+p.o)%1;const x=+l.getAttribute("x1")+(l.getAttribute("x2")-l.getAttribute("x1"))*f;const y=+l.getAttribute("y1")+(l.getAttribute("y2")-l.getAttribute("y1"))*f;p.c.setAttribute("cx",x);p.c.setAttribute("cy",y);op(p.c,seg(t,61,62)*.9)});
+ $("cyFlag").setAttribute("transform",`translate(500 ${330-40*ez(seg(t,57,60))}) scale(${1-.25*ez(seg(t,57,60))}) rotate(${Math.sin(t*2.2)*8*seg(t,57,58)})`);
+ op($("cy1"),seg(t,59,60));op($("cy2"),seg(t,60.5,61.5));op($("cy3"),seg(t,62.5,63.5));
+ op($("endcard"),seg(t,66,67.2));
+}
+function lastLi(k){for(let j=k;j>=0;j--)if(seq[j].li>=0)return seq[j].li;return -1}
+
+/* playback */
+let t=0,playing=false,last=null;const scrub=$("scrub"),tm=$("tm"),pb=$("play");
+function fmt(s){s=Math.floor(s);return Math.floor(s/60)+":"+String(s%60).padStart(2,"0")}
+function tick(ts){if(last==null)last=ts;const dt=(ts-last)/1000;last=ts;if(playing){t+=dt;if(t>=T){t=T;playing=false;pb.textContent="▶"}}
+ render(t);scrub.value=t;tm.textContent=fmt(t)+" / "+fmt(T);requestAnimationFrame(tick)}
+pb.onclick=()=>{if(t>=T)t=0;playing=!playing;pb.textContent=playing?"❚❚":"▶"};
+$("replay").onclick=()=>{t=0;playing=true;pb.textContent="❚❚"};
+scrub.oninput=()=>{t=+scrub.value;playing=false;pb.textContent="▶"};
+try{if(window.self!==window.top){document.querySelector(".note").style.display="none";document.querySelector(".wrap").style.padding="0 0 8px"}}catch(e){}
+document.querySelector(".stage").addEventListener("click",()=>{if(!playing){pb.click()}});
+requestAnimationFrame(tick);
+})();
+</script>
+</body>
+</html>

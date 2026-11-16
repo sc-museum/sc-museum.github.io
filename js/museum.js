@@ -773,6 +773,21 @@
     setTimeout(function(){ box.classList.remove('render-flash'); }, 1600);
   });
 
+  // Embedded story pages (iframe[data-fit]) grow to their own height, so nothing scrolls inside them.
+  document.querySelectorAll('iframe[data-fit]').forEach(function(f){
+    function fit(){
+      try { var d = f.contentDocument; if (d && d.body){ d.documentElement.style.overflow = 'hidden'; f.style.height = Math.ceil(d.body.getBoundingClientRect().height) + 'px'; } } catch (e) {}
+    }
+    function watch(){
+      fit();
+      try { new ResizeObserver(fit).observe(f.contentDocument.body); } catch (e) {}
+    }
+    f.addEventListener('load', watch);
+    // The frame may have finished loading before this script ran.
+    try { var d0 = f.contentDocument; if (d0 && d0.readyState === 'complete' && d0.URL !== 'about:blank') watch(); } catch (e) {}
+    window.addEventListener('resize', fit);
+  });
+
   goto('lobby');
 })();
 
