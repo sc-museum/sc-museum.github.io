@@ -21,6 +21,9 @@
   .time{font-family:"JetBrains Mono",monospace;font-size:12px;color:#b9a888;min-width:72px;text-align:right}
   .note{margin-top:14px;font-size:13px;color:#a8977a;line-height:1.45}
   .mono{font-family:"JetBrains Mono",monospace}
+  .tog{font-size:13px;padding:9px 10px;white-space:nowrap}
+  .tog[aria-pressed="false"]{opacity:.45;text-decoration:line-through}
+  @media (max-width:560px){.ctrl{flex-wrap:wrap}.ctrl input[type=range]{flex-basis:100%;order:5}}
 </style>
 </head>
 <body>
@@ -276,8 +279,10 @@
   <button id="replay" aria-label="Replay">↺</button>
   <input id="scrub" type="range" min="0" max="72" step="0.05" value="0" aria-label="Timeline">
   <span class="time" id="tm">0:00</span>
+  <button id="mus" class="tog" aria-pressed="true" title="Music on or off">♪ Music</button>
+  <button id="nar" class="tog" aria-pressed="true" title="Narration on or off">🗣 Narration</button>
 </div>
-<p class="note">Map is stylized and not to scale; times are approximate. The message is spelled in the July 1864 General Service Code used in the museum's Flag Drill (1 = flag to the signalman's right, 2 = to his left, 3 = front, ending a word). At Gettysburg in 1863 an earlier code was still in use, so this shows the method, not the exact signals sent that day.</p>
+<p class="note">Map is stylized and not to scale; times are approximate. The message is spelled in the July 1864 General Service Code used in the museum's Flag Drill (1 = flag to the signalman's right, 2 = to his left, 3 = front, ending a word). At Gettysburg in 1863 an earlier code was still in use, so this shows the method, not the exact signals sent that day. The music is an original score your browser plays as you watch; the narration uses your device's built-in voice.</p>
 <p class="note"><a href="../index.html#room-civil-war" target="_top" style="color:#e0bc4a">&larr; Civil War Signal Annex, Signal &amp; Cyber Corps Museum Society virtual museum</a></p>
 </div>
 
@@ -401,11 +406,124 @@ function lastLi(k){for(let j=k;j>=0;j--)if(seq[j].li>=0)return seq[j].li;return 
 /* playback */
 let t=0,playing=false,last=null;const scrub=$("scrub"),tm=$("tm"),pb=$("play");
 function fmt(s){s=Math.floor(s);return Math.floor(s/60)+":"+String(s%60).padStart(2,"0")}
-function tick(ts){if(last==null)last=ts;const dt=(ts-last)/1000;last=ts;if(playing){t+=dt;if(t>=T){t=T;playing=false;pb.textContent="▶"}}
+const capAt=x=>caps.findIndex(c=>x>=c[0]&&x<c[1]);
+
+/* ===== NARRATION: the device's own voice reads each caption; the picture waits for the narrator ===== */
+const NARR=[
+ "Eyes on the High Ground. The Signal Corps at Little Round Top. July second, 1863.",
+ "July second, 1863. Day two at Gettysburg. The Union army holds a fishhook-shaped line, from Culp's Hill down Cemetery Ridge.",
+ "At the far Union left, a small Signal Corps team on Little Round Top watches the countryside for any movement.",
+ "Around midday, General Longstreet's corps marches south, aiming to strike the exposed Union left by surprise.",
+ "From the summit, signal officers spot the column, near Black Horse Tavern.",
+ "They send the warning by wig-wag. One flag, swung left, right, and front. Each pattern a letter, relayed toward army headquarters.",
+ "Fearing he has been seen, Longstreet halts, and countermarches on a longer, hidden route. The surprise is gone. Hours are lost.",
+ "About four in the afternoon, General Gouverneur K. Warren reaches Little Round Top, and finds it nearly empty, except for the signalmen.",
+ "He rushes in Vincent's Brigade, just as Hood's Confederates attack. The Twentieth Maine anchors the far left. The hill holds.",
+ "Then and now, the mission is the same. See first. Communicate fast. Protect the message.",
+ "Signal and Cyber Corps Museum Society. Secure our story."
+];
+const hasTTS="speechSynthesis" in window&&"SpeechSynthesisUtterance" in window;
+let voiceOn=hasTTS,talking=false,spokenIdx=-1,talkTok=0,talkTimer=null,voice=null;
+function pickVoice(){if(!hasTTS)return null;const vs=speechSynthesis.getVoices().filter(v=>/^en/i.test(v.lang));
+ const pref=[/(Guy|Christopher|Eric|Davis|Andrew|Brian|Roger|Steffan|Ryan|Thomas).*Natural/i,/Natural/i,/Google UK English Male/i,/Daniel/i,/Google US English/i,/David|Mark|Alex|Fred|George/i];
+ for(const r of pref){const v=vs.find(v=>r.test(v.name));if(v)return v}return vs[0]||null}
+if(hasTTS){voice=pickVoice();speechSynthesis.addEventListener&&speechSynthesis.addEventListener("voiceschanged",()=>{voice=pickVoice()})}
+function stopTalk(){talkTok++;talking=false;clearTimeout(talkTimer);if(hasTTS)speechSynthesis.cancel()}
+function say(i){stopTalk();spokenIdx=i;if(!voiceOn||i<0||!NARR[i])return;
+ const tok=talkTok,u=new SpeechSynthesisUtterance(NARR[i]);if(voice){u.voice=voice;u.lang=voice.lang}u.rate=.95;u.pitch=.9;
+ u.onend=u.onerror=()=>{if(tok===talkTok){talking=false;clearTimeout(talkTimer)}};
+ talking=true;talkTimer=setTimeout(()=>{if(tok===talkTok)talking=false},(NARR[i].split(" ").length/2.2+4)*1000); // never wait forever
+ speechSynthesis.speak(u)}
+
+/* ===== MUSIC: an original score, synthesized live in the browser (no recordings) ===== */
+const AC=window.AudioContext||window.webkitAudioContext;
+let ac=null,musicOn=!!AC,bus,verb,padG,padF,pads=[],nb=null;
+const mtof=m=>440*Math.pow(2,(m-69)/12);
+function initAudio(){if(ac||!AC)return;ac=new AC();
+ const master=ac.createGain();master.gain.value=.85;master.connect(ac.destination);
+ bus=ac.createGain();bus.gain.value=0;bus.connect(master);
+ verb=ac.createConvolver();const L=Math.floor(ac.sampleRate*2.8),ir=ac.createBuffer(2,L,ac.sampleRate);
+ for(let c=0;c<2;c++){const d=ir.getChannelData(c);for(let i=0;i<L;i++)d[i]=(Math.random()*2-1)*Math.pow(1-i/L,2.6)}
+ verb.buffer=ir;const vg=ac.createGain();vg.gain.value=.3;verb.connect(vg);vg.connect(bus);
+ padF=ac.createBiquadFilter();padF.type="lowpass";padF.frequency.value=700;padF.Q.value=.7;
+ padG=ac.createGain();padG.gain.value=0;padF.connect(padG);padG.connect(bus);padG.connect(verb);
+ for(let i=0;i<8;i++){const o=ac.createOscillator();o.type="sawtooth";o.detune.value=i%2?8:-8;const g=ac.createGain();g.gain.value=.04;o.connect(g);g.connect(padF);o.start();pads.push(o)}
+ nb=ac.createBuffer(1,ac.sampleRate,ac.sampleRate);const nd=nb.getChannelData(0);for(let i=0;i<nd.length;i++)nd[i]=Math.random()*2-1}
+function noise(){const s=ac.createBufferSource();s.buffer=nb;s.loop=true;return s}
+function send(n,wet){n.connect(bus);if(wet){const g=ac.createGain();g.gain.value=wet;n.connect(g);g.connect(verb)}}
+function env(g,at,peak,a,dec){g.gain.setValueAtTime(.0001,at);g.gain.exponentialRampToValueAtTime(peak,at+a);g.gain.exponentialRampToValueAtTime(.0001,at+a+dec)}
+function snare(at,v){const n=noise(),f=ac.createBiquadFilter(),g=ac.createGain();f.type="highpass";f.frequency.value=1400;env(g,at,.3*v,.003,.15);n.connect(f);f.connect(g);send(g,.5);n.start(at);n.stop(at+.2);
+ const o=ac.createOscillator(),og=ac.createGain();o.type="triangle";o.frequency.setValueAtTime(230,at);o.frequency.exponentialRampToValueAtTime(150,at+.08);env(og,at,.22*v,.002,.09);o.connect(og);send(og,.3);o.start(at);o.stop(at+.13)}
+function drum(at,hz,v,dec){const o=ac.createOscillator(),g=ac.createGain();o.type="sine";o.frequency.setValueAtTime(hz*1.6,at);o.frequency.exponentialRampToValueAtTime(hz,at+.07);env(g,at,.75*v,.006,dec);o.connect(g);send(g,.35);o.start(at);o.stop(at+dec+.05)}
+function cymbal(at,v){const n=noise(),f=ac.createBiquadFilter(),g=ac.createGain();f.type="highpass";f.frequency.value=5200;env(g,at,.2*v,.004,2.4);n.connect(f);f.connect(g);send(g,.6);n.start(at);n.stop(at+2.5)}
+function whoosh(at){const n=noise(),f=ac.createBiquadFilter(),g=ac.createGain();f.type="bandpass";f.Q.value=3;f.frequency.setValueAtTime(200,at);f.frequency.exponentialRampToValueAtTime(5000,at+1.6);env(g,at,.25,.9,.9);n.connect(f);f.connect(g);send(g,.6);n.start(at);n.stop(at+2)}
+function brass(at,notes,v,dur){notes.forEach(m=>[-6,6].forEach(dt=>{const o=ac.createOscillator(),f=ac.createBiquadFilter(),g=ac.createGain();o.type="sawtooth";o.frequency.value=mtof(m);o.detune.value=dt;
+ f.type="lowpass";f.Q.value=2;f.frequency.setValueAtTime(300,at);f.frequency.exponentialRampToValueAtTime(2800,at+.09);f.frequency.exponentialRampToValueAtTime(900,at+dur);
+ g.gain.setValueAtTime(.0001,at);g.gain.exponentialRampToValueAtTime(.05*v,at+.05);g.gain.setTargetAtTime(.0001,at+dur*.6,dur*.25);o.connect(f);f.connect(g);send(g,.5);o.start(at);o.stop(at+dur+.8)}))}
+function pluck(at,m,v,type){const o=ac.createOscillator(),g=ac.createGain();o.type=type||"triangle";o.frequency.value=mtof(m);env(g,at,(type==="square"?.06:.16)*v,.005,.24);o.connect(g);send(g,.4);o.start(at);o.stop(at+.3)}
+function pad(ch,lvl,cut,at){ch.forEach((m,i)=>{pads[i*2].frequency.setTargetAtTime(mtof(m),at,.08);pads[i*2+1].frequency.setTargetAtTime(mtof(m),at,.08)});padG.gain.setTargetAtTime(lvl,at,.6);padF.frequency.setTargetAtTime(cut,at,.5)}
+// One part of the score for each part of the story: D minor for the battle, D major when the hill holds.
+const SONG={
+ title:{ch:[[38,50,53,57]],lvl:.5,cut:500},
+ calm:{ch:[[50,53,57,62],[46,53,58,62],[50,53,57,62],[45,52,57,61]],lvl:.55,cut:800},
+ march:{ch:[[50,53,57,62],[48,55,60,63],[46,53,58,62],[45,52,57,61]],lvl:.5,cut:1100},
+ alarm:{ch:[[50,53,56,62]],lvl:.6,cut:1700},
+ signal:{ch:[[43,50,55,58],[45,52,57,61]],lvl:.42,cut:1300},
+ counter:{ch:[[34,46,50,53],[33,45,49,52]],lvl:.55,cut:600},
+ battle:{ch:[[38,50,53,57],[34,50,53,58],[36,48,55,60],[33,49,52,57]],lvl:.6,cut:2100},
+ held:{ch:[[38,50,54,57]],lvl:.65,cut:2600},
+ cyber:{ch:[[50,54,57,61],[47,54,59,62],[43,55,59,62],[45,52,57,61]],lvl:.38,cut:1800},
+ end:{ch:[[38,50,54,57]],lvl:.45,cut:1200}
+};
+const part=x=>x<5?"title":x<17?"calm":x<26?"march":x<29.5?"alarm":x<40.5?"signal":x<46.5?"counter":x<54.3?"battle":x<56.5?"held":x<66?"cyber":"end";
+const STEP=60/96/4;let nextAt=0,stepN=0,lastPart="";
+function enter(p,at){
+ if(p==="alarm"){brass(at,[62,65,68,74],1,1.2);cymbal(at,1)}
+ if(p==="battle"){cymbal(at,.8);for(let i=0;i<12;i++)drum(at+i*.05,mtof(26),.3+i*.05,.3)}
+ if(p==="held"){brass(at,[62,66,69,74],1.2,2.6);cymbal(at,1.2)}
+ if(p==="cyber")whoosh(at);
+ if(p==="end")brass(at,[50,54,57,62],.6,3)}
+function step(at,n){const p=part(t),S=SONG[p],b=n%16,bar=Math.floor(n/16),ch=S.ch[bar%S.ch.length],r=ch[0];
+ if(p!==lastPart){enter(p,at);lastPart=p;pad(ch,S.lvl,S.cut,at)}
+ if(b===0)pad(ch,S.lvl,S.cut,at);
+ let pat;
+ switch(p){
+  case "title":if(b===0)drum(at,mtof(26),1,1.6);if(n%2===0)snare(at,.05+.25*b/16);break;
+  case "calm":if(b===0)drum(at,mtof(26),.6,1.4);if(b===8)drum(at,mtof(33),.4,1.2);break;
+  case "march":pat="x.xxx.x.x.xxx.xx";if(pat[b]==="x")snare(at,b%4===0?.8:.45);if(b%8===0)drum(at,mtof(26),.8,.5);break;
+  case "alarm":snare(at,.25+.4*b/16);if(b%4===0)drum(at,mtof(26),.7,.6);break;
+  case "signal":if(n%2===0)pluck(at,r+12+[0,7,12,7][(n/2)%4],.8);if(b===4||b===12)snare(at,.35);if(b%4===0)drum(at,mtof(26),.5,.4);break;
+  case "counter":if(b===0||b===10)drum(at,mtof(24),.9,1.8);if(b===14)drum(at,mtof(31),.5,.8);break;
+  case "battle":pat="x.xxx.xxx.xxx.xx";if(pat[b]==="x")snare(at,b%4===0?.9:.5);if(b%4===0)drum(at,mtof(26),.9,.45);
+   if(b===0)brass(at,ch.slice(1).map(m=>m+12),1,.9);if(b===8)brass(at,ch.slice(1).map(m=>m+12),.7,.5);break;
+  case "held":if(b===0)drum(at,mtof(26),1,1.5);if(b%4===0)snare(at,.3);break;
+  case "cyber":pluck(at,r+12+[0,4,7,11,12,11,7,4][n%8],.6,"square");if(b%4===0)drum(at,mtof(29),.45,.25);break;
+  case "end":if(b===0&&bar%2===0)drum(at,mtof(26),.5,2);break}}
+setInterval(()=>{if(!ac)return;const live=playing&&musicOn;
+ bus.gain.setTargetAtTime(live?(talking?.3:.6):0,ac.currentTime,.25);
+ if(!live){padG.gain.setTargetAtTime(0,ac.currentTime,.3);nextAt=0;lastPart="";return}
+ if(nextAt<ac.currentTime)nextAt=ac.currentTime+.05;
+ while(nextAt<ac.currentTime+.15){step(nextAt,stepN);nextAt+=STEP;stepN++}},30);
+
+function setPlaying(on){playing=on;pb.textContent=on?"❚❚":"▶";
+ if(on){initAudio();if(ac&&ac.state!=="running")ac.resume();if(voiceOn&&hasTTS)say(capAt(t))} // started from the click, so browsers allow sound
+ else stopTalk()}
+function tick(ts){if(last==null)last=ts;const dt=Math.min(.1,(ts-last)/1000);last=ts;
+ if(playing){let nt=t+dt;const ci=capAt(t);
+  if(voiceOn&&talking&&ci>=0&&nt>=caps[ci][1])nt=Math.max(t,caps[ci][1]-.001); // hold the scene until the line is spoken
+  t=nt;if(t>=T){t=T;playing=false;pb.textContent="▶"}
+  const ni=capAt(t);if(playing&&voiceOn&&ni!==spokenIdx)say(ni)}
  render(t);scrub.value=t;tm.textContent=fmt(t)+" / "+fmt(T);requestAnimationFrame(tick)}
-pb.onclick=()=>{if(t>=T)t=0;playing=!playing;pb.textContent=playing?"❚❚":"▶"};
-$("replay").onclick=()=>{t=0;playing=true;pb.textContent="❚❚"};
-scrub.oninput=()=>{t=+scrub.value;playing=false;pb.textContent="▶"};
+pb.onclick=()=>{if(t>=T)t=0;setPlaying(!playing)};
+$("replay").onclick=()=>{t=0;stepN=0;setPlaying(true)};
+scrub.oninput=()=>{t=+scrub.value;setPlaying(false)};
+const musB=$("mus"),narB=$("nar");
+if(!AC)musB.style.display="none";if(!hasTTS)narB.style.display="none";
+musB.onclick=()=>{musicOn=!musicOn;musB.setAttribute("aria-pressed",musicOn)};
+narB.onclick=()=>{voiceOn=!voiceOn;narB.setAttribute("aria-pressed",voiceOn);if(!voiceOn)stopTalk();else if(playing)say(capAt(t))};
+// Stop when the visitor leaves: another tab, another museum room, or scrolled away.
+document.addEventListener("visibilitychange",()=>{if(document.hidden&&playing)setPlaying(false)});
+if("IntersectionObserver" in window)new IntersectionObserver(es=>{es.forEach(e=>{if(!e.isIntersecting&&playing)setPlaying(false)})}).observe(document.querySelector(".stage"));
 try{if(window.self!==window.top){document.querySelector(".note").style.display="none";document.querySelector(".wrap").style.padding="0 0 8px"}}catch(e){}
 document.querySelector(".stage").addEventListener("click",()=>{if(!playing){pb.click()}});
 requestAnimationFrame(tick);
