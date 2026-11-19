@@ -84,22 +84,40 @@
     roomsBox.hidden = !roomsList.firstChild;
   }
 
+  // The narrator (js/narrator.js) says what each stop shows; the camera waits for it before moving on.
+  var N = window.MuseumNarrator, waited = false, spoken = true;
+  if (N) {
+    playBtn.parentNode.insertBefore(N.button('fly-btn'), dotsBox);
+    N.onHalt(function (o) { if (o === root) pause(); });
+  }
+  function speakScene() {
+    spoken = !N;
+    if (!N) return;
+    var s = scenes[at], my = at;
+    N.say(s.getAttribute('data-k') + '. ' + s.getAttribute('data-t') + '. ' + s.getAttribute('data-d'),
+      function () { if (my === at) { spoken = true; advance(); } }, root);
+  }
+  function advance() {
+    if (playing && waited && spoken) { at + 1 < scenes.length ? (show(at + 1), speakScene(), schedule()) : finish(); }
+  }
   function schedule() {
     clearTimeout(timer);
-    since = Date.now();
-    timer = setTimeout(function () { at + 1 < scenes.length ? (show(at + 1), schedule()) : finish(); }, left);
+    since = Date.now(); waited = false;
+    timer = setTimeout(function () { waited = true; advance(); }, left);
   }
   function play() {
     if (at < 0 || !endCard.hidden) show(0);
     playing = true;
     root.classList.remove('paused');
     playBtn.textContent = 'Pause';
+    speakScene();
     // with reduced motion the visitor steps through by hand
     if (!still) schedule();
   }
   function pause() {
     if (!playing) return;
     playing = false;
+    if (N) N.stop(root);
     clearTimeout(timer);
     left = Math.max(400, left - (Date.now() - since));
     root.classList.add('paused');

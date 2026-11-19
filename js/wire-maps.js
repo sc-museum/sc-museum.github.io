@@ -74,7 +74,7 @@
     var at = -1, timer = null, playing = false, raf = [];
     var dotEls = map.steps.map(function (st, i) {
       var d = btn('wm-dot'); d.setAttribute('aria-label', 'Step ' + (i + 1) + ': ' + st.when + ', ' + st.title);
-      d.addEventListener('click', function () { stop(); show(i); }); dots.appendChild(d); return d;
+      d.addEventListener('click', function () { byHand(i); }); dots.appendChild(d); return d;
     });
 
     function spark(path, delay) {
@@ -125,15 +125,30 @@
       dotEls.forEach(function (d, n) { d.classList.toggle('done', n < at); d.classList.toggle('now', n === at); });
       prev.disabled = at === 0; next.disabled = at === map.steps.length - 1;
     }
-    function stop() { playing = false; clearTimeout(timer); play.textContent = '▶ Play'; root.classList.remove('playing'); }
+    // The narrator (js/narrator.js) says what each step shows; while playing, the next step waits for it.
+    var N = window.MuseumNarrator;
+    function narrate(i, done) {
+      var st = map.steps[i];
+      if (N) N.say(st.when + '. ' + st.title + '. ' + st.text, done, root); else if (done) setTimeout(done, 0);
+    }
+    if (N) { bar.insertBefore(N.button('wm-btn'), dots); N.onHalt(function (o) { if (o === root) stop(); }); }
+    function stop() { playing = false; clearTimeout(timer); clearTimeout(timer2); play.textContent = '▶ Play'; root.classList.remove('playing'); if (N) N.stop(root); }
     function run() {
       playing = true; play.textContent = 'Pause'; root.classList.add('playing');
       if (at >= map.steps.length - 1) show(0);
-      (function loop() { timer = setTimeout(function () { if (at + 1 < map.steps.length) { show(at + 1); loop(); } else stop(); }, SECONDS * 1000); })();
+      (function loop() {
+        var waited = false, spoken = false;
+        function go() { if (!playing || !waited || !spoken) return; if (at + 1 < map.steps.length) { show(at + 1); loop(); } else stop(); }
+        narrate(at, function () { timer2 = setTimeout(function () { spoken = true; go(); }, 900); });
+        timer = setTimeout(function () { waited = true; go(); }, SECONDS * 1000);
+      })();
     }
+    var timer2 = null;
     play.addEventListener('click', function () { playing ? stop() : run(); });
-    prev.addEventListener('click', function () { stop(); show(at - 1); });
-    next.addEventListener('click', function () { stop(); show(at + 1); });
+    // stepping by hand: the narrator reads the step chosen
+    function byHand(i) { stop(); show(i); if (N && N.on()) narrate(at); }
+    prev.addEventListener('click', function () { byHand(at - 1); });
+    next.addEventListener('click', function () { byHand(at + 1); });
     var room = root.closest('.room');
     if (room && window.MutationObserver) new MutationObserver(function () { if (!room.classList.contains('active')) stop(); else show(at); }).observe(room, { attributes: true, attributeFilter: ['class'] });
     document.addEventListener('visibilitychange', function () { if (document.hidden) stop(); });

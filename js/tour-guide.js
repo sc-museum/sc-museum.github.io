@@ -371,6 +371,7 @@
         // Anything else (no audio allowed, voice failed): read this piece as a caption.
         timed(text, done);
       };
+      document.dispatchEvent(new CustomEvent('museum-guide-speak'));   // an animation's narrator steps aside
       synth.speak(u);
     } else {
       timed(text, done);
@@ -674,6 +675,11 @@
       startItem(0); renderAll();
     }, 50);
   }
+
+  // A visitor started an animation's narration (js/narrator.js): the guide pauses rather than talk over it.
+  document.addEventListener('museum-narrator-speak', function(){
+    if (st.playing){ stopVoice(); setPlaying(false); renderCaption(); }
+  });
 
   renderAll();
 })();

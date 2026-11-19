@@ -24,9 +24,13 @@
     var svg = map.querySelector('.ds-map-svg');
     var btns = map.querySelectorAll('.ds-map-tabs button');
     var capShift = map.querySelector('.ds-cap-shift'), capAttack = map.querySelector('.ds-cap-attack');
+    // The narrator (js/narrator.js) says what each phase of the map shows when a visitor picks it.
+    var N = window.MuseumNarrator, tabs = map.querySelector('.ds-map-tabs');
+    if (N && tabs) tabs.parentNode.insertBefore(N.button('ds-narr'), tabs.nextSibling);
     btns.forEach(function (b) {
       b.addEventListener('click', function () {
         var phase = b.getAttribute('data-phase');
+        if (N && N.on()) N.say(b.textContent + '. ' + (phase === 'shift' ? capShift : capAttack).textContent, null, map);
         btns.forEach(function (x) { var on = x === b; x.classList.toggle('active', on); x.setAttribute('aria-selected', on ? 'true' : 'false'); });
         svg.setAttribute('data-phase', phase);
         capShift.hidden = phase !== 'shift';

@@ -132,7 +132,7 @@ function render(key){
   document.getElementById('wf-dates').textContent=ph.dates;
   document.getElementById('wf-title').textContent=ph.title;
   document.getElementById('wf-body').textContent=ph.body;
-  document.querySelectorAll('#av-front .phases button').forEach(b=>b.setAttribute('aria-pressed',b.dataset.phase===key));
+  document.querySelectorAll('#av-front .phases button[data-phase]').forEach(b=>b.setAttribute('aria-pressed',b.dataset.phase===key));
   ['sept','july','nov'].forEach(f=>{const e=document.getElementById('wf-f-'+f);const on=ph.front.includes(f)||(f==='sept'&&key!=='train');e.setAttribute('opacity',on?(f==='sept'&&!ph.front.includes('sept')?.45:1):0);});
   const R=document.getElementById('wf-routes'),Pg=document.getElementById('wf-places'),F=document.getElementById('wf-flyers');
   R.innerHTML='';Pg.innerHTML='';F.innerHTML='';
@@ -156,7 +156,11 @@ function render(key){
     flyers.forEach(([p,f],i)=>{const L=p.getTotalLength();if(!L)return;const u=(t+i*0.17)%1;const a=p.getPointAtLength(u*L),b=p.getPointAtLength(Math.min(L,u*L+1));const ang=Math.atan2(b.y-a.y,b.x-a.x)*180/Math.PI;f.setAttribute('transform',`translate(${a.x} ${a.y}) rotate(${ang})`);});anim=requestAnimationFrame(step)};
   anim=requestAnimationFrame(step);
 }
-document.querySelectorAll('#av-front .phases button').forEach(b=>b.addEventListener('click',()=>{render(b.dataset.phase);try{localStorage.setItem('wf-phase',b.dataset.phase)}catch(e){}}));
+// The narrator (js/narrator.js) says what each period of the map shows when a visitor picks it.
+const N=window.MuseumNarrator,avRoot=document.getElementById('av-front'),phaseBox=document.querySelector('#av-front .phases');
+if(N&&phaseBox){const nb=N.button('narr-av');phaseBox.parentNode.insertBefore(nb,phaseBox.nextSibling);}
+document.querySelectorAll('#av-front .phases button[data-phase]').forEach(b=>b.addEventListener('click',()=>{render(b.dataset.phase);try{localStorage.setItem('wf-phase',b.dataset.phase)}catch(e){}
+  const ph=PHASES[b.dataset.phase];if(N&&N.on())N.say(ph.title+'. '+ph.dates+'. '+ph.body,null,avRoot);}));
 let start='toul';try{start=localStorage.getItem('wf-phase')||'toul'}catch(e){}
 render(PHASES[start]?start:'toul');
 })();
