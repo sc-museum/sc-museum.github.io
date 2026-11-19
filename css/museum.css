@@ -786,3 +786,16 @@ a.cover:hover, a.cover:focus-visible{border-color:var(--gold);}
 .narr-btn[aria-pressed="false"]{opacity:.55; text-decoration:line-through;}
 .narr-av, .ds-narr{display:inline-block; width:auto; justify-self:start; align-self:flex-start; margin:10px 0 4px; background:var(--panel); border:1px solid var(--hair); color:var(--white); font-family:var(--sans); font-size:12.5px; padding:8px 14px; border-radius:2px; cursor:pointer; min-height:36px;}
 .narr-av:hover, .ds-narr:hover{border-color:var(--gold);}
+
+/* In Memoriam notice in the Lobby (rooms/01-lobby.html -> tribute/) */
+.memoriam{display:flex; gap:20px; align-items:center; max-width:720px; margin:34px auto 6px; padding:16px 20px 16px 16px; background:linear-gradient(135deg,#0b0d0b,#141a15); border:1px solid #5d4c1c; border-left:4px solid var(--gold); border-radius:3px; text-decoration:none; color:var(--white); box-shadow:0 10px 30px rgba(0,0,0,.35); transition:border-color .2s, transform .2s;}
+.memoriam:hover, .memoriam:focus-visible{border-color:var(--gold-bright); transform:translateY(-2px); outline:none;}
+.memoriam img{width:92px; height:118px; object-fit:cover; object-position:50% 20%; border:1px solid #6b5520; flex:none; filter:saturate(.9);}
+.memoriam .mem-text{display:flex; flex-direction:column; gap:2px; text-align:left;}
+.memoriam .mem-k{font-family:var(--mono); font-size:11px; letter-spacing:.3em; text-transform:uppercase; color:var(--gold-bright);}
+.memoriam .mem-n{font-family:var(--serif); font-size:23px; line-height:1.2;}
+.memoriam .mem-d{font-family:var(--serif); font-style:italic; color:var(--paper); font-size:15px;}
+.memoriam .mem-p{font-size:13.5px; color:var(--muted); margin-top:4px;}
+.memoriam .mem-go{font-size:13px; color:var(--gold-bright); margin-top:6px; font-weight:600;}
+@media (max-width:520px){.memoriam{gap:14px; padding:14px;} .memoriam img{width:72px; height:94px;} .memoriam .mem-n{font-size:20px;}}
+@media (prefers-reduced-motion:reduce){.memoriam{transition:none;} .memoriam:hover{transform:none;}}
