@@ -430,9 +430,9 @@ function pickVoice(){if(!hasTTS)return null;const vs=speechSynthesis.getVoices()
 if(hasTTS){voice=pickVoice();speechSynthesis.addEventListener&&speechSynthesis.addEventListener("voiceschanged",()=>{voice=pickVoice()})}
 function stopTalk(){talkTok++;talking=false;clearTimeout(talkTimer);if(hasTTS)speechSynthesis.cancel()}
 function say(i){stopTalk();spokenIdx=i;if(!voiceOn||i<0||!NARR[i])return;
- const tok=talkTok,u=new SpeechSynthesisUtterance(NARR[i]);if(voice){u.voice=voice;u.lang=voice.lang}{const nat=voice&&/Natural|Neural|Premium|Enhanced/i.test(voice.name);u.rate=nat?.9:.86;u.pitch=nat?.85:.72}
+ const tok=talkTok,u=new SpeechSynthesisUtterance(NARR[i]);if(voice){u.voice=voice;u.lang=voice.lang}{const nat=voice&&/Natural|Neural|Premium|Enhanced/i.test(voice.name);u.rate=nat?.9:.95;u.pitch=nat?.85:.72}
  u.onend=u.onerror=()=>{if(tok===talkTok){talking=false;clearTimeout(talkTimer)}};
- talking=true;talkTimer=setTimeout(()=>{if(tok===talkTok)talking=false},(NARR[i].split(" ").length/2.2+4)*1000); // never wait forever
+ talking=true;talkTimer=setTimeout(()=>{if(tok===talkTok)talking=false},(NARR[i].split(" ").length/1.6+6)*1000); // never wait forever
  speechSynthesis.speak(u)}
 
 /* ===== MUSIC: an original score, synthesized live in the browser (no recordings) ===== */

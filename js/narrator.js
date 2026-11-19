@@ -43,7 +43,7 @@
   // Slow and low, with weight: natural voices already sound full, so they are lowered less than the older ones.
   function delivery(v) {
     var natural = v && /Natural|Neural|Premium|Enhanced/i.test(v.name);
-    return { rate: natural ? .9 : .86, pitch: natural ? .85 : .72 };
+    return { rate: natural ? .9 : .95, pitch: natural ? .85 : .72 };
   }
 
   // Say ranks, abbreviations and dates the way a guide would.
@@ -95,7 +95,7 @@
     document.dispatchEvent(new CustomEvent('museum-narrator-speak'));   // the Guided Tour pauses
     var list = pieces(speakable(text)), i = 0, v = voice(), dl = delivery(v);
     // never wait forever: a voice that fails silently still lets the animation go on
-    cur.timer = setTimeout(function () { finish(token); }, (text.split(/\s+/).length / 2.2 + 6) * 1000);
+    cur.timer = setTimeout(function () { finish(token); }, (text.split(/\s+/).length / 1.6 + 8) * 1000);
     // the animation left the screen (another room, a closed panel): stop talking
     if (owner) cur.watch = setInterval(function () { if (!owner.getClientRects().length) { quiet(); halts.forEach(function (f) { f(owner); }); } }, 700);
     (function next() {
