@@ -784,5 +784,5 @@ a.cover:hover, a.cover:focus-visible{border-color:var(--gold);}
 
 /* Narration on/off button for the animations (js/narrator.js) */
 .narr-btn[aria-pressed="false"]{opacity:.55; text-decoration:line-through;}
-.narr-av, .ds-narr{display:inline-block; margin:10px 0 4px; background:var(--panel); border:1px solid var(--hair); color:var(--white); font-family:var(--sans); font-size:12.5px; padding:8px 14px; border-radius:2px; cursor:pointer; min-height:36px;}
+.narr-av, .ds-narr{display:inline-block; width:auto; justify-self:start; align-self:flex-start; margin:10px 0 4px; background:var(--panel); border:1px solid var(--hair); color:var(--white); font-family:var(--sans); font-size:12.5px; padding:8px 14px; border-radius:2px; cursor:pointer; min-height:36px;}
 .narr-av:hover, .ds-narr:hover{border-color:var(--gold);}
