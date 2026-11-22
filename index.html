@@ -31,6 +31,7 @@
 <link rel="stylesheet" href="css/codes.css">
 <link rel="stylesheet" href="css/desert-storm.css">
 <link rel="stylesheet" href="css/map-pop.css">
+<link rel="stylesheet" href="css/engage.css">
 </head>
 <body>
 <a class="skip-link" href="#main">Skip to museum content</a>
@@ -862,6 +863,16 @@
       <div class="tag">Volunteers wanted</div>
       <h4>Be a unit's digital docent</h4>
       <p>Know one of these units? Volunteer to look after its room, or send its stories and photographs. <a href="#write-to-us">Write to the museum &#8594;</a></p>
+    </div>
+
+    <div class="section">
+      <div class="honor-box">
+        <div>
+          <h4>Give in honor of a Signaleer</h4>
+          <p>Served with one of these units, or know someone who did? Dedicate a gift to the building fund in their name, in honor or in memory.</p>
+        </div>
+        <a class="dispatch-btn" href="#give-honor">Give in their name</a>
+      </div>
     </div>
 
     <div class="room-foot">
@@ -1844,6 +1855,12 @@
       </ul>
     </div>
 
+    <div class="section" id="signal-sustainers">
+      <h3>Signal Sustainers</h3>
+      <p class="lede">Monthly donors of any amount. Sustainers are thanked here by name, with their permission.</p>
+      <p class="wall-empty">The first Signal Sustainers will be listed here. <button type="button" class="room-link" data-goto="give">Become one in the Support room</button>.</p>
+    </div>
+
     <div class="room-foot">
       <button data-goto="fireside">← Fireside Chats</button>
       <button data-goto="people">Next: Honor Roll →</button>
@@ -1881,6 +1898,7 @@
       <button data-sub="advisors">Council of Advisors</button>
       <button data-sub="distinguished">Distinguished Members</button>
       <button data-sub="halloffame">Hall of Fame</button>
+      <button data-sub="wall">Wall of Service</button>
     </div>
 
     <div class="subpanel active" id="sub-staff">
@@ -2202,6 +2220,36 @@
       </div>
     </div>
 
+    <div class="subpanel" id="sub-wall">
+      <div class="section" id="wall-of-service">
+        <h3>Wall of Service</h3>
+        <p class="lede">Did you serve in the Signal Corps or the Cyber Corps, or in a unit that wore the crossed flags? Add your name to the museum's wall.</p>
+        <div class="wall-tools"><label class="sr-only" for="wall-search">Search the wall by name or unit</label><input type="search" id="wall-search" placeholder="Search by name or unit"></div>
+        <ul class="wall-list" id="wall-list"></ul>
+        <p class="wall-empty" id="wall-none">The wall is new. The first names will appear here once a volunteer has checked them. Be one of the first.</p>
+      </div>
+      <div class="section">
+        <h3>Add your name</h3>
+        <form class="contact-form" id="wall-form" novalidate>
+          <div class="contact-row">
+            <label for="wall-name">Name as you'd like it shown<input type="text" id="wall-name" required maxlength="80" placeholder="For example, SSG Pat Example"></label>
+            <label for="wall-unit">Unit<input type="text" id="wall-unit" required maxlength="120" placeholder="For example, 67th Signal Battalion"></label>
+          </div>
+          <div class="contact-row">
+            <label for="wall-years">Years served in that unit<input type="text" id="wall-years" required maxlength="40" placeholder="For example, 1988–1992"></label>
+            <label for="wall-town">Hometown <span class="contact-opt">(optional)</span><input type="text" id="wall-town" maxlength="80"></label>
+          </div>
+          <label for="wall-email">Your email, so a volunteer can check your entry <span class="contact-opt">(never shown)</span><input type="email" id="wall-email" required maxlength="200" autocomplete="email"></label>
+          <label class="contact-check"><input type="checkbox" id="wall-consent"> I agree to have my name, unit, years and hometown shown in the virtual museum.</label>
+          <input type="text" id="wall-website" class="contact-trap" tabindex="-1" autocomplete="off" aria-hidden="true">
+          <div class="contact-actions"><button type="submit" id="wall-send">Send my entry</button><span class="contact-status" id="wall-status" role="status" aria-live="polite"></span></div>
+          <p class="source-note">Entries go by email to the Society's volunteers at scmsreg@gmail.com, delivered by FormSubmit. A volunteer checks each one, and approved names are added at the next museum update. Only the name, unit, years and hometown are shown. Ask to change or remove an entry at any time.</p>
+        </form>
+        <p class="source-note">Want to honor someone else? <a class="ext-link" href="#give-honor">Give in honor or in memory of a Signaleer</a>.</p>
+      </div>
+    </div>
+
+
     <div class="room-foot">
       <button data-goto="donor-spotlight">← Donor Spotlight</button>
       <button data-goto="give">Next: Support the Museum →</button>
@@ -2242,6 +2290,34 @@
         <a class="cb-btn" href="https://givebutter.com/hpEeXi" target="_blank" rel="noopener">Donate to the building fund ↗</a>
       </div>
       <p class="source-note">Signal &amp; Cyber Corps Museum Society &#183; 4570 Dewey Drive, Augusta, GA 30907 &#183; <a class="ext-link" href="tel:+17063061494">706-306-1494</a> &#183; <a class="ext-link" href="mailto:execdirector@fghms.com">execdirector@fghms.com</a> &#183; a 501(c)(3) nonprofit run by volunteers, EIN 84-3998550 (<a class="ext-link" href="https://www.guidestar.org/profile/84-3998550" target="_blank" rel="noopener">Candid profile ↗</a>). Campaign details and sponsors at <a class="ext-link" href="https://www.signalandcybercorpsmuseum.org/en" target="_blank" rel="noopener">signalandcybercorpsmuseum.org ↗</a></p>
+    </div>
+
+    <div class="section" id="sustainers">
+      <h3>Signal Sustainers: keep the signal going every month</h3>
+      <p class="lede">The Campaign Circle starts at $1,000. A monthly gift of any size adds up, and it gives the Society income it can plan around.</p>
+      <div class="sus" id="sustainers-picker">
+        <div class="sus-freq" role="group" aria-label="How often"><button type="button" data-freq="monthly" aria-pressed="true">Monthly</button><button type="button" data-freq="once" aria-pressed="false">One time</button></div>
+        <div class="sus-amts" role="group" aria-label="Amount"><button type="button" data-amt="10" aria-pressed="false">$10</button><button type="button" data-amt="25" aria-pressed="true">$25</button><button type="button" data-amt="50" aria-pressed="false">$50</button><button type="button" data-amt="100" aria-pressed="false">$100</button></div>
+        <p class="sus-card" aria-live="polite"><b>$25 a month</b> adds up to $300 a year toward the building, and makes you a Signal Sustainer.</p>
+        <a class="dispatch-btn sus-go" href="https://givebutter.com/hpEeXi" target="_blank" rel="noopener">Give $25 a month</a>
+        <p class="sus-note">The button opens the Society's secure Givebutter page. Choose your amount there and select Monthly. Monthly gifts count toward a Campaign Circle level once your total reaches it. Sustainers are thanked by name in the Donor Spotlight, with permission.</p>
+      </div>
+    </div>
+
+    <div class="section" id="give-honor">
+      <h3>Give in honor or in memory of a Signaleer</h3>
+      <div class="honor-box">
+        <div>
+          <h4>Remember someone who served</h4>
+          <p>Dedicate your gift to a Soldier, a unit or a family member. On the Society's donation form, choose In honor of or In memory of and enter their name; the form can also let their family know. Dedications are kept by the Society and are not published.</p>
+        </div>
+        <a class="dispatch-btn" href="https://givebutter.com/hpEeXi" target="_blank" rel="noopener">Give in their name</a>
+      </div>
+    </div>
+
+    <div class="section" id="dispatch">
+      <h3>Stay in touch</h3>
+      <div id="dispatch-slot"></div>
     </div>
 
     <div class="section">
@@ -5016,6 +5092,7 @@
 }</script>
 <script src="js/map-layout.js"></script>
 <script src="js/museum.js"></script>
+<script src="js/engage.js"></script>
 <script src="js/signal-yard.js"></script>
 <script src="js/weather-map.js"></script>
 <script src="js/fort-gordon.js"></script>

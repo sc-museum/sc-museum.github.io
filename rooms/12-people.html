@@ -28,6 +28,7 @@
       <button data-sub="advisors">Council of Advisors</button>
       <button data-sub="distinguished">Distinguished Members</button>
       <button data-sub="halloffame">Hall of Fame</button>
+      <button data-sub="wall">Wall of Service</button>
     </div>
 
     <div class="subpanel active" id="sub-staff">
@@ -348,6 +349,36 @@
         <div class="cap">Military aviator wing badge, from the collection</div>
       </div>
     </div>
+
+    <div class="subpanel" id="sub-wall">
+      <div class="section" id="wall-of-service">
+        <h3>Wall of Service</h3>
+        <p class="lede">Did you serve in the Signal Corps or the Cyber Corps, or in a unit that wore the crossed flags? Add your name to the museum's wall.</p>
+        <div class="wall-tools"><label class="sr-only" for="wall-search">Search the wall by name or unit</label><input type="search" id="wall-search" placeholder="Search by name or unit"></div>
+        <ul class="wall-list" id="wall-list"></ul>
+        <p class="wall-empty" id="wall-none">The wall is new. The first names will appear here once a volunteer has checked them. Be one of the first.</p>
+      </div>
+      <div class="section">
+        <h3>Add your name</h3>
+        <form class="contact-form" id="wall-form" novalidate>
+          <div class="contact-row">
+            <label for="wall-name">Name as you'd like it shown<input type="text" id="wall-name" required maxlength="80" placeholder="For example, SSG Pat Example"></label>
+            <label for="wall-unit">Unit<input type="text" id="wall-unit" required maxlength="120" placeholder="For example, 67th Signal Battalion"></label>
+          </div>
+          <div class="contact-row">
+            <label for="wall-years">Years served in that unit<input type="text" id="wall-years" required maxlength="40" placeholder="For example, 1988–1992"></label>
+            <label for="wall-town">Hometown <span class="contact-opt">(optional)</span><input type="text" id="wall-town" maxlength="80"></label>
+          </div>
+          <label for="wall-email">Your email, so a volunteer can check your entry <span class="contact-opt">(never shown)</span><input type="email" id="wall-email" required maxlength="200" autocomplete="email"></label>
+          <label class="contact-check"><input type="checkbox" id="wall-consent"> I agree to have my name, unit, years and hometown shown in the virtual museum.</label>
+          <input type="text" id="wall-website" class="contact-trap" tabindex="-1" autocomplete="off" aria-hidden="true">
+          <div class="contact-actions"><button type="submit" id="wall-send">Send my entry</button><span class="contact-status" id="wall-status" role="status" aria-live="polite"></span></div>
+          <p class="source-note">Entries go by email to the Society's volunteers at scmsreg@gmail.com, delivered by FormSubmit. A volunteer checks each one, and approved names are added at the next museum update. Only the name, unit, years and hometown are shown. Ask to change or remove an entry at any time.</p>
+        </form>
+        <p class="source-note">Want to honor someone else? <a class="ext-link" href="#give-honor">Give in honor or in memory of a Signaleer</a>.</p>
+      </div>
+    </div>
+
 
     <div class="room-foot">
       <button data-goto="donor-spotlight">← Donor Spotlight</button>
