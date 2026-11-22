@@ -794,3 +794,21 @@
   goto('lobby');
 })();
 
+
+/* Campaign progress bar: reads the figures from data- attributes on .campaign-bar */
+(function(){
+  function money(n){ return '$' + Math.round(n).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ','); }
+  document.querySelectorAll('.campaign-bar').forEach(function(b){
+    var goal = +b.getAttribute('data-goal'), raised = +b.getAttribute('data-raised');
+    if (!(goal > 0) || !(raised >= 0)) return;
+    var pct = Math.min(100, raised / goal * 100), shown = pct < 1 ? pct.toFixed(1) : Math.round(pct);
+    var donors = b.getAttribute('data-donors'), asof = b.getAttribute('data-asof');
+    var q = function(s){ return b.querySelector(s); };
+    if (q('.cb-raised')) q('.cb-raised').textContent = money(raised);
+    if (q('.cb-goal')) q('.cb-goal').textContent = money(goal);
+    if (q('.cb-fill')) q('.cb-fill').style.width = pct.toFixed(1) + '%';
+    if (q('.cb-track')) q('.cb-track').setAttribute('aria-label', shown + ' percent of the goal raised');
+    if (q('.cb-pct')) q('.cb-pct').textContent = shown + '% of the goal';
+    if (q('.cb-note')) q('.cb-note').textContent = (donors ? donors.charAt(0).toUpperCase() + donors.slice(1) + ' donors · ' : '') + (asof ? 'figures as of ' + asof : '');
+  });
+})();
