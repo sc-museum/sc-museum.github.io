@@ -322,6 +322,43 @@ ul.cmds li:last-child{margin-bottom:0; border-left-color:var(--gold);}
 .dmr-list li em{display:block; font-style:normal; font-family:var(--mono); font-size:10.5px; letter-spacing:.5px; text-transform:uppercase; color:var(--gold);}
 .dmr-profile{grid-template-columns:1fr;}
 .dmr-goto{background:none; border:none; padding:0; color:var(--gold-bright); font:inherit; text-decoration:underline; cursor:pointer;}
+/* Distinguished Members: Signal and Cyber side by side, as floating drill-down panels */
+.dm-pair{display:grid; grid-template-columns:1fr 1fr; gap:22px; align-items:start; margin-top:20px;}
+@media (max-width:760px){.dm-pair{grid-template-columns:1fr;}}
+.dm-panel{
+  position:relative; background:linear-gradient(180deg, var(--panel-2), var(--panel));
+  border:1px solid var(--hair); border-top:3px solid var(--gold); border-radius:4px;
+  box-shadow:0 14px 34px rgba(0,0,0,0.45), 0 2px 6px rgba(0,0,0,0.3);
+  transition:box-shadow .2s ease, border-color .2s;
+  animation:dm-float 6s ease-in-out infinite;
+}
+.dm-cyber{border-top-color:var(--crimson); animation-delay:-3s;}
+@keyframes dm-float{0%,100%{transform:translateY(0);} 50%{transform:translateY(-5px);}}
+.dm-panel:hover{box-shadow:0 22px 46px rgba(0,0,0,0.55), 0 0 18px rgba(224,188,74,0.15); border-color:var(--gold);}
+.dm-panel[open]{animation:none; transform:none;}
+@media (prefers-reduced-motion:reduce){.dm-panel{animation:none; transition:none;}}
+.dm-panel > summary{list-style:none; cursor:pointer; padding:20px 22px 18px; display:block; position:relative;}
+.dm-panel > summary::-webkit-details-marker{display:none;}
+.dm-panel > summary:focus-visible{outline:2px solid var(--gold-bright); outline-offset:3px;}
+.dm-kick{display:block; font-family:var(--mono); font-size:10.5px; letter-spacing:1.5px; text-transform:uppercase; color:var(--gold);}
+.dm-cyber .dm-kick{color:#e07a89;}
+.dm-title{display:block; font-family:var(--serif); font-size:20px; font-weight:600; color:var(--paper); line-height:1.25; margin:6px 36px 8px 0;}
+.dm-meta{display:block; font-size:13px; color:var(--muted);}
+.dm-meta b{color:var(--gold-bright); font-family:var(--mono); font-weight:500;}
+.dm-open{position:absolute; top:20px; right:20px; width:28px; height:28px; border-radius:50%; border:1px solid var(--gold); color:var(--gold-bright); display:flex; align-items:center; justify-content:center; font-family:var(--mono); font-size:16px; transition:transform .2s;}
+.dm-open::before{content:"+";}
+.dm-panel[open] .dm-open{transform:rotate(45deg);}
+.dm-body{padding:0 22px 18px; border-top:1px solid var(--hair);}
+.dm-body .prose{margin-top:16px;}
+.dm-body .prose p{font-size:14px; color:var(--paper-2);}
+.dm-body .dmr-class{background:rgba(0,0,0,0.18);}
+.dm-body .dmr-class summary{font-size:16px; padding:12px 14px;}
+.dm-body .dmr-list{columns:1; padding:0 14px 12px;}
+.dm-body .dmr-list li{font-size:14.5px;}
+.dm-body .dmr-when{margin:0 14px 10px;}
+.dm-profiles{padding:0 14px 6px;}
+.dm-profiles .profile{padding:16px; margin-bottom:12px; background:var(--panel);}
+.dm-profiles .profile p{font-size:13.5px;}
 @media (max-width:640px){.people-grid{grid-template-columns:1fr;}}
 .subpanel.active{display:block;}
 
