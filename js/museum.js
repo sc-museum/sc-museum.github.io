@@ -642,7 +642,7 @@
       role: 'Lead Advisor',
       org: 'CEO, Loral Mountain',
       portrait: 'assets/bio_foley.png',
-      note: 'Brigadier General, US Army (retired). The Army’s <strong>34th Chief of Signal</strong> and Commanding General of the U.S. Army Signal Center and Fort Gordon — the post this museum keeps the history of.',
+      note: 'Brigadier General, US Army (retired). The Army’s <strong>34th Chief of Signal</strong> and Commanding General of the U.S. Army Signal Center and Fort Gordon — the post this museum keeps the history of. He was the museum’s <strong>first Board Advisor</strong> and one of its <strong>founders</strong>.',
       own: 'In his own words',
       paras: [
         'As a certified leadership coach, Jeff works with business leaders who want to achieve greater results by creating positive and lasting change in behavior for themselves and the people they lead. In his latest book "BRAVE Business Leadership" he shares his proven methodology for growing competent, confident leaders that produce winning cultures leading to greater results. ',
@@ -662,7 +662,7 @@
         'As a Business Leader for Department of Defense - Cisco, I drive strategic post-sales market initiatives, enterprise growth, and trusted partnerships across defense and military command structures. Drawing on extensive executive leadership, a distinguished military background, and deep technical expertise in artificial intelligence and coding, I oversee the end-to-end implementation of comprehensive technologies—spanning collaboration, data centers, routers, security, artificial intelligence, network-as-code, and automated agents—to achieve national security and defense mission outcomes.',
         'I lead high-performing operational and customer success organizations dedicated to accelerating capability adoption, ensuring resilient lifecycle delivery, and deploying intelligent, software-driven infrastructures across defense agencies. Holding advanced credentials including BCS 3.0 Delivery Enablement and Customer Success Executive Green Belt, I am committed to principled leadership, operational excellence, and driving measurable impact for our nation’s armed forces.'
       ],
-      note: 'Brigadier General, US Army (retired). His commands, from company to theater signal command, are listed on the Board of Directors card.',
+      note: 'Brigadier General, US Army (retired). He was the museum’s <strong>first Chairman of the Board</strong> and one of its <strong>founders</strong>. His commands, from company to theater signal command, are listed on the Board of Directors card.',
       src: '<a href="https://www.signalandcybercorpsmuseum.org/en/bod-single-page-layout/1welton-chase-jr" target="_blank" rel="noopener">Profile at signalandcybercorpsmuseum.org ↗</a> &#183; <a href="https://www.linkedin.com/in/wechase/" target="_blank" rel="noopener">LinkedIn ↗</a>'
     },
     'tuschen': {
@@ -670,6 +670,7 @@
       role: 'Executive Director',
       org: 'Signal &amp; Cyber Corps Museum Society',
       portrait: 'assets/bio_tuschen.png',
+      note: 'She was the museum’s <strong>first Executive Director</strong> and one of its <strong>founders</strong>.',
       own: 'In her own words',
       paras: [
         'As the Executive Director of Fort Gordon Historical Museum Society (FGHMS), I lead the efforts to fund and support the future Signal and Cyber Corps Museum, a historical and educational asset for the Augusta, GA area. I manage the non-profit’s operations, and finances, planning our Virtual Museum, and ensuring its preservation and accessibility. I also leverage my extensive network and experience in the IT, Information Assurance (IA), and Cyber fields to promote the museum’s mission and relevance to the current and future generations of military and civilian professionals.',
