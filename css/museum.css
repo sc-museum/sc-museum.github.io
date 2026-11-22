@@ -312,6 +312,16 @@ ul.cmds li{
 }
 ul.cmds li:last-child{margin-bottom:0; border-left-color:var(--gold);}
 .roster-note{font-size:13px; color:var(--muted); margin:0 0 22px; max-width:640px;}
+/* Distinguished Members (Honor Roll) */
+.dmr-class{background:var(--panel); border:1px solid var(--hair); margin:0 0 12px;}
+.dmr-class summary{cursor:pointer; padding:14px 18px; font-family:var(--serif); font-size:18px; font-weight:600; color:var(--paper); list-style-position:inside;}
+.dmr-class summary .yr{font-family:var(--mono); font-size:11px; color:var(--gold); letter-spacing:1px; margin-right:10px;}
+.dmr-when{font-size:13.5px; color:var(--muted); margin:0 18px 10px;}
+.dmr-list{list-style:none; margin:0; padding:0 18px 14px; columns:2 280px; column-gap:28px;}
+.dmr-list li{break-inside:avoid; padding:7px 0; border-bottom:1px solid var(--hair); font-family:var(--serif); font-size:15.5px; color:var(--paper-2);}
+.dmr-list li em{display:block; font-style:normal; font-family:var(--mono); font-size:10.5px; letter-spacing:.5px; text-transform:uppercase; color:var(--gold);}
+.dmr-profile{grid-template-columns:1fr;}
+.dmr-goto{background:none; border:none; padding:0; color:var(--gold-bright); font:inherit; text-decoration:underline; cursor:pointer;}
 @media (max-width:640px){.people-grid{grid-template-columns:1fr;}}
 .subpanel.active{display:block;}
 
