@@ -846,3 +846,12 @@ a.cover:hover, a.cover:focus-visible{border-color:var(--gold);}
 .memoriam .mem-go{font-size:13px; color:var(--gold-bright); margin-top:6px; font-weight:600;}
 @media (max-width:520px){.memoriam{gap:14px; padding:14px;} .memoriam img{width:72px; height:94px;} .memoriam .mem-n{font-size:20px;}}
 @media (prefers-reduced-motion:reduce){.memoriam{transition:none;} .memoriam:hover{transform:none;}}
+
+/* Archive pictures placed inside timeline cards, panes and lessons (picture batch, Nov 2026) */
+.ax-photos.ax-in{margin:14px 0 4px; max-width:72ch; grid-template-columns:repeat(auto-fit,minmax(220px,1fr));}
+.ds-lessons .ax-photos.ax-in, .card .ax-photos.ax-in{grid-template-columns:1fr;}
+/* Honor Roll: portraits beside the Distinguished Member profiles */
+.dm-profiles .profile.has-portrait{grid-template-columns:96px minmax(0,1fr); gap:14px; align-items:start;}
+.dm-portrait{display:block;}
+.dm-portrait img{width:100%; height:auto; border:1px solid var(--hair);}
+@media (max-width:600px){ .dm-profiles .profile.has-portrait{grid-template-columns:80px minmax(0,1fr);} }
