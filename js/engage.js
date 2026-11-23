@@ -292,3 +292,13 @@
   setTimeout(stamp, 300);
   paintBtn();
 })();
+
+/* Notices with an end date: data-until="YYYY-MM-DD" shows the element through that day and removes it after.
+   Used for the Lt. Gen. Susan S. Lawrence In Memoriam notice on the Lobby (30 days, through 2026-12-19). */
+(function () {
+  var now = new Date(), today = now.getFullYear() * 10000 + (now.getMonth() + 1) * 100 + now.getDate();
+  document.querySelectorAll('[data-until]').forEach(function (el) {
+    var m = /^(\d{4})-(\d{2})-(\d{2})$/.exec(el.getAttribute('data-until') || '');
+    if (m && today > (+m[1]) * 10000 + (+m[2]) * 100 + (+m[3])) el.parentNode.removeChild(el);
+  });
+})();
