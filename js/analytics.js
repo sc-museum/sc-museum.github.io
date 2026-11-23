@@ -165,14 +165,15 @@
     // Styled here, in the museum's colours, so the notice looks the same on every page.
     var css = document.createElement('style');
     css.textContent =
-      '.cookie-notice{position:fixed; left:50%; bottom:20px; transform:translateX(-50%); z-index:95;' +
-        ' box-sizing:border-box; width:min(440px, calc(100vw - 24px)); padding:14px 16px;' +
-        ' background:#183324; color:#f4f3ee; border:1px solid #c9a227; border-radius:4px;' +
-        ' box-shadow:0 14px 40px rgba(0,0,0,0.6); font-family:"IBM Plex Sans", -apple-system, sans-serif; text-align:left;}' +
-      '.cookie-notice.above-launchers{bottom:76px;}' + // clear of Guided Tour and Donate Now
-      '.cookie-notice p{margin:0 0 10px; font-size:13.5px; line-height:1.5; color:#f4f3ee; max-width:none;}' +
-      '.cookie-notice-row{display:flex; gap:8px; justify-content:flex-end;}' +
-      '.cookie-notice button{font:600 13px/1.2 "IBM Plex Sans", -apple-system, sans-serif; padding:8px 16px;' +
+      // A thin strip along the bottom edge, so it never covers the page's buttons.
+      '.cookie-notice{position:fixed; left:0; right:0; bottom:0; z-index:95; box-sizing:border-box;' +
+        ' display:flex; flex-wrap:wrap; align-items:center; justify-content:center; gap:8px 14px; padding:8px 16px;' +
+        ' background:#183324; color:#f4f3ee; border-top:1px solid #c9a227;' +
+        ' box-shadow:0 -6px 20px rgba(0,0,0,0.45); font-family:"IBM Plex Sans", -apple-system, sans-serif; text-align:left;}' +
+      'html.has-cookie-strip .tg-launch, html.has-cookie-strip .give-launch{bottom:64px;}' + // clear of the strip
+      '.cookie-notice p{margin:0; font-size:13px; line-height:1.4; color:#f4f3ee; max-width:none;}' +
+      '.cookie-notice-row{display:flex; gap:8px;}' +
+      '.cookie-notice button{font:600 13px/1.2 "IBM Plex Sans", -apple-system, sans-serif; padding:6px 14px;' +
         ' margin:0; border-radius:2px; cursor:pointer; border:1px solid #c9a227;}' +
       '.cookie-notice .cookie-ok{background:#c9a227; color:#0d1f16;}' +
       '.cookie-notice .cookie-ok:hover{background:#e0bc4a;}' +
@@ -181,8 +182,9 @@
       '.cookie-notice button:focus-visible{outline:2px solid #f4ecd6; outline-offset:2px;}' +
       '@media print{.cookie-notice{display:none !important;}}';
     document.head.appendChild(css);
+    document.documentElement.classList.add('has-cookie-strip');
     var notice = document.createElement('div');
-    notice.className = 'cookie-notice' + (isMuseum ? ' above-launchers' : '');
+    notice.className = 'cookie-notice';
     notice.setAttribute('role', 'region');
     notice.setAttribute('aria-label', 'Cookie notice');
     notice.innerHTML =
@@ -197,6 +199,7 @@
       if (b.classList.contains('cookie-no')){ remember('no'); stopCounting(); }
       else { remember('ok'); }
       notice.remove();
+      document.documentElement.classList.remove('has-cookie-strip');
     });
     document.body.appendChild(notice);
   }

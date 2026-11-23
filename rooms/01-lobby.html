@@ -1,14 +1,31 @@
 <!-- ================= LOBBY ================= -->
 <section class="room active" id="room-lobby">
   <div class="wrap">
-    <div class="hero">
-      <img class="seal-big" src="assets/seal-mark.png" width="120" height="120" alt="Signal &amp; Cyber Corps Museum Society seal">
-      <h1>Welcome to the Museum</h1>
-      <div class="sub">Secure Our Story</div>
-      <p class="welcome">The <strong>Signal &amp; Cyber Corps Museum Society</strong> — formerly the Fort Gordon Historical Museum Society — is a 501(c)(3) of volunteers preserving the history of Americans who served at Fort Gordon, in the Signal Regiment, and in the Army's Cyber Corps. The Signal Corps Museum on post closed on 25 February 2021 for base construction, and its collection is in storage while the Society raises funds for a new museum building outside the gates. This virtual museum keeps that collection open to the public in the meantime, room by room.</p>
-      <div class="hero-cta">
-        <a class="donate" href="https://givebutter.com/hpEeXi" target="_blank" rel="noopener">Donate to build the museum</a>
-        <button type="button" class="ghost" data-fly-jump>See the museum to come ↓</button>
+    <div class="hero hero-photo-bg" id="lobby-hero">
+      <div class="hero-bg" aria-hidden="true">
+        <img class="on" src="assets/nara/cw-elk-mountain.jpg" width="1200" height="930" alt="" data-credit="Signal Corps station on Elk Mountain, above Antietam, 1862 · National Archives">
+        <img data-src="assets/archives/hg-arrival.jpg" alt="" data-credit="Signal Corps telephone operators arrive in France, March 1918 · National Archives">
+        <img data-src="assets/archives/cd-comanche.jpg" alt="" data-credit="Comanche code talkers of the 4th Signal Company, about 1941 · National Archives">
+        <img data-src="assets/archives/wd-france1944.jpg" alt="" data-credit="Tying in field wire, France, July 1944 · National Archives">
+        <img data-src="assets/archives/ds-dish.jpg" alt="" data-credit="A satellite terminal in Saudi Arabia, January 1991 · National Archives">
+      </div>
+      <div class="hero-inner">
+        <img class="seal-big" src="assets/seal-mark.png" width="120" height="120" alt="Signal &amp; Cyber Corps Museum Society seal">
+        <div class="sub">Secure Our Story</div>
+        <h1>More than 160 years of getting the message through</h1>
+        <p class="welcome">The Signal Corps Museum at Fort Gordon closed in 2021, and its collection is in storage until a new museum is built outside the gates. Until then, walk through it here, room by room.</p>
+        <div class="hero-cta">
+          <button type="button" class="donate" data-goto="give">Help bring the collection home</button>
+          <button type="button" class="ghost" data-fly-jump>See the museum to come ↓</button>
+        </div>
+        <div class="hero-campaign" id="lobby-campaign"></div>
+        <form class="unit-find" id="unit-find" role="search" novalidate>
+          <label for="unit-find-q">Served in a Signal unit? Find its history</label>
+          <div class="unit-find-row"><input type="search" id="unit-find-q" autocomplete="off" placeholder="Type a unit, like 67th Signal Battalion" aria-describedby="unit-find-hint"><button type="submit">Find</button></div>
+          <p class="unit-find-hint" id="unit-find-hint">Official lineage and honors for every unit in the Command Gallery.</p>
+          <ul class="unit-find-results" id="unit-find-results" hidden></ul>
+        </form>
+        <p class="hero-credit" id="hero-credit">Signal Corps station on Elk Mountain, above Antietam, 1862 · National Archives</p>
       </div>
     </div>
 
@@ -23,6 +40,35 @@
         <span class="mem-go">Read the tribute →</span>
       </span>
     </a>
+
+    <div class="impact" id="impact" aria-label="The museum in numbers">
+      <button type="button" class="impact-i" data-goto="timeline"><b id="impact-years">166</b><span>years since the Signal Corps began, 1860</span></button>
+      <button type="button" class="impact-i" data-goto="command-gallery"><b id="impact-units">171</b><span>Signal units with their official lineage</span></button>
+      <button type="button" class="impact-i" data-goto="map"><b>23</b><span>rooms to explore</span></button>
+      <button type="button" class="impact-i" data-goto="give"><b id="impact-raised">$500,000</b><span id="impact-raised-k">raised toward the building</span></button>
+    </div>
+
+    <div class="lobby-pair">
+      <div class="this-month" id="this-month"></div>
+      <div class="voices" id="voices"></div>
+    </div>
+
+    <div class="take-part">
+      <h3>Ways to take part</h3>
+      <div class="take-part-grid">
+        <button type="button" class="tp-card" data-passport-open><span class="tp-k">Museum Passport</span><span class="tp-t">Visit all 23 rooms and earn the challenge coin</span></button>
+        <a class="tp-card" href="#wall-of-service"><span class="tp-k">Wall of Service</span><span class="tp-t">Served in the Signal or Cyber Corps? Add your name</span></a>
+        <a class="tp-card" href="#dispatch"><span class="tp-k">The Signal Dispatch</span><span class="tp-t">One story a month from the museum, by email</span></a>
+        <a class="tp-card" href="#give-honor"><span class="tp-k">Give in their name</span><span class="tp-t">Honor or remember someone who served</span></a>
+      </div>
+    </div>
+
+    <div class="about-society">
+      <h2 class="about-h">About the Society</h2>
+      <p class="about-p">The <strong>Signal &amp; Cyber Corps Museum Society</strong> — formerly the Fort Gordon Historical Museum Society — is a 501(c)(3) of volunteers preserving the history of Americans who served at Fort Gordon, in the Signal Regiment, and in the Army's Cyber Corps. The Signal Corps Museum on post closed on 25 February 2021 for base construction, and its collection is in storage while the Society raises funds for a new museum building outside the gates. This virtual museum keeps that collection open to the public in the meantime, room by room.</p>
+      <p class="about-give"><a class="dispatch-btn" href="https://givebutter.com/hpEeXi" target="_blank" rel="noopener">Donate to build the museum</a></p>
+    </div>
+
 
     <div class="section arc" id="arc-section">
       <h3>Through the Arc of History</h3>
@@ -98,8 +144,8 @@
     </div>
 
     <div class="section" id="rooms-drawn">
-      <h3>Every room, drawn</h3>
-      <p class="lede">How each room of this virtual museum could look in the building to come. The drawings marked Architect are from the architect's renderings; the rest are concept drawings made for the virtual museum in the same style, with each room's own pictures on the walls. Select one to walk in.</p>
+      <h3>Every room</h3>
+      <p class="lede">A picture from each room's collection. Point at a card, or tap and hold, to see how that room could look in the building to come; drawings marked Architect are from the architect's renderings, the rest are concept drawings in the same style. Select one to walk in.</p>
       <div class="drawn-grid">
         <button type="button" class="drawn-card" data-goto="auditorium"><img loading="lazy" decoding="async" src="assets/renders/thumbs/auditorium.jpg" alt="" width="480" height="270"><span class="drawn-k">Concept</span><span class="drawn-t">Auditorium</span></button>
         <button type="button" class="drawn-card" data-goto="signal-story"><img loading="lazy" decoding="async" src="assets/signal_gallery_render.jpg" alt="" width="480" height="270"><span class="drawn-k">Architect</span><span class="drawn-t">The Signal Story</span></button>

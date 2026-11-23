@@ -14,11 +14,14 @@
 <meta property="og:title" content="Signal &amp; Cyber Corps Museum Society — Virtual Museum">
 <meta property="og:description" content="The story of the U.S. Army Signal Corps and Cyber Corps, and the official lineage and honors of 171 Signal Regiment units. Secure Our Story.">
 <meta property="og:url" content="https://sc-museum.github.io/">
-<meta property="og:image" content="https://sc-museum.github.io/seal.png">
-<meta name="twitter:card" content="summary">
+<meta property="og:image" content="https://sc-museum.github.io/assets/social-card.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="More than 160 years of getting the message through: the Signal &amp; Cyber Corps virtual museum">
+<meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Signal &amp; Cyber Corps Museum Society — Virtual Museum">
 <meta name="twitter:description" content="The story of the U.S. Army Signal Corps and Cyber Corps, and the official lineage and honors of 171 Signal Regiment units.">
-<meta name="twitter:image" content="https://sc-museum.github.io/seal.png">
+<meta name="twitter:image" content="https://sc-museum.github.io/assets/social-card.jpg">
 <meta name="theme-color" content="#0d1f16">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,500;0,600;0,700;1,400&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -32,6 +35,7 @@
 <!-- @css css/desert-storm.css -->
 <!-- @css css/map-pop.css -->
 <!-- @css css/engage.css -->
+<!-- @css css/lobby.css -->
 </head>
 <body>
 <a class="skip-link" href="#main">Skip to museum content</a>
@@ -43,23 +47,45 @@
       Signal &amp; Cyber Corps Museum Society
       <small>VIRTUAL MUSEUM</small>
     </div>
-    <nav class="topbar-nav">
+    <button type="button" class="nav-menu-toggle" aria-expanded="false" aria-controls="topbar-nav">Menu</button>
+    <nav class="topbar-nav" id="topbar-nav" aria-label="Museum">
       <button data-goto="lobby">Lobby</button>
-      <button data-goto="auditorium">Auditorium</button>
-      <button data-goto="fort-gordon">Fort Gordon</button>
-      <button data-goto="command-gallery">Command Gallery</button>
-      <button data-goto="aviation">Aviation Annex</button>
-      <button data-goto="civil-war">Civil War Annex</button>
-      <button data-goto="satellites">Satellite Annex</button>
-      <button data-goto="weather">Weather Annex</button>
-      <button data-goto="wireless">Radio Annex</button>
-      <button data-goto="wired">Wire Annex</button>
-      <button data-goto="codes">Codes Annex</button>
-      <button data-goto="desert-storm">Desert Storm Annex</button>
-      <button data-goto="civil-war" data-avsub="games">Games</button>
-      <button data-goto="hello-girls">Hello Girls</button>
-      <button data-goto="combat-camera">Combat Camera</button>
-      <button data-goto="fireside">Fireside Chats</button>
+      <div class="nav-rooms">
+        <button type="button" class="nav-rooms-toggle" aria-expanded="false" aria-controls="nav-rooms-panel">Rooms <span aria-hidden="true">▾</span></button>
+        <div class="nav-rooms-panel" id="nav-rooms-panel" hidden>
+          <div class="nav-col">
+            <span class="nav-col-k">Galleries</span>
+            <button data-goto="auditorium">Auditorium</button>
+            <button data-goto="fort-gordon">Fort Gordon</button>
+            <button data-goto="command-gallery">Command Gallery</button>
+            <button data-goto="hello-girls">Hello Girls</button>
+            <button data-goto="combat-camera">Combat Camera</button>
+            <button data-goto="fireside">Fireside Chats</button>
+            <button data-goto="civil-war" data-avsub="games">Games</button>
+          </div>
+          <div class="nav-col">
+            <span class="nav-col-k">Annexes</span>
+            <button data-goto="civil-war">Civil War Annex</button>
+            <button data-goto="weather">Weather Annex</button>
+            <button data-goto="wired">Wire Annex</button>
+            <button data-goto="wireless">Radio Annex</button>
+            <button data-goto="aviation">Aviation Annex</button>
+            <button data-goto="codes">Codes Annex</button>
+            <button data-goto="satellites">Satellite Annex</button>
+            <button data-goto="desert-storm">Desert Storm Annex</button>
+          </div>
+          <div class="nav-col">
+            <span class="nav-col-k">The story</span>
+            <button data-goto="signal-story">The Signal Story</button>
+            <button data-goto="cyber-story">The Cyber Story</button>
+            <button data-goto="camp-gordon">Camp Gordon: WWI</button>
+            <button data-goto="timeline">Timeline</button>
+            <button data-goto="news">News</button>
+            <button data-goto="magazine">Heritage Magazine</button>
+            <button data-goto="donor-spotlight">Donor Spotlight</button>
+          </div>
+        </div>
+      </div>
       <button data-goto="people">Honor Roll</button>
       <button data-goto="give">Support</button>
       <button type="button" class="nav-write" data-contact-jump>Write to Us</button>
@@ -117,6 +143,7 @@
 <!-- @js js/map-layout.js -->
 <!-- @js js/museum.js -->
 <!-- @js js/engage.js -->
+<!-- @js js/lobby.js -->
 <!-- @js js/signal-yard.js -->
 <!-- @js js/weather-map.js -->
 <!-- @js js/fort-gordon.js -->

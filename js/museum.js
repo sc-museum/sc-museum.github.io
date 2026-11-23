@@ -179,6 +179,7 @@
       var row = document.createElement('div');
       row.className = 'u';
       var href = lineageUrl(g.key, u.name);
+      if (href) (window.MUSEUM_UNITS = window.MUSEUM_UNITS || []).push({name:u.name, href:href, group:g.title});
       var nameHtml = href ? '<a href="'+href+'" target="_blank" rel="noopener">'+u.name+'</a>' : u.name;
       row.innerHTML = '<span class="name">'+nameHtml+'</span><span class="date">'+u.date+'</span>';
       ul.appendChild(row);
