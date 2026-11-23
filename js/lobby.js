@@ -119,6 +119,7 @@
       var n = block.querySelectorAll('article').length;
       var go = el('button', 'tm-go', 'See ' + (n ? n + ' stories' : 'the stories') + ' in the Auditorium →'); go.type = 'button'; go.setAttribute('data-goto', 'auditorium');
       tm.appendChild(go);
+      var td = el('a', 'tm-go tm-today', "Today's story →"); td.href = 'today/'; tm.appendChild(td);
     } else tm.hidden = true;
   }
 

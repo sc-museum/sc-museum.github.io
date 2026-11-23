@@ -1,0 +1,32 @@
+# Today in Signal history: every morning, pick the day's story from the
+# Auditorium calendar and update today/, feed.xml and data/today-log.json.
+# Social-media auto-posters (Buffer, dlvr.it, IFTTT and the like) read feed.xml.
+name: Today in Signal history
+
+on:
+  schedule:
+    - cron: '15 10 * * *'   # 10:15 UTC = 5:15 a.m. Eastern (6:15 a.m. in summer)
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+
+concurrency:
+  group: today
+  cancel-in-progress: false
+
+jobs:
+  today:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Pick today's story
+        run: perl tools/gen-today.pl
+      - name: Commit if changed
+        run: |
+          git config user.name "museum-today-bot"
+          git config user.email "museum-today-bot@users.noreply.github.com"
+          git add today feed.xml data/today-log.json
+          if git diff --cached --quiet; then echo "No change"; exit 0; fi
+          git commit -m "Today in Signal history: $(date -u +%F)"
+          git push

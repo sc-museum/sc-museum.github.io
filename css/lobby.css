@@ -114,3 +114,4 @@ html.on-lobby .tg-launch, html.on-lobby .give-launch{display:none !important;}
 .drawn-card.has-real .drawn-render{position:absolute; left:0; top:0; width:100%; aspect-ratio:16/9; opacity:0; transition:opacity .25s;}
 .drawn-card.has-real:hover .drawn-render, .drawn-card.has-real:focus-visible .drawn-render{opacity:1;}
 @media (prefers-reduced-motion:reduce){ .drawn-card.has-real .drawn-render{transition:none;} }
+.tm-today{display:inline-block; margin-left:14px;}
