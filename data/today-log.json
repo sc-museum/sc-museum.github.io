@@ -1,5 +1,15 @@
 [
    {
+      "date" : "2026-11-24",
+      "headline" : "On this day in 1877: Telegraph at the Wreck of the Huron",
+      "image" : "https://sc-museum.github.io/assets/archives/ss-sf1906.jpg",
+      "key" : "11-24-1877",
+      "kind" : "day",
+      "room" : "https://sc-museum.github.io/#signal-story",
+      "tag" : "Coastal Signal Stations",
+      "text" : "Early on November 24, 1877, the steamer Huron ran aground off Nags Head, North Carolina. Sgt. S. W. Naylor, the Signal Corps observer at Kitty Hawk, eight miles away, hurried to the scene and set up a telegraph station on the shore. It sent more than 550 messages through December 11. Only 34 of the 132 men aboard survived."
+   },
+   {
       "date" : "2026-11-23",
       "headline" : "November 24, 1877: Telegraph at the Wreck of the Huron",
       "image" : "https://sc-museum.github.io/assets/archives/ss-sf1906.jpg",
