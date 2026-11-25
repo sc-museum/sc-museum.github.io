@@ -1,5 +1,15 @@
 [
    {
+      "date" : "2026-11-25",
+      "headline" : "November 23, 1977: Veterans at Last",
+      "image" : "https://sc-museum.github.io/assets/nara/hg-chaumont-1919.jpg",
+      "key" : "11-23-1977",
+      "kind" : "week",
+      "room" : "https://sc-museum.github.io/#hello-girls",
+      "tag" : "Hello Girls",
+      "text" : "On November 23, 1977, President Jimmy Carter signed the G.I. Bill Improvement Act. It let the Defense Department recognize certain civilian groups' wartime service as active military service, which opened the way for the Signal Corps' World War I telephone operators to be recognized as veterans. Few of them were still alive."
+   },
+   {
       "date" : "2026-11-24",
       "headline" : "On this day in 1877: Telegraph at the Wreck of the Huron",
       "image" : "https://sc-museum.github.io/assets/archives/ss-sf1906.jpg",

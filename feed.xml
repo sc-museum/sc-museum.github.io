@@ -6,7 +6,16 @@
 <atom:link href="https://sc-museum.github.io/feed.xml" rel="self" type="application/rss+xml"/>
 <description>A story a day from the history of the U.S. Army Signal Corps and Cyber Corps, from the Signal &amp; Cyber Corps Museum Society's virtual museum.</description>
 <language>en-us</language>
-<lastBuildDate>Tue, 24 Nov 2026 10:00:00 +0000</lastBuildDate>
+<lastBuildDate>Wed, 25 Nov 2026 10:00:00 +0000</lastBuildDate>
+<item>
+<title>November 23, 1977: Veterans at Last</title>
+<link>https://sc-museum.github.io/today/2026-11-25.html</link>
+<guid isPermaLink="false">sc-museum-today-2026-11-25</guid>
+<pubDate>Wed, 25 Nov 2026 10:00:00 +0000</pubDate>
+<description>On November 23, 1977, President Jimmy Carter signed the G.I. Bill Improvement Act. It let the Defense Department recognize certain civilian groups' wartime service as active military service, which opened the way for the Signal Corps' World War I telephone operators to be recognized as veterans. Few of them were still alive. #SignalCorps #ArmyHistory</description>
+<media:content url="https://sc-museum.github.io/assets/nara/hg-chaumont-1919.jpg" medium="image"/>
+<enclosure url="https://sc-museum.github.io/assets/nara/hg-chaumont-1919.jpg" type="image/jpeg" length="0"/>
+</item>
 <item>
 <title>On this day in 1877: Telegraph at the Wreck of the Huron</title>
 <link>https://sc-museum.github.io/today/2026-11-24.html</link>
