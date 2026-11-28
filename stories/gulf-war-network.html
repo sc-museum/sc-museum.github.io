@@ -259,7 +259,7 @@
 <p class="note" id="back"><a href="../index.html#room-desert-storm" target="_top">← Desert Shield &amp; Desert Storm Annex, Signal &amp; Cyber Corps Museum Society virtual museum</a></p>
 </div>
 
-<script src="ios-audio.js?v=5"></script>
+<script src="ios-audio.js?v=6"></script>
 <script>
 (function(){
 "use strict";
@@ -356,10 +356,11 @@ function draw(i){
 /* ---------- narration: a deep, slow voice; the story waits for it ---------- */
 const hasTTS="speechSynthesis" in window&&"SpeechSynthesisUtterance" in window;
 const store={get(k,d){try{const v=localStorage.getItem(k);return v===null?d:JSON.parse(v)}catch(e){return d}},set(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}}};
-let voiceOn=hasTTS&&store.get("narr-on",true),voice=null,talkTok=0,talkTimer=null;
+let voiceOn=hasTTS&&((window.iosAudio&&iosAudio.isIOS)||store.get("narr-on",true)),voice=null,talkTok=0,talkTimer=null;
 const MALE=/Guy|Christopher|Andrew|Brian|Eric|Davis|Roger|Tony|Jason|Steffan|Ryan|Thomas|Oliver|William|Liam|Connor|Daniel|Arthur|Aaron|Evan|Nathan|Tom|Alex|Google UK English Male|David|Mark|George|James|Male/i;
 const FEMALE=/Ava|Aria|Jenny|Emma|Michelle|Samantha|Libby|Sonia|Zira|Susan|Hazel|Karen|Moira|Tessa|Fiona|Serena|Allison|Nancy|Jane|Sara|Ana|Female|Victoria|Kate/i;
-function pickVoice(){if(!hasTTS)return null;const vs=speechSynthesis.getVoices().filter(v=>/^en(-|_|$)/i.test(v.lang));
+function pickVoice(){if(!hasTTS||(window.iosAudio&&iosAudio.isIOS))return null;   // iPhone/iPad: the phone's own voice
+const vs=speechSynthesis.getVoices().filter(v=>/^en(-|_|$)/i.test(v.lang));
   const sc=v=>{const n=v.name;if(/Albert|Bad News|Bahh|Bells|Boing|Bubbles|Cellos|Good News|Jester|Organ|Superstar|Trinoids|Whisper|Wobble|Zarvox|Fred|Junior|Ralph|Kathy|eSpeak/i.test(n))return -100;
     return(/Natural|Neural|Premium|Enhanced/i.test(n)?50:0)+(MALE.test(n)&&!FEMALE.test(n)?40:0)+(FEMALE.test(n)?-30:0)+(/Guy|Christopher|Davis|Roger|Andrew|Brian/i.test(n)?12:0)+(/Google UK English Male/i.test(n)?15:0)+(/en-US/i.test(v.lang)?6:/en-GB/i.test(v.lang)?5:0)};
   vs.sort((a,b)=>sc(b)-sc(a));return vs[0]||null}
@@ -447,6 +448,8 @@ $("next").onclick=()=>go(at+1);
 $("stage").addEventListener("click",()=>{if(!playing)setPlaying(true)});
 const dots=$("dots");S.forEach((s,i)=>{const d=document.createElement("i");d.title="Scene "+(i+1);d.onclick=()=>go(i);dots.appendChild(d)});
 const musB=$("mus"),narB=$("nar");if(!AC)musB.style.display="none";if(!hasTTS)narB.style.display="none";
+if((window.iosAudio&&iosAudio.isIOS)){musB.style.display="none";narB.style.display="none"}   // iPhone/iPad: just Play
+
 musB.setAttribute("aria-pressed",musicOn);musB.onclick=()=>{musicOn=!musicOn;musB.setAttribute("aria-pressed",musicOn);if(musicOn){initAudio();if(ac&&ac.state!=="running")ac.resume()}};
 narB.setAttribute("aria-pressed",voiceOn);
 narB.onclick=()=>{voiceOn=!voiceOn;store.set("narr-on",voiceOn);narB.setAttribute("aria-pressed",voiceOn);if(!voiceOn)stopTalk();if(playing)go(at)};

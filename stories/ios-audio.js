@@ -23,6 +23,8 @@
       if (on) {
         if (!track) { track = new Audio(silentWav()); track.loop = true; track.setAttribute("playsinline", ""); }
         var p = track.play(); if (p && p.catch) p.catch(function(){});
+        // the lock screen and Control Center show the film's name, not a blank player
+        try { if ("mediaSession" in navigator && window.MediaMetadata) navigator.mediaSession.metadata = new MediaMetadata({ title: document.title.split(" · ")[0], artist: "Signal & Cyber Corps Museum Society" }); } catch (e) {}
         if (window.speechSynthesis && speechSynthesis.paused) speechSynthesis.resume();
       } else if (track) {
         track.pause();

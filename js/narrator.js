@@ -39,7 +39,7 @@
     voices.sort(function (a, b) { return score(b) - score(a); });
   }
   if (synth) { loadVoices(); if (synth.addEventListener) synth.addEventListener('voiceschanged', loadVoices); }
-  function voice() { return voices[0] || null; }
+  function voice() { if (window.iosAudio && iosAudio.isIOS) return null; return voices[0] || null; }   // iPhone/iPad: the phone's own voice
   // Slow and low, with weight: natural voices already sound full, so they are lowered less than the older ones.
   function delivery(v) {
     var natural = v && /Natural|Neural|Premium|Enhanced/i.test(v.name);

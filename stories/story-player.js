@@ -45,7 +45,9 @@ function draw(i){
 /* ---------- narration: two narrators, a man and a woman, in the most natural voices the device has; the story waits for them ---------- */
 const hasTTS="speechSynthesis" in window&&"SpeechSynthesisUtterance" in window;
 const store={get(k,d){try{const v=localStorage.getItem(k);return v===null?d:JSON.parse(v)}catch(e){return d}},set(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}}};
-let voiceOn=hasTTS&&store.get("narr-on",true),voices={m:null,f:null},talkTok=0,talkTimer=null;
+// iPhone and iPad keep it simple: one voice (the phone's own), no music, narration always on.
+const IS_IOS=/iPad|iPhone|iPod/.test(navigator.userAgent)||(navigator.platform==="MacIntel"&&navigator.maxTouchPoints>1);
+let voiceOn=hasTTS&&(IS_IOS||store.get("narr-on",true)),voices={m:null,f:null},talkTok=0,talkTimer=null;
 const MALE=/Guy|Christopher|Andrew|Brian|Eric|Davis|Roger|Tony|Jason|Steffan|Ryan|Thomas|Oliver|William|Liam|Connor|Daniel|Arthur|Aaron|Evan|Nathan|Tom|Alex\b|Google UK English Male|David|Mark|George|James|Male/i;
 const FEMALE=/Ava|Aria|Jenny|Emma|Michelle|Samantha|Libby|Sonia|Zira|Susan|Hazel|Karen|Moira|Tessa|Fiona|Serena|Allison|Nancy|Jane|Sara|Female|Victoria|Kate|Google US English|Google UK English Female/i;
 // Voices ranked by how human they sound, best first. Edge's newest "Multilingual" voices (Andrew, Brian, Ava, Emma)
@@ -66,7 +68,7 @@ function pickVoices(){if(!hasTTS)return;const vs=speechSynthesis.getVoices().fil
 if(hasTTS){pickVoices();speechSynthesis.addEventListener&&speechSynthesis.addEventListener("voiceschanged",pickVoices)}
 // iPhone and iPad need the simplest possible audio: one spoken line per scene, no music unless asked for,
 // and a hint on screen if nothing is heard.
-const IOS=/iPad|iPhone|iPod/.test(navigator.userAgent)||(navigator.platform==="MacIntel"&&navigator.maxTouchPoints>1);
+const IOS=IS_IOS;
 let heard=false,keep=null;   // keep: Safari quietly drops a line it no longer holds a reference to
 // Cancelling when nothing is playing can swallow Safari's next line, so cancel only when needed.
 function stopTalk(){talkTok++;clearTimeout(talkTimer);if(hasTTS&&(speechSynthesis.speaking||speechSynthesis.pending))speechSynthesis.cancel()}
@@ -78,7 +80,7 @@ function audNote(show){let n=document.getElementById("audnote");
 function say(text,done,who){stopTalk();const tok=talkTok,w=who==="f"?"f":"m";
   // Safari often has no voice list yet when Play is pressed: ask again, else speak in the device's default voice.
   if(hasTTS&&!voices[w])pickVoices();
-  const voice=voices[w];
+  const voice=IOS?null:voices[w];   // iPhone/iPad: the phone's own voice, the most reliable there
   if(!voiceOn||!hasTTS||!text.trim()){setTimeout(()=>{if(tok===talkTok)done()},0);return}
   const nat=!!voice&&NAT.test(voice.name);
   // One line per scene, at the voice's own pitch. Only Google's online voices (Chrome) are cut into sentences,
@@ -180,6 +182,7 @@ $("next").onclick=()=>go(at+1);
 $("stage").addEventListener("click",()=>{if(!playing)setPlaying(true)});
 const dots=$("dots");S.forEach((s,i)=>{const d=document.createElement("i");d.title="Scene "+(i+1);d.onclick=()=>go(i);dots.appendChild(d)});
 const musB=$("mus"),narB=$("nar");if(!AC)musB.style.display="none";if(!hasTTS)narB.style.display="none";
+if(IOS){musB.style.display="none";narB.style.display="none"}   // iPhone/iPad: just Play
 musB.setAttribute("aria-pressed",musicOn);
 musB.onclick=()=>{musicOn=!musicOn;musB.setAttribute("aria-pressed",musicOn);if(musicOn){initAudio();if(ac&&ac.state!=="running")ac.resume()}};
 narB.setAttribute("aria-pressed",voiceOn);

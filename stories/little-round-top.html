@@ -300,7 +300,7 @@
 <p class="note"><a href="../index.html#room-civil-war" target="_top" style="color:#e0bc4a">&larr; Civil War Signal Annex, Signal &amp; Cyber Corps Museum Society virtual museum</a></p>
 </div>
 
-<script src="ios-audio.js?v=5"></script>
+<script src="ios-audio.js?v=6"></script>
 <script>
 (function(){
 const $=id=>document.getElementById(id);
@@ -439,8 +439,10 @@ const NARR=[
  "Signal and Cyber Corps Museum Society. Secure our story."
 ];
 const hasTTS="speechSynthesis" in window&&"SpeechSynthesisUtterance" in window;
-let voiceOn=hasTTS,talking=false,spokenIdx=-1,talkTok=0,talkTimer=null,voice=null;
-function pickVoice(){if(!hasTTS)return null;const vs=speechSynthesis.getVoices().filter(v=>/^en/i.test(v.lang));
+let voiceOn=hasTTS,   // on iPhone/iPad narration is always on, in the phone's own voice
+talking=false,spokenIdx=-1,talkTok=0,talkTimer=null,voice=null;
+function pickVoice(){if(!hasTTS||(window.iosAudio&&iosAudio.isIOS))return null;   // iPhone/iPad: the phone's own voice
+const vs=speechSynthesis.getVoices().filter(v=>/^en/i.test(v.lang));
  const pref=[/(Guy|Christopher|Davis|Roger|Andrew|Brian|Eric|Steffan|Ryan|Thomas).*(Natural|Neural)/i,/(Guy|Christopher|Davis|Roger|Andrew|Brian|Eric|Ryan|Thomas)/i,/Google UK English Male/i,/Daniel/i,/Microsoft (David|Mark)/i,/Natural/i,/Google US English/i];
  for(const r of pref){const v=vs.find(v=>r.test(v.name));if(v)return v}return vs[0]||null}
 if(hasTTS){voice=pickVoice();speechSynthesis.addEventListener&&speechSynthesis.addEventListener("voiceschanged",()=>{voice=pickVoice()})}
@@ -536,6 +538,8 @@ $("replay").onclick=()=>{t=0;stepN=0;setPlaying(true)};
 scrub.oninput=()=>{t=+scrub.value;setPlaying(false)};
 const musB=$("mus"),narB=$("nar");
 if(!AC)musB.style.display="none";if(!hasTTS)narB.style.display="none";
+if((window.iosAudio&&iosAudio.isIOS)){musB.style.display="none";narB.style.display="none"}   // iPhone/iPad: just Play
+
 musB.setAttribute("aria-pressed",musicOn);musB.onclick=()=>{musicOn=!musicOn;musB.setAttribute("aria-pressed",musicOn);if(musicOn){initAudio();if(ac&&ac.state!=="running")ac.resume()}};
 narB.onclick=()=>{voiceOn=!voiceOn;narB.setAttribute("aria-pressed",voiceOn);if(!voiceOn)stopTalk();else if(playing)say(capAt(t))};
 // Stop when the visitor leaves: another tab, another museum room, or scrolled away.
