@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Sound test · Signal &amp; Cyber Corps Museum Society</title>
+<style>
+  :root{--bg:#12130f;--fg:#efe6d2;--mut:#b8ab8e;--gold:#e0bc4a;--ok:#7fd18b;--bad:#e8946f;color-scheme:dark}
+  body{margin:0;background:var(--bg);color:var(--fg);font:17px/1.5 -apple-system,system-ui,sans-serif}
+  .w{max-width:620px;margin:0 auto;padding:24px max(18px,env(safe-area-inset-left,0px)) 40px}
+  h1{font-size:26px;margin:0 0 6px}
+  p{margin:0 0 14px;color:var(--mut)}
+  .t{border:1px solid #3a382c;border-radius:8px;padding:14px;margin:12px 0}
+  .t b{display:block;font-size:18px;margin-bottom:6px}
+  button{font:600 17px -apple-system,system-ui,sans-serif;background:var(--gold);color:#14110b;border:0;border-radius:8px;padding:12px 16px;min-height:48px}
+  .r{margin-top:8px;font-size:15px;min-height:1.4em}
+  .ok{color:var(--ok)} .bad{color:var(--bad)}
+  pre{white-space:pre-wrap;font-size:13px;color:var(--mut);background:#1c1b16;padding:10px;border-radius:6px}
+</style>
+</head>
+<body>
+<div class="w">
+  <h1>Museum sound test</h1>
+  <p>Turn the volume up, then tap each button. After each one, note whether you heard anything. If something fails, send a screenshot of this page to the museum team.</p>
+
+  <div class="t"><b>1. A tone (like a video)</b><button id="b1">Play tone</button><div class="r" id="r1"></div></div>
+  <div class="t"><b>2. The narrator's voice</b><button id="b2">Speak</button><div class="r" id="r2"></div></div>
+  <div class="t"><b>3. The film music</b><button id="b3">Play music</button><div class="r" id="r3"></div></div>
+
+  <pre id="info"></pre>
+</div>
+<script src="ios-audio.js"></script>
+<script>
+(function(){
+  var $ = function(id){ return document.getElementById(id); };
+  function res(id, ok, msg){ var r = $(id); r.className = "r " + (ok ? "ok" : "bad"); r.textContent = msg; }
+  function info(){
+    var v = window.speechSynthesis ? speechSynthesis.getVoices() : [];
+    var en = v.filter(function(x){ return /^en/i.test(x.lang); });
+    $("info").textContent =
+      "Device: " + navigator.userAgent + "\n" +
+      "Voices: " + v.length + " (English " + en.length + ")" + (en.length ? ": " + en.slice(0, 8).map(function(x){ return x.name; }).join(", ") : "") + "\n" +
+      "Speech available: " + ("speechSynthesis" in window) + " · Web Audio: " + !!(window.AudioContext || window.webkitAudioContext) + "\n" +
+      "Audio session: " + (navigator.audioSession ? navigator.audioSession.type : "not available");
+  }
+  info(); if (window.speechSynthesis && speechSynthesis.addEventListener) speechSynthesis.addEventListener("voiceschanged", info);
+
+  // 1. an ordinary audio element playing a generated beep
+  $("b1").onclick = function(){
+    var sr = 22050, n = sr, b = new ArrayBuffer(44 + n * 2), d = new DataView(b);
+    function s(o, t){ for (var i = 0; i < t.length; i++) d.setUint8(o + i, t.charCodeAt(i)); }
+    s(0,"RIFF"); d.setUint32(4,36+n*2,true); s(8,"WAVE"); s(12,"fmt "); d.setUint32(16,16,true); d.setUint16(20,1,true); d.setUint16(22,1,true);
+    d.setUint32(24,sr,true); d.setUint32(28,sr*2,true); d.setUint16(32,2,true); d.setUint16(34,16,true); s(36,"data"); d.setUint32(40,n*2,true);
+    for (var i = 0; i < n; i++) d.setInt16(44 + i * 2, Math.sin(i / sr * 2 * Math.PI * 440) * 9000 * Math.min(1, (n - i) / 2000), true);
+    var a = new Audio(URL.createObjectURL(new Blob([b], { type: "audio/wav" })));
+    a.play().then(function(){ res("r1", true, "Playing. Did you hear a one-second tone?"); })
+            .catch(function(e){ res("r1", false, "Blocked: " + e.name + " " + e.message); });
+  };
+  // 2. the narrator (speech synthesis), with the films' iPhone helper started first
+  $("b2").onclick = function(){
+    if (!window.speechSynthesis){ res("r2", false, "This browser has no speech voice."); return; }
+    if (window.iosAudio) iosAudio(true);
+    if (speechSynthesis.speaking || speechSynthesis.pending) speechSynthesis.cancel();
+    var u = new SpeechSynthesisUtterance("This is the museum narrator. If you can hear me, the films will work.");
+    u.lang = "en-US"; window.__u = u; var started = false;
+    u.onstart = function(){ started = true; res("r2", true, "Speaking now. Did you hear the voice?"); };
+    u.onend = function(){ if (started) res("r2", true, "Finished speaking. Did you hear the voice?"); };
+    u.onerror = function(e){ res("r2", false, "Speech error: " + e.error); };
+    speechSynthesis.speak(u);
+    setTimeout(function(){ if (!started) res("r2", false, "The voice did not start (speaking=" + speechSynthesis.speaking + ", pending=" + speechSynthesis.pending + ")."); }, 3000);
+  };
+  // 3. synthesized music (Web Audio)
+  $("b3").onclick = function(){
+    var AC = window.AudioContext || window.webkitAudioContext;
+    if (!AC){ res("r3", false, "This browser has no Web Audio."); return; }
+    if (window.iosAudio) iosAudio(true);
+    var ac = new AC(); ac.resume();
+    var o = ac.createOscillator(), g = ac.createGain(); o.frequency.value = 330; g.gain.value = .2;
+    o.connect(g); g.connect(ac.destination); o.start(); o.stop(ac.currentTime + 1);
+    setTimeout(function(){ res("r3", ac.state === "running", "Music engine: " + ac.state + ". Did you hear a one-second note?"); }, 400);
+  };
+})();
+</script>
+</body>
+</html>

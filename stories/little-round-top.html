@@ -300,6 +300,7 @@
 <p class="note"><a href="../index.html#room-civil-war" target="_top" style="color:#e0bc4a">&larr; Civil War Signal Annex, Signal &amp; Cyber Corps Museum Society virtual museum</a></p>
 </div>
 
+<script src="ios-audio.js?v=5"></script>
 <script>
 (function(){
 const $=id=>document.getElementById(id);
@@ -522,8 +523,8 @@ setInterval(()=>{if(!ac)return;const live=playing&&musicOn;
  while(nextAt<ac.currentTime+.15){step(nextAt,stepN);nextAt+=STEP;stepN++}},30);
 
 function setPlaying(on){playing=on;pb.textContent=on?"❚❚":"▶";if(on&&!__st){__st=true;__rep("start")}
- if(on){try{if(navigator.audioSession)navigator.audioSession.type="playback"}catch(e){} if(musicOn)initAudio();if(ac&&ac.state!=="running")ac.resume();if(voiceOn&&hasTTS)say(capAt(t))} // started from the click, so browsers allow sound
- else stopTalk()}
+ if(on){if(window.iosAudio)iosAudio(true); if(musicOn)initAudio();if(ac&&ac.state!=="running")ac.resume();if(voiceOn&&hasTTS)say(capAt(t))} // started from the click, so browsers allow sound
+ else{stopTalk();if(window.iosAudio)iosAudio(false)}}
 function tick(ts){if(last==null)last=ts;const dt=Math.min(.1,(ts-last)/1000);last=ts;
  if(playing){let nt=t+dt;const ci=capAt(t);
   if(voiceOn&&talking&&ci>=0&&nt>=caps[ci][1])nt=Math.max(t,caps[ci][1]-.001); // hold the scene until the line is spoken

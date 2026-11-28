@@ -259,6 +259,7 @@
 <p class="note" id="back"><a href="../index.html#room-desert-storm" target="_top">← Desert Shield &amp; Desert Storm Annex, Signal &amp; Cyber Corps Museum Society virtual museum</a></p>
 </div>
 
+<script src="ios-audio.js?v=5"></script>
 <script>
 (function(){
 "use strict";
@@ -438,8 +439,8 @@ function go(i,autoplay){at=Math.max(0,Math.min(S.length-1,i));draw(at);tok++;con
   timer=setTimeout(()=>{waited=true;fin()},minMs);
   talking=true;say(s.say,()=>{talking=false;setTimeout(()=>{spoken=true;fin()},700)})}
 function setPlaying(on){playing=on;$("play").textContent=on?"❚❚ Pause":"▶ Play";if(on&&!__st){__st=true;__rep("start")}
-  if(on){try{if(navigator.audioSession)navigator.audioSession.type="playback"}catch(e){} if(musicOn)initAudio();if(ac&&ac.state!=="running")ac.resume();if(at>=S.length-1)at=0;go(at)}
-  else{tok++;clearTimeout(timer);stopTalk();talking=false}}
+  if(on){if(window.iosAudio)iosAudio(true); if(musicOn)initAudio();if(ac&&ac.state!=="running")ac.resume();if(at>=S.length-1)at=0;go(at)}
+  else{tok++;clearTimeout(timer);stopTalk();talking=false;if(window.iosAudio)iosAudio(false)}}
 $("play").onclick=()=>setPlaying(!playing);
 $("prev").onclick=()=>go(at-1);
 $("next").onclick=()=>go(at+1);

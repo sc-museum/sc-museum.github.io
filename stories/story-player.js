@@ -171,9 +171,9 @@ function go(i){at=Math.max(0,Math.min(S.length-1,i));draw(at);seen.add(at);tok++
   talking=true;say(s.say,()=>{talking=false;setTimeout(()=>{spoken=true;fin()},700)},s.v||(at%2?"f":"m"))}
 function setPlaying(on){playing=on;$("play").textContent=on?"❚❚ Pause":"▶ Play";
   if(on&&!started){started=true;report("start")}
-  if(on){try{if(navigator.audioSession)navigator.audioSession.type="playback"}catch(e){}   // iPhone: play even in Silent mode where allowed
+  if(on){if(window.iosAudio)iosAudio(true);   // iPhone: play even in Silent mode where allowed
     if(musicOn)initAudio();if(ac&&ac.state!=="running")ac.resume();if(at>=S.length-1)at=0;go(at)}
-  else{tok++;clearTimeout(timer);stopTalk();talking=false}}
+  else{tok++;clearTimeout(timer);stopTalk();talking=false;if(window.iosAudio)iosAudio(false)}}
 $("play").onclick=()=>setPlaying(!playing);
 $("prev").onclick=()=>go(at-1);
 $("next").onclick=()=>go(at+1);
