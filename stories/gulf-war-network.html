@@ -363,14 +363,15 @@ function pickVoice(){if(!hasTTS)return null;const vs=speechSynthesis.getVoices()
     return(/Natural|Neural|Premium|Enhanced/i.test(n)?50:0)+(MALE.test(n)&&!FEMALE.test(n)?40:0)+(FEMALE.test(n)?-30:0)+(/Guy|Christopher|Davis|Roger|Andrew|Brian/i.test(n)?12:0)+(/Google UK English Male/i.test(n)?15:0)+(/en-US/i.test(v.lang)?6:/en-GB/i.test(v.lang)?5:0)};
   vs.sort((a,b)=>sc(b)-sc(a));return vs[0]||null}
 if(hasTTS){voice=pickVoice();speechSynthesis.addEventListener&&speechSynthesis.addEventListener("voiceschanged",()=>{voice=pickVoice()})}
-function stopTalk(){talkTok++;clearTimeout(talkTimer);if(hasTTS)speechSynthesis.cancel()}
+function stopTalk(){talkTok++;clearTimeout(talkTimer);if(hasTTS&&(speechSynthesis.speaking||speechSynthesis.pending))speechSynthesis.cancel()}
 function say(text,done){stopTalk();const tok=talkTok;
-  if(!voiceOn||!hasTTS||!voice){setTimeout(()=>{if(tok===talkTok)done()},0);return}
+  if(hasTTS&&!voice)voice=pickVoice();   // Safari may not have its voice list yet: ask again, else speak in the default voice
+  if(!voiceOn||!hasTTS){setTimeout(()=>{if(tok===talkTok)done()},0);return}
   const parts=text.match(/[^.!?:]+(?:[.!?:]+|$)\s*/g)||[text];let k=0;
-  const nat=/Natural|Neural|Premium|Enhanced/i.test(voice.name);
+  const nat=!!voice&&/Natural|Neural|Premium|Enhanced/i.test(voice.name);
   talkTimer=setTimeout(()=>{if(tok===talkTok)done()},(text.split(/\s+/).length/1.6+8)*1000);   // never wait forever
   (function next(){if(tok!==talkTok)return;if(k>=parts.length){clearTimeout(talkTimer);done();return}
-    const u=new SpeechSynthesisUtterance(parts[k++].trim());u.voice=voice;u.lang=voice.lang;u.rate=nat?.9:.95;u.pitch=nat?.85:.72;
+    const u=new SpeechSynthesisUtterance(parts[k++].trim());if(voice){u.voice=voice;u.lang=voice.lang}else u.lang="en-US";u.rate=nat?.9:.95;u.pitch=nat?.85:.72;
     u.onend=()=>{if(tok===talkTok)setTimeout(next,300)};u.onerror=e=>{if(tok!==talkTok||e.error==="interrupted"||e.error==="canceled")return;clearTimeout(talkTimer);done()};
     speechSynthesis.speak(u)})()}
 

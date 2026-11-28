@@ -84,7 +84,7 @@
   }
   function quiet() {
     cur.token++; cur.done = null; cur.owner = null; clearTimeout(cur.timer); clearInterval(cur.watch);
-    if (synth) synth.cancel();
+    if (synth && (synth.speaking || synth.pending)) synth.cancel();   // Safari can swallow the next line after a needless cancel
   }
 
   function say(text, done, owner) {
@@ -93,6 +93,7 @@
     cur.owner = owner || null; cur.done = done || null;
     if (!canSpeak() || !text) { setTimeout(function () { finish(token); }, 0); return; }
     document.dispatchEvent(new CustomEvent('museum-narrator-speak'));   // the Guided Tour pauses
+    if (!voices.length) loadVoices();   // Safari may not have announced its voices yet
     var list = pieces(speakable(text)), i = 0, v = voice(), dl = delivery(v);
     // never wait forever: a voice that fails silently still lets the animation go on
     cur.timer = setTimeout(function () { finish(token); }, (text.split(/\s+/).length / 1.6 + 8) * 1000);

@@ -64,10 +64,15 @@ function pickVoices(){if(!hasTTS)return;const vs=speechSynthesis.getVoices().fil
   const any=vs.sort((a,b)=>(NAT.test(b.name)?1:0)-(NAT.test(a.name)?1:0))[0]||null;   // a device with only one voice uses it for both
   if(!voices.m)voices.m=voices.f||any;if(!voices.f)voices.f=voices.m||any}
 if(hasTTS){pickVoices();speechSynthesis.addEventListener&&speechSynthesis.addEventListener("voiceschanged",pickVoices)}
-function stopTalk(){talkTok++;clearTimeout(talkTimer);if(hasTTS)speechSynthesis.cancel()}
-function say(text,done,who){stopTalk();const tok=talkTok,voice=voices[who==="f"?"f":"m"];
-  if(!voiceOn||!hasTTS||!voice||!text.trim()){setTimeout(()=>{if(tok===talkTok)done()},0);return}
-  const nat=NAT.test(voice.name),man=voice===voices.m&&who!=="f";
+// iPhone and iPad (Safari): cancelling when nothing is playing can swallow the next line, so cancel only when needed.
+function stopTalk(){talkTok++;clearTimeout(talkTimer);if(hasTTS&&(speechSynthesis.speaking||speechSynthesis.pending))speechSynthesis.cancel()}
+function say(text,done,who){stopTalk();const tok=talkTok,w=who==="f"?"f":"m";
+  // Safari often has no voice list yet when Play is pressed and may never announce it: ask again, and if there is
+  // still no list, speak anyway in the device's default voice rather than skipping the narration.
+  if(hasTTS&&!voices[w])pickVoices();
+  const voice=voices[w];
+  if(!voiceOn||!hasTTS||!text.trim()){setTimeout(()=>{if(tok===talkTok)done()},0);return}
+  const nat=!!voice&&NAT.test(voice.name),man=w==="m";
   // Smooth delivery: a natural voice reads the whole scene in one breath, at its own pitch and close to its own pace,
   // because pitch-shifting or slowing it is what makes it sound synthetic. Plain voices are cut into sentences
   // (some browsers stop long utterances). The man's voice is no longer pitched down on any device: lowering a
@@ -76,7 +81,7 @@ function say(text,done,who){stopTalk();const tok=talkTok,voice=voices[who==="f"?
   const rate=nat?(man?.98:.98):(man?.95:.95),pitch=1;
   talkTimer=setTimeout(()=>{if(tok===talkTok)done()},(text.split(/\s+/).length/1.5+8)*1000);   // never wait forever
   (function next(){if(tok!==talkTok)return;if(k>=parts.length){clearTimeout(talkTimer);done();return}
-    const u=new SpeechSynthesisUtterance(parts[k++].trim());u.voice=voice;u.lang=voice.lang;u.rate=rate;u.pitch=pitch;
+    const u=new SpeechSynthesisUtterance(parts[k++].trim());if(voice){u.voice=voice;u.lang=voice.lang}else u.lang="en-US";u.rate=rate;u.pitch=pitch;
     u.onend=()=>{if(tok===talkTok)setTimeout(next,80)};u.onerror=e=>{if(tok!==talkTok||e.error==="interrupted"||e.error==="canceled")return;clearTimeout(talkTimer);done()};
     speechSynthesis.speak(u)})()}
 

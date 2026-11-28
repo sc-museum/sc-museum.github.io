@@ -443,8 +443,8 @@ function pickVoice(){if(!hasTTS)return null;const vs=speechSynthesis.getVoices()
  const pref=[/(Guy|Christopher|Davis|Roger|Andrew|Brian|Eric|Steffan|Ryan|Thomas).*(Natural|Neural)/i,/(Guy|Christopher|Davis|Roger|Andrew|Brian|Eric|Ryan|Thomas)/i,/Google UK English Male/i,/Daniel/i,/Microsoft (David|Mark)/i,/Natural/i,/Google US English/i];
  for(const r of pref){const v=vs.find(v=>r.test(v.name));if(v)return v}return vs[0]||null}
 if(hasTTS){voice=pickVoice();speechSynthesis.addEventListener&&speechSynthesis.addEventListener("voiceschanged",()=>{voice=pickVoice()})}
-function stopTalk(){talkTok++;talking=false;clearTimeout(talkTimer);if(hasTTS)speechSynthesis.cancel()}
-function say(i){stopTalk();spokenIdx=i;if(!voiceOn||i<0||!NARR[i])return;
+function stopTalk(){talkTok++;talking=false;clearTimeout(talkTimer);if(hasTTS&&(speechSynthesis.speaking||speechSynthesis.pending))speechSynthesis.cancel()}
+function say(i){stopTalk();spokenIdx=i;if(!voiceOn||i<0||!NARR[i])return;if(!voice)voice=pickVoice();
  const tok=talkTok,u=new SpeechSynthesisUtterance(NARR[i]);if(voice){u.voice=voice;u.lang=voice.lang}{const nat=voice&&/Natural|Neural|Premium|Enhanced/i.test(voice.name);u.rate=nat?.9:.95;u.pitch=nat?.85:.72}
  u.onend=u.onerror=()=>{if(tok===talkTok){talking=false;clearTimeout(talkTimer)}};
  talking=true;talkTimer=setTimeout(()=>{if(tok===talkTok)talking=false},(NARR[i].split(" ").length/1.6+6)*1000); // never wait forever
