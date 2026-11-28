@@ -92,13 +92,14 @@
     var token = cur.token;
     cur.owner = owner || null; cur.done = done || null;
     if (!canSpeak() || !text) { setTimeout(function () { finish(token); }, 0); return; }
+    if (window.iosAudio) iosAudio(true);   // iPhone/iPad: play as media so Silent mode and Safari don't mute the voice
     document.dispatchEvent(new CustomEvent('museum-narrator-speak'));   // the Guided Tour pauses
     if (!voices.length) loadVoices();   // Safari may not have announced its voices yet
     var list = pieces(speakable(text)), i = 0, v = voice(), dl = delivery(v);
     // never wait forever: a voice that fails silently still lets the animation go on
     cur.timer = setTimeout(function () { finish(token); }, (text.split(/\s+/).length / 1.6 + 8) * 1000);
     // the animation left the screen (another room, a closed panel): stop talking
-    if (owner) cur.watch = setInterval(function () { if (!owner.getClientRects().length) { quiet(); halts.forEach(function (f) { f(owner); }); } }, 700);
+    if (owner) cur.watch = setInterval(function () { if (!owner.getClientRects().length) { quiet(); if (window.iosAudio) iosAudio(false); halts.forEach(function (f) { f(owner); }); } }, 700);
     (function next() {
       if (token !== cur.token) return;
       if (i >= list.length) { finish(token); return; }
