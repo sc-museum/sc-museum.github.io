@@ -42,20 +42,25 @@ function draw(i){
 }
 
 
-/* ---------- narration: two narrators, a low, deep man's voice and a warm woman's voice; the story waits for them ---------- */
+/* ---------- narration: two narrators, a man and a woman, in the most natural voices the device has; the story waits for them ---------- */
 const hasTTS="speechSynthesis" in window&&"SpeechSynthesisUtterance" in window;
 const store={get(k,d){try{const v=localStorage.getItem(k);return v===null?d:JSON.parse(v)}catch(e){return d}},set(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}}};
 let voiceOn=hasTTS&&store.get("narr-on",true),voices={m:null,f:null},talkTok=0,talkTimer=null;
 const MALE=/Guy|Christopher|Andrew|Brian|Eric|Davis|Roger|Tony|Jason|Steffan|Ryan|Thomas|Oliver|William|Liam|Connor|Daniel|Arthur|Aaron|Evan|Nathan|Tom|Alex\b|Google UK English Male|David|Mark|George|James|Male/i;
 const FEMALE=/Ava|Aria|Jenny|Emma|Michelle|Samantha|Libby|Sonia|Zira|Susan|Hazel|Karen|Moira|Tessa|Fiona|Serena|Allison|Nancy|Jane|Sara|Female|Victoria|Kate|Google US English|Google UK English Female/i;
-// Deep, resonant men's voices first (Edge's natural Guy, Davis, Christopher, Roger, Andrew, Brian); warm women's voices (Ava, Emma, Jenny, Samantha).
-const DEEP=/Guy|Davis|Christopher|Roger|Andrew|Brian|Daniel/i, WARM=/Ava|Emma|Jenny|Sonia|Libby|Samantha|Allison|Google US English/i;
+// Voices ranked by how human they sound, best first. Edge's newest "Multilingual" voices (Andrew, Brian, Ava, Emma)
+// are the most lifelike, with real breathing and phrasing; then the other natural voices; then Apple's and Google's.
+// Robotic desktop voices (David, Mark, Zira) come last.
+const MRANK=[/Andrew.*Multilingual/i,/Brian.*Multilingual/i,/Andrew/i,/Brian/i,/Christopher/i,/Guy/i,/Eric/i,/Steffan/i,/Roger/i,/Davis/i,/Ryan/i,/Thomas/i,/Evan/i,/Nathan/i,/Aaron/i,/Daniel/i,/Google UK English Male/i,/Tom/i,/Alex\b/i];
+const FRANK=[/Ava.*Multilingual/i,/Emma.*Multilingual/i,/Ava/i,/Emma/i,/Jenny/i,/Aria/i,/Michelle/i,/Sonia/i,/Libby/i,/Samantha/i,/Allison/i,/Serena/i,/Google US English/i,/Google UK English Female/i];
 const NAT=/Natural|Neural|Premium|Enhanced/i, JUNK=/Albert|Bad News|Bahh|Bells|Boing|Bubbles|Cellos|Good News|Jester|Organ|Superstar|Trinoids|Whisper|Wobble|Zarvox|Fred|Junior|Ralph|Kathy|eSpeak|\bAna\b/i;
 function pickVoices(){if(!hasTTS)return;const vs=speechSynthesis.getVoices().filter(v=>/^en(-|_|$)/i.test(v.lang)&&!JUNK.test(v.name));
   const lang=v=>/en-US/i.test(v.lang)?6:/en-GB/i.test(v.lang)?5:0;
   const isM=v=>MALE.test(v.name)&&!FEMALE.test(v.name),isF=v=>FEMALE.test(v.name)&&!MALE.test(v.name);
-  const best=(ok,bonus)=>vs.filter(ok).sort((a,b)=>(NAT.test(b.name)?60:0)+(bonus.test(b.name)?14:0)+lang(b)-((NAT.test(a.name)?60:0)+(bonus.test(a.name)?14:0)+lang(a)))[0]||null;
-  voices.m=best(isM,DEEP);voices.f=best(isF,WARM);
+  const rank=(v,R)=>{const i=R.findIndex(r=>r.test(v.name));return i<0?0:40-i*2};
+  const sc=(v,R)=>(NAT.test(v.name)?60:0)+rank(v,R)+lang(v)+(/Online|Google/i.test(v.name)?3:0);
+  const best=(ok,R)=>vs.filter(ok).sort((a,b)=>sc(b,R)-sc(a,R))[0]||null;
+  voices.m=best(isM,MRANK);voices.f=best(isF,FRANK);
   const any=vs.sort((a,b)=>(NAT.test(b.name)?1:0)-(NAT.test(a.name)?1:0))[0]||null;   // a device with only one voice uses it for both
   if(!voices.m)voices.m=voices.f||any;if(!voices.f)voices.f=voices.m||any}
 if(hasTTS){pickVoices();speechSynthesis.addEventListener&&speechSynthesis.addEventListener("voiceschanged",pickVoices)}
@@ -65,9 +70,10 @@ function say(text,done,who){stopTalk();const tok=talkTok,voice=voices[who==="f"?
   const nat=NAT.test(voice.name),man=voice===voices.m&&who!=="f";
   // Smooth delivery: a natural voice reads the whole scene in one breath, at its own pitch and close to its own pace,
   // because pitch-shifting or slowing it is what makes it sound synthetic. Plain voices are cut into sentences
-  // (some browsers stop long utterances) and get only a light touch: a little deeper for the man.
+  // (some browsers stop long utterances). The man's voice is no longer pitched down on any device: lowering a
+  // plain voice is what made it sound muffled and mechanical. His depth comes from choosing a low voice.
   const parts=nat?[text]:(text.match(/[^.!?]+(?:[.!?]+|$)\s*/g)||[text]);let k=0;
-  const rate=nat?(man?.96:.98):(man?.93:.95),pitch=nat?1:(man?.88:1);
+  const rate=nat?(man?.98:.98):(man?.95:.95),pitch=1;
   talkTimer=setTimeout(()=>{if(tok===talkTok)done()},(text.split(/\s+/).length/1.5+8)*1000);   // never wait forever
   (function next(){if(tok!==talkTok)return;if(k>=parts.length){clearTimeout(talkTimer);done();return}
     const u=new SpeechSynthesisUtterance(parts[k++].trim());u.voice=voice;u.lang=voice.lang;u.rate=rate;u.pitch=pitch;
