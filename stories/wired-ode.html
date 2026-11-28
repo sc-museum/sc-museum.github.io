@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ode to the Wireman and the Lineman · Signal &amp; Cyber Corps Museum Society</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=Source+Sans+3:wght@400;600&family=JetBrains+Mono:wght@500&family=Spectral:ital@1&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="story.css">
+<style>
+  .climber{transform:translateY(150px);transition:transform 9s ease-out}
+  .lay.on .climber{transform:none}
+  .water{animation:none}
+  .lay.on .water{animation:flow 3s linear infinite}
+  @keyframes flow{to{stroke-dashoffset:-40}}
+  @media (prefers-reduced-motion:reduce){.climber{transition:none}.lay.on .water{animation:none}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<div class="stage" id="stage" role="img" aria-label="Animated reading of the museum's Ode to the Wireman and the Lineman, with accounts of linemen from 1899 to 1944">
+  <svg class="map" viewBox="0 0 780 600" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <defs>
+      <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#0c0e14"/><stop offset="1" stop-color="#2a2620"/></linearGradient>
+      <radialGradient id="dawnG" cx=".5" cy="1" r=".9"><stop offset="0" stop-color="#e0a060" stop-opacity=".7"/><stop offset="1" stop-color="#e0a060" stop-opacity="0"/></radialGradient>
+    </defs>
+    <rect width="780" height="600" fill="url(#sky)"/>
+    <g fill="#efe6d2" opacity=".6"><circle cx="60" cy="40" r="1.2"/><circle cx="140" cy="90" r="1"/><circle cx="230" cy="30" r="1.4"/><circle cx="320" cy="70" r="1"/><circle cx="410" cy="24" r="1.2"/><circle cx="640" cy="50" r="1.3"/><circle cx="720" cy="100" r="1"/><circle cx="690" cy="20" r="1"/><circle cx="90" cy="150" r="1"/><circle cx="270" cy="130" r="1.1"/></g>
+    <g class="lay" id="L-dawn"><rect width="780" height="600" fill="url(#dawnG)"/></g>
+    <path d="M0 480 C200 470 400 486 780 474 L780 600 L0 600 Z" fill="#17150f"/>
+    <!-- one pole, one line -->
+    <rect x="514" y="120" width="12" height="362" fill="#3e3122"/>
+    <rect x="460" y="132" width="120" height="9" fill="#4a3a26"/>
+    <circle cx="472" cy="129" r="4" fill="#8fb0a4"/><circle cx="568" cy="129" r="4" fill="#8fb0a4"/>
+    <path d="M0 150 Q240 200 472 130" fill="none" stroke="#6b5640" stroke-width="2"/>
+    <path d="M568 130 Q680 170 780 150" fill="none" stroke="#6b5640" stroke-width="2"/>
+    <g font-family="Barlow Condensed, sans-serif" font-weight="600" font-size="15" letter-spacing="1.5">
+    <!-- the lineman climbs -->
+    <g class="lay" id="L-climb">
+      <g class="climber" stroke="#e0bc4a" stroke-width="4" stroke-linecap="round" fill="none">
+        <circle cx="498" cy="168" r="9" fill="#e0bc4a" stroke="none"/>
+        <path d="M498 178 L500 214"/><path d="M499 186 L516 170"/><path d="M499 192 L516 200"/><path d="M500 214 L514 236"/><path d="M500 214 L490 240 L512 250"/>
+      </g>
+    </g>
+    <!-- the break -->
+    <g class="lay" id="L-break">
+      <path d="M180 178 L200 186 M222 186 L240 180" stroke="#0c0e14" stroke-width="8"/>
+      <g fill="#f4d08a"><circle class="pulse" cx="200" cy="186" r="4"/><circle class="pulse" cx="222" cy="186" r="4" style="animation-delay:.4s"/></g>
+      <text x="150" y="226" fill="#f0a04a">THE BREAK</text>
+    </g>
+    <!-- the river -->
+    <g class="lay" id="L-river">
+      <path d="M0 520 C200 500 400 540 780 515 L780 600 L0 600 Z" fill="#1d3443"/>
+      <g fill="none" stroke="#7fa6bd" stroke-width="2" stroke-dasharray="14 26"><path class="water" d="M0 540 C200 520 400 560 780 535"/><path class="water" d="M0 566 C200 548 400 584 780 560" style="animation-delay:.8s"/></g>
+      <g transform="translate(300 520)"><g class="node"><circle cy="-10" r="8" fill="#e0bc4a"/><path d="M0 -2 L0 16" stroke="#e0bc4a" stroke-width="4"/></g></g>
+      <path class="draw" pathLength="1" d="M60 488 C150 500 230 514 300 516 C380 516 460 500 560 482" fill="none" stroke="#d08a4e" stroke-width="2.4"/>
+      <text x="230" y="470" fill="#7fa6bd">A WIRE AT THE WAIST</text>
+    </g>
+    </g>
+  </svg>
+  <div class="flash" id="flash"></div>
+  <div class="dim" id="dim"></div>
+  <figure class="photo" id="photo"><img id="photoImg" alt=""><figcaption id="photoCap"></figcaption></figure>
+  <div class="date" id="date"></div>
+  <div class="stat" id="stat"><b id="statN"></b><span id="statL"></span></div>
+  <div class="trio" id="trio"></div>
+  <div class="panel" id="panel"></div>
+  <div class="card on" id="card"></div>
+</div>
+
+<div class="cap" id="cap" aria-live="polite"></div>
+<div class="ctrl">
+  <button id="prev" aria-label="Previous scene">⏮</button>
+  <button id="play" aria-label="Play or pause">▶ Play</button>
+  <button id="next" aria-label="Next scene">⏭</button>
+  <div class="dots" id="dots"></div>
+  <button id="mus" class="tog" aria-pressed="true" title="Music on or off">♪ Music</button>
+  <button id="nar" class="tog" aria-pressed="true" title="Narration on or off">🗣 Narration</button>
+</div>
+<p class="note">The ode is an original tribute written for this museum; it is not a historical document. The accounts come from Rebecca Robbins Raines, <i>Getting the Message Through</i> (U.S. Army Center of Military History, 1996), chapter 3; National Archives photograph 111-SC-93658; and U.S. Army Center of Military History, <i>The Signal Corps: The Outcome</i>. Pictures: public domain, credited in each caption. The music is an original score your browser plays as you watch; the narration uses your device's built-in voice.</p>
+<p class="note"><a href="../index.html#room-wired" target="_top">← Wired Communications Annex, Signal &amp; Cyber Corps Museum Society virtual museum</a></p>
+</div>
+
+<script>
+(function(){
+const V=(n,lines)=>'<div class="k">'+n+'</div><div class="rule" style="margin:.9em auto 1.2em"></div><div class="verse">'+lines.map(l=>"<span>"+l+"</span>").join("")+"</div>";
+window.STORY={key:-4,
+photos:{
+  b325:{src:"../assets/archives/wd-325th.jpg",cap:"Soldiers of the 325th Field Signal Battalion, 92nd Division, run telephone wire through no man's land, France, 1918.",credit:"U.S. Army Signal Corps photo, National Archives · public domain"},
+  pole:{src:"../assets/archives/wd-france1944.jpg",cap:"Two soldiers tie a telephone wire to a pole beside a rail line in France, July 25, 1944.",credit:"National Archives, NAID 531197 · public domain"}
+},
+scenes:[
+ {part:"title",card:'<div class="k">SIGNAL &amp; CYBER CORPS MUSEUM SOCIETY</div><h1>Ode to the Wireman and the Lineman</h1><p>A tribute written for the museum, and what the record says of them</p><div class="rule"></div>',
+  cap:"An animated reading from the Wired Communications Annex. The ode is an original tribute written for this museum; it is not a historical document.",
+  say:"Ode to the Wireman and the Lineman. A tribute, written for the museum.",min:7},
+ {part:"elegy",v:"m",card:V("I",["They went out first, ahead of the order,","a reel on the chest and a coil on the shoulder,","and paid out the line through the mud and the dark","so that one voice could find another."]),
+  cap:"<i>Ode to the Wireman and the Lineman</i>, stanza one.",
+  say:"They went out first, ahead of the order, a reel on the chest and a coil on the shoulder, and paid out the line through the mud and the dark so that one voice could find another.",min:13},
+ {part:"tension",v:"f",date:"5 FEBRUARY 1899 · MANILA",lay:["climb","break"],flash:true,
+  cap:"<b>What the record says.</b> At Paco Bridge in Manila, <b>1st Lt. Charles E. Kilbourne Jr.</b> climbs a telegraph pole under enemy fire to repair a broken wire. He receives the <b>Medal of Honor</b>.",
+  say:"What the record says. At Paco Bridge, in Manila, on February fifth, 1899, First Lieutenant Charles E. Kilbourne Junior climbs a telegraph pole under enemy fire to repair a broken wire. He receives the Medal of Honor.",min:11},
+ {part:"elegy",v:"m",card:V("II",["No one salutes a strand of wire.","It lies in the ditch, it hangs from a thorn,","until a shell finds it. Then someone goes,","alone, with pliers and tape, to the break."]),
+  cap:"Stanza two.",
+  say:"No one salutes a strand of wire. It lies in the ditch, it hangs from a thorn, until a shell finds it. Then someone goes, alone, with pliers and tape, to the break.",min:13},
+ {part:"battle",v:"f",date:"9 OCTOBER 1918 · FRANCE",lay:["break"],photo:["b325","inset"],
+  cap:"Near Montrefagne, <b>Sgt. Clifton Burnett</b> “repeatedly repaired telephone wires when no linemen were available,” although four of the men working with him were wounded. He receives the <b>Distinguished Service Cross</b>.",
+  say:"Near Montrefagne, France, on October ninth, 1918, Sergeant Clifton Burnett repeatedly repairs the telephone wires when no linemen are available, although four of the men working with him are wounded. He receives the Distinguished Service Cross.",min:12},
+ {part:"elegy",v:"m",card:V("III",["Climb, lineman. The pole is cold,","the spurs bite deep, and the sky is watching.","Splice, wireman. Hand over hand,","follow the line back into the fire."]),
+  cap:"Stanza three.",
+  say:"Climb, lineman. The pole is cold, the spurs bite deep, and the sky is watching. Splice, wireman. Hand over hand, follow the line back into the fire.",min:13},
+ {part:"tension",v:"f",date:"WINTER 1943–44 · ITALY",lay:["river"],
+  cap:"In Italy, linemen “waded and swam across the mountain torrents.” Crews tie a length of wire or cable around a volunteer's waist and wish him good luck.",
+  say:"Italy, the winter of 1943 to 1944. The linemen wade and swim across the mountain torrents. The crews tie a length of wire or cable around a volunteer's waist, and wish him good luck.",min:11},
+ {part:"march",v:"m",card:'<blockquote>“I\'m going out to fix that line. Any of you people want to come along?”</blockquote><cite>Col. Auchincloss, at Buna, New Guinea. Every man followed.</cite>',
+  cap:"At <b>Buna</b>, in New Guinea, Col. Auchincloss picks up a lineman's kit. Every man follows him.",
+  say:"At Buna, in New Guinea, Colonel Auchincloss picks up a lineman's kit, and says: I'm going out to fix that line. Any of you people want to come along? Every man follows.",min:11},
+ {part:"tension",v:"f",date:"1944 · BURMA",lay:["break"],dim:true,
+  cap:"In Burma, “the Japanese, having broken the wire, lay in wait till the lineman came to make repairs.”",
+  say:"And in Burma, in 1944, the enemy breaks the wire, and lies in wait until the lineman comes to make repairs.",min:9},
+ {part:"elegy",v:"m",card:V("IV",["From the buzzer in Cuba to the cable in Alaska snow,","from the stakes of the trenches to the roads of France,","across rivers swum with a wire at the waist,","the Army spoke because you were there."]),
+  cap:"Stanza four.",
+  say:"From the buzzer in Cuba to the cable in Alaska snow, from the stakes of the trenches to the roads of France, across rivers swum with a wire at the waist, the Army spoke because you were there.",min:14},
+ {part:"calm",photo:["pole","full"],
+  cap:"France, July 25, 1944: two soldiers take up the sag in a line and tie it to a pole.",
+  say:"",min:6},
+ {part:"resolve",v:"m",lay:["dawn"],card:V("V",["So here is your monument. It is not bronze.","It is a line that held, a call that went through,","a commander who heard, a gun that answered,","and the word, at last, that someone got home."]),
+  cap:"Stanza five.",
+  say:"So here is your monument. It is not bronze. It is a line that held, a call that went through, a commander who heard, a gun that answered, and the word, at last, that someone got home.",min:15},
+ {part:"end",v:"f",card:'<div class="k">SIGNAL &amp; CYBER CORPS MUSEUM SOCIETY</div><h1>Secure Our Story</h1><p>For the wiremen and the linemen.</p><div class="rule"></div>',
+  cap:"Signal &amp; Cyber Corps Museum Society · Secure Our Story",
+  say:"For the wiremen and the linemen. Signal and Cyber Corps Museum Society. Secure our story.",min:7}
+]};
+})();
+</script>
+<script src="story-player.js"></script>
+</body>
+</html>

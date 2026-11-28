@@ -1,0 +1,21 @@
+/* Museum Films in the Auditorium (js/films.js) */
+.film-week .fw-head{margin:14px 0 12px;padding:14px 16px;background:var(--panel-2);border-left:3px solid var(--gold-bright);border-radius:2px;}
+.fw-kicker{font-family:var(--mono);font-size:11px;letter-spacing:2.5px;text-transform:uppercase;color:var(--gold-bright);}
+.fw-title{font-family:var(--serif);font-size:clamp(22px,3.4vw,30px);font-weight:600;line-height:1.15;margin:6px 0 4px;color:var(--white);text-wrap:balance;}
+.fw-dek{margin:0 0 10px;color:var(--paper);font-size:15px;}
+.fw-go{background:transparent;color:var(--gold-bright);border:1px solid var(--gold);border-radius:2px;padding:7px 12px;font:600 13px var(--sans);cursor:pointer;}
+.fw-go:hover,.fw-go:focus-visible{background:var(--gold);color:var(--ink);}
+.fw-frame{border:1px solid rgba(208,138,78,.55);border-radius:6px;overflow:hidden;background:#12130f;}
+.fw-next{margin:10px 0 0;font-size:14px;color:var(--muted);font-style:italic;}
+.film-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:14px;margin-top:12px;}
+.film-card{display:flex;flex-direction:column;gap:6px;padding:14px;background:var(--panel);border:1px solid var(--hair);border-radius:3px;min-width:0;}
+.film-card.this-week{border-color:var(--gold);}
+.film-card.playing{box-shadow:0 0 0 2px var(--gold-bright) inset;}
+.fc-yrs{font-family:var(--mono);font-size:11px;letter-spacing:1.5px;text-transform:uppercase;color:var(--gold-bright);}
+.film-card h4{font-family:var(--serif);font-size:19px;line-height:1.2;margin:0;color:var(--white);}
+.fc-annex{margin:0;font-size:13px;color:var(--muted);}
+.fc-dek{margin:0;font-size:14px;color:var(--paper);flex:1;}
+.fc-btns{display:flex;flex-wrap:wrap;gap:6px;margin-top:4px;}
+.fc-btns button{background:var(--panel-2);color:var(--white);border:1px solid var(--hair);border-radius:2px;padding:7px 10px;font:600 13px var(--sans);cursor:pointer;}
+.fc-btns .fc-watch{background:var(--gold);color:var(--ink);border-color:var(--gold);}
+.fc-btns button:hover,.fc-btns button:focus-visible{border-color:var(--gold-bright);}

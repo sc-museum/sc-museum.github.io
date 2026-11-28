@@ -23,7 +23,8 @@
       <div class="bb-title">Now Showing</div>
     </div>
     <div class="subnav" id="auditorium-subnav">
-      <button class="active" data-sub="month">This Month in History</button>
+      <button class="active" data-sub="films">Museum Films</button>
+      <button data-sub="month">This Month in History</button>
       <button data-sub="welcome">Welcome</button>
       <button data-sub="signal">Signal Story</button>
       <button data-sub="cyber">Cyber Story</button>
@@ -31,7 +32,21 @@
       <button data-sub="fireside">Fireside Chats</button>
     </div>
 
-    <div class="subpanel active" id="sub-month">
+    <div class="subpanel active" id="sub-films">
+      <div class="section film-week" id="film-week">
+        <h3>Film of the Week</h3>
+        <p class="lede">Each week the Auditorium shows one of the museum's narrated films, made for its annexes. Press Play; sound starts only when you do.</p>
+        <div class="fw-head"><div class="fw-kicker" id="fw-kicker">This week</div><div class="fw-title" id="fw-title">Museum Films</div><p class="fw-dek" id="fw-dek"></p><button type="button" class="fw-go" id="fw-go" data-goto="lobby">See it in its annex →</button></div>
+        <div class="fw-frame"><iframe id="fw-player" data-fit scrolling="no" title="Film of the Week" style="display:block;width:100%;height:860px;border:0;"></iframe></div>
+        <p class="fw-next" id="fw-next"></p>
+      </div>
+      <div class="section">
+        <h3>All museum films</h3>
+        <p class="lede">Watch any film here, or visit it in its annex.</p>
+        <div class="film-grid" id="film-grid"></div>
+      </div>
+    </div>
+    <div class="subpanel" id="sub-month">
       <div class="section">
         <h3>This Month in History</h3>
         <p class="lede">Signal Corps anniversaries for the month, with a door into the room that tells each story.</p>

@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>“Please Don't Rain”: Signal Corps Wire in the Great War, 1917–1918 · Signal &amp; Cyber Corps Museum Society</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=Source+Sans+3:wght@400;600&family=JetBrains+Mono:wght@500&family=Spectral:ital@1&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="story.css">
+</head>
+<body>
+<div class="wrap">
+<div class="stage" id="stage" role="img" aria-label="Animated story of Signal Corps telephone and telegraph wire in France in the First World War">
+  <svg class="map" viewBox="0 0 780 600" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <defs>
+      <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#17181a"/><stop offset="1" stop-color="#3a352c"/></linearGradient>
+      <pattern id="mud" width="8" height="8" patternUnits="userSpaceOnUse"><circle cx="2" cy="2" r=".8" fill="rgba(160,130,90,.18)"/><circle cx="6" cy="5" r=".6" fill="rgba(0,0,0,.25)"/></pattern>
+    </defs>
+    <rect width="780" height="600" fill="url(#sky)"/>
+    <!-- the ground, cut away to show a trench -->
+    <path d="M0 300 L70 300 L86 430 L250 430 L266 300 L780 300 L780 600 L0 600 Z" fill="#2e271c"/>
+    <path d="M0 300 L70 300 L86 430 L250 430 L266 300 L780 300 L780 600 L0 600 Z" fill="url(#mud)"/>
+    <g fill="#1d1912"><ellipse cx="380" cy="302" rx="44" ry="10"/><ellipse cx="560" cy="304" rx="58" ry="12"/><ellipse cx="700" cy="301" rx="36" ry="8"/></g>
+    <g stroke="#5a4b38" stroke-width="3"><path d="M90 430 L90 300"/><path d="M246 430 L246 300"/></g>
+    <rect x="96" y="416" width="144" height="14" fill="#4a3a26"/>
+    <g font-family="Barlow Condensed, sans-serif" font-weight="600" font-size="15" letter-spacing="1.5">
+    <!-- wire on stakes across the open ground -->
+    <g class="lay" id="L-stakes">
+      <g stroke="#6b5a42" stroke-width="5"><path d="M300 300 v-34"/><path d="M380 296 v-34"/><path d="M460 300 v-34"/><path d="M540 298 v-34"/><path d="M620 300 v-34"/><path d="M700 300 v-34"/></g>
+      <path class="draw" pathLength="1" d="M266 290 Q283 276 300 268 Q340 280 380 264 Q420 280 460 268 Q500 280 540 266 Q580 280 620 268 Q660 280 700 268 L780 270" fill="none" stroke="#d08a4e" stroke-width="2.6"/>
+      <text x="420" y="240" fill="#d08a4e">ON FOUR-FOOT STAKES</text>
+    </g>
+    <!-- wire along the trench wall -->
+    <g class="lay" id="L-trench">
+      <path class="draw" pathLength="1" d="M266 292 L258 330 L250 360 L210 362 L170 358 L130 362 L94 360 L86 340" fill="none" stroke="#d08a4e" stroke-width="2.6"/>
+      <g fill="#e0bc4a"><circle class="node" cx="250" cy="360" r="3"/><circle class="node" cx="170" cy="358" r="3"/><circle class="node" cx="94" cy="360" r="3"/></g>
+      <text x="100" y="396" fill="#d08a4e">ALONG THE TRENCH WALL</text>
+    </g>
+    <!-- buried trunk line -->
+    <g class="lay" id="L-buried">
+      <path class="draw" pathLength="1" d="M0 520 L780 520" fill="none" stroke="#e0bc4a" stroke-width="4" stroke-dasharray="1"/>
+      <path d="M0 520 L780 520" fill="none" stroke="#e0bc4a" stroke-width="10" stroke-opacity=".12"/>
+      <text x="300" y="548" fill="#e0bc4a">TRUNK LINE · BURIED</text>
+    </g>
+    <!-- a soldier's breast reel -->
+    <g class="lay" id="L-reel">
+      <g transform="translate(168 340)"><g class="node">
+        <circle r="34" fill="#2a241a" stroke="#e0bc4a" stroke-width="3"/><circle r="22" fill="none" stroke="#d08a4e" stroke-width="7" stroke-dasharray="3 2"/><circle r="5" fill="#e0bc4a"/>
+      </g></g>
+      <text x="108" y="292" fill="#e0bc4a">BREAST REEL · ½ MILE</text>
+    </g>
+    <!-- shellfire breaks the line -->
+    <g class="lay" id="L-shell">
+      <g transform="translate(500 268)"><g class="node">
+        <path d="M0 -40 L9 -12 L38 -16 L14 2 L30 26 L2 12 L-14 36 L-12 6 L-40 0 L-12 -10 Z" fill="#f0a04a" opacity=".85"/>
+      </g></g>
+      <path d="M470 266 L488 274 M512 272 L530 264" stroke="#12100c" stroke-width="7"/>
+      <g fill="#f4d08a"><circle class="pulse" cx="488" cy="274" r="3"/><circle class="pulse" cx="512" cy="272" r="3" style="animation-delay:.4s"/></g>
+      <text x="440" y="214" fill="#f0a04a">THE LINE IS CUT</text>
+    </g>
+    <!-- the network behind the lines -->
+    <g class="lay" id="L-net">
+      <g fill="none" stroke="#e0bc4a" stroke-width="2" stroke-opacity=".9">
+        <path class="draw" pathLength="1" d="M60 120 L220 70 L400 110 L480 60 L720 120"/>
+        <path class="draw" pathLength="1" d="M220 70 L260 170 L400 110 L470 190 L480 60" style="transition-delay:.6s"/>
+        <path class="draw" pathLength="1" d="M60 120 L130 200 L260 170 L330 230 L470 190 L620 220 L720 120" style="transition-delay:1.2s"/>
+      </g>
+      <g fill="#e0bc4a"><circle class="node" cx="60" cy="120" r="5"/><circle class="node" cx="220" cy="70" r="7" style="transition-delay:.3s"/><circle class="node" cx="400" cy="110" r="5" style="transition-delay:.6s"/><circle class="node" cx="480" cy="60" r="7" style="transition-delay:.9s"/><circle class="node" cx="720" cy="120" r="5" style="transition-delay:1.2s"/><circle class="node" cx="130" cy="200" r="4" style="transition-delay:1.5s"/><circle class="node" cx="260" cy="170" r="4" style="transition-delay:1.6s"/><circle class="node" cx="470" cy="190" r="4" style="transition-delay:1.7s"/><circle class="node" cx="330" cy="230" r="4" style="transition-delay:1.8s"/><circle class="node" cx="620" cy="220" r="4" style="transition-delay:1.9s"/></g>
+      <g fill="#efe6d2" font-size="14"><text x="196" y="56">PARIS</text><text x="446" y="46">CHAUMONT</text></g>
+      <text x="560" y="276" fill="#e0bc4a" font-size="13">SCHEMATIC · NOT A MAP</text>
+    </g>
+    </g>
+  </svg>
+  <div class="flash" id="flash"></div>
+  <div class="dim" id="dim"></div>
+  <figure class="photo" id="photo"><img id="photoImg" alt=""><figcaption id="photoCap"></figcaption></figure>
+  <div class="date" id="date"></div>
+  <div class="stat" id="stat"><b id="statN"></b><span id="statL"></span></div>
+  <div class="trio" id="trio"></div>
+  <div class="panel" id="panel"></div>
+  <div class="card on" id="card"></div>
+</div>
+
+<div class="cap" id="cap" aria-live="polite"></div>
+<div class="ctrl">
+  <button id="prev" aria-label="Previous scene">⏮</button>
+  <button id="play" aria-label="Play or pause">▶ Play</button>
+  <button id="next" aria-label="Next scene">⏭</button>
+  <div class="dots" id="dots"></div>
+  <button id="mus" class="tog" aria-pressed="true" title="Music on or off">♪ Music</button>
+  <button id="nar" class="tog" aria-pressed="true" title="Narration on or off">🗣 Narration</button>
+</div>
+<p class="note">Facts from Rebecca Robbins Raines, <i>Getting the Message Through: A Branch History of the U.S. Army Signal Corps</i> (U.S. Army Center of Military History, 1996), chapter 5, and National Archives photograph 111-SC-93658 (Sgt. Clifton Burnett). Pictures: public domain, credited in each caption. The trench drawing and the network are museum illustrations, not maps. The music is an original score your browser plays as you watch; the narration uses your device's built-in voice.</p>
+<p class="note"><a href="../index.html#room-wired" target="_top">← Wired Communications Annex, Signal &amp; Cyber Corps Museum Society virtual museum</a></p>
+</div>
+
+<script>
+window.STORY={key:0,
+photos:{
+  b325:{src:"../assets/archives/wd-325th.jpg",cap:"Soldiers of the 325th Field Signal Battalion, the Black signal unit of the 92nd Division, run telephone wire through shell-torn ground in no man's land, France, 1918.",credit:"U.S. Army Signal Corps photo, National Archives · public domain"},
+  menil:{src:"../assets/annex/wire-linemen-menil-la-tour-1918.jpg",cap:"Linemen string telephone wires to the front at Ménil-la-Tour, France, February 1918.",credit:"National Archives, photo 111-SC-7556 · public domain",top:true},
+  toul:{src:"../assets/annex/wire-operators-toul-1919.jpg",cap:"Signal Corps telephone operators at the switchboard in Toul, France, January 1919: Rose Langelier, Melanie Van Gastel, Louisette Gavid, Marie Lemaire and Eglantine Moussu.",credit:"National Archives, photo 111-SC-49623 · public domain"},
+  prau:{src:"../assets/annex/wire-lineman-prauthoy-1919.jpg",cap:"A lineman fixes wires into the telephone and telegraph office of Company B, 307th Field Signal Battalion, 82nd Division, at Prauthoy, France, January 1919.",credit:"National Archives, photo 111-SC-51977 · public domain"}
+},
+scenes:[
+ {part:"title",card:'<div class="k">SIGNAL &amp; CYBER CORPS MUSEUM SOCIETY</div><h1>“Please Don\'t Rain”</h1><p>Signal Corps wire in the Great War, 1917–1918</p><div class="rule"></div>',
+  cap:"An animated story from the Wired Communications Annex.",
+  say:"Please don't rain. Signal Corps wire in the Great War.",min:6},
+ {part:"tension",date:"1917 · FRANCE",lay:["stakes","trench"],
+  cap:"At the front, telephone lines run on <b>four-foot stakes</b> across the open ground, or along the <b>trench walls</b>.",
+  say:"France, 1917. At the front, the Army's telephone lines run on four-foot stakes across the open ground, or along the walls of the trenches.",min:8},
+ {part:"wire",date:"1917 · FRANCE",lay:["stakes","trench","buried"],
+  cap:"The most important lines, the <b>trunk lines</b>, are buried.",
+  say:"The most important lines, the trunk lines, are buried.",min:7},
+ {part:"wire",date:"THE BREAST REEL",lay:["stakes","trench","reel"],stat:["½ mile","of light wire on a soldier's breast reel"],
+  cap:"A soldier's <b>breast reel</b> holds about half a mile of light twisted-pair wire. The men nickname it <b>“please don't rain” wire</b>.",
+  say:"Forward of the trenches, a soldier carries a breast reel, holding about half a mile of light twisted-pair wire. The men give it a nickname: please don't rain wire.",min:9},
+ {part:"drive",date:"1918",lay:["stakes","trench","buried"],photo:["b325","right"],stat:[[0,20000],"miles of outpost wire used each month"],
+  cap:"The Army uses <b>twenty thousand miles</b> of outpost wire a month. Here soldiers of the <b>325th Field Signal Battalion</b>, the Black signal unit of the 92nd Division, run wire through no man's land.",
+  say:"The Army goes through twenty thousand miles of outpost wire every month. Here, soldiers of the 325th Field Signal Battalion, the Black signal unit of the 92nd Division, run telephone wire through the shell-torn ground of no man's land.",min:11},
+ {part:"battle",date:"9 OCTOBER 1918",lay:["stakes","trench","shell"],flash:true,dim:false,
+  cap:"Near Montrefagne, <b>Sgt. Clifton Burnett</b> “repeatedly repaired telephone wires when no linemen were available,” although four of the men working with him were wounded. He receives the <b>Distinguished Service Cross</b>.",
+  say:"October ninth, 1918, near Montrefagne. The lines are cut again and again. Sergeant Clifton Burnett repeatedly repairs the telephone wires when no linemen are available, although four of the men working with him are wounded. He receives the Distinguished Service Cross.",min:12},
+ {part:"build",date:"BY THE ARMISTICE",lay:["net"],photo:["menil","inset"],stat:["23,000","miles of wire strung, nearly"],
+  cap:"Behind the front grows a telephone network for an army: by the Armistice, more than <b>1,700 miles</b> of permanent pole line and nearly <b>23,000 miles</b> of wire.",
+  say:"Behind the front, the Signal Corps builds a telephone network for a whole army. By the Armistice, it has built more than seventeen hundred miles of permanent pole line, and strung nearly twenty-three thousand miles of wire.",min:10},
+ {part:"calm",date:"PARIS · CHAUMONT · 75 TOWNS",lay:["net"],photo:["toul","full"],
+  cap:"Women telephone operators of the Signal Corps work the exchanges in Paris, Chaumont and seventy-five other French towns. Their story is in the Hello Girls room.",
+  say:"At the switchboards are the Signal Corps' women telephone operators. They work the exchanges in Paris, in Chaumont, and in seventy-five other French towns.",min:9},
+ {part:"calm",photo:["prau","full"],
+  cap:"January 1919: the war is over, and a lineman of the 82nd Division is still on the pole at Prauthoy.",
+  say:"Even after the guns fall silent, the linemen are still on the poles, keeping the lines open.",min:7},
+ {part:"resolve",trio:[
+   ['<svg viewBox="0 0 64 64"><circle cx="32" cy="32" r="26" fill="none" stroke="#d08a4e" stroke-width="3"/><path d="M32 32 L32 6 A26 26 0 0 1 38 6.7 Z" fill="#d08a4e"/></svg>',"4%","of the American Expeditionary Forces were Signal Corps"],
+   ['<svg viewBox="0 0 64 64"><path d="M32 6 L38 24 L58 24 L42 36 L48 56 L32 44 L16 56 L22 36 L6 24 L26 24 Z" fill="none" stroke="#d08a4e" stroke-width="3" stroke-linejoin="round"/></svg>',"2,840","Signal Corps casualties"],
+   ['<svg viewBox="0 0 64 64"><rect x="8" y="30" width="20" height="28" fill="none" stroke="#d08a4e" stroke-width="3"/><rect x="36" y="14" width="20" height="44" fill="none" stroke="#d08a4e" stroke-width="3"/><text x="18" y="50" font-size="16" fill="#d08a4e" text-anchor="middle" font-family="Barlow Condensed">2</text><text x="46" y="42" font-size="16" fill="#d08a4e" text-anchor="middle" font-family="Barlow Condensed">1</text></svg>',"2nd","only the Infantry lost more"]],
+  cap:"The Signal Corps is only about <b>4 percent</b> of the American Expeditionary Forces, yet its <b>2,840 casualties</b> rank second only to the Infantry's.",
+  say:"The Signal Corps is only about four percent of the American Expeditionary Forces. Yet its two thousand eight hundred and forty casualties rank second only to the Infantry's.",min:11},
+ {part:"end",card:'<div class="k">SIGNAL &amp; CYBER CORPS MUSEUM SOCIETY</div><h1>Secure Our Story</h1><p>Twenty thousand miles of wire a month, and the soldiers who kept it whole.</p><div class="rule"></div>',
+  cap:"Signal &amp; Cyber Corps Museum Society · Secure Our Story",
+  say:"Twenty thousand miles of wire a month, and the soldiers who kept it whole. Signal and Cyber Corps Museum Society. Secure our story.",min:7}
+]};
+</script>
+<script src="story-player.js"></script>
+</body>
+</html>

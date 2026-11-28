@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Flying Telegraph: Army Wire from the Civil War to Alaska, 1861–1904 · Signal &amp; Cyber Corps Museum Society</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=Source+Sans+3:wght@400;600&family=JetBrains+Mono:wght@500&family=Spectral:ital@1&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="story.css">
+</head>
+<body>
+<div class="wrap">
+<div class="stage" id="stage" role="img" aria-label="Animated story of the Army's telegraph and telephone lines from the Civil War to Alaska, 1861 to 1904">
+  <svg class="map" viewBox="0 0 780 600" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <defs>
+      <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#1b1a16"/><stop offset=".7" stop-color="#3a2e1d"/><stop offset="1" stop-color="#5a4127"/></linearGradient>
+      <pattern id="grain" width="6" height="6" patternUnits="userSpaceOnUse"><circle cx="1" cy="1" r=".6" fill="rgba(224,188,74,.12)"/></pattern>
+      <g id="pole"><rect x="-4" y="0" width="8" height="232" fill="#4a3a26"/><rect x="-34" y="0" width="68" height="7" fill="#5a4630"/><circle cx="-26" cy="-2" r="3.5" fill="#8fb0a4"/><circle cx="26" cy="-2" r="3.5" fill="#8fb0a4"/></g>
+    </defs>
+    <rect width="780" height="600" fill="url(#sky)"/>
+    <rect width="780" height="600" fill="url(#grain)"/>
+    <path d="M0 442 C120 432 240 450 380 440 C520 430 640 448 780 438 L780 600 L0 600 Z" fill="#1e1a12"/>
+    <!-- the pole line, waiting for its wire -->
+    <g opacity=".9"><use href="#pole" x="70" y="210"/><use href="#pole" x="190" y="212"/><use href="#pole" x="310" y="208"/><use href="#pole" x="430" y="210"/><use href="#pole" x="550" y="206"/><use href="#pole" x="670" y="208"/></g>
+    <g fill="none" stroke="#5a4b38" stroke-width="1.2" stroke-dasharray="3 6"><path d="M0 212 Q35 228 70 208 Q130 232 190 210 Q250 232 310 206 Q370 230 430 208 Q490 230 550 204 Q610 228 670 206 Q725 226 780 206"/></g>
+    <g font-family="Barlow Condensed, sans-serif" font-weight="600" font-size="15" letter-spacing="1.5">
+    <!-- 1861-62: the flying telegraph train -->
+    <g class="lay" id="L-train">
+      <path class="draw" pathLength="1" d="M0 212 Q35 228 70 208 Q130 232 190 210" fill="none" stroke="#d08a4e" stroke-width="3"/>
+      <g transform="translate(100 400)"><g class="node" style="transition-delay:1.2s"><rect x="0" y="0" width="70" height="30" rx="3" fill="#5a4630" stroke="#d08a4e"/><path d="M4 0 Q35 -26 66 0" fill="#c9b78f" stroke="#d08a4e"/><circle cx="14" cy="34" r="10" fill="none" stroke="#d08a4e" stroke-width="3"/><circle cx="56" cy="34" r="10" fill="none" stroke="#d08a4e" stroke-width="3"/></g></g>
+      <text x="20" y="176" fill="#d08a4e">1861 · THE FLYING TELEGRAPH</text>
+    </g>
+    <!-- 1874-91: frontier lines -->
+    <g class="lay" id="L-frontier">
+      <path class="draw" pathLength="1" d="M190 210 Q250 232 310 206 Q370 230 430 208" fill="none" stroke="#d08a4e" stroke-width="3"/>
+      <text x="214" y="150" fill="#d08a4e">1874 · ACROSS THE FRONTIER</text>
+      <g fill="#8d7a52" opacity=".8"><path d="M240 442 l14 -30 l14 30 z"/><path d="M262 442 l10 -20 l10 20 z"/><path d="M360 440 l16 -36 l16 36 z"/></g>
+    </g>
+    <!-- 1880s-92: the telephone -->
+    <g class="lay" id="L-phone">
+      <g transform="translate(406 286)"><g class="node"><rect x="0" y="0" width="48" height="66" rx="4" fill="#3b2c1b" stroke="#e0bc4a" stroke-width="2"/><circle cx="16" cy="18" r="6" fill="none" stroke="#e0bc4a" stroke-width="2"/><circle cx="32" cy="18" r="6" fill="none" stroke="#e0bc4a" stroke-width="2"/><rect x="14" y="34" width="20" height="16" rx="3" fill="#e0bc4a"/><path d="M48 14 q14 0 14 14" fill="none" stroke="#e0bc4a" stroke-width="2"/></g></g>
+      <text x="380" y="378" fill="#e0bc4a">1892 · THE TELEPHONE</text>
+    </g>
+    <!-- 1898: wire over the bushes in Cuba -->
+    <g class="lay" id="L-cuba">
+      <g fill="#3f5232"><ellipse cx="456" cy="452" rx="22" ry="12"/><ellipse cx="494" cy="448" rx="18" ry="11"/><ellipse cx="530" cy="454" rx="24" ry="12"/><ellipse cx="568" cy="450" rx="18" ry="10"/></g>
+      <path class="draw" pathLength="1" d="M430 440 Q446 446 456 442 Q476 450 494 438 Q512 452 530 444 Q550 452 568 441 Q590 452 610 446" fill="none" stroke="#d08a4e" stroke-width="2.6" style="transition-delay:.6s"/>
+      <text x="452" y="488" fill="#d08a4e">1898 · CUBA</text>
+    </g>
+    <!-- 1898-1907: the buzzer -->
+    <g class="lay" id="L-buzz">
+      <g fill="#e0bc4a"><circle class="pulse" cx="40" cy="218" r="4"/><circle class="pulse" cx="130" cy="221" r="4" style="animation-delay:.2s"/><circle class="pulse" cx="250" cy="221" r="4" style="animation-delay:.4s"/><circle class="pulse" cx="370" cy="219" r="4" style="animation-delay:.6s"/></g>
+      <text x="214" y="270" fill="#e0bc4a">· · · — · — ·  THE BUZZER</text>
+    </g>
+    <!-- 1900-04: Alaska -->
+    <g class="lay" id="L-alaska">
+      <path d="M430 448 C540 432 640 446 780 436 L780 600 L430 600 Z" fill="#d9dde0" opacity=".16"/>
+      <path class="draw" pathLength="1" d="M430 208 Q490 230 550 204 Q610 228 670 206 Q725 226 780 206" fill="none" stroke="#cfe1ec" stroke-width="3"/>
+      <g fill="#eef3f6" opacity=".75"><circle class="pulse" cx="470" cy="110" r="2"/><circle class="pulse" cx="520" cy="160" r="2.4" style="animation-delay:.5s"/><circle class="pulse" cx="590" cy="90" r="2" style="animation-delay:1s"/><circle class="pulse" cx="640" cy="140" r="2.6" style="animation-delay:.3s"/><circle class="pulse" cx="700" cy="100" r="2" style="animation-delay:.8s"/><circle class="pulse" cx="740" cy="170" r="2.2" style="animation-delay:1.2s"/><circle class="pulse" cx="610" cy="300" r="2" style="animation-delay:.6s"/><circle class="pulse" cx="720" cy="330" r="2.4" style="animation-delay:.2s"/></g>
+      <text x="560" y="176" fill="#cfe1ec">1900 · ALASKA</text>
+    </g>
+    </g>
+  </svg>
+  <div class="flash" id="flash"></div>
+  <div class="dim" id="dim"></div>
+  <figure class="photo" id="photo"><img id="photoImg" alt=""><figcaption id="photoCap"></figcaption></figure>
+  <div class="date" id="date"></div>
+  <div class="stat" id="stat"><b id="statN"></b><span id="statL"></span></div>
+  <div class="trio" id="trio"></div>
+  <div class="panel" id="panel"></div>
+  <div class="card on" id="card"></div>
+</div>
+
+<div class="cap" id="cap" aria-live="polite"></div>
+<div class="ctrl">
+  <button id="prev" aria-label="Previous scene">⏮</button>
+  <button id="play" aria-label="Play or pause">▶ Play</button>
+  <button id="next" aria-label="Next scene">⏭</button>
+  <div class="dots" id="dots"></div>
+  <button id="mus" class="tog" aria-pressed="true" title="Music on or off">♪ Music</button>
+  <button id="nar" class="tog" aria-pressed="true" title="Narration on or off">🗣 Narration</button>
+</div>
+<p class="note">Facts from Rebecca Robbins Raines, <i>Getting the Message Through: A Branch History of the U.S. Army Signal Corps</i> (U.S. Army Center of Military History, 1996), chapters 1 to 3. Pictures: public domain, credited in each caption. The pole line is a museum illustration, not a map. The music is an original score your browser plays as you watch; the narration uses your device's built-in voice.</p>
+<p class="note"><a href="../index.html#room-wired" target="_top">← Wired Communications Annex, Signal &amp; Cyber Corps Museum Society virtual museum</a></p>
+</div>
+
+<script>
+window.STORY={key:-2,
+photos:{
+  train:{src:"../assets/archives/wd-train.jpg",cap:"A Signal Corps flying telegraph train: a wagon carries the instruments while men run out wire and raise it on light poles.",credit:"J. Willard Brown, The Signal Corps in the War of the Rebellion (1896) · public domain"},
+  sanjuan:{src:"../assets/archives/wd-sanjuan.jpg",cap:"A tent that served as a Signal Corps field telephone station near San Juan Hill, Cuba, 1898.",credit:"Annual Report of the Chief Signal Officer, 1899 · public domain"},
+  gibbon:{src:"../assets/archives/wd-gibbon.jpg",cap:"A lineman climbs a telegraph pole in the snow at Fort Gibbon, Alaska.",credit:"U.S. Army Signal Corps photo, National Archives · public domain"},
+  hq:{src:"../assets/nara/wd-wamcats-hq.jpg",cap:"Headquarters of the First Section, Washington-Alaska Military Cable and Telegraph System.",credit:"National Archives, photo 111-SC-91661 · public domain"},
+  map:{src:"../assets/nara/wd-alaska-map-1930.jpg",cap:"The Signal Corps' Alaska Communication System and its connecting lines, on a map of 1930.",credit:"National Archives, photo 111-SC-94993 · public domain",fit:true}
+},
+scenes:[
+ {part:"title",card:'<div class="k">SIGNAL &amp; CYBER CORPS MUSEUM SOCIETY</div><h1>The Flying Telegraph</h1><p>Army wire from the Civil War to Alaska, 1861–1904</p><div class="rule"></div>',
+  cap:"An animated story from the Wired Communications Annex.",
+  say:"The Flying Telegraph. Army wire, from the Civil War to Alaska.",min:6},
+ {part:"wire",date:"AUGUST 1861",lay:["train"],photo:["train","right"],stat:[5,"miles of wire in each train"],
+  cap:"In <b>August 1861</b> Albert Myer is authorized a telegraph train of horse-drawn wagons, carrying five miles of wire in two wagons. Its first field test comes on the Virginia Peninsula in <b>May 1862</b>, with the hand-cranked Beardslee instrument.",
+  say:"In August 1861, Albert Myer, the Army's first signal officer, is authorized a telegraph train of horse-drawn wagons. Each train carries five miles of wire in two wagons. In May 1862, on the Virginia Peninsula, the train has its first field test, with the hand-cranked Beardslee instrument.",min:10},
+ {part:"build",date:"1874 – 1891",lay:["train","frontier"],stat:[[0,8000],"miles of telegraph line built"],
+  cap:"An <b>1874</b> law orders telegraph lines to link the Army's posts in Texas; lines in Arizona, New Mexico and the Northwest follow. The mileage in service peaks at <b>5,077</b> in 1881. In all, the Signal Corps is responsible for building 8,000 miles of line.",
+  say:"After the war, the wire moves west. An 1874 law orders military telegraph lines to link the Army's posts in Texas. Lines in Arizona, New Mexico and the Northwest follow. The mileage in service peaks at five thousand and seventy-seven miles in 1881. In all, the Signal Corps is responsible for building eight thousand miles of telegraph line.",min:10},
+ {part:"build",date:"1880s – 1892",lay:["train","frontier","phone"],stat:["2 miles","of wire laid by one man with Kilbourne's cable cart"],
+  cap:"Sgt. Adolf Eccard devises a combined field telephone and telegraph, but at <b>$500</b> it costs too much. In <b>1892</b> Capt. Charles Kilbourne builds a cable cart that lets one man lay two miles of wire. By then half of all Army posts have telephones.",
+  say:"Then comes the telephone. Sergeant Adolf Eccard devises a combined field telephone and telegraph, but at five hundred dollars, it costs too much. In 1892, Captain Charles Kilbourne builds a cable cart that lets one man lay two miles of wire. By then, half of all Army posts have telephones.",min:10},
+ {part:"march",date:"1898 · CUBA",lay:["train","frontier","phone","cuba"],photo:["sanjuan","inset"],stat:["20 min","from General Shafter to Washington"],
+  cap:"<b>War with Spain.</b> Without horses, signalmen carry coils of wire on their backs or on pack mules, and lay insulated wire on the ground and over bushes. President McKinley's war room has a telegraph link to Cuba; General Shafter can reach Washington within twenty minutes.",
+  say:"1898. War with Spain. In Cuba, without horses, signalmen carry coils of wire on their backs, or load them on pack mules. They lay insulated wire on the ground, and over the bushes. In the White House, President McKinley's war room has a telegraph link to Cuba, and General Shafter can reach Washington within twenty minutes.",min:11},
+ {part:"wire",date:"1898 – 1907",lay:["train","frontier","phone","cuba","buzz"],
+  cap:"<b>The buzzer.</b> Buzzer lines send Morse code through telephone receivers, and they work even over bare or poorly insulated wire.",
+  say:"Now the buzzer. Buzzer lines send Morse code through telephone receivers, and they work even over bare or poorly insulated wire.",min:8},
+ {part:"resolve",card:'<blockquote>“The most important enlisted man in the fifty-mile battle line of the future will be the man behind the buzzer.”</blockquote><cite>Maj. Charles Saltzman, 1907</cite>',
+  cap:"Maj. Saltzman, writing in <b>1907</b>.",
+  say:"In 1907, Major Saltzman wrote: The most important enlisted man in the fifty-mile battle line of the future will be the man behind the buzzer.",min:9},
+ {part:"tension",date:"1900 – 1904 · ALASKA",lay:["train","frontier","phone","cuba","alaska"],photo:["gibbon","inset"],stat:["2,000+","miles Lt. Billy Mitchell traveled by dog sled"],
+  cap:"For the Washington–Alaska Military Cable and Telegraph System, <b>Lt. Billy Mitchell</b> surveys and builds the Eagle-to-Valdez line, about 420 miles, traveling more than 2,000 miles by dog sled.",
+  say:"Then, the far north. For the Washington to Alaska Military Cable and Telegraph System, Lieutenant Billy Mitchell surveys and builds the line from Eagle to Valdez, about four hundred and twenty miles. To do it, he travels more than two thousand miles by dog sled.",min:11},
+ {part:"held",panel:'<div class="k">THE WASHINGTON–ALASKA MILITARY CABLE AND TELEGRAPH SYSTEM</div><h2>3,625 miles in all</h2><ul><li><b>2,079 MILES</b><span>of submarine cable</span></li><li><b>1,439 MILES</b><span>of land line</span></li><li><b>107 MILES</b><span>of wireless link</span></li><li><b>420 MILES</b><span>Eagle to Valdez, surveyed and built by Lt. Billy Mitchell</span></li></ul>',
+  cap:"The finished system: <b>2,079</b> miles of submarine cable, <b>1,439</b> miles of land line and a <b>107</b>-mile wireless link, <b>3,625</b> miles in all.",
+  say:"The finished system has two thousand and seventy-nine miles of submarine cable, one thousand four hundred and thirty-nine miles of land line, and a one hundred and seven mile wireless link. Three thousand six hundred and twenty-five miles in all.",min:12},
+ {part:"calm",photo:["hq","full"],
+  cap:"Headquarters of the system's First Section. The Signal Corps went on to run the Alaska Communication System for decades.",
+  say:"Headquarters of the system's First Section.",min:7},
+ {part:"calm",photo:["map","full"],
+  cap:"The Alaska Communication System on a map of 1930.",
+  say:"By 1930, the Alaska Communication System and its connecting lines reached across the territory.",min:7},
+ {part:"end",card:'<div class="k">SIGNAL &amp; CYBER CORPS MUSEUM SOCIETY</div><h1>Secure Our Story</h1><p>From five miles of wire in two wagons to 3,625 miles reaching Alaska.</p><div class="rule"></div>',
+  cap:"Signal &amp; Cyber Corps Museum Society · Secure Our Story",
+  say:"From five miles of wire in two wagons to three thousand six hundred miles reaching Alaska. Signal and Cyber Corps Museum Society. Secure our story.",min:7}
+]};
+</script>
+<script src="story-player.js"></script>
+</body>
+</html>

@@ -1,0 +1,84 @@
+/* Shared look for the museum's narrated story pages (Wired Annex series).
+   Same design as stories/gulf-war-network.html, with copper for wire. */
+:root{--paper:#e6d9b8;--ink:#14110b;--night:#12130f;--gold:#e0bc4a;--copper:#d08a4e;--red:#d9705f;--sky:#7fc4e8;--txt:#efe6d2;--mut:#b8ab8e}
+*{box-sizing:border-box}
+html,body{margin:0;background:var(--night);color:var(--txt);font-family:"Source Sans 3",system-ui,sans-serif}
+.wrap{max-width:1040px;margin:0 auto;padding:14px 12px 28px}
+.stage{position:relative;aspect-ratio:780/600;border-radius:8px;overflow:hidden;background:#221f17;box-shadow:0 10px 40px rgba(0,0,0,.6);cursor:pointer}
+.stage svg.map{position:absolute;inset:0;width:100%;height:100%}
+.lay{opacity:0;transition:opacity 1s ease}
+.lay.on{opacity:1}
+.draw{stroke-dasharray:1;stroke-dashoffset:1;transition:stroke-dashoffset 2.6s ease}
+.lay.on .draw{stroke-dashoffset:0}
+.node{opacity:0;transform-box:fill-box;transform-origin:center;transform:scale(.2);transition:opacity .4s ease,transform .4s ease}
+.lay.on .node{opacity:1;transform:scale(1)}
+.pulse{animation:none}
+.lay.on .pulse{animation:pz 1.6s ease-in-out infinite}
+@keyframes pz{0%,100%{opacity:.35}50%{opacity:1}}
+.dim{position:absolute;inset:0;background:#000;opacity:0;transition:opacity 1s;pointer-events:none}
+.dim.on{opacity:.55}
+.flash{position:absolute;inset:0;background:radial-gradient(circle at 60% 40%,rgba(255,170,90,.55),transparent 55%);opacity:0;pointer-events:none}
+.flash.go{animation:flash 3.2s ease-out}
+@keyframes flash{0%{opacity:0}8%{opacity:1}30%{opacity:.2}42%{opacity:.8}100%{opacity:0}}
+.date{position:absolute;left:2.2%;top:3%;font:600 clamp(12px,2.1vw,20px)/1 "Barlow Condensed",sans-serif;letter-spacing:.12em;background:rgba(18,19,15,.86);color:var(--gold);padding:.45em .7em;border-radius:3px;opacity:0;transition:opacity .6s}
+.date.on{opacity:1}
+.stat{position:absolute;right:2.2%;top:3%;text-align:right;background:rgba(18,19,15,.86);border-left:3px solid var(--copper);padding:.5em .8em;border-radius:3px;opacity:0;transition:opacity .6s;max-width:44%}
+.stat.on{opacity:1}
+.stat b{display:block;font:700 clamp(26px,6vw,58px)/1 "Barlow Condensed",sans-serif;color:var(--txt)}
+.stat span{display:block;font:600 clamp(10px,1.5vw,14px)/1.25 "Source Sans 3",sans-serif;color:var(--mut);text-transform:uppercase;letter-spacing:.06em;margin-top:.2em}
+.photo{position:absolute;margin:0;overflow:hidden;opacity:0;transition:opacity .9s ease;background:#000;border:2px solid rgba(208,138,78,.75);border-radius:4px;box-shadow:0 8px 30px rgba(0,0,0,.6)}
+.photo.on{opacity:1}
+.photo.inset{left:2.2%;top:40%;width:44%;height:55%}
+.photo.right{left:53.8%;top:40%;width:44%;height:55%}
+.photo.full{left:0;top:0;width:100%;height:100%;border:0;border-radius:0}
+.photo img{width:100%;height:100%;object-fit:cover;display:block;transform:scale(1)}
+.photo.fit img{object-fit:contain}
+.photo.on img{animation:kb 16s ease-out forwards}
+.photo.top img{object-position:50% 20%}
+@keyframes kb{from{transform:scale(1.02)}to{transform:scale(1.12) translate(-1.5%,-1%)}}
+.photo.fit.on img{animation:kbfit 16s ease-out forwards}
+@keyframes kbfit{from{transform:scale(1)}to{transform:scale(1.05)}}
+.photo figcaption{position:absolute;left:0;right:0;bottom:0;padding:1.6em .8em .5em;background:linear-gradient(transparent,rgba(0,0,0,.85));font-size:clamp(9px,1.25vw,12.5px);line-height:1.3;color:#f2ead6}
+.photo figcaption i{display:block;font-style:normal;color:#c9bb98;font-size:.88em;margin-top:.2em}
+.card{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:6%;background:radial-gradient(ellipse at 50% 40%,rgba(44,36,24,.84),rgba(12,11,8,.96));opacity:0;transition:opacity 1s;pointer-events:none}
+.card.on{opacity:1}
+.card .k{font:600 clamp(10px,1.7vw,15px)/1 "JetBrains Mono",monospace;letter-spacing:.32em;color:var(--gold)}
+.card h1{font:700 clamp(30px,7.4vw,74px)/1 "Barlow Condensed",sans-serif;letter-spacing:.02em;margin:.35em 0 .2em;text-transform:uppercase}
+.card p{font-size:clamp(13px,2.3vw,22px);color:#d9cfb7;margin:0;max-width:30em}
+.card .rule{width:30%;height:2px;background:var(--copper);margin:1.1em auto 0}
+.card blockquote{font:600 clamp(18px,3.6vw,36px)/1.2 "Barlow Condensed",sans-serif;margin:0;max-width:22em}
+.card cite{display:block;margin-top:1em;font:normal clamp(11px,1.6vw,15px) "Source Sans 3",sans-serif;color:var(--mut)}
+.card .verse{font:italic 400 clamp(15px,2.9vw,28px)/1.45 Spectral,Georgia,serif;max-width:24em;color:#efe3c4}
+.card .verse span{display:block;opacity:0;transform:translateY(8px);transition:opacity 1.2s,transform 1.2s}
+.card.on .verse span{opacity:1;transform:none}
+.card.on .verse span:nth-child(2){transition-delay:2.6s}.card.on .verse span:nth-child(3){transition-delay:5.2s}.card.on .verse span:nth-child(4){transition-delay:7.8s}
+.trio{position:absolute;inset:0;display:grid;grid-template-columns:repeat(3,1fr);gap:3%;align-items:center;padding:12% 5% 10%;background:rgba(14,13,10,.9);opacity:0;transition:opacity .8s;pointer-events:none}
+.trio.on{opacity:1}
+.trio div{text-align:center;opacity:0;transform:translateY(12px);transition:opacity .7s,transform .7s}
+.trio.on div{opacity:1;transform:none}
+.trio.on div:nth-child(2){transition-delay:1.6s}.trio.on div:nth-child(3){transition-delay:3.2s}
+.trio svg{width:38%;height:auto;display:block;margin:0 auto .6em}
+.trio b{display:block;font:700 clamp(22px,5vw,50px)/1 "Barlow Condensed",sans-serif;color:var(--copper)}
+.trio span{display:block;font-size:clamp(10px,1.6vw,15px);color:#d9cfb7;margin-top:.3em;line-height:1.3}
+.panel{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:center;padding:6% 8%;background:radial-gradient(ellipse at 30% 40%,rgba(58,40,20,.95),rgba(12,11,8,.97) 72%);opacity:0;transition:opacity .9s;pointer-events:none}
+.panel.on{opacity:1}
+.panel .k{font:600 clamp(10px,1.5vw,14px)/1 "JetBrains Mono",monospace;letter-spacing:.24em;color:var(--gold);margin-bottom:.6em}
+.panel h2{font:700 clamp(22px,4.6vw,46px)/1 "Barlow Condensed",sans-serif;margin:0 0 .4em;text-transform:uppercase}
+.panel ul{list-style:none;margin:0;padding:0}
+.panel li{display:grid;grid-template-columns:7.6em 1fr;gap:.8em;padding:.46em 0;border-top:1px solid rgba(208,138,78,.3);font-size:clamp(10px,1.75vw,17px);line-height:1.3;opacity:0;transform:translateX(14px);transition:opacity .6s,transform .6s}
+.panel li b{font:600 1.05em "Barlow Condensed",sans-serif;color:var(--copper);letter-spacing:.04em}
+.panel.on li{opacity:1;transform:none}
+.panel.on li:nth-child(2){transition-delay:2.5s}.panel.on li:nth-child(3){transition-delay:5s}.panel.on li:nth-child(4){transition-delay:7.5s}.panel.on li:nth-child(5){transition-delay:10s}
+.cap{min-height:4.4em;margin:14px 4px 10px;font-size:clamp(15px,2.2vw,20px);line-height:1.4;transition:opacity .35s}
+.ctrl{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+button{background:#2c2a22;color:var(--txt);border:1px solid #5a5446;border-radius:6px;padding:9px 13px;font:600 14px "Source Sans 3",sans-serif;cursor:pointer;min-width:44px;min-height:40px}
+button:hover{border-color:var(--gold)}
+button:disabled{opacity:.4;cursor:default}
+#play{background:var(--gold);color:var(--ink);border-color:var(--gold)}
+.tog[aria-pressed="false"]{opacity:.45;text-decoration:line-through}
+.dots{display:flex;gap:4px;flex:1;min-width:140px}
+.dots i{flex:1;height:5px;border-radius:3px;background:#3f3b30;cursor:pointer}
+.dots i.done{background:#8a6a45}.dots i.now{background:var(--gold)}
+.note{margin-top:14px;font-size:13px;color:#9e9278;line-height:1.5}
+.note a{color:var(--gold)}
+@media (prefers-reduced-motion:reduce){.photo.on img{animation:none}.draw{transition:none}.lay.on .pulse{animation:none;opacity:1}}
