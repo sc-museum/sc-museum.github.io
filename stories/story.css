@@ -82,3 +82,11 @@ button:disabled{opacity:.4;cursor:default}
 .note{margin-top:14px;font-size:13px;color:#9e9278;line-height:1.5}
 .note a{color:var(--gold)}
 @media (prefers-reduced-motion:reduce){.photo.on img{animation:none}.draw{transition:none}.lay.on .pulse{animation:none;opacity:1}}
+/* #record: a clean 16:9 frame for screen-recording a film (1920×1080 window or full screen) */
+html.rec,html.rec body{height:100%;background:#000;overflow:hidden}
+html.rec .wrap{max-width:none;height:100vh;padding:0;display:grid;grid-template-rows:1fr auto;justify-items:center;align-items:center}
+html.rec .stage{height:calc(100vh - 7.5em);width:auto;max-width:100vw;border-radius:0;box-shadow:none;cursor:default}
+html.rec .cap{min-height:0;height:4.6em;margin:0;padding:.3em 2em .6em;max-width:70em;text-align:center;font-size:clamp(16px,1.6vw,26px)}
+html.rec .ctrl,html.rec .note{display:none}
+.rec-start{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,.82);color:#efe6d2;font:600 22px "Source Sans 3",sans-serif;z-index:9;cursor:pointer;text-align:center;padding:2em}
+html.rec .cookie-notice{display:none!important}

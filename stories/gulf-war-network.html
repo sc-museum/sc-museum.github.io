@@ -4,6 +4,20 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>The Network in the Sand: Signal Support in the Gulf War, 1990–1991 · Signal &amp; Cyber Corps Museum Society</title>
+<!-- film-meta -->
+<meta name="description" content="A narrated, animated film about Signal Support in the Gulf War, 1990–1991 from the Desert Shield &amp; Desert Storm Annex of the Signal &amp; Cyber Corps Museum Society's virtual museum. Free to watch.">
+<link rel="canonical" href="https://sc-museum.github.io/stories/gulf-war-network.html">
+<meta property="og:type" content="video.other">
+<meta property="og:site_name" content="Signal &amp; Cyber Corps Museum Society">
+<meta property="og:title" content="The Network in the Sand: Signal Support in the Gulf War, 1990–1991">
+<meta property="og:description" content="A narrated, animated film about Signal Support in the Gulf War, 1990–1991 from the Desert Shield &amp; Desert Storm Annex of the Signal &amp; Cyber Corps Museum Society's virtual museum. Free to watch.">
+<meta property="og:url" content="https://sc-museum.github.io/stories/gulf-war-network.html">
+<meta property="og:image" content="https://sc-museum.github.io/assets/annex/desert-storm-cmh-map11.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="The Network in the Sand: Signal Support in the Gulf War, 1990–1991">
+<meta name="twitter:description" content="A narrated, animated film about Signal Support in the Gulf War, 1990–1991 from the Desert Shield &amp; Desert Storm Annex of the Signal &amp; Cyber Corps Museum Society's virtual museum. Free to watch.">
+<meta name="twitter:image" content="https://sc-museum.github.io/assets/annex/desert-storm-cmh-map11.jpg">
+<!-- /film-meta -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=Source+Sans+3:wght@400;600&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
 <style>
@@ -248,6 +262,7 @@
 <script>
 (function(){
 "use strict";
+let __st=false,__en=false;function __rep(ev){try{const m={museumFilm:ev,title:document.title.split(" · ")[0]};if(window.parent!==window)window.parent.postMessage(m,location.origin);else window.postMessage(m,location.origin)}catch(e){}}  // visitor counts (js/analytics.js)
 const $=id=>document.getElementById(id);
 const NARA=(id,local,cap,date)=>({src:"../assets/nara/"+id+".jpg",cap:cap,credit:"National Archives "+local+" · "+date+" · public domain"});
 const PH={
@@ -416,11 +431,11 @@ let timer=null,tok=0;
 function go(i,autoplay){at=Math.max(0,Math.min(S.length-1,i));draw(at);tok++;const my=tok;clearTimeout(timer);
   if(!playing){stopTalk();talking=false;return}
   const s=S[at];let waited=false,spoken=false;
-  const fin=()=>{if(my!==tok||!playing||!waited||!spoken)return;if(at+1<S.length)go(at+1);else{setPlaying(false)}};
+  const fin=()=>{if(my!==tok||!playing||!waited||!spoken)return;if(at+1<S.length)go(at+1);else{if(!__en){__en=true;__rep("complete")}setPlaying(false)}};
   const minMs=(voiceOn?s.min:Math.max(s.min,s.cap.replace(/<[^>]+>/g,"").split(/\s+/).length/2.6))*1000;
   timer=setTimeout(()=>{waited=true;fin()},minMs);
   talking=true;say(s.say,()=>{talking=false;setTimeout(()=>{spoken=true;fin()},700)})}
-function setPlaying(on){playing=on;$("play").textContent=on?"❚❚ Pause":"▶ Play";
+function setPlaying(on){playing=on;$("play").textContent=on?"❚❚ Pause":"▶ Play";if(on&&!__st){__st=true;__rep("start")}
   if(on){initAudio();if(ac&&ac.state!=="running")ac.resume();if(at>=S.length-1)at=0;go(at)}
   else{tok++;clearTimeout(timer);stopTalk();talking=false}}
 $("play").onclick=()=>setPlaying(!playing);

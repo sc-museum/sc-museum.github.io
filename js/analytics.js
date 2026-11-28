@@ -9,6 +9,8 @@
  *   video_progress  25 / 50 / 75 % watched             (video_title, video_percent)
  *   video_complete  a video is watched to the end      (video_title, room_name)
  *   donate_click    a Donate button is pressed         (donate_source, room_name)
+ *   film_start      a museum film starts playing       (film_title, room_name)
+ *   film_complete   a museum film plays to its end     (film_title, film_scenes_seen)
  *
  * A cookie notice lets a visitor turn counting off; a browser's Global Privacy
  * Control signal does the same.
@@ -27,6 +29,8 @@
   var GA_ID = 'G-8VYFV63CSW';
   var SITE = 'Signal & Cyber Corps Museum Society';
   if (location.hostname !== 'sc-museum.github.io') return;
+  // A film embedded in a museum room reports through the museum page, so it is not counted twice.
+  if (window.self !== window.top) return;
 
   // ---- the visitor's choice ----
   // Counting is on until a visitor says no. "No thanks" on the cookie notice, or
@@ -203,6 +207,17 @@
     });
     document.body.appendChild(notice);
   }
+
+  // ---- museum films (stories/*.html): the player posts film_start and film_complete ----
+  // Embedded films send them to the museum page; a film opened on its own sends them to itself.
+  window.addEventListener('message', function(e){
+    var d = e.data;
+    if (e.origin !== location.origin || !d || typeof d !== 'object' || !d.museumFilm) return;
+    if (d.museumFilm !== 'start' && d.museumFilm !== 'complete') return;
+    var p = { film_title: clean(d.title), film_scenes_seen: +d.scenes || 0 };
+    if (isMuseum) p.room_name = roomName(activeRoom());
+    send('film_' + d.museumFilm, p);
+  });
 
   // ---- videos: every video plays in the pop-out player, as a YouTube embed ----
   var popFrame = document.getElementById('video-pop-frame');

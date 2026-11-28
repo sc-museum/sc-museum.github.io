@@ -1,11 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url><loc>https://sc-museum.github.io/</loc><lastmod>2026-09-29</lastmod></url>
-  <url><loc>https://sc-museum.github.io/heritage/</loc><lastmod>2026-09-29</lastmod></url>
-  <url><loc>https://sc-museum.github.io/heritage/issue-1.html</loc><lastmod>2026-09-29</lastmod></url>
-  <url><loc>https://sc-museum.github.io/heritage/issue-2.html</loc><lastmod>2026-09-29</lastmod></url>
-  <url><loc>https://sc-museum.github.io/heritage/issue-3.html</loc><lastmod>2026-09-29</lastmod></url>
-  <url><loc>https://sc-museum.github.io/lineage/</loc><lastmod>2026-09-29</lastmod></url>
+  <url><loc>https://sc-museum.github.io/</loc></url>
+  <url><loc>https://sc-museum.github.io/stories/aviation-film.html</loc></url>
+  <url><loc>https://sc-museum.github.io/stories/codes-film.html</loc></url>
+  <url><loc>https://sc-museum.github.io/stories/gulf-war-network.html</loc></url>
+  <url><loc>https://sc-museum.github.io/stories/little-round-top.html</loc></url>
+  <url><loc>https://sc-museum.github.io/stories/satellites-film.html</loc></url>
+  <url><loc>https://sc-museum.github.io/stories/weather-film.html</loc></url>
+  <url><loc>https://sc-museum.github.io/stories/wired-900000-miles.html</loc></url>
+  <url><loc>https://sc-museum.github.io/stories/wired-flying-telegraph.html</loc></url>
+  <url><loc>https://sc-museum.github.io/stories/wired-great-war.html</loc></url>
+  <url><loc>https://sc-museum.github.io/stories/wired-ode.html</loc></url>
+  <url><loc>https://sc-museum.github.io/stories/wireless-film.html</loc></url>
+  <url><loc>https://sc-museum.github.io/heritage/</loc></url>
+  <url><loc>https://sc-museum.github.io/heritage/issue-1.html</loc></url>
+  <url><loc>https://sc-museum.github.io/heritage/issue-2.html</loc></url>
+  <url><loc>https://sc-museum.github.io/heritage/issue-3.html</loc></url>
   <url><loc>https://sc-museum.github.io/lineage/0001scbde.htm</loc></url>
   <url><loc>https://sc-museum.github.io/lineage/0001scctr.htm</loc></url>
   <url><loc>https://sc-museum.github.io/lineage/0002scbde.htm</loc></url>
@@ -177,4 +187,12 @@
   <url><loc>https://sc-museum.github.io/lineage/0820scco.htm</loc></url>
   <url><loc>https://sc-museum.github.io/lineage/0842scco.htm</loc></url>
   <url><loc>https://sc-museum.github.io/lineage/0982scco.htm</loc></url>
+  <url><loc>https://sc-museum.github.io/lineage/</loc></url>
+  <url><loc>https://sc-museum.github.io/tribute/lawrence.html</loc></url>
+  <url><loc>https://sc-museum.github.io/today/2026-11-23.html</loc></url>
+  <url><loc>https://sc-museum.github.io/today/2026-11-24.html</loc></url>
+  <url><loc>https://sc-museum.github.io/today/2026-11-25.html</loc></url>
+  <url><loc>https://sc-museum.github.io/today/2026-11-26.html</loc></url>
+  <url><loc>https://sc-museum.github.io/today/2026-11-27.html</loc></url>
+  <url><loc>https://sc-museum.github.io/today/</loc></url>
 </urlset>

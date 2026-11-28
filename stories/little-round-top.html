@@ -4,6 +4,20 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Eyes on the High Ground — Little Round Top, July 2, 1863 · Signal &amp; Cyber Corps Museum Society</title>
+<!-- film-meta -->
+<meta name="description" content="A narrated, animated film from the virtual museum of the Signal &amp; Cyber Corps Museum Society's virtual museum. Free to watch.">
+<link rel="canonical" href="https://sc-museum.github.io/stories/little-round-top.html">
+<meta property="og:type" content="video.other">
+<meta property="og:site_name" content="Signal &amp; Cyber Corps Museum Society">
+<meta property="og:title" content="Eyes on the High Ground — Little Round Top, July 2, 1863">
+<meta property="og:description" content="A narrated, animated film from the virtual museum of the Signal &amp; Cyber Corps Museum Society's virtual museum. Free to watch.">
+<meta property="og:url" content="https://sc-museum.github.io/stories/little-round-top.html">
+<meta property="og:image" content="https://sc-museum.github.io/assets/social-card.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Eyes on the High Ground — Little Round Top, July 2, 1863">
+<meta name="twitter:description" content="A narrated, animated film from the virtual museum of the Signal &amp; Cyber Corps Museum Society's virtual museum. Free to watch.">
+<meta name="twitter:image" content="https://sc-museum.github.io/assets/social-card.jpg">
+<!-- /film-meta -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=IM+Fell+English:ital@0;1&family=IM+Fell+English+SC&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
 <style>
@@ -404,6 +418,7 @@ function render(t){
 function lastLi(k){for(let j=k;j>=0;j--)if(seq[j].li>=0)return seq[j].li;return -1}
 
 /* playback */
+let __st=false,__en=false;function __rep(ev){try{const m={museumFilm:ev,title:document.title.split(" · ")[0]};if(window.parent!==window)window.parent.postMessage(m,location.origin);else window.postMessage(m,location.origin)}catch(e){}}  // visitor counts (js/analytics.js)
 let t=0,playing=false,last=null;const scrub=$("scrub"),tm=$("tm"),pb=$("play");
 function fmt(s){s=Math.floor(s);return Math.floor(s/60)+":"+String(s%60).padStart(2,"0")}
 const capAt=x=>caps.findIndex(c=>x>=c[0]&&x<c[1]);
@@ -505,13 +520,13 @@ setInterval(()=>{if(!ac)return;const live=playing&&musicOn;
  if(nextAt<ac.currentTime)nextAt=ac.currentTime+.05;
  while(nextAt<ac.currentTime+.15){step(nextAt,stepN);nextAt+=STEP;stepN++}},30);
 
-function setPlaying(on){playing=on;pb.textContent=on?"❚❚":"▶";
+function setPlaying(on){playing=on;pb.textContent=on?"❚❚":"▶";if(on&&!__st){__st=true;__rep("start")}
  if(on){initAudio();if(ac&&ac.state!=="running")ac.resume();if(voiceOn&&hasTTS)say(capAt(t))} // started from the click, so browsers allow sound
  else stopTalk()}
 function tick(ts){if(last==null)last=ts;const dt=Math.min(.1,(ts-last)/1000);last=ts;
  if(playing){let nt=t+dt;const ci=capAt(t);
   if(voiceOn&&talking&&ci>=0&&nt>=caps[ci][1])nt=Math.max(t,caps[ci][1]-.001); // hold the scene until the line is spoken
-  t=nt;if(t>=T){t=T;playing=false;pb.textContent="▶"}
+  t=nt;if(t>=T){t=T;playing=false;pb.textContent="▶";if(!__en){__en=true;__rep("complete")}}
   const ni=capAt(t);if(playing&&voiceOn&&ni!==spokenIdx)say(ni)}
  render(t);scrub.value=t;tm.textContent=fmt(t)+" / "+fmt(T);requestAnimationFrame(tick)}
 pb.onclick=()=>{if(t>=T)t=0;setPlaying(!playing)};

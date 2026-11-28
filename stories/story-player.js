@@ -143,14 +143,19 @@ setInterval(()=>{if(!ac)return;const live=playing&&musicOn;bus.gain.setTargetAtT
 
 /* ---------- the player: each scene waits for its minimum time and for the narrator ---------- */
 let timer=null,tok=0;
-function go(i){at=Math.max(0,Math.min(S.length-1,i));draw(at);tok++;const my=tok;clearTimeout(timer);
+/* ---------- visitor counts: tell analytics when a film starts and when it reaches its end ---------- */
+let started=false,ended=false;const seen=new Set();
+function report(ev){const msg={museumFilm:ev,title:document.title.split(" · ")[0],scenes:seen.size};
+  try{if(window.parent!==window)window.parent.postMessage(msg,location.origin);else window.postMessage(msg,location.origin)}catch(e){}}
+function go(i){at=Math.max(0,Math.min(S.length-1,i));draw(at);seen.add(at);tok++;const my=tok;clearTimeout(timer);
   if(!playing){stopTalk();talking=false;return}
   const s=S[at];let waited=false,spoken=false;
-  const fin=()=>{if(my!==tok||!playing||!waited||!spoken)return;if(at+1<S.length)go(at+1);else setPlaying(false)};
+  const fin=()=>{if(my!==tok||!playing||!waited||!spoken)return;if(at+1<S.length)go(at+1);else{if(!ended){ended=true;report("complete")}setPlaying(false);if(REC)document.documentElement.classList.add("rec-done")}};
   const minMs=(voiceOn?s.min:Math.max(s.min,s.cap.replace(/<[^>]+>/g,"").split(/\s+/).length/2.6))*1000;
   timer=setTimeout(()=>{waited=true;fin()},minMs);
   talking=true;say(s.say,()=>{talking=false;setTimeout(()=>{spoken=true;fin()},700)},s.v||(at%2?"f":"m"))}
 function setPlaying(on){playing=on;$("play").textContent=on?"❚❚ Pause":"▶ Play";
+  if(on&&!started){started=true;report("start")}
   if(on){initAudio();if(ac&&ac.state!=="running")ac.resume();if(at>=S.length-1)at=0;go(at)}
   else{tok++;clearTimeout(timer);stopTalk();talking=false}}
 $("play").onclick=()=>setPlaying(!playing);
@@ -167,6 +172,10 @@ document.addEventListener("visibilitychange",()=>{if(document.hidden&&playing)se
 if("IntersectionObserver" in window)new IntersectionObserver(es=>{es.forEach(e=>{if(!e.isIntersecting&&playing)setPlaying(false)})}).observe($("stage"));
 // Inside the museum page the room already gives the sources, so the notes are hidden there.
 try{if(window.self!==window.top){document.querySelectorAll(".note").forEach(n=>n.style.display="none");document.querySelector(".wrap").style.padding="0 0 8px"}}catch(e){}
+// #record: a clean 16:9 picture for screen-recording the film for YouTube (no buttons or notes; click to start).
+const REC=/record/.test(location.hash);
+if(REC){document.documentElement.classList.add("rec");const ov=document.createElement("div");ov.className="rec-start";ov.textContent="Start your screen recorder, then click anywhere to play";document.body.appendChild(ov);
+  document.addEventListener("click",function once(){ov.remove();document.removeEventListener("click",once,true);if(!playing)setPlaying(true)},true)}
 // #scene=N opens the story at scene N (1 = the title), paused
 const sm=location.hash.match(/scene=(\d+)/);at=sm?Math.max(0,Math.min(S.length-1,+sm[1]-1)):0;draw(at);
 })();
