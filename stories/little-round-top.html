@@ -448,11 +448,12 @@ function say(i){stopTalk();spokenIdx=i;if(!voiceOn||i<0||!NARR[i])return;if(!voi
  const tok=talkTok,u=new SpeechSynthesisUtterance(NARR[i]);if(voice){u.voice=voice;u.lang=voice.lang}{const nat=voice&&/Natural|Neural|Premium|Enhanced/i.test(voice.name);u.rate=nat?.9:.95;u.pitch=nat?.85:.72}
  u.onend=u.onerror=()=>{if(tok===talkTok){talking=false;clearTimeout(talkTimer)}};
  talking=true;talkTimer=setTimeout(()=>{if(tok===talkTok)talking=false},(NARR[i].split(" ").length/1.6+6)*1000); // never wait forever
- speechSynthesis.speak(u)}
+ window.__utt=u;if(speechSynthesis.paused)speechSynthesis.resume();speechSynthesis.speak(u)}
 
 /* ===== MUSIC: an original score, synthesized live in the browser (no recordings) ===== */
 const AC=window.AudioContext||window.webkitAudioContext;
-let ac=null,musicOn=!!AC,bus,verb,padG,padF,pads=[],nb=null;
+let ac=null,musicOn=!!AC&&!(/iPad|iPhone|iPod/.test(navigator.userAgent)||(navigator.platform==="MacIntel"&&navigator.maxTouchPoints>1)),   // iPhone/iPad: music off unless asked, so the voice is heard
+bus,verb,padG,padF,pads=[],nb=null;
 const mtof=m=>440*Math.pow(2,(m-69)/12);
 function initAudio(){if(ac||!AC)return;ac=new AC();
  const master=ac.createGain();master.gain.value=.85;master.connect(ac.destination);
@@ -521,7 +522,7 @@ setInterval(()=>{if(!ac)return;const live=playing&&musicOn;
  while(nextAt<ac.currentTime+.15){step(nextAt,stepN);nextAt+=STEP;stepN++}},30);
 
 function setPlaying(on){playing=on;pb.textContent=on?"❚❚":"▶";if(on&&!__st){__st=true;__rep("start")}
- if(on){initAudio();if(ac&&ac.state!=="running")ac.resume();if(voiceOn&&hasTTS)say(capAt(t))} // started from the click, so browsers allow sound
+ if(on){try{if(navigator.audioSession)navigator.audioSession.type="playback"}catch(e){} if(musicOn)initAudio();if(ac&&ac.state!=="running")ac.resume();if(voiceOn&&hasTTS)say(capAt(t))} // started from the click, so browsers allow sound
  else stopTalk()}
 function tick(ts){if(last==null)last=ts;const dt=Math.min(.1,(ts-last)/1000);last=ts;
  if(playing){let nt=t+dt;const ci=capAt(t);
@@ -534,7 +535,7 @@ $("replay").onclick=()=>{t=0;stepN=0;setPlaying(true)};
 scrub.oninput=()=>{t=+scrub.value;setPlaying(false)};
 const musB=$("mus"),narB=$("nar");
 if(!AC)musB.style.display="none";if(!hasTTS)narB.style.display="none";
-musB.onclick=()=>{musicOn=!musicOn;musB.setAttribute("aria-pressed",musicOn)};
+musB.setAttribute("aria-pressed",musicOn);musB.onclick=()=>{musicOn=!musicOn;musB.setAttribute("aria-pressed",musicOn);if(musicOn){initAudio();if(ac&&ac.state!=="running")ac.resume()}};
 narB.onclick=()=>{voiceOn=!voiceOn;narB.setAttribute("aria-pressed",voiceOn);if(!voiceOn)stopTalk();else if(playing)say(capAt(t))};
 // Stop when the visitor leaves: another tab, another museum room, or scrolled away.
 document.addEventListener("visibilitychange",()=>{if(document.hidden&&playing)setPlaying(false)});

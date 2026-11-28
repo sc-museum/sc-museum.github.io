@@ -64,30 +64,40 @@ function pickVoices(){if(!hasTTS)return;const vs=speechSynthesis.getVoices().fil
   const any=vs.sort((a,b)=>(NAT.test(b.name)?1:0)-(NAT.test(a.name)?1:0))[0]||null;   // a device with only one voice uses it for both
   if(!voices.m)voices.m=voices.f||any;if(!voices.f)voices.f=voices.m||any}
 if(hasTTS){pickVoices();speechSynthesis.addEventListener&&speechSynthesis.addEventListener("voiceschanged",pickVoices)}
-// iPhone and iPad (Safari): cancelling when nothing is playing can swallow the next line, so cancel only when needed.
+// iPhone and iPad need the simplest possible audio: one spoken line per scene, no music unless asked for,
+// and a hint on screen if nothing is heard.
+const IOS=/iPad|iPhone|iPod/.test(navigator.userAgent)||(navigator.platform==="MacIntel"&&navigator.maxTouchPoints>1);
+let heard=false,keep=null;   // keep: Safari quietly drops a line it no longer holds a reference to
+// Cancelling when nothing is playing can swallow Safari's next line, so cancel only when needed.
 function stopTalk(){talkTok++;clearTimeout(talkTimer);if(hasTTS&&(speechSynthesis.speaking||speechSynthesis.pending))speechSynthesis.cancel()}
+function audNote(show){let n=document.getElementById("audnote");
+  if(!n){if(!show)return;n=document.createElement("p");n.id="audnote";n.className="audnote";
+    n.textContent="No sound? On an iPhone or iPad, turn off Silent mode and turn the volume up, then press Play again. The words for each scene are shown above.";
+    document.querySelector(".ctrl").after(n)}
+  n.hidden=!show}
 function say(text,done,who){stopTalk();const tok=talkTok,w=who==="f"?"f":"m";
-  // Safari often has no voice list yet when Play is pressed and may never announce it: ask again, and if there is
-  // still no list, speak anyway in the device's default voice rather than skipping the narration.
+  // Safari often has no voice list yet when Play is pressed: ask again, else speak in the device's default voice.
   if(hasTTS&&!voices[w])pickVoices();
   const voice=voices[w];
   if(!voiceOn||!hasTTS||!text.trim()){setTimeout(()=>{if(tok===talkTok)done()},0);return}
-  const nat=!!voice&&NAT.test(voice.name),man=w==="m";
-  // Smooth delivery: a natural voice reads the whole scene in one breath, at its own pitch and close to its own pace,
-  // because pitch-shifting or slowing it is what makes it sound synthetic. Plain voices are cut into sentences
-  // (some browsers stop long utterances). The man's voice is no longer pitched down on any device: lowering a
-  // plain voice is what made it sound muffled and mechanical. His depth comes from choosing a low voice.
-  const parts=nat?[text]:(text.match(/[^.!?]+(?:[.!?]+|$)\s*/g)||[text]);let k=0;
-  const rate=nat?(man?.98:.98):(man?.95:.95),pitch=1;
+  const nat=!!voice&&NAT.test(voice.name);
+  // One line per scene, at the voice's own pitch. Only Google's online voices (Chrome) are cut into sentences,
+  // because Chrome stops them after about fifteen seconds.
+  const parts=voice&&/Google/i.test(voice.name)?(text.match(/[^.!?]+(?:[.!?]+|$)\s*/g)||[text]):[text];let k=0;
+  const rate=nat?.98:.95;
   talkTimer=setTimeout(()=>{if(tok===talkTok)done()},(text.split(/\s+/).length/1.5+8)*1000);   // never wait forever
   (function next(){if(tok!==talkTok)return;if(k>=parts.length){clearTimeout(talkTimer);done();return}
-    const u=new SpeechSynthesisUtterance(parts[k++].trim());if(voice){u.voice=voice;u.lang=voice.lang}else u.lang="en-US";u.rate=rate;u.pitch=pitch;
+    const u=new SpeechSynthesisUtterance(parts[k++].trim());keep=u;
+    if(voice){u.voice=voice;u.lang=voice.lang}else u.lang="en-US";u.rate=rate;u.pitch=1;
+    u.onstart=()=>{heard=true;audNote(false)};
     u.onend=()=>{if(tok===talkTok)setTimeout(next,80)};u.onerror=e=>{if(tok!==talkTok||e.error==="interrupted"||e.error==="canceled")return;clearTimeout(talkTimer);done()};
-    speechSynthesis.speak(u)})()}
+    if(speechSynthesis.paused)speechSynthesis.resume();
+    speechSynthesis.speak(u)})();
+  if(!heard)setTimeout(()=>{if(!heard&&tok===talkTok&&voiceOn&&playing)audNote(true)},3500)}
 
 /* ---------- music: an original score, synthesized in the browser ---------- */
 const AC=window.AudioContext||window.webkitAudioContext;
-let ac=null,musicOn=!!AC,bus,verb,padG,padF,pads=[],nb=null,talking=false;
+let ac=null,musicOn=!!AC&&!IOS,bus,verb,padG,padF,pads=[],nb=null,talking=false;
 const KEY=ST.key||0;   // transposes the whole score, so each film has its own key
 const mtof=m=>440*Math.pow(2,(m+KEY-69)/12);
 function initAudio(){if(ac||!AC)return;ac=new AC();const master=ac.createGain();master.gain.value=.85;master.connect(ac.destination);
@@ -161,7 +171,8 @@ function go(i){at=Math.max(0,Math.min(S.length-1,i));draw(at);seen.add(at);tok++
   talking=true;say(s.say,()=>{talking=false;setTimeout(()=>{spoken=true;fin()},700)},s.v||(at%2?"f":"m"))}
 function setPlaying(on){playing=on;$("play").textContent=on?"❚❚ Pause":"▶ Play";
   if(on&&!started){started=true;report("start")}
-  if(on){initAudio();if(ac&&ac.state!=="running")ac.resume();if(at>=S.length-1)at=0;go(at)}
+  if(on){try{if(navigator.audioSession)navigator.audioSession.type="playback"}catch(e){}   // iPhone: play even in Silent mode where allowed
+    if(musicOn)initAudio();if(ac&&ac.state!=="running")ac.resume();if(at>=S.length-1)at=0;go(at)}
   else{tok++;clearTimeout(timer);stopTalk();talking=false}}
 $("play").onclick=()=>setPlaying(!playing);
 $("prev").onclick=()=>go(at-1);
@@ -169,7 +180,8 @@ $("next").onclick=()=>go(at+1);
 $("stage").addEventListener("click",()=>{if(!playing)setPlaying(true)});
 const dots=$("dots");S.forEach((s,i)=>{const d=document.createElement("i");d.title="Scene "+(i+1);d.onclick=()=>go(i);dots.appendChild(d)});
 const musB=$("mus"),narB=$("nar");if(!AC)musB.style.display="none";if(!hasTTS)narB.style.display="none";
-musB.onclick=()=>{musicOn=!musicOn;musB.setAttribute("aria-pressed",musicOn)};
+musB.setAttribute("aria-pressed",musicOn);
+musB.onclick=()=>{musicOn=!musicOn;musB.setAttribute("aria-pressed",musicOn);if(musicOn){initAudio();if(ac&&ac.state!=="running")ac.resume()}};
 narB.setAttribute("aria-pressed",voiceOn);
 narB.onclick=()=>{voiceOn=!voiceOn;store.set("narr-on",voiceOn);narB.setAttribute("aria-pressed",voiceOn);if(!voiceOn)stopTalk();if(playing)go(at)};
 // Stop when the visitor leaves: another tab, another museum room, or scrolled away.

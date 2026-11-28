@@ -373,11 +373,12 @@ function say(text,done){stopTalk();const tok=talkTok;
   (function next(){if(tok!==talkTok)return;if(k>=parts.length){clearTimeout(talkTimer);done();return}
     const u=new SpeechSynthesisUtterance(parts[k++].trim());if(voice){u.voice=voice;u.lang=voice.lang}else u.lang="en-US";u.rate=nat?.9:.95;u.pitch=nat?.85:.72;
     u.onend=()=>{if(tok===talkTok)setTimeout(next,300)};u.onerror=e=>{if(tok!==talkTok||e.error==="interrupted"||e.error==="canceled")return;clearTimeout(talkTimer);done()};
-    speechSynthesis.speak(u)})()}
+    window.__utt=u;if(speechSynthesis.paused)speechSynthesis.resume();speechSynthesis.speak(u)})()}
 
 /* ---------- music: an original score, synthesized in the browser ---------- */
 const AC=window.AudioContext||window.webkitAudioContext;
-let ac=null,musicOn=!!AC,bus,verb,padG,padF,pads=[],nb=null,talking=false;
+let ac=null,musicOn=!!AC&&!(/iPad|iPhone|iPod/.test(navigator.userAgent)||(navigator.platform==="MacIntel"&&navigator.maxTouchPoints>1)),   // iPhone/iPad: music off unless asked, so the voice is heard
+bus,verb,padG,padF,pads=[],nb=null,talking=false;
 const mtof=m=>440*Math.pow(2,(m-69)/12);
 function initAudio(){if(ac||!AC)return;ac=new AC();const master=ac.createGain();master.gain.value=.85;master.connect(ac.destination);
   bus=ac.createGain();bus.gain.value=0;bus.connect(master);
@@ -437,7 +438,7 @@ function go(i,autoplay){at=Math.max(0,Math.min(S.length-1,i));draw(at);tok++;con
   timer=setTimeout(()=>{waited=true;fin()},minMs);
   talking=true;say(s.say,()=>{talking=false;setTimeout(()=>{spoken=true;fin()},700)})}
 function setPlaying(on){playing=on;$("play").textContent=on?"❚❚ Pause":"▶ Play";if(on&&!__st){__st=true;__rep("start")}
-  if(on){initAudio();if(ac&&ac.state!=="running")ac.resume();if(at>=S.length-1)at=0;go(at)}
+  if(on){try{if(navigator.audioSession)navigator.audioSession.type="playback"}catch(e){} if(musicOn)initAudio();if(ac&&ac.state!=="running")ac.resume();if(at>=S.length-1)at=0;go(at)}
   else{tok++;clearTimeout(timer);stopTalk();talking=false}}
 $("play").onclick=()=>setPlaying(!playing);
 $("prev").onclick=()=>go(at-1);
@@ -445,7 +446,7 @@ $("next").onclick=()=>go(at+1);
 $("stage").addEventListener("click",()=>{if(!playing)setPlaying(true)});
 const dots=$("dots");S.forEach((s,i)=>{const d=document.createElement("i");d.title="Scene "+(i+1);d.onclick=()=>go(i);dots.appendChild(d)});
 const musB=$("mus"),narB=$("nar");if(!AC)musB.style.display="none";if(!hasTTS)narB.style.display="none";
-musB.onclick=()=>{musicOn=!musicOn;musB.setAttribute("aria-pressed",musicOn)};
+musB.setAttribute("aria-pressed",musicOn);musB.onclick=()=>{musicOn=!musicOn;musB.setAttribute("aria-pressed",musicOn);if(musicOn){initAudio();if(ac&&ac.state!=="running")ac.resume()}};
 narB.setAttribute("aria-pressed",voiceOn);
 narB.onclick=()=>{voiceOn=!voiceOn;store.set("narr-on",voiceOn);narB.setAttribute("aria-pressed",voiceOn);if(!voiceOn)stopTalk();if(playing)go(at)};
 // Stop when the visitor leaves: another tab, another museum room, or scrolled away.

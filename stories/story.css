@@ -90,3 +90,6 @@ html.rec .cap{min-height:0;height:4.6em;margin:0;padding:.3em 2em .6em;max-width
 html.rec .ctrl,html.rec .note{display:none}
 .rec-start{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,.82);color:#efe6d2;font:600 22px "Source Sans 3",sans-serif;z-index:9;cursor:pointer;text-align:center;padding:2em}
 html.rec .cookie-notice{display:none!important}
+.audnote{margin:10px 2px 0;padding:10px 12px;border-left:3px solid var(--gold);background:rgba(224,188,74,.1);font-size:15px;line-height:1.4;color:var(--txt)}
+.audnote[hidden]{display:none}
+html.rec .audnote{display:none!important}
