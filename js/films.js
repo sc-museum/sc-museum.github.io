@@ -14,10 +14,20 @@
     '900k': {src:'stories/wired-900000-miles.html', title:'Nine Hundred Thousand Miles', years:'1932 to fiber', room:'wired', annex:'Wired Communications Annex', anchor:'wd-film-900k',
       dek:'Field wire from the EE-8 telephone to the pursuit across France, and then glass.'},
     'ode': {src:'stories/wired-ode.html', title:'Ode to the Wireman and the Lineman', years:'1899–1944', room:'wired', annex:'Wired Communications Annex', anchor:'wd-film-ode',
-      dek:'The museum’s tribute to the linemen, read with what the record says of them.'}
+      dek:'The museum’s tribute to the linemen, read with what the record says of them.'},
+    'aviation': {src:'stories/aviation-film.html', title:'Signal Corps Wings', years:'1892–1918', room:'aviation', annex:'Aviation Annex', anchor:'aviation-film',
+      dek:'How the Army learned to fly, from a balloon over Cuba to the winters in Augusta.'},
+    'satellites': {src:'stories/satellites-film.html', title:'Signals from Space', years:'1946–2007', room:'satellites', annex:'Satellite Annex', anchor:'satellites-film',
+      dek:'From Project Diana’s echo off the Moon to Wideband Global SATCOM.'},
+    'weather': {src:'stories/weather-film.html', title:'Weather by Wire', years:'1814–1970', room:'weather', annex:'Weather Annex', anchor:'weather-film',
+      dek:'When the Signal Corps was the nation’s weather service.'},
+    'wireless': {src:'stories/wireless-film.html', title:'Off the Wire', years:'1899–2021', room:'wireless', annex:'Wireless Radio Annex', anchor:'wireless-film',
+      dek:'Signal Corps radio from Fire Island to the paratrooper.'},
+    'codes': {src:'stories/codes-film.html', title:'Code Makers and Code Breakers', years:'1860s–2024', room:'codes', annex:'Coding and Encryption Annex', anchor:'codes-film',
+      dek:'Keeping the Army’s messages secret, from the cipher disk to the cyber force.'}
   };
   // Order of the weekly feature. Week 1 starts Monday 23 November 2026.
-  var ROTATION = ['telegraph','lrt','greatwar','gulfwar','900k','ode'];
+  var ROTATION = ['telegraph','lrt','aviation','greatwar','satellites','gulfwar','weather','900k','wireless','ode','codes'];
   var START = new Date(2026, 10, 23);   // local time, a Monday
 
   var player = document.getElementById('fw-player'), grid = document.getElementById('film-grid');

@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Weather by Wire: The Signal Corps Weather Service, 1870–1891 and After · Signal &amp; Cyber Corps Museum Society</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=Source+Sans+3:wght@400;600&family=JetBrains+Mono:wght@500&family=Spectral:ital@1&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="story.css">
+</head>
+<body>
+<div class="wrap">
+<div class="stage" id="stage" role="img" aria-label="Animated story of the Signal Corps as the nation's weather service, from Army surgeons' weather diaries in 1814 to the National Weather Service">
+  <svg class="map" viewBox="0 0 780 600" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <defs>
+      <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#11161b"/><stop offset=".65" stop-color="#1d262d"/><stop offset="1" stop-color="#2b3238"/></linearGradient>
+      <pattern id="grain" width="6" height="6" patternUnits="userSpaceOnUse"><circle cx="1" cy="1" r=".6" fill="rgba(127,196,232,.08)"/></pattern>
+    </defs>
+    <rect width="780" height="600" fill="url(#sky)"/>
+    <rect width="780" height="600" fill="url(#grain)"/>
+    <!-- faint isobars and clouds: the backdrop -->
+    <g fill="none" stroke="#8fb0c4" stroke-width="1.2" opacity=".16">
+      <path d="M-20 140 C140 90 300 180 460 130 C600 86 700 150 800 120"/>
+      <path d="M-20 250 C150 200 320 300 480 240 C620 190 720 260 800 230"/>
+      <path d="M-20 380 C170 330 330 430 500 370 C640 320 730 390 800 360"/>
+      <path d="M-20 510 C180 460 340 560 520 500 C650 456 740 520 800 492"/>
+    </g>
+    <g fill="#3a4650" opacity=".35"><ellipse cx="150" cy="70" rx="70" ry="16"/><ellipse cx="190" cy="58" rx="40" ry="14"/><ellipse cx="660" cy="560" rx="90" ry="18"/><ellipse cx="300" cy="575" rx="70" ry="14"/></g>
+    <g font-family="Barlow Condensed, sans-serif" font-weight="600" font-size="15" letter-spacing="1.5">
+    <!-- 1814: surgeons' weather diaries -->
+    <g class="lay" id="L-diary">
+      <g transform="translate(60 96)"><g class="node">
+        <path d="M0 6 Q40 -4 80 6 L80 96 Q40 86 0 96 Z" fill="#e6d9b8" stroke="#b8ab8e"/>
+        <path d="M80 6 Q120 -4 160 6 L160 96 Q120 86 80 96 Z" fill="#d9cba6" stroke="#b8ab8e"/>
+        <g stroke="#8d7a52" stroke-width="1.2"><path d="M12 26 H68 M12 40 H68 M12 54 H60 M12 68 H66 M92 26 H148 M92 40 H140 M92 54 H148 M92 68 H130"/></g>
+      </g></g>
+      <g transform="translate(240 92)"><g class="node" style="transition-delay:.8s">
+        <rect x="-6" y="0" width="12" height="92" rx="6" fill="#1d262d" stroke="#efe6d2" stroke-width="2"/>
+        <circle cx="0" cy="98" r="11" fill="#d9705f" stroke="#efe6d2" stroke-width="2"/>
+        <rect x="-2.5" y="34" width="5" height="62" fill="#d9705f"/>
+      </g></g>
+      <text x="40" y="226" fill="#e0bc4a">1814 · SURGEONS' WEATHER DIARIES</text>
+    </g>
+    <!-- 1870: storms on the Great Lakes -->
+    <g class="lay" id="L-storm">
+      <g transform="translate(330 84)"><g class="node">
+        <ellipse cx="70" cy="44" rx="62" ry="28" fill="#4a5662"/><ellipse cx="120" cy="38" rx="52" ry="30" fill="#55626e"/><ellipse cx="160" cy="52" rx="40" ry="22" fill="#4a5662"/>
+        <path d="M108 70 L92 104 L110 104 L96 140" fill="none" stroke="#e0bc4a" stroke-width="4" stroke-linejoin="round"/>
+      </g></g>
+      <path class="draw" pathLength="1" d="M320 214 q14 -10 28 0 t28 0 t28 0 t28 0 t28 0 t28 0 t28 0" fill="none" stroke="#7fc4e8" stroke-width="2.6"/>
+      <path class="draw" pathLength="1" d="M336 230 q14 -10 28 0 t28 0 t28 0 t28 0 t28 0 t28 0" fill="none" stroke="#7fc4e8" stroke-width="2" style="transition-delay:.5s"/>
+      <text x="320" y="262" fill="#7fc4e8">1870 · STORMS ON THE GREAT LAKES</text>
+    </g>
+    <!-- 1870-1880: stations telegraph their readings in (schematic) -->
+    <g class="lay" id="L-net">
+      <g fill="none" stroke="#d08a4e" stroke-width="1.6" stroke-dasharray="4 4" opacity=".85">
+        <path class="draw" pathLength="1" d="M70 300 L440 360"/><path class="draw" pathLength="1" d="M200 280 L440 360"/><path class="draw" pathLength="1" d="M330 290 L440 360"/>
+        <path class="draw" pathLength="1" d="M60 420 L440 360"/><path class="draw" pathLength="1" d="M170 470 L440 360"/><path class="draw" pathLength="1" d="M110 545 L440 360"/>
+        <path class="draw" pathLength="1" d="M260 525 L440 360"/><path class="draw" pathLength="1" d="M380 520 L440 360"/><path class="draw" pathLength="1" d="M520 290 L440 360"/>
+        <path class="draw" pathLength="1" d="M650 350 L440 360"/><path class="draw" pathLength="1" d="M735 400 L440 360"/><path class="draw" pathLength="1" d="M560 520 L440 360"/>
+        <path class="draw" pathLength="1" d="M700 520 L440 360"/>
+      </g>
+      <g fill="#efe6d2">
+        <circle cx="70" cy="300" r="5"/><circle cx="200" cy="280" r="5"/><circle cx="330" cy="290" r="5"/><circle cx="60" cy="420" r="5"/><circle cx="170" cy="470" r="5"/><circle cx="110" cy="545" r="5"/><circle cx="260" cy="525" r="5"/><circle cx="380" cy="520" r="5"/><circle cx="520" cy="290" r="5"/><circle cx="650" cy="350" r="5"/><circle cx="735" cy="400" r="5"/><circle cx="560" cy="520" r="5"/>
+      </g>
+      <g fill="#e0bc4a"><circle class="pulse" cx="255" cy="330" r="3.5"/><circle class="pulse" cx="320" cy="322" r="3.5" style="animation-delay:.3s"/><circle class="pulse" cx="250" cy="390" r="3.5" style="animation-delay:.6s"/><circle class="pulse" cx="545" cy="355" r="3.5" style="animation-delay:.9s"/><circle class="pulse" cx="570" cy="440" r="3.5" style="animation-delay:1.2s"/><circle class="pulse" cx="275" cy="452" r="3.5" style="animation-delay:.4s"/></g>
+      <circle cx="700" cy="520" r="6" fill="#e0bc4a"/>
+      <text x="636" y="552" fill="#e0bc4a" font-size="14">AUGUSTA, GA</text>
+      <g transform="translate(440 360)"><g class="node" style="transition-delay:1.4s">
+        <rect x="-74" y="-24" width="148" height="48" rx="4" fill="#12130f" stroke="#d08a4e" stroke-width="2"/>
+        <text x="0" y="-4" fill="#efe6d2" text-anchor="middle" font-size="14">WAR DEPARTMENT</text>
+        <text x="0" y="14" fill="#d08a4e" text-anchor="middle" font-size="13">WEATHER MAP</text>
+      </g></g>
+      <text x="60" y="228" fill="#d08a4e">1870 · REPORTS BY TELEGRAPH</text>
+    </g>
+    <!-- 1874: Smithsonian volunteer observers join -->
+    <g class="lay" id="L-smith">
+      <g fill="none" stroke="#7fc4e8" stroke-width="2">
+        <circle class="pulse" cx="130" cy="350" r="5"/><circle class="pulse" cx="270" cy="300" r="5" style="animation-delay:.4s"/><circle class="pulse" cx="120" cy="490" r="5" style="animation-delay:.8s"/><circle class="pulse" cx="320" cy="470" r="5" style="animation-delay:.2s"/><circle class="pulse" cx="600" cy="310" r="5" style="animation-delay:.6s"/><circle class="pulse" cx="610" cy="470" r="5" style="animation-delay:1s"/><circle class="pulse" cx="700" cy="440" r="5" style="animation-delay:.3s"/><circle class="pulse" cx="210" cy="560" r="5" style="animation-delay:.7s"/>
+      </g>
+      <text x="470" y="226" fill="#7fc4e8">1874 · SMITHSONIAN OBSERVERS JOIN</text>
+    </g>
+    <!-- 1881: the Arctic -->
+    <g class="lay" id="L-polar">
+      <g fill="#d9dde0" opacity=".85"><path d="M430 470 L500 330 L560 430 L610 300 L690 450 L740 380 L780 470 Z"/></g>
+      <g fill="#ffffff" opacity=".9"><path d="M500 330 L516 362 L486 360 Z"/><path d="M610 300 L630 340 L594 336 Z"/></g>
+      <path d="M380 470 C500 462 640 476 780 466 L780 600 L380 600 Z" fill="#cfe1ec" opacity=".2"/>
+      <g transform="translate(610 300)"><g class="node" style="transition-delay:1s"><rect x="-1.5" y="-44" width="3" height="44" fill="#efe6d2"/><path d="M1.5 -44 L30 -36 L1.5 -28 Z" fill="#d9705f"/></g></g>
+      <g fill="#eef3f6" opacity=".75"><circle class="pulse" cx="440" cy="190" r="2"/><circle class="pulse" cx="520" cy="230" r="2.4" style="animation-delay:.5s"/><circle class="pulse" cx="700" cy="250" r="2" style="animation-delay:1s"/><circle class="pulse" cx="740" cy="300" r="2.6" style="animation-delay:.3s"/><circle class="pulse" cx="470" cy="280" r="2" style="animation-delay:.8s"/></g>
+      <text x="470" y="520" fill="#cfe1ec">1881 · LADY FRANKLIN BAY</text>
+      <text x="470" y="542" fill="#b8ab8e" font-size="13">FIRST INTERNATIONAL POLAR YEAR</text>
+    </g>
+    <!-- 1890-91: the weather goes civilian; the Army keeps military weather -->
+    <g class="lay" id="L-fork">
+      <path class="draw" pathLength="1" d="M514 350 C540 300 540 262 560 255" fill="none" stroke="#7fc4e8" stroke-width="3"/>
+      <path class="draw" pathLength="1" d="M514 370 C540 420 540 438 560 445" fill="none" stroke="#e0bc4a" stroke-width="3"/>
+      <g transform="translate(560 226)"><g class="node" style="transition-delay:1s"><rect x="0" y="0" width="200" height="56" rx="4" fill="#12130f" stroke="#7fc4e8" stroke-width="2"/><text x="12" y="22" fill="#7fc4e8">1891 · WEATHER BUREAU</text><text x="12" y="42" fill="#b8ab8e" font-size="13">CIVILIAN · AGRICULTURE</text></g></g>
+      <g transform="translate(560 418)"><g class="node" style="transition-delay:1.6s"><rect x="0" y="0" width="200" height="56" rx="4" fill="#12130f" stroke="#e0bc4a" stroke-width="2"/><text x="12" y="22" fill="#e0bc4a">SIGNAL CORPS KEEPS</text><text x="12" y="42" fill="#b8ab8e" font-size="13">MILITARY WEATHER WORK</text></g></g>
+    </g>
+    <!-- 1917-18: Meteorological Service in France -->
+    <g class="lay" id="L-france">
+      <path d="M600 420 C596 360 606 300 600 250" fill="none" stroke="#b8ab8e" stroke-width="1.4" stroke-dasharray="3 4"/>
+      <g transform="translate(600 210)"><g class="node"><circle cx="0" cy="0" r="38" fill="#efe6d2" opacity=".92"/><ellipse cx="-12" cy="-12" rx="10" ry="7" fill="#ffffff" opacity=".7"/><path d="M-6 36 L6 36 L0 42 Z" fill="#b8ab8e"/></g></g>
+      <rect x="560" y="420" width="80" height="10" fill="#5a4630"/>
+      <g fill="#e0bc4a">
+        <circle cx="420" cy="495" r="4"/><circle cx="436" cy="495" r="4"/><circle cx="452" cy="495" r="4"/><circle cx="468" cy="495" r="4"/><circle cx="484" cy="495" r="4"/><circle cx="500" cy="495" r="4"/><circle cx="516" cy="495" r="4"/><circle cx="532" cy="495" r="4"/><circle cx="548" cy="495" r="4"/><circle cx="564" cy="495" r="4"/><circle cx="580" cy="495" r="4"/>
+        <circle cx="596" cy="495" r="4"/><circle cx="612" cy="495" r="4"/><circle cx="628" cy="495" r="4"/><circle cx="644" cy="495" r="4"/><circle cx="660" cy="495" r="4"/><circle cx="676" cy="495" r="4"/><circle cx="692" cy="495" r="4"/><circle cx="708" cy="495" r="4"/><circle cx="724" cy="495" r="4"/><circle cx="740" cy="495" r="4"/><circle cx="756" cy="495" r="4"/>
+      </g>
+      <text x="420" y="472" fill="#e0bc4a">1918 · FRANCE</text>
+      <text x="420" y="528" fill="#b8ab8e" font-size="13">22 AMERICAN WEATHER STATIONS BY OCTOBER 1918</text>
+    </g>
+    <!-- 1937-47: weather forecasting moves to the air arm -->
+    <g class="lay" id="L-air">
+      <g transform="translate(420 170)"><g class="node"><rect x="0" y="0" width="330" height="56" rx="4" fill="#12130f" stroke="#e0bc4a" stroke-width="2"/><text x="14" y="23" fill="#e0bc4a">SIGNAL CORPS METEOROLOGICAL SECTION</text><text x="14" y="43" fill="#b8ab8e" font-size="13">KEEPS DEVELOPING AND SUPPLYING EQUIPMENT</text></g></g>
+      <path class="draw" pathLength="1" d="M585 230 L585 284" fill="none" stroke="#d08a4e" stroke-width="3" style="transition-delay:.8s"/>
+      <g transform="translate(420 290)"><g class="node" style="transition-delay:1.6s"><rect x="0" y="0" width="330" height="56" rx="4" fill="#12130f" stroke="#d08a4e" stroke-width="2"/><text x="14" y="23" fill="#d08a4e">1 JULY 1937 · ARMY AIR CORPS</text><text x="14" y="43" fill="#b8ab8e" font-size="13">ARMY AIR CORPS WEATHER SERVICE</text></g></g>
+      <path class="draw" pathLength="1" d="M585 350 L585 404" fill="none" stroke="#7fc4e8" stroke-width="3" style="transition-delay:2.4s"/>
+      <g transform="translate(420 410)"><g class="node" style="transition-delay:3.2s"><rect x="0" y="0" width="330" height="56" rx="4" fill="#12130f" stroke="#7fc4e8" stroke-width="2"/><text x="14" y="23" fill="#7fc4e8">1947 · AIR FORCE WEATHER</text><text x="14" y="43" fill="#b8ab8e" font-size="13">SUPPORT FOR THE AIR FORCE AND THE ARMY</text></g></g>
+    </g>
+    <!-- 1940s-1960: radar and TIROS -->
+    <g class="lay" id="L-sat">
+      <g transform="translate(560 190)"><g class="node">
+        <rect x="-20" y="-16" width="40" height="32" rx="4" fill="#b8ab8e" stroke="#efe6d2"/>
+        <rect x="-74" y="-9" width="46" height="18" fill="#2f5d7a" stroke="#7fc4e8"/><rect x="28" y="-9" width="46" height="18" fill="#2f5d7a" stroke="#7fc4e8"/>
+        <circle cx="0" cy="22" r="5" fill="#12130f" stroke="#efe6d2"/>
+      </g></g>
+      <path d="M560 214 L470 360 L650 360 Z" fill="#7fc4e8" opacity=".12"/>
+      <g fill="#55626e" opacity=".8"><ellipse cx="520" cy="372" rx="44" ry="12"/><ellipse cx="600" cy="366" rx="50" ry="14"/></g>
+      <text x="470" y="262" fill="#7fc4e8">1960 · TIROS</text>
+      <g transform="translate(640 470)"><g class="node" style="transition-delay:1s">
+        <circle cx="0" cy="0" r="54" fill="none" stroke="#7fc4e8" stroke-width="1.2" opacity=".5"/><circle cx="0" cy="0" r="34" fill="none" stroke="#7fc4e8" stroke-width="1" opacity=".4"/>
+        <path d="M0 0 L50 -20 A54 54 0 0 1 54 0 Z" fill="#7fc4e8" opacity=".35"/><circle cx="26" cy="-14" r="4" fill="#e0bc4a"/>
+      </g></g>
+      <text x="420" y="452" fill="#d08a4e">1940s · RADAR</text>
+      <text x="420" y="472" fill="#b8ab8e" font-size="13">TRACKS STORMS</text>
+    </g>
+    </g>
+  </svg>
+  <div class="flash" id="flash"></div>
+  <div class="dim" id="dim"></div>
+  <figure class="photo" id="photo"><img id="photoImg" alt=""><figcaption id="photoCap"></figcaption></figure>
+  <div class="date" id="date"></div>
+  <div class="stat" id="stat"><b id="statN"></b><span id="statL"></span></div>
+  <div class="trio" id="trio"></div>
+  <div class="panel" id="panel"></div>
+  <div class="card on" id="card"></div>
+</div>
+
+<div class="cap" id="cap" aria-live="polite"></div>
+<div class="ctrl">
+  <button id="prev" aria-label="Previous scene">⏮</button>
+  <button id="play" aria-label="Play or pause">▶ Play</button>
+  <button id="next" aria-label="Next scene">⏭</button>
+  <div class="dots" id="dots"></div>
+  <button id="mus" class="tog" aria-pressed="true" title="Music on or off">♪ Music</button>
+  <button id="nar" class="tog" aria-pressed="true" title="Narration on or off">🗣 Narration</button>
+</div>
+<p class="note">Facts from National Archives, Records of the Weather Bureau (RG 27) and of the Office of the Chief Signal Officer (RG 111); U.S. Army Center of Military History, <i>Signal Corps</i> (Army Lineage Series); <i>A Concise History of the U.S. Army Signal Corps</i>; army.mil (“Signal Corps Predicts the Weather”, “Signal Corps Birthday”, “Army space history: Signal Corps contributes to meteorological history”); National Museum of the United States Army; NOAA National Weather Service Heritage; and the 557th Weather Wing, U.S. Air Force. Pictures: public domain, credited in each caption. The sky, the stations and the lines of descent are a museum illustration, not a map. The music is an original score your browser plays as you watch; the narration uses your device's built-in voice.</p>
+<p class="note"><a href="../index.html#room-weather" target="_top">← Weather Annex, Signal &amp; Cyber Corps Museum Society virtual museum</a></p>
+</div>
+
+<script>
+window.STORY={key:2,
+photos:{
+  map:{src:"../assets/archives/wx-map.jpg",cap:"A daily weather map from the Signal Service's Division of Telegrams and Reports, signed by Albert J. Myer as Chief Signal Officer, plotting readings telegraphed on the morning of August 26, 1871.",credit:"U.S. Army Signal Service, 1871 (Countway Library copy via Internet Archive) · public domain",fit:true},
+  greely:{src:"../assets/archives/wx-greely.jpg",cap:"Six survivors of the Lady Franklin Bay Expedition aboard the relief ship USS Thetis, July 1884. Lt. Adolphus Greely is seated at right, beside Sgt. David L. Brainard.",credit:"National Archives, 111-SC-96236 · public domain"},
+  card:{src:"../assets/nara/wx-greely-card.jpg",cap:"Adolphus W. Greely as a major general, on a printed color card kept in the papers of David L. Brainard, a member of his Arctic expedition.",credit:"National Archives, photo DLB-AA-50 · Brainard Collection of Arctic Exploration · public domain",top:true},
+  gievres:{src:"../assets/nara/wx-gievres-1919.jpg",cap:"The meteorological detachment of the American Expeditionary Forces at Gièvres, France, with a pilot balloon ready for release. 44th Service Company, Signal Corps, 1919.",credit:"National Archives, photo 111-SC-158770 · public domain"},
+  ops:{src:"../assets/nara/wx-met-operations.jpg",cap:"Signal Corps meteorological work in the field: one soldier releases a pilot balloon while others track it, plot it and read the instrument shelter.",credit:"National Archives, photo 111-SC-99312 · public domain"},
+  sonde:{src:"../assets/archives/wx-radiosonde.jpg",cap:"A balloon-borne ML-141-(B) radiosonde, addressed for return to the Signal Supply Officer at the Dayton Signal Depot. Radiosondes radioed wind, pressure, temperature and humidity readings to the ground.",credit:"U.S. Air Force photo, National Museum of the U.S. Air Force · public domain"}
+},
+scenes:[
+ {part:"title",card:'<div class="k">SIGNAL &amp; CYBER CORPS MUSEUM SOCIETY</div><h1>Weather by Wire</h1><p>The Signal Corps as the nation\'s weather service, 1870–1891, and after</p><div class="rule"></div>',
+  cap:"An animated story from the Weather Annex.",
+  say:"Weather by Wire. The Signal Corps as the nation's weather service.",min:6},
+ {part:"calm",date:"1814",lay:["diary"],
+  cap:"The Army records weather long before it has a weather service. In <b>1814</b> the Surgeon General has Army post and hospital surgeons keep <b>weather diaries</b>, to understand how weather and disease are connected. The National Archives calls this the first nationwide federal weather system.",
+  say:"The Army was recording the weather long before it had a weather service. In 1814 the Surgeon General had Army post and hospital surgeons keep weather diaries. The doctors wanted to understand how weather and disease were connected. The National Archives calls this the first nationwide federal weather system.",min:10},
+ {part:"alarm",date:"1870",lay:["storm"],flash:true,
+  cap:"In <b>1870</b> freak storms kill several people on the Great Lakes. A law approved <b>February 9, 1870</b>, written by Wisconsin congressman <b>Halbert Paine</b>, directs the War Department to take weather observations at military posts and share them by telegraph.",
+  say:"In 1870 a series of freak storms killed several people on the Great Lakes. Congress answered with a law approved on February ninth, 1870. It directed the War Department to take weather observations at military posts and share them by telegraph. Its author, Wisconsin congressman Halbert Paine, argued that military discipline would give the quickest, most regular and most accurate reports.",min:12},
+ {part:"wire",date:"15 MARCH 1870",lay:["net"],stat:[[25,60],"regular stations: 25 in 1870, 60 the next year"],
+  cap:"On <b>March 15, 1870</b>, the job goes to the Chief Signal Officer, <b>Albert J. Myer</b>. Soldiers take observations and telegraph their reports. There are <b>25</b> regular stations in 1870 and <b>60</b> the next year, one of them in <b>Augusta, Georgia</b>.",
+  say:"On March fifteenth, 1870 the job went to the Chief Signal Officer, Albert J. Myer, and the Signal Corps became the nation's weather service. Myer trained signalmen to run it. Soldiers took observations across the country and sent their reports by telegraph. There were twenty-five regular stations in 1870 and sixty the next year. One of them was in Augusta, Georgia.",min:13},
+ {part:"held",photo:["map","full"],
+  cap:"A Signal Service daily weather map for the morning of <b>August 26, 1871</b>, signed by Albert J. Myer.",
+  say:"This daily weather map is signed by Myer as Chief Signal Officer. It plots readings telegraphed from stations across the country on the morning of August twenty-sixth, 1871.",min:9},
+ {part:"build",date:"1874 – 1880s",lay:["net","smith"],stat:["Nearly all","of the Signal Corps' effort goes to weather in the 1880s"],
+  cap:"The Smithsonian's volunteer weather observers, gathered since <b>1848</b>, are handed over to the Signal Service in <b>February 1874</b>. By Myer's death in <b>1880</b> the service is world renowned.",
+  say:"The Smithsonian had gathered weather reports from volunteer observers since 1848. In February 1874 those observers were handed over to the Signal Service. By the time Myer died in 1880 the service was world renowned. In the eighteen eighties weather work took up nearly all of the Signal Corps' effort.",min:12},
+ {part:"tension",date:"1881 · THE ARCTIC",lay:["polar"],photo:["greely","inset"],
+  cap:"In <b>1881</b> Lt. <b>Adolphus Greely</b> leads a Signal Corps party to the Arctic for the <b>First International Polar Year</b>. Their station at Lady Franklin Bay, which the Army also calls Fort Conger, is the northernmost polar site that year.",
+  say:"In 1881 Lieutenant Adolphus Greely led a Signal Corps party to the Arctic to take part in the First International Polar Year. Their station at Lady Franklin Bay, which the Army also calls Fort Conger, was the northernmost polar site that year.",min:11},
+ {part:"march",date:"1890 – 1891",lay:["net","fork"],photo:["card","inset"],stat:["about 500","observation stations by 1891"],
+  cap:"President <b>Benjamin Harrison</b> signs a law on <b>October 1, 1890</b>, creating the civilian <b>Weather Bureau</b> in the Department of Agriculture. The network moves over on <b>July 1, 1891</b>, with Greely supervising the handover. The Signal Corps keeps military weather work.",
+  say:"In 1890 Congress decided the weather service should be civilian. President Benjamin Harrison signed the law on October first, 1890 creating the Weather Bureau in the Department of Agriculture. The network moved to the new bureau on July first, 1891. By then it ran about five hundred observation stations. Greely supervised the handover, and the Signal Corps kept responsibility for military weather work.",min:14},
+ {part:"drive",date:"1917 – 1918 · FRANCE",lay:["france"],photo:["gievres","inset"],stat:["about 500","weathermen trained by the end of the war"],
+  cap:"The Army needs forecasts for aviators, artillery and gas attacks. In <b>September 1917</b> Maj. <b>William R. Blair</b> goes to France to organize a Signal Corps <b>Meteorological Service</b>. The first American weather station there opens in <b>May 1918</b>; by October there are <b>22</b>.",
+  say:"In World War One the Army needed weather forecasts for aviators, artillery and gas attacks. In September 1917 Major William R. Blair went to France to organize a Signal Corps Meteorological Service. The first American weather station in France opened in May 1918. By October there were twenty-two. By the end of the war the Army had trained about five hundred weathermen.",min:13},
+ {part:"build",date:"1919 – 1947",lay:["air"],photo:["ops","inset"],
+  cap:"Capt. Randolph “Pinkie” Williams argues for a permanent military weather service. On <b>July 1, 1937</b>, the Meteorological Section moves to the <b>Army Air Corps</b>; the Signal Corps keeps developing and supplying weather equipment. In <b>1947</b> Air Force Weather takes over support for both the Air Force and the Army.",
+  say:"After the war most of the trained weathermen left the Army. Captain Randolph Williams, called Pinkie, argued for a permanent military weather service. On July first, 1937 the Meteorological Section moved from the Signal Corps to the Army Air Corps. The Signal Corps kept the job of developing and supplying weather equipment. In 1947 Air Force Weather took over weather support for both the Air Force and the Army.",min:13},
+ {part:"resolve",date:"1940s – 1960",lay:["sat"],photo:["sonde","inset"],stat:[[0,78],"days TIROS-1 worked, sending back nearly 23,000 cloud pictures"],
+  cap:"In the 1940s Signal Corps laboratories use <b>radar</b> to track storms. On <b>April 1, 1960</b>, the first <b>TIROS</b> weather satellite goes up with Signal Corps instruments, including its television cameras, and Fort Monmouth hosts one of its two ground stations.",
+  say:"The Signal Corps kept building the instruments. In the nineteen forties its laboratories used radar to track storms. On April first, 1960 the first Tiros weather satellite was launched, carrying Signal Corps instruments, including the television cameras. Fort Monmouth hosted one of its two ground stations. Tiros One worked for seventy-eight days and sent back nearly twenty-three thousand cloud pictures. It showed for the first time that satellites could survey the world's weather.",min:14},
+ {part:"held",panel:'<div class="k">WHAT BECAME OF THE WEATHER BUREAU</div><h2>From signalmen to your phone</h2><ul><li><b>1890–91</b><span>Weather Bureau, Department of Agriculture</span></li><li><b>1940</b><span>Moves to the Department of Commerce</span></li><li><b>1965</b><span>Part of the Environmental Science Services Administration</span></li><li><b>1970</b><span>Joins NOAA: the National Weather Service is its direct successor</span></li></ul>',
+  cap:"The Weather Bureau stays civilian: to <b>Commerce</b> in 1940, <b>ESSA</b> in 1965 and <b>NOAA</b> in 1970. The <b>National Weather Service</b> is its direct successor.",
+  say:"The Weather Bureau stayed civilian. It moved to the Department of Commerce in 1940 and became part of the Environmental Science Services Administration in 1965. In 1970 it joined the new National Oceanic and Atmospheric Administration. The National Weather Service is its direct successor. So the forecast on your phone traces back to Army signalmen taking observations in 1870.",min:13},
+ {part:"end",card:'<div class="k">SIGNAL &amp; CYBER CORPS MUSEUM SOCIETY</div><h1>Secure Our Story</h1><p>From Army surgeons\' weather diaries to the forecast on your phone.</p><div class="rule"></div>',
+  cap:"Signal &amp; Cyber Corps Museum Society · Secure Our Story",
+  say:"From Army surgeons' weather diaries to the forecast on your phone. Signal and Cyber Corps Museum Society. Secure our story.",min:7}
+]};
+</script>
+<script src="story-player.js"></script>
+</body>
+</html>
